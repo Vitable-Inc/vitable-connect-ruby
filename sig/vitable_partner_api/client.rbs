@@ -1,0 +1,42 @@
+module VitablePartnerAPI
+  class Client < VitablePartnerAPI::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    ENVIRONMENTS: {
+      production: "https://api.vitablehealth.com",
+      :environment_1 => "https://api-staging.vitablehealth.com"
+    }
+
+    attr_reader api_key: String
+
+    attr_reader employers: VitablePartnerAPI::Resources::Employers
+
+    attr_reader employees: VitablePartnerAPI::Resources::Employees
+
+    attr_reader dependents: VitablePartnerAPI::Resources::Dependents
+
+    attr_reader benefit_products: VitablePartnerAPI::Resources::BenefitProducts
+
+    attr_reader plan_years: VitablePartnerAPI::Resources::PlanYears
+
+    attr_reader enrollments: VitablePartnerAPI::Resources::Enrollments
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key: String?,
+      ?environment: :production | :environment_1 | nil,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

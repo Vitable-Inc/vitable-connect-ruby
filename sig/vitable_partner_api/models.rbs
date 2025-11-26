@@ -1,0 +1,77 @@
+module VitablePartnerAPI
+  class BenefitProduct = VitablePartnerAPI::Models::BenefitProduct
+
+  class BenefitProductGenerateQuoteParams = VitablePartnerAPI::Models::BenefitProductGenerateQuoteParams
+
+  class BenefitProductListParams = VitablePartnerAPI::Models::BenefitProductListParams
+
+  module BenefitProducts = VitablePartnerAPI::Models::BenefitProducts
+
+  class CreateDependentRequest = VitablePartnerAPI::Models::CreateDependentRequest
+
+  class CreateEligibilityPolicyRequest = VitablePartnerAPI::Models::CreateEligibilityPolicyRequest
+
+  class CreateEmployerRequest = VitablePartnerAPI::Models::CreateEmployerRequest
+
+  class CreateQualifyingLifeEventRequest = VitablePartnerAPI::Models::CreateQualifyingLifeEventRequest
+
+  class Dependent = VitablePartnerAPI::Models::Dependent
+
+  class DependentUpdateParams = VitablePartnerAPI::Models::DependentUpdateParams
+
+  class ElectBenefitsRequest = VitablePartnerAPI::Models::ElectBenefitsRequest
+
+  class EligibilityPolicy = VitablePartnerAPI::Models::EligibilityPolicy
+
+  class Employee = VitablePartnerAPI::Models::Employee
+
+  class EmployeeRetrieveParams = VitablePartnerAPI::Models::EmployeeRetrieveParams
+
+  module Employees = VitablePartnerAPI::Models::Employees
+
+  class EmployeeTerminateParams = VitablePartnerAPI::Models::EmployeeTerminateParams
+
+  class EmployeeUpdateParams = VitablePartnerAPI::Models::EmployeeUpdateParams
+
+  class Employer = VitablePartnerAPI::Models::Employer
+
+  class EmployerCreateEligibilityPolicyParams = VitablePartnerAPI::Models::EmployerCreateEligibilityPolicyParams
+
+  class EmployerCreateParams = VitablePartnerAPI::Models::EmployerCreateParams
+
+  class EmployerListParams = VitablePartnerAPI::Models::EmployerListParams
+
+  class EmployerRetrieveParams = VitablePartnerAPI::Models::EmployerRetrieveParams
+
+  module Employers = VitablePartnerAPI::Models::Employers
+
+  class EmployerUpdateParams = VitablePartnerAPI::Models::EmployerUpdateParams
+
+  class Enrollment = VitablePartnerAPI::Models::Enrollment
+
+  class EnrollmentGetEligiblePlansParams = VitablePartnerAPI::Models::EnrollmentGetEligiblePlansParams
+
+  class EnrollmentReissueParams = VitablePartnerAPI::Models::EnrollmentReissueParams
+
+  class Member = VitablePartnerAPI::Models::Member
+
+  class Plan = VitablePartnerAPI::Models::Plan
+
+  class PlanYear = VitablePartnerAPI::Models::PlanYear
+
+  class PlanYearUpdateParams = VitablePartnerAPI::Models::PlanYearUpdateParams
+
+  class QualifyingLifeEvent = VitablePartnerAPI::Models::QualifyingLifeEvent
+
+  class Quote = VitablePartnerAPI::Models::Quote
+
+  class QuoteRequest = VitablePartnerAPI::Models::QuoteRequest
+
+  class ReissueEnrollmentRequest = VitablePartnerAPI::Models::ReissueEnrollmentRequest
+
+  class UpdateDependentRequest = VitablePartnerAPI::Models::UpdateDependentRequest
+
+  class UpdateEmployerRequest = VitablePartnerAPI::Models::UpdateEmployerRequest
+
+  class UpdatePlanYearRequest = VitablePartnerAPI::Models::UpdatePlanYearRequest
+end

@@ -1,0 +1,19 @@
+module VitablePartnerAPI
+  module Resources
+    class Dependents
+      def update: (
+        String id,
+        ?date_of_birth: Date,
+        ?first_name: String,
+        ?gender: VitablePartnerAPI::Models::UpdateDependentRequest::gender,
+        ?last_name: String,
+        ?relationship: VitablePartnerAPI::Models::UpdateDependentRequest::relationship,
+        ?sex: VitablePartnerAPI::Models::UpdateDependentRequest::sex,
+        ?suffix: String,
+        ?request_options: VitablePartnerAPI::request_opts
+      ) -> VitablePartnerAPI::Dependent
+
+      def initialize: (client: VitablePartnerAPI::Client) -> void
+    end
+  end
+end

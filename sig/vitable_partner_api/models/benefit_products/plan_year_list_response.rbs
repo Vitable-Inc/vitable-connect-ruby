@@ -1,0 +1,20 @@
+module VitablePartnerAPI
+  module Models
+    module BenefitProducts
+      type plan_year_list_response =
+        { data: ::Array[VitablePartnerAPI::PlanYear] }
+
+      class PlanYearListResponse < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_reader data: ::Array[VitablePartnerAPI::PlanYear]?
+
+        def data=: (
+          ::Array[VitablePartnerAPI::PlanYear]
+        ) -> ::Array[VitablePartnerAPI::PlanYear]
+
+        def initialize: (?data: ::Array[VitablePartnerAPI::PlanYear]) -> void
+
+        def to_hash: -> { data: ::Array[VitablePartnerAPI::PlanYear] }
+      end
+    end
+  end
+end

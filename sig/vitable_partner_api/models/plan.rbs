@@ -1,0 +1,15 @@
+module VitablePartnerAPI
+  module Models
+    type plan = { id: String, plan_name: String }
+
+    class Plan < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor plan_name: String
+
+      def initialize: (id: String, plan_name: String) -> void
+
+      def to_hash: -> { id: String, plan_name: String }
+    end
+  end
+end

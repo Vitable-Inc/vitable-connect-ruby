@@ -1,0 +1,20 @@
+module VitablePartnerAPI
+  module Models
+    type create_employer_request =
+      { legal_name: String, name: String, active: bool }
+
+    class CreateEmployerRequest < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor legal_name: String
+
+      attr_accessor name: String
+
+      attr_reader active: bool?
+
+      def active=: (bool) -> bool
+
+      def initialize: (legal_name: String, name: String, ?active: bool) -> void
+
+      def to_hash: -> { legal_name: String, name: String, active: bool }
+    end
+  end
+end

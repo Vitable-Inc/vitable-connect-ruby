@@ -1,0 +1,108 @@
+module VitablePartnerAPI
+  module Models
+    type qualifying_life_event =
+      {
+        id: String,
+        event_date: Date,
+        event_type: VitablePartnerAPI::Models::QualifyingLifeEvent::event_type,
+        member_id: String,
+        status: VitablePartnerAPI::Models::QualifyingLifeEvent::status,
+        description: String?,
+        proof_document_url: String?,
+        review_notes: String?,
+        reviewed_at: Time?,
+        reviewed_by_user_id: String?
+      }
+
+    class QualifyingLifeEvent < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor event_date: Date
+
+      attr_accessor event_type: VitablePartnerAPI::Models::QualifyingLifeEvent::event_type
+
+      attr_accessor member_id: String
+
+      attr_accessor status: VitablePartnerAPI::Models::QualifyingLifeEvent::status
+
+      attr_accessor description: String?
+
+      attr_accessor proof_document_url: String?
+
+      attr_accessor review_notes: String?
+
+      attr_accessor reviewed_at: Time?
+
+      attr_accessor reviewed_by_user_id: String?
+
+      def initialize: (
+        id: String,
+        event_date: Date,
+        event_type: VitablePartnerAPI::Models::QualifyingLifeEvent::event_type,
+        member_id: String,
+        status: VitablePartnerAPI::Models::QualifyingLifeEvent::status,
+        ?description: String?,
+        ?proof_document_url: String?,
+        ?review_notes: String?,
+        ?reviewed_at: Time?,
+        ?reviewed_by_user_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        event_date: Date,
+        event_type: VitablePartnerAPI::Models::QualifyingLifeEvent::event_type,
+        member_id: String,
+        status: VitablePartnerAPI::Models::QualifyingLifeEvent::status,
+        description: String?,
+        proof_document_url: String?,
+        review_notes: String?,
+        reviewed_at: Time?,
+        reviewed_by_user_id: String?
+      }
+
+      type event_type =
+        :MARRIAGE
+        | :BIRTH
+        | :ADOPTION
+        | :DIVORCE
+        | :DEATH
+        | :JOB_LOSS
+        | :REDUCTION_IN_HOURS
+        | :EMPLOYER_BANKRUPTCY
+        | :MEDICARE_ENTITLEMENT
+        | :TERMINATION
+        | :OTHER
+
+      module EventType
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        MARRIAGE: :MARRIAGE
+        BIRTH: :BIRTH
+        ADOPTION: :ADOPTION
+        DIVORCE: :DIVORCE
+        DEATH: :DEATH
+        JOB_LOSS: :JOB_LOSS
+        REDUCTION_IN_HOURS: :REDUCTION_IN_HOURS
+        EMPLOYER_BANKRUPTCY: :EMPLOYER_BANKRUPTCY
+        MEDICARE_ENTITLEMENT: :MEDICARE_ENTITLEMENT
+        TERMINATION: :TERMINATION
+        OTHER: :OTHER
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::QualifyingLifeEvent::event_type]
+      end
+
+      type status = :PENDING | :APPROVED | :DENIED
+
+      module Status
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        PENDING: :PENDING
+        APPROVED: :APPROVED
+        DENIED: :DENIED
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::QualifyingLifeEvent::status]
+      end
+    end
+  end
+end

@@ -1,0 +1,45 @@
+module VitablePartnerAPI
+  module Models
+    type employer =
+      {
+        id: String,
+        active: bool,
+        legal_name: String,
+        name: String,
+        eligibility_policy: VitablePartnerAPI::EligibilityPolicy?,
+        organization_id: String?
+      }
+
+    class Employer < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor active: bool
+
+      attr_accessor legal_name: String
+
+      attr_accessor name: String
+
+      attr_accessor eligibility_policy: VitablePartnerAPI::EligibilityPolicy?
+
+      attr_accessor organization_id: String?
+
+      def initialize: (
+        id: String,
+        active: bool,
+        legal_name: String,
+        name: String,
+        ?eligibility_policy: VitablePartnerAPI::EligibilityPolicy?,
+        ?organization_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        active: bool,
+        legal_name: String,
+        name: String,
+        eligibility_policy: VitablePartnerAPI::EligibilityPolicy?,
+        organization_id: String?
+      }
+    end
+  end
+end

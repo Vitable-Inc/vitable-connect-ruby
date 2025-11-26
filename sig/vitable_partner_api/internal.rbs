@@ -1,0 +1,10 @@
+module VitablePartnerAPI
+  module Internal
+    extend VitablePartnerAPI::Internal::Util::SorbetRuntimeSupport
+
+    type file_input =
+      Pathname | StringIO | IO | String | VitablePartnerAPI::FilePart
+
+    OMIT: Object
+  end
+end

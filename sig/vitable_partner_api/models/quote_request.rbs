@@ -1,0 +1,20 @@
+module VitablePartnerAPI
+  module Models
+    type quote_request = { employer_id: String, metadata: ::Hash[Symbol, top] }
+
+    class QuoteRequest < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor employer_id: String
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      def initialize: (
+        employer_id: String,
+        ?metadata: ::Hash[Symbol, top]
+      ) -> void
+
+      def to_hash: -> { employer_id: String, metadata: ::Hash[Symbol, top] }
+    end
+  end
+end

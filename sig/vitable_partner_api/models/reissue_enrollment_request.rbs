@@ -1,0 +1,13 @@
+module VitablePartnerAPI
+  module Models
+    type reissue_enrollment_request = { qualifying_life_event_id: String }
+
+    class ReissueEnrollmentRequest < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor qualifying_life_event_id: String
+
+      def initialize: (qualifying_life_event_id: String) -> void
+
+      def to_hash: -> { qualifying_life_event_id: String }
+    end
+  end
+end

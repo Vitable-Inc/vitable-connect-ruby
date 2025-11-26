@@ -1,0 +1,64 @@
+module VitablePartnerAPI
+  module Models
+    type enrollment =
+      {
+        id: String,
+        decision: VitablePartnerAPI::Models::Enrollment::decision,
+        employee_id: String,
+        plan_year_id: String,
+        status: VitablePartnerAPI::Models::Enrollment::status
+      }
+
+    class Enrollment < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor decision: VitablePartnerAPI::Models::Enrollment::decision
+
+      attr_accessor employee_id: String
+
+      attr_accessor plan_year_id: String
+
+      attr_accessor status: VitablePartnerAPI::Models::Enrollment::status
+
+      def initialize: (
+        id: String,
+        decision: VitablePartnerAPI::Models::Enrollment::decision,
+        employee_id: String,
+        plan_year_id: String,
+        status: VitablePartnerAPI::Models::Enrollment::status
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        decision: VitablePartnerAPI::Models::Enrollment::decision,
+        employee_id: String,
+        plan_year_id: String,
+        status: VitablePartnerAPI::Models::Enrollment::status
+      }
+
+      type decision = :enrolled | :waived
+
+      module Decision
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        ENROLLED: :enrolled
+        WAIVED: :waived
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::Enrollment::decision]
+      end
+
+      type status = :pending | :enrolled | :waived | :inactive
+
+      module Status
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        PENDING: :pending
+        ENROLLED: :enrolled
+        WAIVED: :waived
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::Enrollment::status]
+      end
+    end
+  end
+end

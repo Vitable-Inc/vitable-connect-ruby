@@ -1,0 +1,54 @@
+module VitablePartnerAPI
+  module Models
+    type employee =
+      {
+        id: String,
+        active: bool,
+        employer_id: String,
+        member: VitablePartnerAPI::Member,
+        start_date: Date,
+        dependents: ::Array[VitablePartnerAPI::Dependent],
+        terminated_at: Time?
+      }
+
+    class Employee < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor active: bool
+
+      attr_accessor employer_id: String
+
+      attr_accessor member: VitablePartnerAPI::Member
+
+      attr_accessor start_date: Date
+
+      attr_reader dependents: ::Array[VitablePartnerAPI::Dependent]?
+
+      def dependents=: (
+        ::Array[VitablePartnerAPI::Dependent]
+      ) -> ::Array[VitablePartnerAPI::Dependent]
+
+      attr_accessor terminated_at: Time?
+
+      def initialize: (
+        id: String,
+        active: bool,
+        employer_id: String,
+        member: VitablePartnerAPI::Member,
+        start_date: Date,
+        ?dependents: ::Array[VitablePartnerAPI::Dependent],
+        ?terminated_at: Time?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        active: bool,
+        employer_id: String,
+        member: VitablePartnerAPI::Member,
+        start_date: Date,
+        dependents: ::Array[VitablePartnerAPI::Dependent],
+        terminated_at: Time?
+      }
+    end
+  end
+end
