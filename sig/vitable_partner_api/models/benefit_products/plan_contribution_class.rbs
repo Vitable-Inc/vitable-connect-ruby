@@ -1,0 +1,119 @@
+module VitablePartnerAPI
+  module Models
+    module BenefitProducts
+      type plan_contribution_class =
+        {
+          compensation: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::compensation,
+          employer_contribution_in_cents: Integer,
+          employment: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::employment,
+          family_status: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::family_status,
+          location: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::location,
+          plan_year_id: String,
+          location_value: String?,
+          max_age: Integer?,
+          min_age: Integer?,
+          plan_id: String?
+        }
+
+      class PlanContributionClass < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_accessor compensation: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::compensation
+
+        attr_accessor employer_contribution_in_cents: Integer
+
+        attr_accessor employment: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::employment
+
+        attr_accessor family_status: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::family_status
+
+        attr_accessor location: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::location
+
+        attr_accessor plan_year_id: String
+
+        attr_accessor location_value: String?
+
+        attr_accessor max_age: Integer?
+
+        attr_accessor min_age: Integer?
+
+        attr_accessor plan_id: String?
+
+        def initialize: (
+          compensation: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::compensation,
+          employer_contribution_in_cents: Integer,
+          employment: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::employment,
+          family_status: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::family_status,
+          location: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::location,
+          plan_year_id: String,
+          ?location_value: String?,
+          ?max_age: Integer?,
+          ?min_age: Integer?,
+          ?plan_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          compensation: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::compensation,
+          employer_contribution_in_cents: Integer,
+          employment: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::employment,
+          family_status: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::family_status,
+          location: VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::location,
+          plan_year_id: String,
+          location_value: String?,
+          max_age: Integer?,
+          min_age: Integer?,
+          plan_id: String?
+        }
+
+        type compensation = :UNSPECIFIED | :SALARY | :HOURLY
+
+        module Compensation
+          extend VitablePartnerAPI::Internal::Type::Enum
+
+          UNSPECIFIED: :UNSPECIFIED
+          SALARY: :SALARY
+          HOURLY: :HOURLY
+
+          def self?.values: -> ::Array[VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::compensation]
+        end
+
+        type employment =
+          :UNSPECIFIED | :FULL_TIME | :PART_TIME | :TEMPORARY | :SEASONAL
+
+        module Employment
+          extend VitablePartnerAPI::Internal::Type::Enum
+
+          UNSPECIFIED: :UNSPECIFIED
+          FULL_TIME: :FULL_TIME
+          PART_TIME: :PART_TIME
+          TEMPORARY: :TEMPORARY
+          SEASONAL: :SEASONAL
+
+          def self?.values: -> ::Array[VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::employment]
+        end
+
+        type family_status = :UNSPECIFIED | :EE | :ES | :EC | :EF
+
+        module FamilyStatus
+          extend VitablePartnerAPI::Internal::Type::Enum
+
+          UNSPECIFIED: :UNSPECIFIED
+          EE: :EE
+          ES: :ES
+          EC: :EC
+          EF: :EF
+
+          def self?.values: -> ::Array[VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::family_status]
+        end
+
+        type location = :UNSPECIFIED | :STATE
+
+        module Location
+          extend VitablePartnerAPI::Internal::Type::Enum
+
+          UNSPECIFIED: :UNSPECIFIED
+          STATE: :STATE
+
+          def self?.values: -> ::Array[VitablePartnerAPI::Models::BenefitProducts::PlanContributionClass::location]
+        end
+      end
+    end
+  end
+end

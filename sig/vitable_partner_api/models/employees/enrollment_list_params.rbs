@@ -1,0 +1,45 @@
+module VitablePartnerAPI
+  module Models
+    module Employees
+      type enrollment_list_params =
+        {
+          status: VitablePartnerAPI::Models::Employees::EnrollmentListParams::status
+        }
+        & VitablePartnerAPI::Internal::Type::request_parameters
+
+      class EnrollmentListParams < VitablePartnerAPI::Internal::Type::BaseModel
+        extend VitablePartnerAPI::Internal::Type::RequestParameters::Converter
+        include VitablePartnerAPI::Internal::Type::RequestParameters
+
+        attr_reader status: VitablePartnerAPI::Models::Employees::EnrollmentListParams::status?
+
+        def status=: (
+          VitablePartnerAPI::Models::Employees::EnrollmentListParams::status
+        ) -> VitablePartnerAPI::Models::Employees::EnrollmentListParams::status
+
+        def initialize: (
+          ?status: VitablePartnerAPI::Models::Employees::EnrollmentListParams::status,
+          ?request_options: VitablePartnerAPI::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          status: VitablePartnerAPI::Models::Employees::EnrollmentListParams::status,
+          request_options: VitablePartnerAPI::RequestOptions
+        }
+
+        type status = :pending | :enrolled | :waived | :inactive
+
+        module Status
+          extend VitablePartnerAPI::Internal::Type::Enum
+
+          PENDING: :pending
+          ENROLLED: :enrolled
+          WAIVED: :waived
+          INACTIVE: :inactive
+
+          def self?.values: -> ::Array[VitablePartnerAPI::Models::Employees::EnrollmentListParams::status]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,78 @@
+module VitablePartnerAPI
+  module Models
+    type member =
+      {
+        id: String,
+        date_of_birth: Date,
+        first_name: String,
+        last_name: String,
+        gender: VitablePartnerAPI::Models::Member::gender?,
+        sex: VitablePartnerAPI::Models::Member::sex?,
+        suffix: String?
+      }
+
+    class Member < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor date_of_birth: Date
+
+      attr_accessor first_name: String
+
+      attr_accessor last_name: String
+
+      attr_accessor gender: VitablePartnerAPI::Models::Member::gender?
+
+      attr_accessor sex: VitablePartnerAPI::Models::Member::sex?
+
+      attr_accessor suffix: String?
+
+      def initialize: (
+        id: String,
+        date_of_birth: Date,
+        first_name: String,
+        last_name: String,
+        ?gender: VitablePartnerAPI::Models::Member::gender?,
+        ?sex: VitablePartnerAPI::Models::Member::sex?,
+        ?suffix: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        date_of_birth: Date,
+        first_name: String,
+        last_name: String,
+        gender: VitablePartnerAPI::Models::Member::gender?,
+        sex: VitablePartnerAPI::Models::Member::sex?,
+        suffix: String?
+      }
+
+      type gender =
+        :MALE | :FEMALE | :TRANSGENDER | :NON_BINARY | :PREFER_NOT_TO_RESPOND
+
+      module Gender
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        MALE: :MALE
+        FEMALE: :FEMALE
+        TRANSGENDER: :TRANSGENDER
+        NON_BINARY: :NON_BINARY
+        PREFER_NOT_TO_RESPOND: :PREFER_NOT_TO_RESPOND
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::Member::gender]
+      end
+
+      type sex = :MALE | :FEMALE | :OTHER | :UNKNOWN
+
+      module Sex
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        MALE: :MALE
+        FEMALE: :FEMALE
+        OTHER: :OTHER
+        UNKNOWN: :UNKNOWN
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::Member::sex]
+      end
+    end
+  end
+end

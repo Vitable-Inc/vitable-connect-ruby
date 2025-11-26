@@ -1,0 +1,24 @@
+module VitablePartnerAPI
+  module Models
+    module Employees
+      type qualifying_life_event_list_response =
+        { data: ::Array[VitablePartnerAPI::QualifyingLifeEvent] }
+
+      class QualifyingLifeEventListResponse < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_reader data: ::Array[VitablePartnerAPI::QualifyingLifeEvent]?
+
+        def data=: (
+          ::Array[VitablePartnerAPI::QualifyingLifeEvent]
+        ) -> ::Array[VitablePartnerAPI::QualifyingLifeEvent]
+
+        def initialize: (
+          ?data: ::Array[VitablePartnerAPI::QualifyingLifeEvent]
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[VitablePartnerAPI::QualifyingLifeEvent]
+        }
+      end
+    end
+  end
+end

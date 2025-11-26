@@ -1,0 +1,20 @@
+module VitablePartnerAPI
+  module Models
+    module Employees
+      type enrollment_elect_response =
+        { data: ::Array[VitablePartnerAPI::Enrollment] }
+
+      class EnrollmentElectResponse < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_reader data: ::Array[VitablePartnerAPI::Enrollment]?
+
+        def data=: (
+          ::Array[VitablePartnerAPI::Enrollment]
+        ) -> ::Array[VitablePartnerAPI::Enrollment]
+
+        def initialize: (?data: ::Array[VitablePartnerAPI::Enrollment]) -> void
+
+        def to_hash: -> { data: ::Array[VitablePartnerAPI::Enrollment] }
+      end
+    end
+  end
+end

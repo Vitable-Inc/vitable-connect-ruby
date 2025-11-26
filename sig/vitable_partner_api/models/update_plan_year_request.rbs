@@ -1,0 +1,169 @@
+module VitablePartnerAPI
+  module Models
+    type update_plan_year_request =
+      {
+        contribution_classes: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::ContributionClass],
+        coverage_end_date: Date,
+        coverage_start_date: Date,
+        open_enrollment_end_date: Date,
+        open_enrollment_start_date: Date,
+        plan_costs: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::PlanCost]
+      }
+
+    class UpdatePlanYearRequest < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_reader contribution_classes: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::ContributionClass]?
+
+      def contribution_classes=: (
+        ::Array[VitablePartnerAPI::UpdatePlanYearRequest::ContributionClass]
+      ) -> ::Array[VitablePartnerAPI::UpdatePlanYearRequest::ContributionClass]
+
+      attr_reader coverage_end_date: Date?
+
+      def coverage_end_date=: (Date) -> Date
+
+      attr_reader coverage_start_date: Date?
+
+      def coverage_start_date=: (Date) -> Date
+
+      attr_reader open_enrollment_end_date: Date?
+
+      def open_enrollment_end_date=: (Date) -> Date
+
+      attr_reader open_enrollment_start_date: Date?
+
+      def open_enrollment_start_date=: (Date) -> Date
+
+      attr_reader plan_costs: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::PlanCost]?
+
+      def plan_costs=: (
+        ::Array[VitablePartnerAPI::UpdatePlanYearRequest::PlanCost]
+      ) -> ::Array[VitablePartnerAPI::UpdatePlanYearRequest::PlanCost]
+
+      def initialize: (
+        ?contribution_classes: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::ContributionClass],
+        ?coverage_end_date: Date,
+        ?coverage_start_date: Date,
+        ?open_enrollment_end_date: Date,
+        ?open_enrollment_start_date: Date,
+        ?plan_costs: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::PlanCost]
+      ) -> void
+
+      def to_hash: -> {
+        contribution_classes: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::ContributionClass],
+        coverage_end_date: Date,
+        coverage_start_date: Date,
+        open_enrollment_end_date: Date,
+        open_enrollment_start_date: Date,
+        plan_costs: ::Array[VitablePartnerAPI::UpdatePlanYearRequest::PlanCost]
+      }
+
+      type contribution_class =
+        {
+          compensation: String,
+          employer_contribution_in_cents: Integer,
+          employment: String,
+          family_status: String,
+          location: String,
+          location_value: String,
+          max_age: Integer,
+          min_age: Integer,
+          plan_id: String
+        }
+
+      class ContributionClass < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_reader compensation: String?
+
+        def compensation=: (String) -> String
+
+        attr_reader employer_contribution_in_cents: Integer?
+
+        def employer_contribution_in_cents=: (Integer) -> Integer
+
+        attr_reader employment: String?
+
+        def employment=: (String) -> String
+
+        attr_reader family_status: String?
+
+        def family_status=: (String) -> String
+
+        attr_reader location: String?
+
+        def location=: (String) -> String
+
+        attr_reader location_value: String?
+
+        def location_value=: (String) -> String
+
+        attr_reader max_age: Integer?
+
+        def max_age=: (Integer) -> Integer
+
+        attr_reader min_age: Integer?
+
+        def min_age=: (Integer) -> Integer
+
+        attr_reader plan_id: String?
+
+        def plan_id=: (String) -> String
+
+        def initialize: (
+          ?compensation: String,
+          ?employer_contribution_in_cents: Integer,
+          ?employment: String,
+          ?family_status: String,
+          ?location: String,
+          ?location_value: String,
+          ?max_age: Integer,
+          ?min_age: Integer,
+          ?plan_id: String
+        ) -> void
+
+        def to_hash: -> {
+          compensation: String,
+          employer_contribution_in_cents: Integer,
+          employment: String,
+          family_status: String,
+          location: String,
+          location_value: String,
+          max_age: Integer,
+          min_age: Integer,
+          plan_id: String
+        }
+      end
+
+      type plan_cost =
+        {
+          dependent_cost_in_cents: Integer,
+          employee_cost_in_cents: Integer,
+          plan_id: String
+        }
+
+      class PlanCost < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_reader dependent_cost_in_cents: Integer?
+
+        def dependent_cost_in_cents=: (Integer) -> Integer
+
+        attr_reader employee_cost_in_cents: Integer?
+
+        def employee_cost_in_cents=: (Integer) -> Integer
+
+        attr_reader plan_id: String?
+
+        def plan_id=: (String) -> String
+
+        def initialize: (
+          ?dependent_cost_in_cents: Integer,
+          ?employee_cost_in_cents: Integer,
+          ?plan_id: String
+        ) -> void
+
+        def to_hash: -> {
+          dependent_cost_in_cents: Integer,
+          employee_cost_in_cents: Integer,
+          plan_id: String
+        }
+      end
+    end
+  end
+end

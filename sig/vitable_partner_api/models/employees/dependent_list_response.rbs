@@ -1,0 +1,20 @@
+module VitablePartnerAPI
+  module Models
+    module Employees
+      type dependent_list_response =
+        { data: ::Array[VitablePartnerAPI::Dependent] }
+
+      class DependentListResponse < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_reader data: ::Array[VitablePartnerAPI::Dependent]?
+
+        def data=: (
+          ::Array[VitablePartnerAPI::Dependent]
+        ) -> ::Array[VitablePartnerAPI::Dependent]
+
+        def initialize: (?data: ::Array[VitablePartnerAPI::Dependent]) -> void
+
+        def to_hash: -> { data: ::Array[VitablePartnerAPI::Dependent] }
+      end
+    end
+  end
+end

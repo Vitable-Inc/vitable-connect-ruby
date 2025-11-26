@@ -1,0 +1,109 @@
+module VitablePartnerAPI
+  module Models
+    type update_dependent_request =
+      {
+        date_of_birth: Date,
+        first_name: String,
+        gender: VitablePartnerAPI::Models::UpdateDependentRequest::gender,
+        last_name: String,
+        relationship: VitablePartnerAPI::Models::UpdateDependentRequest::relationship,
+        sex: VitablePartnerAPI::Models::UpdateDependentRequest::sex,
+        suffix: String
+      }
+
+    class UpdateDependentRequest < VitablePartnerAPI::Internal::Type::BaseModel
+      attr_reader date_of_birth: Date?
+
+      def date_of_birth=: (Date) -> Date
+
+      attr_reader first_name: String?
+
+      def first_name=: (String) -> String
+
+      attr_reader gender: VitablePartnerAPI::Models::UpdateDependentRequest::gender?
+
+      def gender=: (
+        VitablePartnerAPI::Models::UpdateDependentRequest::gender
+      ) -> VitablePartnerAPI::Models::UpdateDependentRequest::gender
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader relationship: VitablePartnerAPI::Models::UpdateDependentRequest::relationship?
+
+      def relationship=: (
+        VitablePartnerAPI::Models::UpdateDependentRequest::relationship
+      ) -> VitablePartnerAPI::Models::UpdateDependentRequest::relationship
+
+      attr_reader sex: VitablePartnerAPI::Models::UpdateDependentRequest::sex?
+
+      def sex=: (
+        VitablePartnerAPI::Models::UpdateDependentRequest::sex
+      ) -> VitablePartnerAPI::Models::UpdateDependentRequest::sex
+
+      attr_reader suffix: String?
+
+      def suffix=: (String) -> String
+
+      def initialize: (
+        ?date_of_birth: Date,
+        ?first_name: String,
+        ?gender: VitablePartnerAPI::Models::UpdateDependentRequest::gender,
+        ?last_name: String,
+        ?relationship: VitablePartnerAPI::Models::UpdateDependentRequest::relationship,
+        ?sex: VitablePartnerAPI::Models::UpdateDependentRequest::sex,
+        ?suffix: String
+      ) -> void
+
+      def to_hash: -> {
+        date_of_birth: Date,
+        first_name: String,
+        gender: VitablePartnerAPI::Models::UpdateDependentRequest::gender,
+        last_name: String,
+        relationship: VitablePartnerAPI::Models::UpdateDependentRequest::relationship,
+        sex: VitablePartnerAPI::Models::UpdateDependentRequest::sex,
+        suffix: String
+      }
+
+      type gender =
+        :MALE | :FEMALE | :TRANSGENDER | :NON_BINARY | :PREFER_NOT_TO_RESPOND
+
+      module Gender
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        MALE: :MALE
+        FEMALE: :FEMALE
+        TRANSGENDER: :TRANSGENDER
+        NON_BINARY: :NON_BINARY
+        PREFER_NOT_TO_RESPOND: :PREFER_NOT_TO_RESPOND
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::UpdateDependentRequest::gender]
+      end
+
+      type relationship = :SPOUSE | :CHILD
+
+      module Relationship
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        SPOUSE: :SPOUSE
+        CHILD: :CHILD
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::UpdateDependentRequest::relationship]
+      end
+
+      type sex = :MALE | :FEMALE | :OTHER | :UNKNOWN
+
+      module Sex
+        extend VitablePartnerAPI::Internal::Type::Enum
+
+        MALE: :MALE
+        FEMALE: :FEMALE
+        OTHER: :OTHER
+        UNKNOWN: :UNKNOWN
+
+        def self?.values: -> ::Array[VitablePartnerAPI::Models::UpdateDependentRequest::sex]
+      end
+    end
+  end
+end

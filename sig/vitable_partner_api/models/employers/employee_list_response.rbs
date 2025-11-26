@@ -1,0 +1,53 @@
+module VitablePartnerAPI
+  module Models
+    module Employers
+      type employee_list_response =
+        {
+          data: ::Array[VitablePartnerAPI::Employee],
+          pagination: VitablePartnerAPI::Models::Employers::EmployeeListResponse::Pagination
+        }
+
+      class EmployeeListResponse < VitablePartnerAPI::Internal::Type::BaseModel
+        attr_reader data: ::Array[VitablePartnerAPI::Employee]?
+
+        def data=: (
+          ::Array[VitablePartnerAPI::Employee]
+        ) -> ::Array[VitablePartnerAPI::Employee]
+
+        attr_reader pagination: VitablePartnerAPI::Models::Employers::EmployeeListResponse::Pagination?
+
+        def pagination=: (
+          VitablePartnerAPI::Models::Employers::EmployeeListResponse::Pagination
+        ) -> VitablePartnerAPI::Models::Employers::EmployeeListResponse::Pagination
+
+        def initialize: (
+          ?data: ::Array[VitablePartnerAPI::Employee],
+          ?pagination: VitablePartnerAPI::Models::Employers::EmployeeListResponse::Pagination
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[VitablePartnerAPI::Employee],
+          pagination: VitablePartnerAPI::Models::Employers::EmployeeListResponse::Pagination
+        }
+
+        type pagination = { limit: Integer, offset: Integer, total: Integer }
+
+        class Pagination < VitablePartnerAPI::Internal::Type::BaseModel
+          attr_accessor limit: Integer
+
+          attr_accessor offset: Integer
+
+          attr_accessor total: Integer
+
+          def initialize: (
+            limit: Integer,
+            offset: Integer,
+            total: Integer
+          ) -> void
+
+          def to_hash: -> { limit: Integer, offset: Integer, total: Integer }
+        end
+      end
+    end
+  end
+end

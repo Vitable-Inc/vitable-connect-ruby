@@ -1,0 +1,26 @@
+module VitablePartnerAPI
+  module Models
+    type employer_create_eligibility_policy_params =
+      { policy_to_replace_id: String }
+      & VitablePartnerAPI::Internal::Type::request_parameters
+
+    class EmployerCreateEligibilityPolicyParams < VitablePartnerAPI::Models::CreateEligibilityPolicyRequest
+      extend VitablePartnerAPI::Internal::Type::RequestParameters::Converter
+      include VitablePartnerAPI::Internal::Type::RequestParameters
+
+      def policy_to_replace_id: -> String?
+
+      def policy_to_replace_id=: (String _) -> String
+
+      def initialize: (
+        ?policy_to_replace_id: String,
+        ?request_options: VitablePartnerAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        policy_to_replace_id: String,
+        request_options: VitablePartnerAPI::RequestOptions
+      }
+    end
+  end
+end

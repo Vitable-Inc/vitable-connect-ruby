@@ -1,0 +1,17 @@
+module VitablePartnerAPI
+  module Models
+    type employee_retrieve_params =
+      {  } & VitablePartnerAPI::Internal::Type::request_parameters
+
+    class EmployeeRetrieveParams < VitablePartnerAPI::Internal::Type::BaseModel
+      extend VitablePartnerAPI::Internal::Type::RequestParameters::Converter
+      include VitablePartnerAPI::Internal::Type::RequestParameters
+
+      def initialize: (
+        ?request_options: VitablePartnerAPI::request_opts
+      ) -> void
+
+      def to_hash: -> { request_options: VitablePartnerAPI::RequestOptions }
+    end
+  end
+end

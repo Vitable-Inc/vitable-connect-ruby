@@ -1,0 +1,19 @@
+module VitablePartnerAPI
+  module Models
+    module Employees
+      type qualifying_life_event_list_params =
+        {  } & VitablePartnerAPI::Internal::Type::request_parameters
+
+      class QualifyingLifeEventListParams < VitablePartnerAPI::Internal::Type::BaseModel
+        extend VitablePartnerAPI::Internal::Type::RequestParameters::Converter
+        include VitablePartnerAPI::Internal::Type::RequestParameters
+
+        def initialize: (
+          ?request_options: VitablePartnerAPI::request_opts
+        ) -> void
+
+        def to_hash: -> { request_options: VitablePartnerAPI::RequestOptions }
+      end
+    end
+  end
+end

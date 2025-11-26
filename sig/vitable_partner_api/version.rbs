@@ -1,0 +1,3 @@
+module VitablePartnerAPI
+  VERSION: String
+end
