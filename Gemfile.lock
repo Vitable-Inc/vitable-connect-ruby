@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    vitable-partner-api (0.0.1)
+    vitable-connect-api (0.0.1)
       connection_pool
 
 GEM
@@ -217,7 +217,7 @@ DEPENDENCIES
   syntax_tree
   syntax_tree-rbs!
   tapioca
-  vitable-partner-api!
+  vitable-connect-api!
   webmock
   webrick
   yard

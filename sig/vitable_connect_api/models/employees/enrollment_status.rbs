@@ -1,0 +1,18 @@
+module VitableConnectAPI
+  module Models
+    module Employees
+      type enrollment_status = :pending | :enrolled | :waived | :inactive
+
+      module EnrollmentStatus
+        extend VitableConnectAPI::Internal::Type::Enum
+
+        PENDING: :pending
+        ENROLLED: :enrolled
+        WAIVED: :waived
+        INACTIVE: :inactive
+
+        def self?.values: -> ::Array[VitableConnectAPI::Models::Employees::enrollment_status]
+      end
+    end
+  end
+end

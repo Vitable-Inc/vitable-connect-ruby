@@ -1,0 +1,20 @@
+module VitableConnectAPI
+  module Resources
+    class Dependents
+      def retrieve: (
+        String dependent_id,
+        ?request_options: VitableConnectAPI::request_opts
+      ) -> VitableConnectAPI::Dependent
+
+      def update: (
+        String dependent_id,
+        ?active: bool?,
+        ?gender: String?,
+        ?relationship: VitableConnectAPI::Models::Members::relationship?,
+        ?request_options: VitableConnectAPI::request_opts
+      ) -> VitableConnectAPI::Dependent
+
+      def initialize: (client: VitableConnectAPI::Client) -> void
+    end
+  end
+end

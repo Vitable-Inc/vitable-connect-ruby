@@ -1,0 +1,131 @@
+module VitableConnectAPI
+  module Models
+    type enrollment =
+      {
+        id: String,
+        benefit_product_id: String,
+        created_at: Time,
+        employee_id: String,
+        plan_year_id: String,
+        status: VitableConnectAPI::Models::Employees::enrollment_status,
+        updated_at: Time,
+        coverage_end_date: Date?,
+        coverage_start_date: Date?,
+        coverage_tier: VitableConnectAPI::Models::coverage_tier?,
+        decision: String?,
+        employee_contribution_cents: Integer?,
+        employer_contribution_cents: Integer?,
+        enrolled_dependents: ::Array[VitableConnectAPI::Enrollment::EnrolledDependent],
+        selected_plan_id: String?,
+        selected_plan_name: String?
+      }
+
+    class Enrollment < VitableConnectAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor benefit_product_id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor employee_id: String
+
+      attr_accessor plan_year_id: String
+
+      attr_accessor status: VitableConnectAPI::Models::Employees::enrollment_status
+
+      attr_accessor updated_at: Time
+
+      attr_accessor coverage_end_date: Date?
+
+      attr_accessor coverage_start_date: Date?
+
+      attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier?
+
+      attr_accessor decision: String?
+
+      attr_accessor employee_contribution_cents: Integer?
+
+      attr_accessor employer_contribution_cents: Integer?
+
+      attr_reader enrolled_dependents: ::Array[VitableConnectAPI::Enrollment::EnrolledDependent]?
+
+      def enrolled_dependents=: (
+        ::Array[VitableConnectAPI::Enrollment::EnrolledDependent]
+      ) -> ::Array[VitableConnectAPI::Enrollment::EnrolledDependent]
+
+      attr_accessor selected_plan_id: String?
+
+      attr_accessor selected_plan_name: String?
+
+      def initialize: (
+        id: String,
+        benefit_product_id: String,
+        created_at: Time,
+        employee_id: String,
+        plan_year_id: String,
+        status: VitableConnectAPI::Models::Employees::enrollment_status,
+        updated_at: Time,
+        ?coverage_end_date: Date?,
+        ?coverage_start_date: Date?,
+        ?coverage_tier: VitableConnectAPI::Models::coverage_tier?,
+        ?decision: String?,
+        ?employee_contribution_cents: Integer?,
+        ?employer_contribution_cents: Integer?,
+        ?enrolled_dependents: ::Array[VitableConnectAPI::Enrollment::EnrolledDependent],
+        ?selected_plan_id: String?,
+        ?selected_plan_name: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        benefit_product_id: String,
+        created_at: Time,
+        employee_id: String,
+        plan_year_id: String,
+        status: VitableConnectAPI::Models::Employees::enrollment_status,
+        updated_at: Time,
+        coverage_end_date: Date?,
+        coverage_start_date: Date?,
+        coverage_tier: VitableConnectAPI::Models::coverage_tier?,
+        decision: String?,
+        employee_contribution_cents: Integer?,
+        employer_contribution_cents: Integer?,
+        enrolled_dependents: ::Array[VitableConnectAPI::Enrollment::EnrolledDependent],
+        selected_plan_id: String?,
+        selected_plan_name: String?
+      }
+
+      type enrolled_dependent =
+        {
+          dependent_id: String,
+          first_name: String,
+          last_name: String,
+          relationship: VitableConnectAPI::Models::Members::relationship
+        }
+
+      class EnrolledDependent < VitableConnectAPI::Internal::Type::BaseModel
+        attr_accessor dependent_id: String
+
+        attr_accessor first_name: String
+
+        attr_accessor last_name: String
+
+        attr_accessor relationship: VitableConnectAPI::Models::Members::relationship
+
+        def initialize: (
+          dependent_id: String,
+          first_name: String,
+          last_name: String,
+          relationship: VitableConnectAPI::Models::Members::relationship
+        ) -> void
+
+        def to_hash: -> {
+          dependent_id: String,
+          first_name: String,
+          last_name: String,
+          relationship: VitableConnectAPI::Models::Members::relationship
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module VitableConnectAPI
+  module Resources
+    class Members
+      class Dependents
+        def create: (
+          String member_id,
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          relationship: VitableConnectAPI::Models::Members::relationship,
+          sex: VitableConnectAPI::Models::sex,
+          ?gender: String?,
+          ?ssn: String?,
+          ?suffix: String?,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Dependent
+
+        def list: (
+          String member_id,
+          ?active_in: bool,
+          ?limit: Integer,
+          ?page: Integer,
+          ?relationship: VitableConnectAPI::Models::Members::relationship,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Models::Members::dependent_list_response
+
+        def initialize: (client: VitableConnectAPI::Client) -> void
+      end
+    end
+  end
+end

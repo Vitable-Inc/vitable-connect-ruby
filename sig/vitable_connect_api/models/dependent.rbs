@@ -1,0 +1,80 @@
+module VitableConnectAPI
+  module Models
+    type dependent =
+      {
+        id: String,
+        active: bool,
+        created_at: Time,
+        date_of_birth: Date,
+        first_name: String,
+        last_name: String,
+        member_id: String,
+        relationship: VitableConnectAPI::Models::Members::relationship,
+        sex: VitableConnectAPI::Models::sex,
+        updated_at: Time,
+        gender: String?,
+        ssn_last_four: String?,
+        suffix: String?
+      }
+
+    class Dependent < VitableConnectAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor active: bool
+
+      attr_accessor created_at: Time
+
+      attr_accessor date_of_birth: Date
+
+      attr_accessor first_name: String
+
+      attr_accessor last_name: String
+
+      attr_accessor member_id: String
+
+      attr_accessor relationship: VitableConnectAPI::Models::Members::relationship
+
+      attr_accessor sex: VitableConnectAPI::Models::sex
+
+      attr_accessor updated_at: Time
+
+      attr_accessor gender: String?
+
+      attr_accessor ssn_last_four: String?
+
+      attr_accessor suffix: String?
+
+      def initialize: (
+        id: String,
+        active: bool,
+        created_at: Time,
+        date_of_birth: Date,
+        first_name: String,
+        last_name: String,
+        member_id: String,
+        relationship: VitableConnectAPI::Models::Members::relationship,
+        sex: VitableConnectAPI::Models::sex,
+        updated_at: Time,
+        ?gender: String?,
+        ?ssn_last_four: String?,
+        ?suffix: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        active: bool,
+        created_at: Time,
+        date_of_birth: Date,
+        first_name: String,
+        last_name: String,
+        member_id: String,
+        relationship: VitableConnectAPI::Models::Members::relationship,
+        sex: VitableConnectAPI::Models::sex,
+        updated_at: Time,
+        gender: String?,
+        ssn_last_four: String?,
+        suffix: String?
+      }
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module VitableConnectAPI
+  module Resources
+    class Employers
+      class Employees
+        def create: (
+          String employer_id,
+          date_of_birth: Date,
+          email: String,
+          first_name: String,
+          last_name: String,
+          sex: VitableConnectAPI::Models::sex,
+          ssn: String,
+          start_date: Date,
+          ?address: VitableConnectAPI::Employers::EmployeeCreateParams::Address?,
+          ?employee_class: VitableConnectAPI::Models::Employers::employee_class?,
+          ?gender: String?,
+          ?phone: String?,
+          ?suffix: String?,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Employee
+
+        def list: (
+          String employer_id,
+          ?active_in: bool,
+          ?employee_class: VitableConnectAPI::Models::Employers::employee_class,
+          ?limit: Integer,
+          ?page: Integer,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Models::Employers::employee_list_response
+
+        def initialize: (client: VitableConnectAPI::Client) -> void
+      end
+    end
+  end
+end

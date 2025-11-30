@@ -1,0 +1,7 @@
+module VitableConnectAPI
+  module Models
+    type employer_list_response = ::Array[VitableConnectAPI::Employer]
+
+    EmployerListResponse: VitableConnectAPI::Internal::Type::Converter
+  end
+end

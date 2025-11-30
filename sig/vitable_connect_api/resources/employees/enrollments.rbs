@@ -1,0 +1,25 @@
+module VitableConnectAPI
+  module Resources
+    class Employees
+      class Enrollments
+        def list: (
+          String employee_id,
+          ?coverage_effective_start_year: Integer,
+          ?limit: Integer,
+          ?page: Integer,
+          ?plan_year: Integer,
+          ?status: VitableConnectAPI::Models::Employees::enrollment_status,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Models::Employees::enrollment_list_response
+
+        def submit_elections: (
+          String employee_id,
+          elections: ::Array[VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election],
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Models::Employees::enrollment_submit_elections_response
+
+        def initialize: (client: VitableConnectAPI::Client) -> void
+      end
+    end
+  end
+end

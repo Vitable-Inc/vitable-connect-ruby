@@ -1,0 +1,16 @@
+module VitableConnectAPI
+  module Models
+    type sex = :Male | :Female | :Other | :Unknown
+
+    module Sex
+      extend VitableConnectAPI::Internal::Type::Enum
+
+      MALE: :Male
+      FEMALE: :Female
+      OTHER: :Other
+      UNKNOWN: :Unknown
+
+      def self?.values: -> ::Array[VitableConnectAPI::Models::sex]
+    end
+  end
+end

@@ -1,0 +1,12 @@
+module VitableConnectAPI
+  module Resources
+    class QualifyingLifeEvents
+      def retrieve: (
+        String qle_id,
+        ?request_options: VitableConnectAPI::request_opts
+      ) -> VitableConnectAPI::Members::QualifyingLifeEvent
+
+      def initialize: (client: VitableConnectAPI::Client) -> void
+    end
+  end
+end
