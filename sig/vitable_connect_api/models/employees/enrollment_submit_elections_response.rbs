@@ -1,0 +1,10 @@
+module VitableConnectAPI
+  module Models
+    module Employees
+      type enrollment_submit_elections_response =
+        ::Array[VitableConnectAPI::Enrollment]
+
+      EnrollmentSubmitElectionsResponse: VitableConnectAPI::Internal::Type::Converter
+    end
+  end
+end

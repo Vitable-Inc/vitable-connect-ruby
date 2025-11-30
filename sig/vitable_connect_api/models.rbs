@@ -1,0 +1,65 @@
+module VitableConnectAPI
+  class BenefitEligibilityPolicyAPI = VitableConnectAPI::Models::BenefitEligibilityPolicyAPI
+
+  class BenefitEligibilityPolicyRetrieveParams = VitableConnectAPI::Models::BenefitEligibilityPolicyRetrieveParams
+
+  class BenefitProductListParams = VitableConnectAPI::Models::BenefitProductListParams
+
+  module BenefitProducts = VitableConnectAPI::Models::BenefitProducts
+
+  module Category = VitableConnectAPI::Models::Category
+
+  module CoverageTier = VitableConnectAPI::Models::CoverageTier
+
+  class Dependent = VitableConnectAPI::Models::Dependent
+
+  class DependentRetrieveParams = VitableConnectAPI::Models::DependentRetrieveParams
+
+  class DependentUpdateParams = VitableConnectAPI::Models::DependentUpdateParams
+
+  class Employee = VitableConnectAPI::Models::Employee
+
+  class EmployeeRetrieveParams = VitableConnectAPI::Models::EmployeeRetrieveParams
+
+  module Employees = VitableConnectAPI::Models::Employees
+
+  class EmployeeTerminateParams = VitableConnectAPI::Models::EmployeeTerminateParams
+
+  class EmployeeUpdateParams = VitableConnectAPI::Models::EmployeeUpdateParams
+
+  class Employer = VitableConnectAPI::Models::Employer
+
+  class EmployerCreateEligibilityPolicyParams = VitableConnectAPI::Models::EmployerCreateEligibilityPolicyParams
+
+  class EmployerCreateParams = VitableConnectAPI::Models::EmployerCreateParams
+
+  class EmployerListParams = VitableConnectAPI::Models::EmployerListParams
+
+  class EmployerRetrieveParams = VitableConnectAPI::Models::EmployerRetrieveParams
+
+  module Employers = VitableConnectAPI::Models::Employers
+
+  class EmployerUpdateParams = VitableConnectAPI::Models::EmployerUpdateParams
+
+  class Enrollment = VitableConnectAPI::Models::Enrollment
+
+  class EnrollmentListPlansParams = VitableConnectAPI::Models::EnrollmentListPlansParams
+
+  class EnrollmentReissueParams = VitableConnectAPI::Models::EnrollmentReissueParams
+
+  class EnrollmentRetrieveParams = VitableConnectAPI::Models::EnrollmentRetrieveParams
+
+  module Members = VitableConnectAPI::Models::Members
+
+  module PlanTier = VitableConnectAPI::Models::PlanTier
+
+  class PlanYearRetrieveParams = VitableConnectAPI::Models::PlanYearRetrieveParams
+
+  class PlanYearUpdateParams = VitableConnectAPI::Models::PlanYearUpdateParams
+
+  module ProductCode = VitableConnectAPI::Models::ProductCode
+
+  class QualifyingLifeEventRetrieveParams = VitableConnectAPI::Models::QualifyingLifeEventRetrieveParams
+
+  module Sex = VitableConnectAPI::Models::Sex
+end

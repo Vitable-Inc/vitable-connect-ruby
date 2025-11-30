@@ -1,0 +1,10 @@
+module VitableConnectAPI
+  module Models
+    module Members
+      type qualifying_life_event_list_response =
+        ::Array[VitableConnectAPI::Members::QualifyingLifeEvent]
+
+      QualifyingLifeEventListResponse: VitableConnectAPI::Internal::Type::Converter
+    end
+  end
+end

@@ -162,7 +162,7 @@ multitask(:"build:gem") do
     sig/*
   GLOB
 
-  sh(*%w[gem build -- vitable_partner_api.gemspec])
+  sh(*%w[gem build -- vitable_connect_api.gemspec])
   rm_rf(ignore_file)
 end
 

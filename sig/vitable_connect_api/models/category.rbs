@@ -1,0 +1,16 @@
+module VitableConnectAPI
+  module Models
+    type category = :Medical | :Dental | :Vision | :Hospital
+
+    module Category
+      extend VitableConnectAPI::Internal::Type::Enum
+
+      MEDICAL: :Medical
+      DENTAL: :Dental
+      VISION: :Vision
+      HOSPITAL: :Hospital
+
+      def self?.values: -> ::Array[VitableConnectAPI::Models::category]
+    end
+  end
+end

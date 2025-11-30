@@ -1,0 +1,65 @@
+module VitableConnectAPI
+  module Models
+    type benefit_product_list_response_item =
+      {
+        id: String,
+        active: bool,
+        category: VitableConnectAPI::Models::category,
+        created_at: Time,
+        name: String,
+        product_code: VitableConnectAPI::Models::product_code,
+        updated_at: Time,
+        carrier_name: String?,
+        description: String?
+      }
+
+    class BenefitProductListResponseItem < VitableConnectAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor active: bool
+
+      attr_accessor category: VitableConnectAPI::Models::category
+
+      attr_accessor created_at: Time
+
+      attr_accessor name: String
+
+      attr_accessor product_code: VitableConnectAPI::Models::product_code
+
+      attr_accessor updated_at: Time
+
+      attr_accessor carrier_name: String?
+
+      attr_accessor description: String?
+
+      def initialize: (
+        id: String,
+        active: bool,
+        category: VitableConnectAPI::Models::category,
+        created_at: Time,
+        name: String,
+        product_code: VitableConnectAPI::Models::product_code,
+        updated_at: Time,
+        ?carrier_name: String?,
+        ?description: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        active: bool,
+        category: VitableConnectAPI::Models::category,
+        created_at: Time,
+        name: String,
+        product_code: VitableConnectAPI::Models::product_code,
+        updated_at: Time,
+        carrier_name: String?,
+        description: String?
+      }
+    end
+
+    type benefit_product_list_response =
+      ::Array[VitableConnectAPI::Models::BenefitProductListResponseItem]
+
+    BenefitProductListResponse: VitableConnectAPI::Internal::Type::Converter
+  end
+end

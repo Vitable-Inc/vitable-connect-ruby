@@ -1,0 +1,11 @@
+module VitableConnectAPI
+  module Resources
+    class Members
+      attr_reader dependents: VitableConnectAPI::Resources::Members::Dependents
+
+      attr_reader qualifying_life_events: VitableConnectAPI::Resources::Members::QualifyingLifeEvents
+
+      def initialize: (client: VitableConnectAPI::Client) -> void
+    end
+  end
+end

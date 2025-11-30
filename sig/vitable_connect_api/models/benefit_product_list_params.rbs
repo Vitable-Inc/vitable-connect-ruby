@@ -1,0 +1,60 @@
+module VitableConnectAPI
+  module Models
+    type benefit_product_list_params =
+      {
+        active_in: bool,
+        category: VitableConnectAPI::Models::category,
+        limit: Integer,
+        page: Integer,
+        product_code: VitableConnectAPI::Models::product_code
+      }
+      & VitableConnectAPI::Internal::Type::request_parameters
+
+    class BenefitProductListParams < VitableConnectAPI::Internal::Type::BaseModel
+      extend VitableConnectAPI::Internal::Type::RequestParameters::Converter
+      include VitableConnectAPI::Internal::Type::RequestParameters
+
+      attr_reader active_in: bool?
+
+      def active_in=: (bool) -> bool
+
+      attr_reader category: VitableConnectAPI::Models::category?
+
+      def category=: (
+        VitableConnectAPI::Models::category
+      ) -> VitableConnectAPI::Models::category
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      attr_reader product_code: VitableConnectAPI::Models::product_code?
+
+      def product_code=: (
+        VitableConnectAPI::Models::product_code
+      ) -> VitableConnectAPI::Models::product_code
+
+      def initialize: (
+        ?active_in: bool,
+        ?category: VitableConnectAPI::Models::category,
+        ?limit: Integer,
+        ?page: Integer,
+        ?product_code: VitableConnectAPI::Models::product_code,
+        ?request_options: VitableConnectAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        active_in: bool,
+        category: VitableConnectAPI::Models::category,
+        limit: Integer,
+        page: Integer,
+        product_code: VitableConnectAPI::Models::product_code,
+        request_options: VitableConnectAPI::RequestOptions
+      }
+    end
+  end
+end

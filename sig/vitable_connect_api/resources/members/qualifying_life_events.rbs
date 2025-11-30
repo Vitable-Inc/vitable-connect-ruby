@@ -1,0 +1,26 @@
+module VitableConnectAPI
+  module Resources
+    class Members
+      class QualifyingLifeEvents
+        def list: (
+          String member_id,
+          ?event_type: VitableConnectAPI::Models::Members::event_type,
+          ?limit: Integer,
+          ?page: Integer,
+          ?status: VitableConnectAPI::Models::Members::qualifying_life_event_status,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Models::Members::qualifying_life_event_list_response
+
+        def record: (
+          String member_id,
+          event_date: Date,
+          event_type: VitableConnectAPI::Models::Members::event_type,
+          ?notes: String?,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> VitableConnectAPI::Members::QualifyingLifeEvent
+
+        def initialize: (client: VitableConnectAPI::Client) -> void
+      end
+    end
+  end
+end

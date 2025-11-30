@@ -1,0 +1,9 @@
+module VitableConnectAPI
+  module Models
+    module Members
+      type dependent_list_response = ::Array[VitableConnectAPI::Dependent]
+
+      DependentListResponse: VitableConnectAPI::Internal::Type::Converter
+    end
+  end
+end

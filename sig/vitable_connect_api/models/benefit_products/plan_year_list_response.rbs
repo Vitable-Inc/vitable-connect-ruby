@@ -1,0 +1,10 @@
+module VitableConnectAPI
+  module Models
+    module BenefitProducts
+      type plan_year_list_response =
+        ::Array[VitableConnectAPI::BenefitProducts::PlanYear]
+
+      PlanYearListResponse: VitableConnectAPI::Internal::Type::Converter
+    end
+  end
+end

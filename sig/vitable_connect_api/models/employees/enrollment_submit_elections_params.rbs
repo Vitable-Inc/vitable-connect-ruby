@@ -1,0 +1,76 @@
+module VitableConnectAPI
+  module Models
+    module Employees
+      type enrollment_submit_elections_params =
+        {
+          elections: ::Array[VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election]
+        }
+        & VitableConnectAPI::Internal::Type::request_parameters
+
+      class EnrollmentSubmitElectionsParams < VitableConnectAPI::Internal::Type::BaseModel
+        extend VitableConnectAPI::Internal::Type::RequestParameters::Converter
+        include VitableConnectAPI::Internal::Type::RequestParameters
+
+        attr_accessor elections: ::Array[VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election]
+
+        def initialize: (
+          elections: ::Array[VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election],
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          elections: ::Array[VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election],
+          request_options: VitableConnectAPI::RequestOptions
+        }
+
+        type election =
+          {
+            decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision,
+            enrollment_id: String,
+            coverage_tier: VitableConnectAPI::Models::coverage_tier?,
+            dependent_ids: ::Array[String]?,
+            selected_plan_id: String?
+          }
+
+        class Election < VitableConnectAPI::Internal::Type::BaseModel
+          attr_accessor decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision
+
+          attr_accessor enrollment_id: String
+
+          attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier?
+
+          attr_accessor dependent_ids: ::Array[String]?
+
+          attr_accessor selected_plan_id: String?
+
+          def initialize: (
+            decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision,
+            enrollment_id: String,
+            ?coverage_tier: VitableConnectAPI::Models::coverage_tier?,
+            ?dependent_ids: ::Array[String]?,
+            ?selected_plan_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision,
+            enrollment_id: String,
+            coverage_tier: VitableConnectAPI::Models::coverage_tier?,
+            dependent_ids: ::Array[String]?,
+            selected_plan_id: String?
+          }
+
+          type decision = :Enrolled | :Waived
+
+          module Decision
+            extend VitableConnectAPI::Internal::Type::Enum
+
+            ENROLLED: :Enrolled
+            WAIVED: :Waived
+
+            def self?.values: -> ::Array[VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision]
+          end
+        end
+      end
+    end
+  end
+end

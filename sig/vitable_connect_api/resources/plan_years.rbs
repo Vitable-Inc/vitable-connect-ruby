@@ -1,0 +1,21 @@
+module VitableConnectAPI
+  module Resources
+    class PlanYears
+      def retrieve: (
+        String plan_year_id,
+        ?request_options: VitableConnectAPI::request_opts
+      ) -> VitableConnectAPI::BenefitProducts::PlanYear
+
+      def update: (
+        String plan_year_id,
+        ?contribution_classes: ::Array[VitableConnectAPI::PlanYearUpdateParams::ContributionClass]?,
+        ?open_enrollment_end: Date?,
+        ?open_enrollment_start: Date?,
+        ?status: String?,
+        ?request_options: VitableConnectAPI::request_opts
+      ) -> VitableConnectAPI::BenefitProducts::PlanYear
+
+      def initialize: (client: VitableConnectAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,92 @@
+module VitableConnectAPI
+  module Models
+    type enrollment_list_plans_response_item =
+      {
+        id: String,
+        costs: ::Array[VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost],
+        name: String,
+        carrier_name: String?,
+        deductible_cents: Integer?,
+        description: String?,
+        out_of_pocket_max_cents: Integer?,
+        tier: VitableConnectAPI::Models::plan_tier?
+      }
+
+    class EnrollmentListPlansResponseItem < VitableConnectAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor costs: ::Array[VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost]
+
+      attr_accessor name: String
+
+      attr_accessor carrier_name: String?
+
+      attr_accessor deductible_cents: Integer?
+
+      attr_accessor description: String?
+
+      attr_accessor out_of_pocket_max_cents: Integer?
+
+      attr_accessor tier: VitableConnectAPI::Models::plan_tier?
+
+      def initialize: (
+        id: String,
+        costs: ::Array[VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost],
+        name: String,
+        ?carrier_name: String?,
+        ?deductible_cents: Integer?,
+        ?description: String?,
+        ?out_of_pocket_max_cents: Integer?,
+        ?tier: VitableConnectAPI::Models::plan_tier?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        costs: ::Array[VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost],
+        name: String,
+        carrier_name: String?,
+        deductible_cents: Integer?,
+        description: String?,
+        out_of_pocket_max_cents: Integer?,
+        tier: VitableConnectAPI::Models::plan_tier?
+      }
+
+      type cost =
+        {
+          coverage_tier: VitableConnectAPI::Models::coverage_tier,
+          employee_contribution_cents: Integer,
+          employer_contribution_cents: Integer,
+          total_monthly_premium_cents: Integer
+        }
+
+      class Cost < VitableConnectAPI::Internal::Type::BaseModel
+        attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier
+
+        attr_accessor employee_contribution_cents: Integer
+
+        attr_accessor employer_contribution_cents: Integer
+
+        attr_accessor total_monthly_premium_cents: Integer
+
+        def initialize: (
+          coverage_tier: VitableConnectAPI::Models::coverage_tier,
+          employee_contribution_cents: Integer,
+          employer_contribution_cents: Integer,
+          total_monthly_premium_cents: Integer
+        ) -> void
+
+        def to_hash: -> {
+          coverage_tier: VitableConnectAPI::Models::coverage_tier,
+          employee_contribution_cents: Integer,
+          employer_contribution_cents: Integer,
+          total_monthly_premium_cents: Integer
+        }
+      end
+    end
+
+    type enrollment_list_plans_response =
+      ::Array[VitableConnectAPI::Models::EnrollmentListPlansResponseItem]
+
+    EnrollmentListPlansResponse: VitableConnectAPI::Internal::Type::Converter
+  end
+end

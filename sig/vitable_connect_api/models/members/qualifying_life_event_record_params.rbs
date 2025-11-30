@@ -1,0 +1,38 @@
+module VitableConnectAPI
+  module Models
+    module Members
+      type qualifying_life_event_record_params =
+        {
+          event_date: Date,
+          event_type: VitableConnectAPI::Models::Members::event_type,
+          notes: String?
+        }
+        & VitableConnectAPI::Internal::Type::request_parameters
+
+      class QualifyingLifeEventRecordParams < VitableConnectAPI::Internal::Type::BaseModel
+        extend VitableConnectAPI::Internal::Type::RequestParameters::Converter
+        include VitableConnectAPI::Internal::Type::RequestParameters
+
+        attr_accessor event_date: Date
+
+        attr_accessor event_type: VitableConnectAPI::Models::Members::event_type
+
+        attr_accessor notes: String?
+
+        def initialize: (
+          event_date: Date,
+          event_type: VitableConnectAPI::Models::Members::event_type,
+          ?notes: String?,
+          ?request_options: VitableConnectAPI::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          event_date: Date,
+          event_type: VitableConnectAPI::Models::Members::event_type,
+          notes: String?,
+          request_options: VitableConnectAPI::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,56 @@
+# frozen_string_literal: true
+
+module VitableConnectAPI
+  module Models
+    module Employees
+      # @see VitableConnectAPI::Resources::Employees::Enrollments#list
+      class EnrollmentListParams < VitableConnectAPI::Internal::Type::BaseModel
+        extend VitableConnectAPI::Internal::Type::RequestParameters::Converter
+        include VitableConnectAPI::Internal::Type::RequestParameters
+
+        # @!attribute coverage_effective_start_year
+        #   Filter by coverage year
+        #
+        #   @return [Integer, nil]
+        optional :coverage_effective_start_year, Integer
+
+        # @!attribute limit
+        #   Items per page (default: 20, max: 100)
+        #
+        #   @return [Integer, nil]
+        optional :limit, Integer
+
+        # @!attribute page
+        #   Page number (default: 1)
+        #
+        #   @return [Integer, nil]
+        optional :page, Integer
+
+        # @!attribute plan_year
+        #   Filter by plan year start (YYYY)
+        #
+        #   @return [Integer, nil]
+        optional :plan_year, Integer
+
+        # @!attribute status
+        #   Filter by enrollment status
+        #
+        #   @return [Symbol, VitableConnectAPI::Models::Employees::EnrollmentStatus, nil]
+        optional :status, enum: -> { VitableConnectAPI::Employees::EnrollmentStatus }
+
+        # @!method initialize(coverage_effective_start_year: nil, limit: nil, page: nil, plan_year: nil, status: nil, request_options: {})
+        #   @param coverage_effective_start_year [Integer] Filter by coverage year
+        #
+        #   @param limit [Integer] Items per page (default: 20, max: 100)
+        #
+        #   @param page [Integer] Page number (default: 1)
+        #
+        #   @param plan_year [Integer] Filter by plan year start (YYYY)
+        #
+        #   @param status [Symbol, VitableConnectAPI::Models::Employees::EnrollmentStatus] Filter by enrollment status
+        #
+        #   @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}]
+      end
+    end
+  end
+end

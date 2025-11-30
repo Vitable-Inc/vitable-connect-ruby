@@ -1,0 +1,66 @@
+module VitableConnectAPI
+  module Models
+    type employer_create_eligibility_policy_params =
+      {
+        effective_date: Date,
+        name: String,
+        rules: ::Array[VitableConnectAPI::EmployerCreateEligibilityPolicyParams::Rule],
+        policy_to_replace_id: String,
+        description: String?
+      }
+      & VitableConnectAPI::Internal::Type::request_parameters
+
+    class EmployerCreateEligibilityPolicyParams < VitableConnectAPI::Internal::Type::BaseModel
+      extend VitableConnectAPI::Internal::Type::RequestParameters::Converter
+      include VitableConnectAPI::Internal::Type::RequestParameters
+
+      attr_accessor effective_date: Date
+
+      attr_accessor name: String
+
+      attr_accessor rules: ::Array[VitableConnectAPI::EmployerCreateEligibilityPolicyParams::Rule]
+
+      attr_reader policy_to_replace_id: String?
+
+      def policy_to_replace_id=: (String) -> String
+
+      attr_accessor description: String?
+
+      def initialize: (
+        effective_date: Date,
+        name: String,
+        rules: ::Array[VitableConnectAPI::EmployerCreateEligibilityPolicyParams::Rule],
+        ?policy_to_replace_id: String,
+        ?description: String?,
+        ?request_options: VitableConnectAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        effective_date: Date,
+        name: String,
+        rules: ::Array[VitableConnectAPI::EmployerCreateEligibilityPolicyParams::Rule],
+        policy_to_replace_id: String,
+        description: String?,
+        request_options: VitableConnectAPI::RequestOptions
+      }
+
+      type rule = { operator: String, rule_type: String, value: String }
+
+      class Rule < VitableConnectAPI::Internal::Type::BaseModel
+        attr_accessor operator: String
+
+        attr_accessor rule_type: String
+
+        attr_accessor value: String
+
+        def initialize: (
+          operator: String,
+          rule_type: String,
+          value: String
+        ) -> void
+
+        def to_hash: -> { operator: String, rule_type: String, value: String }
+      end
+    end
+  end
+end

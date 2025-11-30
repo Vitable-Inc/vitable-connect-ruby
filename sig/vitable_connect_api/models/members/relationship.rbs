@@ -1,0 +1,16 @@
+module VitableConnectAPI
+  module Models
+    module Members
+      type relationship = :Spouse | :Child
+
+      module Relationship
+        extend VitableConnectAPI::Internal::Type::Enum
+
+        SPOUSE: :Spouse
+        CHILD: :Child
+
+        def self?.values: -> ::Array[VitableConnectAPI::Models::Members::relationship]
+      end
+    end
+  end
+end

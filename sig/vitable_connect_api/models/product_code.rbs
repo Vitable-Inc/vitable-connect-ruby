@@ -1,0 +1,42 @@
+module VitableConnectAPI
+  module Models
+    type product_code =
+      :EBA
+      | :VPC
+      | :VPC_CORE
+      | :MEC
+      | :MEC2
+      | :MEC_PLUS
+      | :MVP
+      | :MVP2
+      | :MVPSL
+      | :MVPSL2
+      | :VD
+      | :VV
+      | :ICHRA
+      | :ICHRA_PREMIUM_PLUS
+      | :ICHRA_REIMBURSEMENT_ONLY
+
+    module ProductCode
+      extend VitableConnectAPI::Internal::Type::Enum
+
+      EBA: :EBA
+      VPC: :VPC
+      VPC_CORE: :VPC_CORE
+      MEC: :MEC
+      MEC2: :MEC2
+      MEC_PLUS: :MEC_PLUS
+      MVP: :MVP
+      MVP2: :MVP2
+      MVPSL: :MVPSL
+      MVPSL2: :MVPSL2
+      VD: :VD
+      VV: :VV
+      ICHRA: :ICHRA
+      ICHRA_PREMIUM_PLUS: :ICHRA_PREMIUM_PLUS
+      ICHRA_REIMBURSEMENT_ONLY: :ICHRA_REIMBURSEMENT_ONLY
+
+      def self?.values: -> ::Array[VitableConnectAPI::Models::product_code]
+    end
+  end
+end

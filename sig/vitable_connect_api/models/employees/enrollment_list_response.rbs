@@ -1,0 +1,9 @@
+module VitableConnectAPI
+  module Models
+    module Employees
+      type enrollment_list_response = ::Array[VitableConnectAPI::Enrollment]
+
+      EnrollmentListResponse: VitableConnectAPI::Internal::Type::Converter
+    end
+  end
+end
