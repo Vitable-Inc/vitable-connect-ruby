@@ -1,6 +1,6 @@
 # Vitable Connect API Ruby API library
 
-The Vitable Connect API Ruby library provides convenient access to the Vitable Connect API REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/vitable-partner-api-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Vitable Connect API Ruby library provides convenient access to the Vitable Connect API REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/vitable-connect-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -229,4 +229,4 @@ Ruby 3.2.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/stainless-sdks/vitable-partner-api-ruby/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/stainless-sdks/vitable-connect-ruby/tree/main/CONTRIBUTING.md).
