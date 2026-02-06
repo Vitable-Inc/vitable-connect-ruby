@@ -28,10 +28,12 @@ module VitableConnectAPI
             phone: T.nilable(String),
             suffix: T.nilable(String),
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(VitableConnectAPI::Employee)
+          ).returns(
+            VitableConnectAPI::Models::Employers::EmployeeCreateResponse
+          )
         end
         def create(
-          # Unique employer identifier (empr\_\*)
+          # Filter by employer ID
           employer_id,
           # Date of birth (YYYY-MM-DD)
           date_of_birth:,
@@ -81,10 +83,10 @@ module VitableConnectAPI
             limit: Integer,
             page: Integer,
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(T::Array[VitableConnectAPI::Employee])
+          ).returns(VitableConnectAPI::Models::Employers::EmployeeListResponse)
         end
         def list(
-          # Unique employer identifier (empr\_\*)
+          # Filter by employer ID
           employer_id,
           # Filter by active status
           active_in: nil,

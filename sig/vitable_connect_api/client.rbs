@@ -33,8 +33,6 @@ module VitableConnectAPI
 
     attr_reader qualifying_life_events: VitableConnectAPI::Resources::QualifyingLifeEvents
 
-    private def auth_headers: -> ::Hash[String, String]
-
     def initialize: (
       ?api_key: String?,
       ?environment: :production | :environment_1 | nil,

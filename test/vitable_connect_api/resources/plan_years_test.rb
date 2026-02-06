@@ -9,23 +9,12 @@ class VitableConnectAPI::Test::Resources::PlanYearsTest < VitableConnectAPI::Tes
     response = @vitable_connect_api.plan_years.retrieve("plyr_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::BenefitProducts::PlanYear
+      response => VitableConnectAPI::Models::PlanYearRetrieveResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        benefit_product_id: String,
-        contribution_classes: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear::ContributionClass]),
-        coverage_end: Date,
-        coverage_start: Date,
-        created_at: Time,
-        employer_id: String,
-        open_enrollment_end_date: Date,
-        open_enrollment_start_date: Date,
-        plans: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear::Plan]),
-        status: VitableConnectAPI::BenefitProducts::PlanYearStatus,
-        updated_at: Time
+        data: VitableConnectAPI::BenefitProducts::PlanYear
       }
     end
   end
@@ -36,23 +25,12 @@ class VitableConnectAPI::Test::Resources::PlanYearsTest < VitableConnectAPI::Tes
     response = @vitable_connect_api.plan_years.update("plyr_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::BenefitProducts::PlanYear
+      response => VitableConnectAPI::Models::PlanYearUpdateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        benefit_product_id: String,
-        contribution_classes: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear::ContributionClass]),
-        coverage_end: Date,
-        coverage_start: Date,
-        created_at: Time,
-        employer_id: String,
-        open_enrollment_end_date: Date,
-        open_enrollment_start_date: Date,
-        plans: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear::Plan]),
-        status: VitableConnectAPI::BenefitProducts::PlanYearStatus,
-        updated_at: Time
+        data: VitableConnectAPI::BenefitProducts::PlanYear
       }
     end
   end

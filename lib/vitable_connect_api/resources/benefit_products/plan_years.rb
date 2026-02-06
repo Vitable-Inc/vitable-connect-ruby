@@ -26,7 +26,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [VitableConnectAPI::Models::BenefitProducts::PlanYear]
+        # @return [VitableConnectAPI::Models::BenefitProducts::PlanYearCreateResponse]
         #
         # @see VitableConnectAPI::Models::BenefitProducts::PlanYearCreateParams
         def create(benefit_product_id, params)
@@ -35,7 +35,7 @@ module VitableConnectAPI
             method: :post,
             path: ["v1/benefit-products/%1$s/plan-years", benefit_product_id],
             body: parsed,
-            model: VitableConnectAPI::BenefitProducts::PlanYear,
+            model: VitableConnectAPI::Models::BenefitProducts::PlanYearCreateResponse,
             options: options
           )
         end
@@ -58,7 +58,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<VitableConnectAPI::Models::BenefitProducts::PlanYear>]
+        # @return [VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse]
         #
         # @see VitableConnectAPI::Models::BenefitProducts::PlanYearListParams
         def list(benefit_product_id, params = {})
@@ -67,7 +67,7 @@ module VitableConnectAPI
             method: :get,
             path: ["v1/benefit-products/%1$s/plan-years", benefit_product_id],
             query: parsed,
-            model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear],
+            model: VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse,
             options: options
           )
         end

@@ -9,7 +9,14 @@ class VitableConnectAPI::Test::Resources::BenefitProductsTest < VitableConnectAP
     response = @vitable_connect_api.benefit_products.list
 
     assert_pattern do
-      response => ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Models::BenefitProductListResponseItem])
+      response => VitableConnectAPI::Models::BenefitProductListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Models::BenefitProductListResponse::Data]),
+        pagination: VitableConnectAPI::Models::BenefitProductListResponse::Pagination
+      }
     end
   end
 end

@@ -43,6 +43,12 @@ module VitableConnectAPI
       #   @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}]
 
       class Address < VitableConnectAPI::Internal::Type::BaseModel
+        # @!attribute address_line_1
+        #   Primary street address
+        #
+        #   @return [String]
+        required :address_line_1, String
+
         # @!attribute city
         #   City name
         #
@@ -55,44 +61,30 @@ module VitableConnectAPI
         #   @return [String]
         required :state, String
 
-        # @!attribute street_1
-        #   Primary street address
-        #
-        #   @return [String]
-        required :street_1, String
-
-        # @!attribute zip_code
+        # @!attribute zipcode
         #   ZIP code
         #
         #   @return [String]
-        required :zip_code, String
+        required :zipcode, String
 
-        # @!attribute country
-        #   Country code
-        #
-        #   @return [String, nil]
-        optional :country, String
-
-        # @!attribute street_2
+        # @!attribute address_line_2
         #   Secondary street address
         #
         #   @return [String, nil]
-        optional :street_2, String, nil?: true
+        optional :address_line_2, String, nil?: true
 
-        # @!method initialize(city:, state:, street_1:, zip_code:, country: nil, street_2: nil)
+        # @!method initialize(address_line_1:, city:, state:, zipcode:, address_line_2: nil)
         #   Employer address
+        #
+        #   @param address_line_1 [String] Primary street address
         #
         #   @param city [String] City name
         #
         #   @param state [String] Two-letter state code
         #
-        #   @param street_1 [String] Primary street address
+        #   @param zipcode [String] ZIP code
         #
-        #   @param zip_code [String] ZIP code
-        #
-        #   @param country [String] Country code
-        #
-        #   @param street_2 [String, nil] Secondary street address
+        #   @param address_line_2 [String, nil] Secondary street address
       end
     end
   end

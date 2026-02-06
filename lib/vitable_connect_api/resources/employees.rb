@@ -15,14 +15,14 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Employee]
+      # @return [VitableConnectAPI::Models::EmployeeRetrieveResponse]
       #
       # @see VitableConnectAPI::Models::EmployeeRetrieveParams
       def retrieve(employee_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/employees/%1$s", employee_id],
-          model: VitableConnectAPI::Employee,
+          model: VitableConnectAPI::Models::EmployeeRetrieveResponse,
           options: params[:request_options]
         )
       end
@@ -52,7 +52,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Employee]
+      # @return [VitableConnectAPI::Models::EmployeeUpdateResponse]
       #
       # @see VitableConnectAPI::Models::EmployeeUpdateParams
       def update(employee_id, params = {})
@@ -61,7 +61,7 @@ module VitableConnectAPI
           method: :put,
           path: ["v1/employees/%1$s", employee_id],
           body: parsed,
-          model: VitableConnectAPI::Employee,
+          model: VitableConnectAPI::Models::EmployeeUpdateResponse,
           options: options
         )
       end

@@ -17,9 +17,7 @@ module VitableConnectAPI
           page: Integer,
           product_code: VitableConnectAPI::ProductCode::OrSymbol,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(
-          T::Array[VitableConnectAPI::Models::BenefitProductListResponseItem]
-        )
+        ).returns(VitableConnectAPI::Models::BenefitProductListResponse)
       end
       def list(
         # Filter by active status

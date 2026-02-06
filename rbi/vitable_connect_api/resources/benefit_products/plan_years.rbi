@@ -20,7 +20,9 @@ module VitableConnectAPI
             open_enrollment_end: Date,
             open_enrollment_start: Date,
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(VitableConnectAPI::BenefitProducts::PlanYear)
+          ).returns(
+            VitableConnectAPI::Models::BenefitProducts::PlanYearCreateResponse
+          )
         end
         def create(
           # Unique benefit product identifier (bprd\_\*)
@@ -53,7 +55,9 @@ module VitableConnectAPI
             status:
               VitableConnectAPI::BenefitProducts::PlanYearStatus::OrSymbol,
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(T::Array[VitableConnectAPI::BenefitProducts::PlanYear])
+          ).returns(
+            VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse
+          )
         end
         def list(
           # Unique benefit product identifier (bprd\_\*)

@@ -19,6 +19,14 @@ module VitableConnectAPI
       sig { returns(String) }
       attr_accessor :benefit_product_id
 
+      # - `Unspecified` - Unspecified
+      # - `EE` - Ee
+      # - `ES` - Es
+      # - `EC` - Ec
+      # - `EF` - Ef
+      sig { returns(VitableConnectAPI::CoverageTier::TaggedSymbol) }
+      attr_accessor :coverage_tier
+
       # Timestamp when the enrollment was created
       sig { returns(Time) }
       attr_accessor :created_at
@@ -51,14 +59,6 @@ module VitableConnectAPI
       # Date when coverage begins
       sig { returns(T.nilable(Date)) }
       attr_accessor :coverage_start_date
-
-      # - `Unspecified` - Unspecified
-      # - `EE` - Ee
-      # - `ES` - Es
-      # - `EC` - Ec
-      # - `EF` - Ef
-      sig { returns(T.nilable(VitableConnectAPI::CoverageTier::TaggedSymbol)) }
-      attr_accessor :coverage_tier
 
       # Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
       sig { returns(T.nilable(String)) }
@@ -104,6 +104,7 @@ module VitableConnectAPI
         params(
           id: String,
           benefit_product_id: String,
+          coverage_tier: VitableConnectAPI::CoverageTier::OrSymbol,
           created_at: Time,
           employee_id: String,
           plan_year_id: String,
@@ -111,7 +112,6 @@ module VitableConnectAPI
           updated_at: Time,
           coverage_end_date: T.nilable(Date),
           coverage_start_date: T.nilable(Date),
-          coverage_tier: T.nilable(VitableConnectAPI::CoverageTier::OrSymbol),
           decision: T.nilable(String),
           employee_contribution_cents: T.nilable(Integer),
           employer_contribution_cents: T.nilable(Integer),
@@ -126,6 +126,12 @@ module VitableConnectAPI
         id:,
         # ID of the benefit product (bprd\_\*)
         benefit_product_id:,
+        # - `Unspecified` - Unspecified
+        # - `EE` - Ee
+        # - `ES` - Es
+        # - `EC` - Ec
+        # - `EF` - Ef
+        coverage_tier:,
         # Timestamp when the enrollment was created
         created_at:,
         # ID of the employee (empl\_\*)
@@ -143,12 +149,6 @@ module VitableConnectAPI
         coverage_end_date: nil,
         # Date when coverage begins
         coverage_start_date: nil,
-        # - `Unspecified` - Unspecified
-        # - `EE` - Ee
-        # - `ES` - Es
-        # - `EC` - Ec
-        # - `EF` - Ef
-        coverage_tier: nil,
         # Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
         decision: nil,
         # Employee's monthly contribution in cents
@@ -169,6 +169,7 @@ module VitableConnectAPI
           {
             id: String,
             benefit_product_id: String,
+            coverage_tier: VitableConnectAPI::CoverageTier::TaggedSymbol,
             created_at: Time,
             employee_id: String,
             plan_year_id: String,
@@ -177,8 +178,6 @@ module VitableConnectAPI
             updated_at: Time,
             coverage_end_date: T.nilable(Date),
             coverage_start_date: T.nilable(Date),
-            coverage_tier:
-              T.nilable(VitableConnectAPI::CoverageTier::TaggedSymbol),
             decision: T.nilable(String),
             employee_contribution_cents: T.nilable(Integer),
             employer_contribution_cents: T.nilable(Integer),

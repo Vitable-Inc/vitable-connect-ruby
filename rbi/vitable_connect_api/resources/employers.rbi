@@ -7,22 +7,25 @@ module VitableConnectAPI
       attr_reader :employees
 
       # Creates a new employer for the authenticated organization. Requires employer
-      # name, legal name, EIN, and address information. Returns the created employer
-      # with its assigned ID.
+      # name, legal name, EIN, email, and address information. Returns the created
+      # employer with its assigned ID.
       sig do
         params(
           address: VitableConnectAPI::EmployerCreateParams::Address::OrHash,
           ein: String,
+          email: String,
           legal_name: String,
           name: String,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Employer)
+        ).returns(VitableConnectAPI::Models::EmployerCreateResponse)
       end
       def create(
         # Employer address
         address:,
-        # Employer Identification Number (format: XX-XXXXXXX or XXXXXXXXX)
+        # Employer Identification Number (format: XX-XXXXXXX)
         ein:,
+        # Email address for billing and communications
+        email:,
         # Legal business name
         legal_name:,
         # Employer display name
@@ -37,10 +40,10 @@ module VitableConnectAPI
         params(
           employer_id: String,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Employer)
+        ).returns(VitableConnectAPI::Models::EmployerRetrieveResponse)
       end
       def retrieve(
-        # Unique employer identifier (empr\_\*)
+        # Filter by employer ID
         employer_id,
         request_options: {}
       )
@@ -57,10 +60,10 @@ module VitableConnectAPI
           legal_name: T.nilable(String),
           name: T.nilable(String),
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Employer)
+        ).returns(VitableConnectAPI::Models::EmployerUpdateResponse)
       end
       def update(
-        # Unique employer identifier (empr\_\*)
+        # Filter by employer ID
         employer_id,
         # Whether the employer is active
         active: nil,
@@ -84,7 +87,7 @@ module VitableConnectAPI
           name: String,
           page: Integer,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(T::Array[VitableConnectAPI::Employer])
+        ).returns(VitableConnectAPI::Models::EmployerListResponse)
       end
       def list(
         # Filter by active status
@@ -95,43 +98,6 @@ module VitableConnectAPI
         name: nil,
         # Page number (default: 1)
         page: nil,
-        request_options: {}
-      )
-      end
-
-      # Creates a new benefit eligibility policy for a specific employer. Eligibility
-      # policies define rules that determine which employees qualify for benefits based
-      # on criteria such as employment status (full-time, part-time), hours worked per
-      # week, waiting periods after hire date, or other custom requirements. Optionally
-      # provide 'policy_to_replace_id' as a query parameter to replace an existing
-      # policy.
-      sig do
-        params(
-          employer_id: String,
-          effective_date: Date,
-          name: String,
-          rules:
-            T::Array[
-              VitableConnectAPI::EmployerCreateEligibilityPolicyParams::Rule::OrHash
-            ],
-          policy_to_replace_id: String,
-          description: T.nilable(String),
-          request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::BenefitEligibilityPolicyAPI)
-      end
-      def create_eligibility_policy(
-        # Path param: Unique employer identifier (empr\_\*)
-        employer_id,
-        # Body param: Date when policy becomes effective
-        effective_date:,
-        # Body param: Display name for the policy
-        name:,
-        # Body param: List of eligibility rules (at least one required)
-        rules:,
-        # Query param: ID of existing policy to replace (epol\_\*)
-        policy_to_replace_id: nil,
-        # Body param: Detailed description
-        description: nil,
         request_options: {}
       )
       end

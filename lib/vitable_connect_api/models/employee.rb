@@ -2,7 +2,6 @@
 
 module VitableConnectAPI
   module Models
-    # @see VitableConnectAPI::Resources::Employees#retrieve
     class Employee < VitableConnectAPI::Internal::Type::BaseModel
       # @!attribute id
       #   Unique employee identifier with 'empl\_' prefix
@@ -10,11 +9,11 @@ module VitableConnectAPI
       #   @return [String]
       required :id, String
 
-      # @!attribute active
+      # @!attribute active_in
       #   Whether the employee is currently active
       #
       #   @return [Boolean]
-      required :active, VitableConnectAPI::Internal::Type::Boolean
+      required :active_in, VitableConnectAPI::Internal::Type::Boolean
 
       # @!attribute created_at
       #   Timestamp when the employee was created
@@ -71,7 +70,7 @@ module VitableConnectAPI
       #   @return [Date, nil]
       optional :termination_date, Date, nil?: true
 
-      # @!method initialize(id:, active:, created_at:, employer_id:, member:, start_date:, updated_at:, address: nil, employee_class: nil, termination_date: nil)
+      # @!method initialize(id:, active_in:, created_at:, employer_id:, member:, start_date:, updated_at:, address: nil, employee_class: nil, termination_date: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnectAPI::Models::Employee} for more details.
       #
@@ -82,7 +81,7 @@ module VitableConnectAPI
       #
       #   @param id [String] Unique employee identifier with 'empl\_' prefix
       #
-      #   @param active [Boolean] Whether the employee is currently active
+      #   @param active_in [Boolean] Whether the employee is currently active
       #
       #   @param created_at [Time] Timestamp when the employee was created
       #

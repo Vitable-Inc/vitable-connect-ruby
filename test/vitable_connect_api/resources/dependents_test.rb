@@ -9,24 +9,12 @@ class VitableConnectAPI::Test::Resources::DependentsTest < VitableConnectAPI::Te
     response = @vitable_connect_api.dependents.retrieve("dpnd_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::Dependent
+      response => VitableConnectAPI::Models::DependentRetrieveResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        date_of_birth: Date,
-        first_name: String,
-        last_name: String,
-        member_id: String,
-        relationship: VitableConnectAPI::Members::Relationship,
-        sex: VitableConnectAPI::Sex,
-        updated_at: Time,
-        gender: String | nil,
-        ssn_last_four: String | nil,
-        suffix: String | nil
+        data: VitableConnectAPI::Dependent
       }
     end
   end
@@ -37,24 +25,12 @@ class VitableConnectAPI::Test::Resources::DependentsTest < VitableConnectAPI::Te
     response = @vitable_connect_api.dependents.update("dpnd_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::Dependent
+      response => VitableConnectAPI::Models::DependentUpdateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        date_of_birth: Date,
-        first_name: String,
-        last_name: String,
-        member_id: String,
-        relationship: VitableConnectAPI::Members::Relationship,
-        sex: VitableConnectAPI::Sex,
-        updated_at: Time,
-        gender: String | nil,
-        ssn_last_four: String | nil,
-        suffix: String | nil
+        data: VitableConnectAPI::Dependent
       }
     end
   end

@@ -61,6 +61,16 @@ module VitableConnectAPI
         #   @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}]
 
         class ContributionClass < VitableConnectAPI::Internal::Type::BaseModel
+          # @!attribute coverage_tier
+          #   - `Unspecified` - Unspecified
+          #   - `EE` - Ee
+          #   - `ES` - Es
+          #   - `EC` - Ec
+          #   - `EF` - Ef
+          #
+          #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
+          required :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }
+
           # @!attribute employee_contribution_cents
           #   Employee's monthly contribution in cents
           #
@@ -79,28 +89,20 @@ module VitableConnectAPI
           #   @return [String]
           required :employment, String
 
-          # @!attribute family_status
-          #   - `Unspecified` - Unspecified
-          #   - `EE` - Ee
-          #   - `ES` - Es
-          #   - `EC` - Ec
-          #   - `EF` - Ef
-          #
-          #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
-          required :family_status, enum: -> { VitableConnectAPI::CoverageTier }
-
-          # @!method initialize(employee_contribution_cents:, employer_contribution_cents:, employment:, family_status:)
+          # @!method initialize(coverage_tier:, employee_contribution_cents:, employer_contribution_cents:, employment:)
           #   Some parameter documentations has been truncated, see
           #   {VitableConnectAPI::Models::BenefitProducts::PlanYearCreateParams::ContributionClass}
           #   for more details.
+          #
+          #   Contribution class input for plan year creation.
+          #
+          #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
           #
           #   @param employee_contribution_cents [Integer] Employee's monthly contribution in cents
           #
           #   @param employer_contribution_cents [Integer] Employer's monthly contribution in cents
           #
           #   @param employment [String] Employment type (e.g., 'full_time', 'part_time')
-          #
-          #   @param family_status [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
         end
       end
     end

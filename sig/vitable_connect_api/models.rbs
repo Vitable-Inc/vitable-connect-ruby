@@ -1,8 +1,6 @@
 module VitableConnectAPI
   class BenefitEligibilityPolicyAPI = VitableConnectAPI::Models::BenefitEligibilityPolicyAPI
 
-  class BenefitEligibilityPolicyRetrieveParams = VitableConnectAPI::Models::BenefitEligibilityPolicyRetrieveParams
-
   class BenefitProductListParams = VitableConnectAPI::Models::BenefitProductListParams
 
   module BenefitProducts = VitableConnectAPI::Models::BenefitProducts
@@ -28,8 +26,6 @@ module VitableConnectAPI
   class EmployeeUpdateParams = VitableConnectAPI::Models::EmployeeUpdateParams
 
   class Employer = VitableConnectAPI::Models::Employer
-
-  class EmployerCreateEligibilityPolicyParams = VitableConnectAPI::Models::EmployerCreateEligibilityPolicyParams
 
   class EmployerCreateParams = VitableConnectAPI::Models::EmployerCreateParams
 
@@ -58,8 +54,6 @@ module VitableConnectAPI
   class PlanYearUpdateParams = VitableConnectAPI::Models::PlanYearUpdateParams
 
   module ProductCode = VitableConnectAPI::Models::ProductCode
-
-  class QualifyingLifeEventRetrieveParams = VitableConnectAPI::Models::QualifyingLifeEventRetrieveParams
 
   module Sex = VitableConnectAPI::Models::Sex
 end

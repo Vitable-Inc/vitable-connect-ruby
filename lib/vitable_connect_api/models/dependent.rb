@@ -2,7 +2,6 @@
 
 module VitableConnectAPI
   module Models
-    # @see VitableConnectAPI::Resources::Dependents#retrieve
     class Dependent < VitableConnectAPI::Internal::Type::BaseModel
       # @!attribute id
       #   Unique dependent identifier with 'dpnd\_' prefix
@@ -10,11 +9,11 @@ module VitableConnectAPI
       #   @return [String]
       required :id, String
 
-      # @!attribute active
+      # @!attribute active_in
       #   Whether the dependent is currently active
       #
       #   @return [Boolean]
-      required :active, VitableConnectAPI::Internal::Type::Boolean
+      required :active_in, VitableConnectAPI::Internal::Type::Boolean
 
       # @!attribute created_at
       #   Timestamp when the dependent was created
@@ -86,7 +85,7 @@ module VitableConnectAPI
       #   @return [String, nil]
       optional :suffix, String, nil?: true
 
-      # @!method initialize(id:, active:, created_at:, date_of_birth:, first_name:, last_name:, member_id:, relationship:, sex:, updated_at:, gender: nil, ssn_last_four: nil, suffix: nil)
+      # @!method initialize(id:, active_in:, created_at:, date_of_birth:, first_name:, last_name:, member_id:, relationship:, sex:, updated_at:, gender: nil, ssn_last_four: nil, suffix: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnectAPI::Models::Dependent} for more details.
       #
@@ -97,7 +96,7 @@ module VitableConnectAPI
       #
       #   @param id [String] Unique dependent identifier with 'dpnd\_' prefix
       #
-      #   @param active [Boolean] Whether the dependent is currently active
+      #   @param active_in [Boolean] Whether the dependent is currently active
       #
       #   @param created_at [Time] Timestamp when the dependent was created
       #

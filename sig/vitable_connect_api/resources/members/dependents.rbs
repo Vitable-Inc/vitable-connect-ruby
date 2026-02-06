@@ -13,7 +13,7 @@ module VitableConnectAPI
           ?ssn: String?,
           ?suffix: String?,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Dependent
+        ) -> VitableConnectAPI::Models::Members::DependentCreateResponse
 
         def list: (
           String member_id,
@@ -22,7 +22,7 @@ module VitableConnectAPI
           ?page: Integer,
           ?relationship: VitableConnectAPI::Models::Members::relationship,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Models::Members::dependent_list_response
+        ) -> VitableConnectAPI::Models::Members::DependentListResponse
 
         def initialize: (client: VitableConnectAPI::Client) -> void
       end

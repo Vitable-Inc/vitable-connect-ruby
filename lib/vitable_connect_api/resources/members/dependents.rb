@@ -33,7 +33,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [VitableConnectAPI::Models::Dependent]
+        # @return [VitableConnectAPI::Models::Members::DependentCreateResponse]
         #
         # @see VitableConnectAPI::Models::Members::DependentCreateParams
         def create(member_id, params)
@@ -42,7 +42,7 @@ module VitableConnectAPI
             method: :post,
             path: ["v1/members/%1$s/dependents", member_id],
             body: parsed,
-            model: VitableConnectAPI::Dependent,
+            model: VitableConnectAPI::Models::Members::DependentCreateResponse,
             options: options
           )
         end
@@ -65,7 +65,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<VitableConnectAPI::Models::Dependent>]
+        # @return [VitableConnectAPI::Models::Members::DependentListResponse]
         #
         # @see VitableConnectAPI::Models::Members::DependentListParams
         def list(member_id, params = {})
@@ -74,7 +74,7 @@ module VitableConnectAPI
             method: :get,
             path: ["v1/members/%1$s/dependents", member_id],
             query: parsed,
-            model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Dependent],
+            model: VitableConnectAPI::Models::Members::DependentListResponse,
             options: options
           )
         end

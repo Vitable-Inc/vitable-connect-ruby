@@ -21,6 +21,16 @@ module VitableConnectAPI
         #   @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}]
 
         class Election < VitableConnectAPI::Internal::Type::BaseModel
+          # @!attribute coverage_tier
+          #   - `Unspecified` - Unspecified
+          #   - `EE` - Ee
+          #   - `ES` - Es
+          #   - `EC` - Ec
+          #   - `EF` - Ef
+          #
+          #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
+          required :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }
+
           # @!attribute decision
           #   - `Enrolled` - Enrolled
           #   - `Waived` - Waived
@@ -35,16 +45,6 @@ module VitableConnectAPI
           #   @return [String]
           required :enrollment_id, String
 
-          # @!attribute coverage_tier
-          #   - `Unspecified` - Unspecified
-          #   - `EE` - Ee
-          #   - `ES` - Es
-          #   - `EC` - Ec
-          #   - `EF` - Ef
-          #
-          #   @return [Symbol, VitableConnectAPI::Models::CoverageTier, nil]
-          optional :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }, nil?: true
-
           # @!attribute dependent_ids
           #   List of dependent IDs to include in coverage (dpnd\_\*)
           #
@@ -57,16 +57,18 @@ module VitableConnectAPI
           #   @return [String, nil]
           optional :selected_plan_id, String, nil?: true
 
-          # @!method initialize(decision:, enrollment_id:, coverage_tier: nil, dependent_ids: nil, selected_plan_id: nil)
+          # @!method initialize(coverage_tier:, decision:, enrollment_id:, dependent_ids: nil, selected_plan_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election}
           #   for more details.
           #
+          #   Individual enrollment election within the batch request.
+          #
+          #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
+          #
           #   @param decision [Symbol, VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::Decision] - `Enrolled` - Enrolled
           #
           #   @param enrollment_id [String] ID of the enrollment (enrl\_\*)
-          #
-          #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier, nil] - `Unspecified` - Unspecified
           #
           #   @param dependent_ids [Array<String>, nil] List of dependent IDs to include in coverage (dpnd\_\*)
           #

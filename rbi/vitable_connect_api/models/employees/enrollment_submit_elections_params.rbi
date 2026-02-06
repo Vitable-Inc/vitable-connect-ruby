@@ -64,6 +64,14 @@ module VitableConnectAPI
               )
             end
 
+          # - `Unspecified` - Unspecified
+          # - `EE` - Ee
+          # - `ES` - Es
+          # - `EC` - Ec
+          # - `EF` - Ef
+          sig { returns(VitableConnectAPI::CoverageTier::OrSymbol) }
+          attr_accessor :coverage_tier
+
           # - `Enrolled` - Enrolled
           # - `Waived` - Waived
           sig do
@@ -77,14 +85,6 @@ module VitableConnectAPI
           sig { returns(String) }
           attr_accessor :enrollment_id
 
-          # - `Unspecified` - Unspecified
-          # - `EE` - Ee
-          # - `ES` - Es
-          # - `EC` - Ec
-          # - `EF` - Ef
-          sig { returns(T.nilable(VitableConnectAPI::CoverageTier::OrSymbol)) }
-          attr_accessor :coverage_tier
-
           # List of dependent IDs to include in coverage (dpnd\_\*)
           sig { returns(T.nilable(T::Array[String])) }
           attr_accessor :dependent_ids
@@ -93,29 +93,29 @@ module VitableConnectAPI
           sig { returns(T.nilable(String)) }
           attr_accessor :selected_plan_id
 
+          # Individual enrollment election within the batch request.
           sig do
             params(
+              coverage_tier: VitableConnectAPI::CoverageTier::OrSymbol,
               decision:
                 VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election::Decision::OrSymbol,
               enrollment_id: String,
-              coverage_tier:
-                T.nilable(VitableConnectAPI::CoverageTier::OrSymbol),
               dependent_ids: T.nilable(T::Array[String]),
               selected_plan_id: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
-            # - `Enrolled` - Enrolled
-            # - `Waived` - Waived
-            decision:,
-            # ID of the enrollment (enrl\_\*)
-            enrollment_id:,
             # - `Unspecified` - Unspecified
             # - `EE` - Ee
             # - `ES` - Es
             # - `EC` - Ec
             # - `EF` - Ef
-            coverage_tier: nil,
+            coverage_tier:,
+            # - `Enrolled` - Enrolled
+            # - `Waived` - Waived
+            decision:,
+            # ID of the enrollment (enrl\_\*)
+            enrollment_id:,
             # List of dependent IDs to include in coverage (dpnd\_\*)
             dependent_ids: nil,
             # ID of the selected plan (plan\_\*). Required if decision is 'Enrolled'
@@ -126,11 +126,10 @@ module VitableConnectAPI
           sig do
             override.returns(
               {
+                coverage_tier: VitableConnectAPI::CoverageTier::OrSymbol,
                 decision:
                   VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election::Decision::OrSymbol,
                 enrollment_id: String,
-                coverage_tier:
-                  T.nilable(VitableConnectAPI::CoverageTier::OrSymbol),
                 dependent_ids: T.nilable(T::Array[String]),
                 selected_plan_id: T.nilable(String)
               }

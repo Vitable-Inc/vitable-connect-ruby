@@ -2,131 +2,187 @@
 
 module VitableConnectAPI
   module Models
-    class EnrollmentListPlansResponseItem < VitableConnectAPI::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique plan identifier (plan\_\*)
+    # @see VitableConnectAPI::Resources::Enrollments#list_plans
+    class EnrollmentListPlansResponse < VitableConnectAPI::Internal::Type::BaseModel
+      # @!attribute data
       #
-      #   @return [String]
-      required :id, String
+      #   @return [Array<VitableConnectAPI::Models::EnrollmentListPlansResponse::Data>]
+      required :data,
+               -> { VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Models::EnrollmentListPlansResponse::Data] }
 
-      # @!attribute costs
-      #   Cost breakdown by coverage tier
+      # @!attribute pagination
+      #   Pagination metadata for list responses.
       #
-      #   @return [Array<VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost>]
-      required :costs,
-               -> { VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost] }
+      #   @return [VitableConnectAPI::Models::EnrollmentListPlansResponse::Pagination]
+      required :pagination, -> { VitableConnectAPI::Models::EnrollmentListPlansResponse::Pagination }
 
-      # @!attribute name
-      #   Display name of the plan
+      # @!method initialize(data:, pagination:)
+      #   Paginated list response containing plan option resources.
       #
-      #   @return [String]
-      required :name, String
+      #   @param data [Array<VitableConnectAPI::Models::EnrollmentListPlansResponse::Data>]
+      #
+      #   @param pagination [VitableConnectAPI::Models::EnrollmentListPlansResponse::Pagination] Pagination metadata for list responses.
 
-      # @!attribute carrier_name
-      #   Name of the insurance carrier
-      #
-      #   @return [String, nil]
-      optional :carrier_name, String, nil?: true
-
-      # @!attribute deductible_cents
-      #   Annual deductible in cents
-      #
-      #   @return [Integer, nil]
-      optional :deductible_cents, Integer, nil?: true
-
-      # @!attribute description
-      #   Plan description
-      #
-      #   @return [String, nil]
-      optional :description, String, nil?: true
-
-      # @!attribute out_of_pocket_max_cents
-      #   Annual out-of-pocket maximum in cents
-      #
-      #   @return [Integer, nil]
-      optional :out_of_pocket_max_cents, Integer, nil?: true
-
-      # @!attribute tier
-      #   - `Bronze` - Bronze
-      #   - `Silver` - Silver
-      #   - `Gold` - Gold
-      #   - `Platinum` - Platinum
-      #
-      #   @return [Symbol, VitableConnectAPI::Models::PlanTier, nil]
-      optional :tier, enum: -> { VitableConnectAPI::PlanTier }, nil?: true
-
-      # @!method initialize(id:, costs:, name:, carrier_name: nil, deductible_cents: nil, description: nil, out_of_pocket_max_cents: nil, tier: nil)
-      #   Some parameter documentations has been truncated, see
-      #   {VitableConnectAPI::Models::EnrollmentListPlansResponseItem} for more details.
-      #
-      #   Serializer for plan options available for enrollment selection.
-      #
-      #   Returns plan details with cost breakdowns for each coverage tier.
-      #
-      #   @param id [String] Unique plan identifier (plan\_\*)
-      #
-      #   @param costs [Array<VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost>] Cost breakdown by coverage tier
-      #
-      #   @param name [String] Display name of the plan
-      #
-      #   @param carrier_name [String, nil] Name of the insurance carrier
-      #
-      #   @param deductible_cents [Integer, nil] Annual deductible in cents
-      #
-      #   @param description [String, nil] Plan description
-      #
-      #   @param out_of_pocket_max_cents [Integer, nil] Annual out-of-pocket maximum in cents
-      #
-      #   @param tier [Symbol, VitableConnectAPI::Models::PlanTier, nil] - `Bronze` - Bronze
-
-      class Cost < VitableConnectAPI::Internal::Type::BaseModel
-        # @!attribute coverage_tier
-        #   - `Unspecified` - Unspecified
-        #   - `EE` - Ee
-        #   - `ES` - Es
-        #   - `EC` - Ec
-        #   - `EF` - Ef
+      class Data < VitableConnectAPI::Internal::Type::BaseModel
+        # @!attribute id
+        #   Unique plan identifier (plan\_\*)
         #
-        #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
-        required :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }
+        #   @return [String]
+        required :id, String
 
-        # @!attribute employee_contribution_cents
-        #   Employee's monthly contribution in cents
+        # @!attribute costs
+        #   Cost breakdown by coverage tier
         #
-        #   @return [Integer]
-        required :employee_contribution_cents, Integer
+        #   @return [Array<VitableConnectAPI::Models::EnrollmentListPlansResponse::Data::Cost>]
+        required :costs,
+                 -> { VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Models::EnrollmentListPlansResponse::Data::Cost] }
 
-        # @!attribute employer_contribution_cents
-        #   Employer's monthly contribution in cents
+        # @!attribute name
+        #   Display name of the plan
         #
-        #   @return [Integer]
-        required :employer_contribution_cents, Integer
+        #   @return [String]
+        required :name, String
 
-        # @!attribute total_monthly_premium_cents
-        #   Total monthly premium in cents
+        # @!attribute carrier_name
+        #   Name of the carrier
         #
-        #   @return [Integer]
-        required :total_monthly_premium_cents, Integer
+        #   @return [String, nil]
+        optional :carrier_name, String, nil?: true
 
-        # @!method initialize(coverage_tier:, employee_contribution_cents:, employer_contribution_cents:, total_monthly_premium_cents:)
+        # @!attribute deductible_cents
+        #   Annual deductible in cents
+        #
+        #   @return [Integer, nil]
+        optional :deductible_cents, Integer, nil?: true
+
+        # @!attribute description
+        #   Plan description
+        #
+        #   @return [String, nil]
+        optional :description, String, nil?: true
+
+        # @!attribute out_of_pocket_max_cents
+        #   Annual out-of-pocket maximum in cents
+        #
+        #   @return [Integer, nil]
+        optional :out_of_pocket_max_cents, Integer, nil?: true
+
+        # @!attribute tier
+        #   - `Bronze` - Bronze
+        #   - `Silver` - Silver
+        #   - `Gold` - Gold
+        #   - `Platinum` - Platinum
+        #
+        #   @return [Symbol, VitableConnectAPI::Models::PlanTier, nil]
+        optional :tier, enum: -> { VitableConnectAPI::PlanTier }, nil?: true
+
+        # @!method initialize(id:, costs:, name:, carrier_name: nil, deductible_cents: nil, description: nil, out_of_pocket_max_cents: nil, tier: nil)
         #   Some parameter documentations has been truncated, see
-        #   {VitableConnectAPI::Models::EnrollmentListPlansResponseItem::Cost} for more
-        #   details.
+        #   {VitableConnectAPI::Models::EnrollmentListPlansResponse::Data} for more details.
         #
-        #   Cost breakdown for a plan option.
+        #   Serializer for plan options available for enrollment selection.
         #
-        #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
+        #   Returns plan details with cost breakdowns for each coverage tier.
         #
-        #   @param employee_contribution_cents [Integer] Employee's monthly contribution in cents
+        #   @param id [String] Unique plan identifier (plan\_\*)
         #
-        #   @param employer_contribution_cents [Integer] Employer's monthly contribution in cents
+        #   @param costs [Array<VitableConnectAPI::Models::EnrollmentListPlansResponse::Data::Cost>] Cost breakdown by coverage tier
         #
-        #   @param total_monthly_premium_cents [Integer] Total monthly premium in cents
+        #   @param name [String] Display name of the plan
+        #
+        #   @param carrier_name [String, nil] Name of the carrier
+        #
+        #   @param deductible_cents [Integer, nil] Annual deductible in cents
+        #
+        #   @param description [String, nil] Plan description
+        #
+        #   @param out_of_pocket_max_cents [Integer, nil] Annual out-of-pocket maximum in cents
+        #
+        #   @param tier [Symbol, VitableConnectAPI::Models::PlanTier, nil] - `Bronze` - Bronze
+
+        class Cost < VitableConnectAPI::Internal::Type::BaseModel
+          # @!attribute coverage_tier
+          #   - `Unspecified` - Unspecified
+          #   - `EE` - Ee
+          #   - `ES` - Es
+          #   - `EC` - Ec
+          #   - `EF` - Ef
+          #
+          #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
+          required :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }
+
+          # @!attribute employee_contribution_cents
+          #   Employee's monthly contribution in cents
+          #
+          #   @return [Integer]
+          required :employee_contribution_cents, Integer
+
+          # @!attribute employer_contribution_cents
+          #   Employer's monthly contribution in cents
+          #
+          #   @return [Integer]
+          required :employer_contribution_cents, Integer
+
+          # @!attribute total_monthly_premium_cents
+          #   Total monthly premium in cents
+          #
+          #   @return [Integer]
+          required :total_monthly_premium_cents, Integer
+
+          # @!method initialize(coverage_tier:, employee_contribution_cents:, employer_contribution_cents:, total_monthly_premium_cents:)
+          #   Some parameter documentations has been truncated, see
+          #   {VitableConnectAPI::Models::EnrollmentListPlansResponse::Data::Cost} for more
+          #   details.
+          #
+          #   Cost breakdown for a plan option.
+          #
+          #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
+          #
+          #   @param employee_contribution_cents [Integer] Employee's monthly contribution in cents
+          #
+          #   @param employer_contribution_cents [Integer] Employer's monthly contribution in cents
+          #
+          #   @param total_monthly_premium_cents [Integer] Total monthly premium in cents
+        end
+      end
+
+      # @see VitableConnectAPI::Models::EnrollmentListPlansResponse#pagination
+      class Pagination < VitableConnectAPI::Internal::Type::BaseModel
+        # @!attribute limit
+        #   Items per page
+        #
+        #   @return [Integer]
+        required :limit, Integer
+
+        # @!attribute page
+        #   Current page number
+        #
+        #   @return [Integer]
+        required :page, Integer
+
+        # @!attribute total
+        #   Total number of items
+        #
+        #   @return [Integer]
+        required :total, Integer
+
+        # @!attribute total_pages
+        #   Total number of pages
+        #
+        #   @return [Integer]
+        required :total_pages, Integer
+
+        # @!method initialize(limit:, page:, total:, total_pages:)
+        #   Pagination metadata for list responses.
+        #
+        #   @param limit [Integer] Items per page
+        #
+        #   @param page [Integer] Current page number
+        #
+        #   @param total [Integer] Total number of items
+        #
+        #   @param total_pages [Integer] Total number of pages
       end
     end
-
-    # @type [VitableConnectAPI::Internal::Type::Converter]
-    EnrollmentListPlansResponse =
-      VitableConnectAPI::Internal::Type::ArrayOf[-> { VitableConnectAPI::Models::EnrollmentListPlansResponseItem }]
   end
 end

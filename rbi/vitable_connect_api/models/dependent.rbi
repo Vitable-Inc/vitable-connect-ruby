@@ -17,7 +17,7 @@ module VitableConnectAPI
 
       # Whether the dependent is currently active
       sig { returns(T::Boolean) }
-      attr_accessor :active
+      attr_accessor :active_in
 
       # Timestamp when the dependent was created
       sig { returns(Time) }
@@ -74,7 +74,7 @@ module VitableConnectAPI
       sig do
         params(
           id: String,
-          active: T::Boolean,
+          active_in: T::Boolean,
           created_at: Time,
           date_of_birth: Date,
           first_name: String,
@@ -92,7 +92,7 @@ module VitableConnectAPI
         # Unique dependent identifier with 'dpnd\_' prefix
         id:,
         # Whether the dependent is currently active
-        active:,
+        active_in:,
         # Timestamp when the dependent was created
         created_at:,
         # Dependent's date of birth (YYYY-MM-DD)
@@ -126,7 +126,7 @@ module VitableConnectAPI
         override.returns(
           {
             id: String,
-            active: T::Boolean,
+            active_in: T::Boolean,
             created_at: Time,
             date_of_birth: Date,
             first_name: String,

@@ -4,20 +4,21 @@ module VitableConnectAPI
       {
         id: String,
         active: bool,
+        address: VitableConnectAPI::Employer::Address,
         created_at: Time,
+        ein: String?,
+        eligibility_policy_id: String?,
         legal_name: String,
         name: String,
         organization_id: String,
         updated_at: Time,
-        address: VitableConnectAPI::Employer::Address?,
-        ein: String?,
-        eligibility_policy_id: String?
+        email: String?
       }
 
     class Employer < VitableConnectAPI::Internal::Type::BaseModel
-      attr_accessor id: String
-
       attr_accessor active: bool
+
+      attr_accessor address: VitableConnectAPI::Employer::Address
 
       attr_accessor created_at: Time
 
@@ -25,83 +26,80 @@ module VitableConnectAPI
 
       attr_accessor name: String
 
-      attr_accessor organization_id: String
-
       attr_accessor updated_at: Time
 
-      attr_accessor address: VitableConnectAPI::Employer::Address?
+      attr_accessor email: String?
+
+      attr_accessor id: String
 
       attr_accessor ein: String?
 
       attr_accessor eligibility_policy_id: String?
 
+      attr_accessor organization_id: String
+
       def initialize: (
         id: String,
         active: bool,
+        address: VitableConnectAPI::Employer::Address,
         created_at: Time,
+        ein: String?,
+        eligibility_policy_id: String?,
         legal_name: String,
         name: String,
         organization_id: String,
         updated_at: Time,
-        ?address: VitableConnectAPI::Employer::Address?,
-        ?ein: String?,
-        ?eligibility_policy_id: String?
+        ?email: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
         active: bool,
+        address: VitableConnectAPI::Employer::Address,
         created_at: Time,
+        ein: String?,
+        eligibility_policy_id: String?,
         legal_name: String,
         name: String,
         organization_id: String,
         updated_at: Time,
-        address: VitableConnectAPI::Employer::Address?,
-        ein: String?,
-        eligibility_policy_id: String?
+        email: String?
       }
 
       type address =
         {
+          :address_line_1 => String,
           city: String,
           state: String,
-          :street_1 => String,
-          zip_code: String,
-          country: String,
-          :street_2 => String?
+          zipcode: String,
+          :address_line_2 => String?
         }
 
       class Address < VitableConnectAPI::Internal::Type::BaseModel
+        attr_accessor address_line_1: String
+
         attr_accessor city: String
 
         attr_accessor state: String
 
-        attr_accessor street_1: String
+        attr_accessor zipcode: String
 
-        attr_accessor zip_code: String
-
-        attr_reader country: String?
-
-        def country=: (String) -> String
-
-        attr_accessor street_2: String?
+        attr_accessor address_line_2: String?
 
         def initialize: (
+          address_line_1: String,
           city: String,
           state: String,
-          street_1: String,
-          zip_code: String,
-          ?country: String,
-          ?street_2: String?
+          zipcode: String,
+          ?address_line_2: String?
         ) -> void
 
         def to_hash: -> {
+          :address_line_1 => String,
           city: String,
           state: String,
-          :street_1 => String,
-          zip_code: String,
-          country: String,
-          :street_2 => String?
+          zipcode: String,
+          :address_line_2 => String?
         }
       end
     end

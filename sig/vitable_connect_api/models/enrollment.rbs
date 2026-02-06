@@ -4,6 +4,7 @@ module VitableConnectAPI
       {
         id: String,
         benefit_product_id: String,
+        coverage_tier: VitableConnectAPI::Models::coverage_tier,
         created_at: Time,
         employee_id: String,
         plan_year_id: String,
@@ -11,7 +12,6 @@ module VitableConnectAPI
         updated_at: Time,
         coverage_end_date: Date?,
         coverage_start_date: Date?,
-        coverage_tier: VitableConnectAPI::Models::coverage_tier?,
         decision: String?,
         employee_contribution_cents: Integer?,
         employer_contribution_cents: Integer?,
@@ -24,6 +24,8 @@ module VitableConnectAPI
       attr_accessor id: String
 
       attr_accessor benefit_product_id: String
+
+      attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier
 
       attr_accessor created_at: Time
 
@@ -38,8 +40,6 @@ module VitableConnectAPI
       attr_accessor coverage_end_date: Date?
 
       attr_accessor coverage_start_date: Date?
-
-      attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier?
 
       attr_accessor decision: String?
 
@@ -60,6 +60,7 @@ module VitableConnectAPI
       def initialize: (
         id: String,
         benefit_product_id: String,
+        coverage_tier: VitableConnectAPI::Models::coverage_tier,
         created_at: Time,
         employee_id: String,
         plan_year_id: String,
@@ -67,7 +68,6 @@ module VitableConnectAPI
         updated_at: Time,
         ?coverage_end_date: Date?,
         ?coverage_start_date: Date?,
-        ?coverage_tier: VitableConnectAPI::Models::coverage_tier?,
         ?decision: String?,
         ?employee_contribution_cents: Integer?,
         ?employer_contribution_cents: Integer?,
@@ -79,6 +79,7 @@ module VitableConnectAPI
       def to_hash: -> {
         id: String,
         benefit_product_id: String,
+        coverage_tier: VitableConnectAPI::Models::coverage_tier,
         created_at: Time,
         employee_id: String,
         plan_year_id: String,
@@ -86,7 +87,6 @@ module VitableConnectAPI
         updated_at: Time,
         coverage_end_date: Date?,
         coverage_start_date: Date?,
-        coverage_tier: VitableConnectAPI::Models::coverage_tier?,
         decision: String?,
         employee_contribution_cents: Integer?,
         employer_contribution_cents: Integer?,

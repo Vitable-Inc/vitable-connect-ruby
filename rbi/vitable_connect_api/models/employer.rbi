@@ -11,13 +11,16 @@ module VitableConnectAPI
           )
         end
 
-      # Unique employer identifier with 'empr\_' prefix
-      sig { returns(String) }
-      attr_accessor :id
-
       # Whether the employer is currently active in the system
       sig { returns(T::Boolean) }
       attr_accessor :active
+
+      # Nested address within EmployerSerializer.
+      sig { returns(VitableConnectAPI::Employer::Address) }
+      attr_reader :address
+
+      sig { params(address: VitableConnectAPI::Employer::Address::OrHash).void }
+      attr_writer :address
 
       # Timestamp when the employer was created
       sig { returns(Time) }
@@ -31,24 +34,17 @@ module VitableConnectAPI
       sig { returns(String) }
       attr_accessor :name
 
-      # ID of the parent organization (org\_\*)
-      sig { returns(String) }
-      attr_accessor :organization_id
-
       # Timestamp when the employer was last updated
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # Nested address within EmployerSerializer.
-      sig { returns(T.nilable(VitableConnectAPI::Employer::Address)) }
-      attr_reader :address
+      # Email address for billing and communications
+      sig { returns(T.nilable(String)) }
+      attr_accessor :email
 
-      sig do
-        params(
-          address: T.nilable(VitableConnectAPI::Employer::Address::OrHash)
-        ).void
-      end
-      attr_writer :address
+      # Unique employer identifier with 'empr\_' prefix
+      sig { returns(String) }
+      attr_accessor :id
 
       # Employer Identification Number (masked in responses)
       sig { returns(T.nilable(String)) }
@@ -58,21 +54,24 @@ module VitableConnectAPI
       sig { returns(T.nilable(String)) }
       attr_accessor :eligibility_policy_id
 
+      # ID of the parent organization (org\_\*)
+      sig { returns(String) }
+      attr_accessor :organization_id
+
       # Serializer for Employer entity in public API responses.
-      #
-      # Matches EmployerEntity from company module domain.
       sig do
         params(
           id: String,
           active: T::Boolean,
+          address: VitableConnectAPI::Employer::Address::OrHash,
           created_at: Time,
+          ein: T.nilable(String),
+          eligibility_policy_id: T.nilable(String),
           legal_name: String,
           name: String,
           organization_id: String,
           updated_at: Time,
-          address: T.nilable(VitableConnectAPI::Employer::Address::OrHash),
-          ein: T.nilable(String),
-          eligibility_policy_id: T.nilable(String)
+          email: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -80,8 +79,14 @@ module VitableConnectAPI
         id:,
         # Whether the employer is currently active in the system
         active:,
+        # Nested address within EmployerSerializer.
+        address:,
         # Timestamp when the employer was created
         created_at:,
+        # Employer Identification Number (masked in responses)
+        ein:,
+        # ID of the benefit eligibility policy (epol\_\*), if assigned
+        eligibility_policy_id:,
         # Legal business name for compliance and tax purposes
         legal_name:,
         # Display name of the employer
@@ -90,12 +95,8 @@ module VitableConnectAPI
         organization_id:,
         # Timestamp when the employer was last updated
         updated_at:,
-        # Nested address within EmployerSerializer.
-        address: nil,
-        # Employer Identification Number (masked in responses)
-        ein: nil,
-        # ID of the benefit eligibility policy (epol\_\*), if assigned
-        eligibility_policy_id: nil
+        # Email address for billing and communications
+        email: nil
       )
       end
 
@@ -104,14 +105,15 @@ module VitableConnectAPI
           {
             id: String,
             active: T::Boolean,
+            address: VitableConnectAPI::Employer::Address,
             created_at: Time,
+            ein: T.nilable(String),
+            eligibility_policy_id: T.nilable(String),
             legal_name: String,
             name: String,
             organization_id: String,
             updated_at: Time,
-            address: T.nilable(VitableConnectAPI::Employer::Address),
-            ein: T.nilable(String),
-            eligibility_policy_id: T.nilable(String)
+            email: T.nilable(String)
           }
         )
       end
@@ -127,6 +129,10 @@ module VitableConnectAPI
             )
           end
 
+        # Primary street address
+        sig { returns(String) }
+        attr_accessor :address_line_1
+
         # City name
         sig { returns(String) }
         attr_accessor :city
@@ -135,61 +141,46 @@ module VitableConnectAPI
         sig { returns(String) }
         attr_accessor :state
 
-        # Primary street address
-        sig { returns(String) }
-        attr_accessor :street_1
-
         # ZIP code (5 or 9 digit)
         sig { returns(String) }
-        attr_accessor :zip_code
-
-        # Country code (default: US)
-        sig { returns(T.nilable(String)) }
-        attr_reader :country
-
-        sig { params(country: String).void }
-        attr_writer :country
+        attr_accessor :zipcode
 
         # Secondary street address (apt, suite, etc.)
         sig { returns(T.nilable(String)) }
-        attr_accessor :street_2
+        attr_accessor :address_line_2
 
         # Nested address within EmployerSerializer.
         sig do
           params(
+            address_line_1: String,
             city: String,
             state: String,
-            street_1: String,
-            zip_code: String,
-            country: String,
-            street_2: T.nilable(String)
+            zipcode: String,
+            address_line_2: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
+          # Primary street address
+          address_line_1:,
           # City name
           city:,
           # Two-letter state code (e.g., CA, NY)
           state:,
-          # Primary street address
-          street_1:,
           # ZIP code (5 or 9 digit)
-          zip_code:,
-          # Country code (default: US)
-          country: nil,
+          zipcode:,
           # Secondary street address (apt, suite, etc.)
-          street_2: nil
+          address_line_2: nil
         )
         end
 
         sig do
           override.returns(
             {
+              address_line_1: String,
               city: String,
               state: String,
-              street_1: String,
-              zip_code: String,
-              country: String,
-              street_2: T.nilable(String)
+              zipcode: String,
+              address_line_2: T.nilable(String)
             }
           )
         end

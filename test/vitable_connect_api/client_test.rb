@@ -42,75 +42,57 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_client_default_request_default_retry_attempts
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 500,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 500, body: {})
 
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve("epol_abc123def456")
+      vitable_connect_api.benefit_products.list
     end
 
     assert_requested(:any, /./, times: 3)
   end
 
   def test_client_given_request_default_retry_attempts
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 500,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 500, body: {})
 
     vitable_connect_api =
       VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve("epol_abc123def456")
+      vitable_connect_api.benefit_products.list
     end
 
     assert_requested(:any, /./, times: 4)
   end
 
   def test_client_default_request_given_retry_attempts
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 500,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 500, body: {})
 
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
-        request_options: {max_retries: 3}
-      )
+      vitable_connect_api.benefit_products.list(request_options: {max_retries: 3})
     end
 
     assert_requested(:any, /./, times: 4)
   end
 
   def test_client_given_request_given_retry_attempts
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 500,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 500, body: {})
 
     vitable_connect_api =
       VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
-        request_options: {max_retries: 4}
-      )
+      vitable_connect_api.benefit_products.list(request_options: {max_retries: 4})
     end
 
     assert_requested(:any, /./, times: 5)
   end
 
   def test_client_retry_after_seconds
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(
       status: 500,
       headers: {"retry-after" => "1.3"},
       body: {}
@@ -120,7 +102,7 @@ class VitableConnectAPITest < Minitest::Test
       VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve("epol_abc123def456")
+      vitable_connect_api.benefit_products.list
     end
 
     assert_requested(:any, /./, times: 2)
@@ -128,7 +110,7 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_client_retry_after_date
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(
       status: 500,
       headers: {"retry-after" => (Time.now + 10).httpdate},
       body: {}
@@ -139,7 +121,7 @@ class VitableConnectAPITest < Minitest::Test
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
-      vitable_connect_api.benefit_eligibility_policy.retrieve("epol_abc123def456")
+      vitable_connect_api.benefit_products.list
       Thread.current.thread_variable_set(:time_now, nil)
     end
 
@@ -148,7 +130,7 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_client_retry_after_ms
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(
       status: 500,
       headers: {"retry-after-ms" => "1300"},
       body: {}
@@ -158,7 +140,7 @@ class VitableConnectAPITest < Minitest::Test
       VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve("epol_abc123def456")
+      vitable_connect_api.benefit_products.list
     end
 
     assert_requested(:any, /./, times: 2)
@@ -166,15 +148,12 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_retry_count_header
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 500,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 500, body: {})
 
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve("epol_abc123def456")
+      vitable_connect_api.benefit_products.list
     end
 
     3.times do
@@ -183,16 +162,12 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_omit_retry_count_header
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 500,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 500, body: {})
 
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
+      vitable_connect_api.benefit_products.list(
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
     end
@@ -203,16 +178,12 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_overwrite_retry_count_header
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 500,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 500, body: {})
 
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::InternalServerError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
+      vitable_connect_api.benefit_products.list(
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
     end
@@ -221,7 +192,7 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_client_redirect_307
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(
       status: 307,
       headers: {"location" => "/redirected"},
       body: {}
@@ -234,10 +205,7 @@ class VitableConnectAPITest < Minitest::Test
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::APIConnectionError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
-        request_options: {extra_headers: {}}
-      )
+      vitable_connect_api.benefit_products.list(request_options: {extra_headers: {}})
     end
 
     recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
@@ -253,7 +221,7 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_client_redirect_303
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(
       status: 303,
       headers: {"location" => "/redirected"},
       body: {}
@@ -266,10 +234,7 @@ class VitableConnectAPITest < Minitest::Test
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::APIConnectionError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
-        request_options: {extra_headers: {}}
-      )
+      vitable_connect_api.benefit_products.list(request_options: {extra_headers: {}})
     end
 
     assert_requested(:get, "http://localhost/redirected", times: VitableConnectAPI::Client::MAX_REDIRECTS) do
@@ -280,7 +245,7 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_client_redirect_auth_keep_same_origin
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(
       status: 307,
       headers: {"location" => "/redirected"},
       body: {}
@@ -293,8 +258,7 @@ class VitableConnectAPITest < Minitest::Test
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::APIConnectionError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
+      vitable_connect_api.benefit_products.list(
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -310,7 +274,7 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_client_redirect_auth_strip_cross_origin
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(
       status: 307,
       headers: {"location" => "https://example.com/redirected"},
       body: {}
@@ -323,8 +287,7 @@ class VitableConnectAPITest < Minitest::Test
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnectAPI::Errors::APIConnectionError) do
-      vitable_connect_api.benefit_eligibility_policy.retrieve(
-        "epol_abc123def456",
+      vitable_connect_api.benefit_products.list(
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -340,14 +303,11 @@ class VitableConnectAPITest < Minitest::Test
   end
 
   def test_default_headers
-    stub_request(:get, "http://localhost/v1/benefit-eligibility-policy/epol_abc123def456").to_return_json(
-      status: 200,
-      body: {}
-    )
+    stub_request(:get, "http://localhost/v1/benefit-products").to_return_json(status: 200, body: {})
 
     vitable_connect_api = VitableConnectAPI::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    vitable_connect_api.benefit_eligibility_policy.retrieve("epol_abc123def456")
+    vitable_connect_api.benefit_products.list
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")

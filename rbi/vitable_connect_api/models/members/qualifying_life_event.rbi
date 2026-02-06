@@ -25,11 +25,11 @@ module VitableConnectAPI
         attr_accessor :employee_id
 
         # End of the special enrollment period (typically 30-60 days from event)
-        sig { returns(Date) }
+        sig { returns(Time) }
         attr_accessor :enrollment_window_end
 
         # Start of the special enrollment period
-        sig { returns(Date) }
+        sig { returns(Time) }
         attr_accessor :enrollment_window_start
 
         # Date when the qualifying life event occurred
@@ -80,8 +80,8 @@ module VitableConnectAPI
             id: String,
             created_at: Time,
             employee_id: String,
-            enrollment_window_end: Date,
-            enrollment_window_start: Date,
+            enrollment_window_end: Time,
+            enrollment_window_start: Time,
             event_date: Date,
             event_type: String,
             member_id: String,
@@ -132,8 +132,8 @@ module VitableConnectAPI
               id: String,
               created_at: Time,
               employee_id: String,
-              enrollment_window_end: Date,
-              enrollment_window_start: Date,
+              enrollment_window_end: Time,
+              enrollment_window_start: Time,
               event_date: Date,
               event_type: String,
               member_id: String,

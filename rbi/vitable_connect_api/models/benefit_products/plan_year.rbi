@@ -54,7 +54,7 @@ module VitableConnectAPI
         sig { returns(Date) }
         attr_accessor :open_enrollment_start_date
 
-        # List of insurance plans available in this plan year
+        # List of benefit plans available in this plan year
         sig do
           returns(T::Array[VitableConnectAPI::BenefitProducts::PlanYear::Plan])
         end
@@ -121,7 +121,7 @@ module VitableConnectAPI
           open_enrollment_end_date:,
           # Date when open enrollment period begins
           open_enrollment_start_date:,
-          # List of insurance plans available in this plan year
+          # List of benefit plans available in this plan year
           plans:,
           # - `draft` - Draft
           # - `open_enrollment` - Open Enrollment
@@ -172,6 +172,14 @@ module VitableConnectAPI
           sig { returns(String) }
           attr_accessor :id
 
+          # - `Unspecified` - Unspecified
+          # - `EE` - Ee
+          # - `ES` - Es
+          # - `EC` - Ec
+          # - `EF` - Ef
+          sig { returns(VitableConnectAPI::CoverageTier::TaggedSymbol) }
+          attr_accessor :coverage_tier
+
           # Employee's monthly contribution amount in cents
           sig { returns(Integer) }
           attr_accessor :employee_contribution_cents
@@ -184,14 +192,6 @@ module VitableConnectAPI
           sig { returns(String) }
           attr_accessor :employment
 
-          # - `Unspecified` - Unspecified
-          # - `EE` - Ee
-          # - `ES` - Es
-          # - `EC` - Ec
-          # - `EF` - Ef
-          sig { returns(VitableConnectAPI::CoverageTier::TaggedSymbol) }
-          attr_accessor :family_status
-
           # Defines eligibility tiers for contributions within a plan year.
           #
           # Contribution classes specify cost structures based on employment type and family
@@ -199,27 +199,27 @@ module VitableConnectAPI
           sig do
             params(
               id: String,
+              coverage_tier: VitableConnectAPI::CoverageTier::OrSymbol,
               employee_contribution_cents: Integer,
               employer_contribution_cents: Integer,
-              employment: String,
-              family_status: VitableConnectAPI::CoverageTier::OrSymbol
+              employment: String
             ).returns(T.attached_class)
           end
           def self.new(
             # Unique contribution class identifier
             id:,
-            # Employee's monthly contribution amount in cents
-            employee_contribution_cents:,
-            # Employer's monthly contribution amount in cents
-            employer_contribution_cents:,
-            # Employment type for this contribution class (e.g., 'full_time', 'part_time')
-            employment:,
             # - `Unspecified` - Unspecified
             # - `EE` - Ee
             # - `ES` - Es
             # - `EC` - Ec
             # - `EF` - Ef
-            family_status:
+            coverage_tier:,
+            # Employee's monthly contribution amount in cents
+            employee_contribution_cents:,
+            # Employer's monthly contribution amount in cents
+            employer_contribution_cents:,
+            # Employment type for this contribution class (e.g., 'full_time', 'part_time')
+            employment:
           )
           end
 
@@ -227,10 +227,10 @@ module VitableConnectAPI
             override.returns(
               {
                 id: String,
+                coverage_tier: VitableConnectAPI::CoverageTier::TaggedSymbol,
                 employee_contribution_cents: Integer,
                 employer_contribution_cents: Integer,
-                employment: String,
-                family_status: VitableConnectAPI::CoverageTier::TaggedSymbol
+                employment: String
               }
             )
           end
@@ -259,7 +259,7 @@ module VitableConnectAPI
           sig { returns(Integer) }
           attr_accessor :monthly_premium_cents
 
-          # Display name of the insurance plan
+          # Display name of the benefit plan
           sig { returns(String) }
           attr_accessor :name
 
@@ -297,7 +297,7 @@ module VitableConnectAPI
             carrier_plan_id:,
             # Base monthly premium in cents
             monthly_premium_cents:,
-            # Display name of the insurance plan
+            # Display name of the benefit plan
             name:,
             # Annual deductible amount in cents
             deductible_cents: nil,

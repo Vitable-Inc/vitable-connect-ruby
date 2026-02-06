@@ -14,7 +14,7 @@ module VitableConnectAPI
         #
         # @overload create(employer_id, date_of_birth:, email:, first_name:, last_name:, sex:, ssn:, start_date:, address: nil, employee_class: nil, gender: nil, phone: nil, suffix: nil, request_options: {})
         #
-        # @param employer_id [String] Unique employer identifier (empr\_\*)
+        # @param employer_id [String] Filter by employer ID
         #
         # @param date_of_birth [Date] Date of birth (YYYY-MM-DD)
         #
@@ -42,7 +42,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [VitableConnectAPI::Models::Employee]
+        # @return [VitableConnectAPI::Models::Employers::EmployeeCreateResponse]
         #
         # @see VitableConnectAPI::Models::Employers::EmployeeCreateParams
         def create(employer_id, params)
@@ -51,7 +51,7 @@ module VitableConnectAPI
             method: :post,
             path: ["v1/employers/%1$s/employees", employer_id],
             body: parsed,
-            model: VitableConnectAPI::Employee,
+            model: VitableConnectAPI::Models::Employers::EmployeeCreateResponse,
             options: options
           )
         end
@@ -62,7 +62,7 @@ module VitableConnectAPI
         #
         # @overload list(employer_id, active_in: nil, employee_class: nil, limit: nil, page: nil, request_options: {})
         #
-        # @param employer_id [String] Unique employer identifier (empr\_\*)
+        # @param employer_id [String] Filter by employer ID
         #
         # @param active_in [Boolean] Filter by active status
         #
@@ -74,7 +74,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<VitableConnectAPI::Models::Employee>]
+        # @return [VitableConnectAPI::Models::Employers::EmployeeListResponse]
         #
         # @see VitableConnectAPI::Models::Employers::EmployeeListParams
         def list(employer_id, params = {})
@@ -83,7 +83,7 @@ module VitableConnectAPI
             method: :get,
             path: ["v1/employers/%1$s/employees", employer_id],
             query: parsed,
-            model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Employee],
+            model: VitableConnectAPI::Models::Employers::EmployeeListResponse,
             options: options
           )
         end

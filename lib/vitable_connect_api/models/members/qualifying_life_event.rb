@@ -3,7 +3,6 @@
 module VitableConnectAPI
   module Models
     module Members
-      # @see VitableConnectAPI::Resources::Members::QualifyingLifeEvents#record
       class QualifyingLifeEvent < VitableConnectAPI::Internal::Type::BaseModel
         # @!attribute id
         #   Unique QLE identifier with 'qle\_' prefix
@@ -26,14 +25,14 @@ module VitableConnectAPI
         # @!attribute enrollment_window_end
         #   End of the special enrollment period (typically 30-60 days from event)
         #
-        #   @return [Date]
-        required :enrollment_window_end, Date
+        #   @return [Time]
+        required :enrollment_window_end, Time
 
         # @!attribute enrollment_window_start
         #   Start of the special enrollment period
         #
-        #   @return [Date]
-        required :enrollment_window_start, Date
+        #   @return [Time]
+        required :enrollment_window_start, Time
 
         # @!attribute event_date
         #   Date when the qualifying life event occurred
@@ -101,9 +100,9 @@ module VitableConnectAPI
         #
         #   @param employee_id [String] ID of the employee (empl\_\*)
         #
-        #   @param enrollment_window_end [Date] End of the special enrollment period (typically 30-60 days from event)
+        #   @param enrollment_window_end [Time] End of the special enrollment period (typically 30-60 days from event)
         #
-        #   @param enrollment_window_start [Date] Start of the special enrollment period
+        #   @param enrollment_window_start [Time] Start of the special enrollment period
         #
         #   @param event_date [Date] Date when the qualifying life event occurred
         #

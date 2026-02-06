@@ -9,7 +9,14 @@ class VitableConnectAPI::Test::Resources::Members::QualifyingLifeEventsTest < Vi
     response = @vitable_connect_api.members.qualifying_life_events.list("mbr_abc123def456")
 
     assert_pattern do
-      response => ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Members::QualifyingLifeEvent])
+      response => VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Members::QualifyingLifeEvent]),
+        pagination: VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse::Pagination
+      }
     end
   end
 
@@ -19,29 +26,17 @@ class VitableConnectAPI::Test::Resources::Members::QualifyingLifeEventsTest < Vi
     response =
       @vitable_connect_api.members.qualifying_life_events.record(
         "mbr_abc123def456",
-        event_date: "2019-12-27",
+        event_date: "2024-11-15",
         event_type: :Marriage
       )
 
     assert_pattern do
-      response => VitableConnectAPI::Members::QualifyingLifeEvent
+      response => VitableConnectAPI::Models::Members::QualifyingLifeEventRecordResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        created_at: Time,
-        employee_id: String,
-        enrollment_window_end: Date,
-        enrollment_window_start: Date,
-        event_date: Date,
-        event_type: String,
-        member_id: String,
-        status: VitableConnectAPI::Members::QualifyingLifeEventStatus,
-        updated_at: Time,
-        notes: String | nil,
-        reviewed_at: Time | nil,
-        reviewed_by: String | nil
+        data: VitableConnectAPI::Members::QualifyingLifeEvent
       }
     end
   end

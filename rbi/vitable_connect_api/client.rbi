@@ -50,11 +50,6 @@ module VitableConnectAPI
     sig { returns(VitableConnectAPI::Resources::QualifyingLifeEvents) }
     attr_reader :qualifying_life_events
 
-    # @api private
-    sig { override.returns(T::Hash[String, String]) }
-    private def auth_headers
-    end
-
     # Creates and returns a new client for interacting with the API.
     sig do
       params(

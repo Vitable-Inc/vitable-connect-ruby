@@ -75,14 +75,16 @@ module VitableConnectAPI
         type contribution_class =
           {
             id: String,
+            coverage_tier: VitableConnectAPI::Models::coverage_tier,
             employee_contribution_cents: Integer,
             employer_contribution_cents: Integer,
-            employment: String,
-            family_status: VitableConnectAPI::Models::coverage_tier
+            employment: String
           }
 
         class ContributionClass < VitableConnectAPI::Internal::Type::BaseModel
           attr_accessor id: String
+
+          attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier
 
           attr_accessor employee_contribution_cents: Integer
 
@@ -90,22 +92,20 @@ module VitableConnectAPI
 
           attr_accessor employment: String
 
-          attr_accessor family_status: VitableConnectAPI::Models::coverage_tier
-
           def initialize: (
             id: String,
+            coverage_tier: VitableConnectAPI::Models::coverage_tier,
             employee_contribution_cents: Integer,
             employer_contribution_cents: Integer,
-            employment: String,
-            family_status: VitableConnectAPI::Models::coverage_tier
+            employment: String
           ) -> void
 
           def to_hash: -> {
             id: String,
+            coverage_tier: VitableConnectAPI::Models::coverage_tier,
             employee_contribution_cents: Integer,
             employer_contribution_cents: Integer,
-            employment: String,
-            family_status: VitableConnectAPI::Models::coverage_tier
+            employment: String
           }
         end
 
