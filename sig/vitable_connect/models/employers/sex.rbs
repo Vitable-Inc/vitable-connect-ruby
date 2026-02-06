@@ -1,0 +1,18 @@
+module VitableConnect
+  module Models
+    module Employers
+      type sex = :Male | :Female | :Other | :Unknown
+
+      module Sex
+        extend VitableConnect::Internal::Type::Enum
+
+        MALE: :Male
+        FEMALE: :Female
+        OTHER: :Other
+        UNKNOWN: :Unknown
+
+        def self?.values: -> ::Array[VitableConnect::Models::Employers::sex]
+      end
+    end
+  end
+end

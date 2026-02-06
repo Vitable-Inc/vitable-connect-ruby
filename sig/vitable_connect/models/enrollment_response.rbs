@@ -1,0 +1,13 @@
+module VitableConnect
+  module Models
+    type enrollment_response = { data: VitableConnect::Enrollment }
+
+    class EnrollmentResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::Enrollment
+
+      def initialize: (data: VitableConnect::Enrollment) -> void
+
+      def to_hash: -> { data: VitableConnect::Enrollment }
+    end
+  end
+end

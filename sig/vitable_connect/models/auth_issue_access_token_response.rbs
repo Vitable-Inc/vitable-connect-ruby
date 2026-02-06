@@ -1,0 +1,50 @@
+module VitableConnect
+  module Models
+    type auth_issue_access_token_response =
+      {
+        access_token: String,
+        expires_in: Integer,
+        token_type: String,
+        bound_entity: VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity?
+      }
+
+    class AuthIssueAccessTokenResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor access_token: String
+
+      attr_accessor expires_in: Integer
+
+      attr_accessor token_type: String
+
+      attr_accessor bound_entity: VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity?
+
+      def initialize: (
+        access_token: String,
+        expires_in: Integer,
+        token_type: String,
+        ?bound_entity: VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity?
+      ) -> void
+
+      def to_hash: -> {
+        access_token: String,
+        expires_in: Integer,
+        token_type: String,
+        bound_entity: VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity?
+      }
+
+      type bound_entity = { id: String, type: VitableConnect::Models::type_ }
+
+      class BoundEntity < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor type: VitableConnect::Models::type_
+
+        def initialize: (
+          id: String,
+          type: VitableConnect::Models::type_
+        ) -> void
+
+        def to_hash: -> { id: String, type: VitableConnect::Models::type_ }
+      end
+    end
+  end
+end

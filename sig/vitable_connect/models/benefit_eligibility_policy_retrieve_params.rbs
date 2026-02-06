@@ -1,0 +1,15 @@
+module VitableConnect
+  module Models
+    type benefit_eligibility_policy_retrieve_params =
+      {  } & VitableConnect::Internal::Type::request_parameters
+
+    class BenefitEligibilityPolicyRetrieveParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: VitableConnect::request_opts) -> void
+
+      def to_hash: -> { request_options: VitableConnect::RequestOptions }
+    end
+  end
+end

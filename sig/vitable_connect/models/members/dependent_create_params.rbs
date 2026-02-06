@@ -1,0 +1,63 @@
+module VitableConnect
+  module Models
+    module Members
+      type dependent_create_params =
+        {
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          relationship: VitableConnect::Models::Members::relationship,
+          sex: VitableConnect::Models::Employers::sex,
+          gender: String?,
+          ssn: String?,
+          suffix: String?
+        }
+        & VitableConnect::Internal::Type::request_parameters
+
+      class DependentCreateParams < VitableConnect::Internal::Type::BaseModel
+        extend VitableConnect::Internal::Type::RequestParameters::Converter
+        include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor date_of_birth: Date
+
+        attr_accessor first_name: String
+
+        attr_accessor last_name: String
+
+        attr_accessor relationship: VitableConnect::Models::Members::relationship
+
+        attr_accessor sex: VitableConnect::Models::Employers::sex
+
+        attr_accessor gender: String?
+
+        attr_accessor ssn: String?
+
+        attr_accessor suffix: String?
+
+        def initialize: (
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          relationship: VitableConnect::Models::Members::relationship,
+          sex: VitableConnect::Models::Employers::sex,
+          ?gender: String?,
+          ?ssn: String?,
+          ?suffix: String?,
+          ?request_options: VitableConnect::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          relationship: VitableConnect::Models::Members::relationship,
+          sex: VitableConnect::Models::Employers::sex,
+          gender: String?,
+          ssn: String?,
+          suffix: String?,
+          request_options: VitableConnect::RequestOptions
+        }
+      end
+    end
+  end
+end

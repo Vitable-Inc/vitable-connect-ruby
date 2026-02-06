@@ -1,0 +1,25 @@
+module VitableConnect
+  module Models
+    type employer_list_response =
+      {
+        data: ::Array[VitableConnect::Employer],
+        pagination: VitableConnect::Pagination
+      }
+
+    class EmployerListResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnect::Employer]
+
+      attr_accessor pagination: VitableConnect::Pagination
+
+      def initialize: (
+        data: ::Array[VitableConnect::Employer],
+        pagination: VitableConnect::Pagination
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[VitableConnect::Employer],
+        pagination: VitableConnect::Pagination
+      }
+    end
+  end
+end

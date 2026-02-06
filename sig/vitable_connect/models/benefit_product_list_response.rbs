@@ -1,0 +1,82 @@
+module VitableConnect
+  module Models
+    type benefit_product_list_response =
+      {
+        data: ::Array[VitableConnect::Models::BenefitProductListResponse::Data],
+        pagination: VitableConnect::Pagination
+      }
+
+    class BenefitProductListResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnect::Models::BenefitProductListResponse::Data]
+
+      attr_accessor pagination: VitableConnect::Pagination
+
+      def initialize: (
+        data: ::Array[VitableConnect::Models::BenefitProductListResponse::Data],
+        pagination: VitableConnect::Pagination
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[VitableConnect::Models::BenefitProductListResponse::Data],
+        pagination: VitableConnect::Pagination
+      }
+
+      type data =
+        {
+          id: String,
+          active_in: bool,
+          category: VitableConnect::Models::category,
+          created_at: Time,
+          name: String,
+          product_code: VitableConnect::Models::product_code,
+          updated_at: Time,
+          carrier_name: String?,
+          description: String?
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor active_in: bool
+
+        attr_accessor category: VitableConnect::Models::category
+
+        attr_accessor created_at: Time
+
+        attr_accessor name: String
+
+        attr_accessor product_code: VitableConnect::Models::product_code
+
+        attr_accessor updated_at: Time
+
+        attr_accessor carrier_name: String?
+
+        attr_accessor description: String?
+
+        def initialize: (
+          id: String,
+          active_in: bool,
+          category: VitableConnect::Models::category,
+          created_at: Time,
+          name: String,
+          product_code: VitableConnect::Models::product_code,
+          updated_at: Time,
+          ?carrier_name: String?,
+          ?description: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          active_in: bool,
+          category: VitableConnect::Models::category,
+          created_at: Time,
+          name: String,
+          product_code: VitableConnect::Models::product_code,
+          updated_at: Time,
+          carrier_name: String?,
+          description: String?
+        }
+      end
+    end
+  end
+end

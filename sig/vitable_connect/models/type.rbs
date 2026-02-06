@@ -1,0 +1,14 @@
+module VitableConnect
+  module Models
+    type type_ = :employer | :employee
+
+    module Type
+      extend VitableConnect::Internal::Type::Enum
+
+      EMPLOYER: :employer
+      EMPLOYEE: :employee
+
+      def self?.values: -> ::Array[VitableConnect::Models::type_]
+    end
+  end
+end

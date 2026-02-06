@@ -1,0 +1,28 @@
+module VitableConnect
+  module Models
+    type enrollment_reissue_params =
+      { qle_id: String, reason: String? }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EnrollmentReissueParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor qle_id: String
+
+      attr_accessor reason: String?
+
+      def initialize: (
+        qle_id: String,
+        ?reason: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        qle_id: String,
+        reason: String?,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end

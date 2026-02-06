@@ -1,0 +1,12 @@
+module VitableConnect
+  module Resources
+    class BenefitEligibilityPolicies
+      def retrieve: (
+        String policy_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::BenefitEligibilityPolicy
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end

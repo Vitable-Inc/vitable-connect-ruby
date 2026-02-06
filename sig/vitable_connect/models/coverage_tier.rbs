@@ -1,0 +1,17 @@
+module VitableConnect
+  module Models
+    type coverage_tier = :Unspecified | :EE | :ES | :EC | :EF
+
+    module CoverageTier
+      extend VitableConnect::Internal::Type::Enum
+
+      UNSPECIFIED: :Unspecified
+      EE: :EE
+      ES: :ES
+      EC: :EC
+      EF: :EF
+
+      def self?.values: -> ::Array[VitableConnect::Models::coverage_tier]
+    end
+  end
+end

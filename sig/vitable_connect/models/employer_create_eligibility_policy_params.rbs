@@ -1,0 +1,66 @@
+module VitableConnect
+  module Models
+    type employer_create_eligibility_policy_params =
+      {
+        effective_date: Date,
+        name: String,
+        rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule],
+        policy_to_replace_id: String,
+        description: String?
+      }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployerCreateEligibilityPolicyParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor effective_date: Date
+
+      attr_accessor name: String
+
+      attr_accessor rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule]
+
+      attr_reader policy_to_replace_id: String?
+
+      def policy_to_replace_id=: (String) -> String
+
+      attr_accessor description: String?
+
+      def initialize: (
+        effective_date: Date,
+        name: String,
+        rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule],
+        ?policy_to_replace_id: String,
+        ?description: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        effective_date: Date,
+        name: String,
+        rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule],
+        policy_to_replace_id: String,
+        description: String?,
+        request_options: VitableConnect::RequestOptions
+      }
+
+      type rule = { operator: String, rule_type: String, value: String }
+
+      class Rule < VitableConnect::Internal::Type::BaseModel
+        attr_accessor operator: String
+
+        attr_accessor rule_type: String
+
+        attr_accessor value: String
+
+        def initialize: (
+          operator: String,
+          rule_type: String,
+          value: String
+        ) -> void
+
+        def to_hash: -> { operator: String, rule_type: String, value: String }
+      end
+    end
+  end
+end

@@ -1,12 +1,12 @@
-# Vitable Connect API Ruby API library
+# Vitable Connect Ruby API library
 
-The Vitable Connect API Ruby library provides convenient access to the Vitable Connect API REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/vitable-connect-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Vitable Connect Ruby library provides convenient access to the Vitable Connect REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/vitable-connect-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/vitable-connect-api).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/vitable-connect).
 
 The REST API documentation can be found on [vitablehealth.com](https://vitablehealth.com/support).
 
@@ -15,38 +15,38 @@ The REST API documentation can be found on [vitablehealth.com](https://vitablehe
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
 ```ruby
-gem "vitable-connect-api", "~> 0.0.1"
+gem "vitable-connect", "~> 0.0.1"
 ```
 
 ## Usage
 
 ```ruby
 require "bundler/setup"
-require "vitable_connect_api"
+require "vitable_connect"
 
-vitable_connect_api = VitableConnectAPI::Client.new(
-  api_key: "My API Key",
+vitable_connect = VitableConnect::Client.new(
+  api_key: ENV["VITABLE_CONNECT_API_KEY"], # This is the default and can be omitted
   environment: "environment_1" # defaults to "production"
 )
 
-benefit_products = vitable_connect_api.benefit_products.list
+response = vitable_connect.auth.issue_access_token(grant_type: "client_credentials")
 
-puts(benefit_products.data)
+puts(response.access_token)
 ```
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `VitableConnectAPI::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `VitableConnect::Errors::APIError` will be thrown:
 
 ```ruby
 begin
-  benefit_product = vitable_connect_api.benefit_products.list
-rescue VitableConnectAPI::Errors::APIConnectionError => e
+  auth = vitable_connect.auth.issue_access_token(grant_type: "client_credentials")
+rescue VitableConnect::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue VitableConnectAPI::Errors::RateLimitError => e
+rescue VitableConnect::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue VitableConnectAPI::Errors::APIStatusError => e
+rescue VitableConnect::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -78,13 +78,15 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-vitable_connect_api = VitableConnectAPI::Client.new(
-  max_retries: 0, # default is 2
-  api_key: "My API Key"
+vitable_connect = VitableConnect::Client.new(
+  max_retries: 0 # default is 2
 )
 
 # Or, configure per-request:
-vitable_connect_api.benefit_products.list(request_options: {max_retries: 5})
+vitable_connect.auth.issue_access_token(
+  grant_type: "client_credentials",
+  request_options: {max_retries: 5}
+)
 ```
 
 ### Timeouts
@@ -93,16 +95,15 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-vitable_connect_api = VitableConnectAPI::Client.new(
-  timeout: nil, # default is 60
-  api_key: "My API Key"
+vitable_connect = VitableConnect::Client.new(
+  timeout: nil # default is 60
 )
 
 # Or, configure per-request:
-vitable_connect_api.benefit_products.list(request_options: {timeout: 5})
+vitable_connect.auth.issue_access_token(grant_type: "client_credentials", request_options: {timeout: 5})
 ```
 
-On timeout, `VitableConnectAPI::Errors::APITimeoutError` is raised.
+On timeout, `VitableConnect::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -110,7 +111,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `VitableConnectAPI::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `VitableConnect::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -129,8 +130,9 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 Note: the `extra_` parameters of the same name overrides the documented parameters.
 
 ```ruby
-benefit_products =
-  vitable_connect_api.benefit_products.list(
+response =
+  vitable_connect.auth.issue_access_token(
+    grant_type: "client_credentials",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -138,7 +140,7 @@ benefit_products =
     }
   )
 
-puts(benefit_products[:my_undocumented_property])
+puts(response[:my_undocumented_property])
 ```
 
 #### Undocumented request params
@@ -161,9 +163,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `VitableConnectAPI::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `VitableConnect::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `VitableConnectAPI::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `VitableConnect::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -176,18 +178,18 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-vitable_connect_api.benefit_products.list
+vitable_connect.auth.issue_access_token(grant_type: "client_credentials")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-vitable_connect_api.benefit_products.list
+vitable_connect.auth.issue_access_token(grant_type: "client_credentials")
 
 # You can also splat a full Params class:
-params = VitableConnectAPI::BenefitProductListParams.new
-vitable_connect_api.benefit_products.list(**params)
+params = VitableConnect::AuthIssueAccessTokenParams.new(grant_type: "client_credentials")
+vitable_connect.auth.issue_access_token(**params)
 ```
 
 ### Enums
@@ -196,23 +198,23 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :Medical
-puts(VitableConnectAPI::Category::MEDICAL)
+puts(VitableConnect::Category::MEDICAL)
 
-# Revealed type: `T.all(VitableConnectAPI::Category, Symbol)`
-T.reveal_type(VitableConnectAPI::Category::MEDICAL)
+# Revealed type: `T.all(VitableConnect::Category, Symbol)`
+T.reveal_type(VitableConnect::Category::MEDICAL)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-vitable_connect_api.benefit_products.list(
-  category: VitableConnectAPI::Category::MEDICAL,
+vitable_connect.benefit_products.list(
+  category: VitableConnect::Category::MEDICAL,
   # …
 )
 
 # Literal values are also permissible:
-vitable_connect_api.benefit_products.list(
+vitable_connect.benefit_products.list(
   category: :Medical,
   # …
 )

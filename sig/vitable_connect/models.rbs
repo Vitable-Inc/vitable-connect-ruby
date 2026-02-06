@@ -1,0 +1,75 @@
+module VitableConnect
+  class AuthIssueAccessTokenParams = VitableConnect::Models::AuthIssueAccessTokenParams
+
+  class BenefitEligibilityPolicy = VitableConnect::Models::BenefitEligibilityPolicy
+
+  class BenefitEligibilityPolicyRetrieveParams = VitableConnect::Models::BenefitEligibilityPolicyRetrieveParams
+
+  class BenefitProductListParams = VitableConnect::Models::BenefitProductListParams
+
+  module BenefitProducts = VitableConnect::Models::BenefitProducts
+
+  module Category = VitableConnect::Models::Category
+
+  module CoverageTier = VitableConnect::Models::CoverageTier
+
+  class Dependent = VitableConnect::Models::Dependent
+
+  class DependentResponse = VitableConnect::Models::DependentResponse
+
+  class DependentRetrieveParams = VitableConnect::Models::DependentRetrieveParams
+
+  class DependentUpdateParams = VitableConnect::Models::DependentUpdateParams
+
+  class Employee = VitableConnect::Models::Employee
+
+  class EmployeeResponse = VitableConnect::Models::EmployeeResponse
+
+  class EmployeeRetrieveParams = VitableConnect::Models::EmployeeRetrieveParams
+
+  module Employees = VitableConnect::Models::Employees
+
+  class EmployeeTerminateParams = VitableConnect::Models::EmployeeTerminateParams
+
+  class EmployeeUpdateParams = VitableConnect::Models::EmployeeUpdateParams
+
+  class Employer = VitableConnect::Models::Employer
+
+  class EmployerCreateEligibilityPolicyParams = VitableConnect::Models::EmployerCreateEligibilityPolicyParams
+
+  class EmployerCreateParams = VitableConnect::Models::EmployerCreateParams
+
+  class EmployerListParams = VitableConnect::Models::EmployerListParams
+
+  class EmployerResponse = VitableConnect::Models::EmployerResponse
+
+  class EmployerRetrieveParams = VitableConnect::Models::EmployerRetrieveParams
+
+  module Employers = VitableConnect::Models::Employers
+
+  class EmployerUpdateParams = VitableConnect::Models::EmployerUpdateParams
+
+  class Enrollment = VitableConnect::Models::Enrollment
+
+  class EnrollmentListPlansParams = VitableConnect::Models::EnrollmentListPlansParams
+
+  class EnrollmentReissueParams = VitableConnect::Models::EnrollmentReissueParams
+
+  class EnrollmentResponse = VitableConnect::Models::EnrollmentResponse
+
+  class EnrollmentRetrieveParams = VitableConnect::Models::EnrollmentRetrieveParams
+
+  module Members = VitableConnect::Models::Members
+
+  class Pagination = VitableConnect::Models::Pagination
+
+  module PlanTier = VitableConnect::Models::PlanTier
+
+  class PlanYearRetrieveParams = VitableConnect::Models::PlanYearRetrieveParams
+
+  class PlanYearUpdateParams = VitableConnect::Models::PlanYearUpdateParams
+
+  module ProductCode = VitableConnect::Models::ProductCode
+
+  module Type = VitableConnect::Models::Type
+end

@@ -1,0 +1,30 @@
+module VitableConnect
+  module Resources
+    class Employees
+      attr_reader enrollments: VitableConnect::Resources::Employees::Enrollments
+
+      def retrieve: (
+        String employee_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::EmployeeResponse
+
+      def update: (
+        String employee_id,
+        ?address: VitableConnect::EmployeeUpdateParams::Address?,
+        ?email: String?,
+        ?employee_class: VitableConnect::Models::Employers::employee_class?,
+        ?gender: String?,
+        ?phone: String?,
+        ?termination_date: Date?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::EmployeeResponse
+
+      def terminate: (
+        String employee_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> nil
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end

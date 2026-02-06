@@ -1,0 +1,127 @@
+module VitableConnect
+  module Models
+    module Employers
+      type employee_create_params =
+        {
+          date_of_birth: Date,
+          email: String,
+          first_name: String,
+          last_name: String,
+          sex: VitableConnect::Models::Employers::sex,
+          ssn: String,
+          start_date: Date,
+          address: VitableConnect::Employers::EmployeeCreateParams::Address?,
+          employee_class: VitableConnect::Models::Employers::employee_class?,
+          gender: String?,
+          phone: String?,
+          suffix: String?
+        }
+        & VitableConnect::Internal::Type::request_parameters
+
+      class EmployeeCreateParams < VitableConnect::Internal::Type::BaseModel
+        extend VitableConnect::Internal::Type::RequestParameters::Converter
+        include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor date_of_birth: Date
+
+        attr_accessor email: String
+
+        attr_accessor first_name: String
+
+        attr_accessor last_name: String
+
+        attr_accessor sex: VitableConnect::Models::Employers::sex
+
+        attr_accessor ssn: String
+
+        attr_accessor start_date: Date
+
+        attr_accessor address: VitableConnect::Employers::EmployeeCreateParams::Address?
+
+        attr_accessor employee_class: VitableConnect::Models::Employers::employee_class?
+
+        attr_accessor gender: String?
+
+        attr_accessor phone: String?
+
+        attr_accessor suffix: String?
+
+        def initialize: (
+          date_of_birth: Date,
+          email: String,
+          first_name: String,
+          last_name: String,
+          sex: VitableConnect::Models::Employers::sex,
+          ssn: String,
+          start_date: Date,
+          ?address: VitableConnect::Employers::EmployeeCreateParams::Address?,
+          ?employee_class: VitableConnect::Models::Employers::employee_class?,
+          ?gender: String?,
+          ?phone: String?,
+          ?suffix: String?,
+          ?request_options: VitableConnect::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          date_of_birth: Date,
+          email: String,
+          first_name: String,
+          last_name: String,
+          sex: VitableConnect::Models::Employers::sex,
+          ssn: String,
+          start_date: Date,
+          address: VitableConnect::Employers::EmployeeCreateParams::Address?,
+          employee_class: VitableConnect::Models::Employers::employee_class?,
+          gender: String?,
+          phone: String?,
+          suffix: String?,
+          request_options: VitableConnect::RequestOptions
+        }
+
+        type address =
+          {
+            city: String,
+            state: String,
+            :street_1 => String,
+            zip_code: String,
+            country: String,
+            :street_2 => String?
+          }
+
+        class Address < VitableConnect::Internal::Type::BaseModel
+          attr_accessor city: String
+
+          attr_accessor state: String
+
+          attr_accessor street_1: String
+
+          attr_accessor zip_code: String
+
+          attr_reader country: String?
+
+          def country=: (String) -> String
+
+          attr_accessor street_2: String?
+
+          def initialize: (
+            city: String,
+            state: String,
+            street_1: String,
+            zip_code: String,
+            ?country: String,
+            ?street_2: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String,
+            state: String,
+            :street_1 => String,
+            zip_code: String,
+            country: String,
+            :street_2 => String?
+          }
+        end
+      end
+    end
+  end
+end

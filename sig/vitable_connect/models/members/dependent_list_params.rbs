@@ -1,0 +1,53 @@
+module VitableConnect
+  module Models
+    module Members
+      type dependent_list_params =
+        {
+          active_in: bool,
+          limit: Integer,
+          page: Integer,
+          relationship: VitableConnect::Models::Members::relationship
+        }
+        & VitableConnect::Internal::Type::request_parameters
+
+      class DependentListParams < VitableConnect::Internal::Type::BaseModel
+        extend VitableConnect::Internal::Type::RequestParameters::Converter
+        include VitableConnect::Internal::Type::RequestParameters
+
+        attr_reader active_in: bool?
+
+        def active_in=: (bool) -> bool
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader relationship: VitableConnect::Models::Members::relationship?
+
+        def relationship=: (
+          VitableConnect::Models::Members::relationship
+        ) -> VitableConnect::Models::Members::relationship
+
+        def initialize: (
+          ?active_in: bool,
+          ?limit: Integer,
+          ?page: Integer,
+          ?relationship: VitableConnect::Models::Members::relationship,
+          ?request_options: VitableConnect::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          active_in: bool,
+          limit: Integer,
+          page: Integer,
+          relationship: VitableConnect::Models::Members::relationship,
+          request_options: VitableConnect::RequestOptions
+        }
+      end
+    end
+  end
+end
