@@ -1,0 +1,55 @@
+module VitableConnect
+  module Models
+    module Members
+      type qualifying_life_event_list_params =
+        {
+          event_type: VitableConnect::Models::Members::event_type,
+          limit: Integer,
+          page: Integer,
+          status: VitableConnect::Models::Members::qualifying_life_event_status
+        }
+        & VitableConnect::Internal::Type::request_parameters
+
+      class QualifyingLifeEventListParams < VitableConnect::Internal::Type::BaseModel
+        extend VitableConnect::Internal::Type::RequestParameters::Converter
+        include VitableConnect::Internal::Type::RequestParameters
+
+        attr_reader event_type: VitableConnect::Models::Members::event_type?
+
+        def event_type=: (
+          VitableConnect::Models::Members::event_type
+        ) -> VitableConnect::Models::Members::event_type
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader status: VitableConnect::Models::Members::qualifying_life_event_status?
+
+        def status=: (
+          VitableConnect::Models::Members::qualifying_life_event_status
+        ) -> VitableConnect::Models::Members::qualifying_life_event_status
+
+        def initialize: (
+          ?event_type: VitableConnect::Models::Members::event_type,
+          ?limit: Integer,
+          ?page: Integer,
+          ?status: VitableConnect::Models::Members::qualifying_life_event_status,
+          ?request_options: VitableConnect::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          event_type: VitableConnect::Models::Members::event_type,
+          limit: Integer,
+          page: Integer,
+          status: VitableConnect::Models::Members::qualifying_life_event_status,
+          request_options: VitableConnect::RequestOptions
+        }
+      end
+    end
+  end
+end

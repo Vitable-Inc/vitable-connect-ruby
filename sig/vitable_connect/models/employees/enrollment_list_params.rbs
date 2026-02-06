@@ -1,0 +1,60 @@
+module VitableConnect
+  module Models
+    module Employees
+      type enrollment_list_params =
+        {
+          coverage_effective_start_year: Integer,
+          limit: Integer,
+          page: Integer,
+          plan_year: Integer,
+          status: VitableConnect::Models::Employees::enrollment_status
+        }
+        & VitableConnect::Internal::Type::request_parameters
+
+      class EnrollmentListParams < VitableConnect::Internal::Type::BaseModel
+        extend VitableConnect::Internal::Type::RequestParameters::Converter
+        include VitableConnect::Internal::Type::RequestParameters
+
+        attr_reader coverage_effective_start_year: Integer?
+
+        def coverage_effective_start_year=: (Integer) -> Integer
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader plan_year: Integer?
+
+        def plan_year=: (Integer) -> Integer
+
+        attr_reader status: VitableConnect::Models::Employees::enrollment_status?
+
+        def status=: (
+          VitableConnect::Models::Employees::enrollment_status
+        ) -> VitableConnect::Models::Employees::enrollment_status
+
+        def initialize: (
+          ?coverage_effective_start_year: Integer,
+          ?limit: Integer,
+          ?page: Integer,
+          ?plan_year: Integer,
+          ?status: VitableConnect::Models::Employees::enrollment_status,
+          ?request_options: VitableConnect::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          coverage_effective_start_year: Integer,
+          limit: Integer,
+          page: Integer,
+          plan_year: Integer,
+          status: VitableConnect::Models::Employees::enrollment_status,
+          request_options: VitableConnect::RequestOptions
+        }
+      end
+    end
+  end
+end

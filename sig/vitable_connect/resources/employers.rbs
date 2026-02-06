@@ -1,0 +1,50 @@
+module VitableConnect
+  module Resources
+    class Employers
+      attr_reader employees: VitableConnect::Resources::Employers::Employees
+
+      def create: (
+        address: VitableConnect::EmployerCreateParams::Address,
+        ein: String,
+        email: String,
+        legal_name: String,
+        name: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::EmployerResponse
+
+      def retrieve: (
+        String employer_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::EmployerResponse
+
+      def update: (
+        String employer_id,
+        ?active: bool?,
+        ?address: VitableConnect::EmployerUpdateParams::Address?,
+        ?legal_name: String?,
+        ?name: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::EmployerResponse
+
+      def list: (
+        ?active_in: bool,
+        ?limit: Integer,
+        ?name: String,
+        ?page: Integer,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerListResponse
+
+      def create_eligibility_policy: (
+        String employer_id,
+        effective_date: Date,
+        name: String,
+        rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule],
+        ?policy_to_replace_id: String,
+        ?description: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::BenefitEligibilityPolicy
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end

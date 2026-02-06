@@ -1,7 +1,0 @@
-module VitableConnectAPI
-  module Resources
-    class BenefitEligibilityPolicy
-      def initialize: (client: VitableConnectAPI::Client) -> void
-    end
-  end
-end

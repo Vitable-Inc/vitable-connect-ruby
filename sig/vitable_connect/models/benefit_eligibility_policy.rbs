@@ -1,0 +1,96 @@
+module VitableConnect
+  module Models
+    type benefit_eligibility_policy =
+      { data: VitableConnect::BenefitEligibilityPolicy::Data }
+
+    class BenefitEligibilityPolicy < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::BenefitEligibilityPolicy::Data
+
+      def initialize: (
+        data: VitableConnect::BenefitEligibilityPolicy::Data
+      ) -> void
+
+      def to_hash: -> { data: VitableConnect::BenefitEligibilityPolicy::Data }
+
+      type data =
+        {
+          id: String,
+          active_in: bool,
+          created_at: Time,
+          effective_date: Date,
+          employer_id: String,
+          name: String,
+          rules: ::Array[VitableConnect::BenefitEligibilityPolicy::Data::Rule],
+          updated_at: Time,
+          description: String?,
+          replaced_policy_id: String?
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor active_in: bool
+
+        attr_accessor created_at: Time
+
+        attr_accessor effective_date: Date
+
+        attr_accessor employer_id: String
+
+        attr_accessor name: String
+
+        attr_accessor rules: ::Array[VitableConnect::BenefitEligibilityPolicy::Data::Rule]
+
+        attr_accessor updated_at: Time
+
+        attr_accessor description: String?
+
+        attr_accessor replaced_policy_id: String?
+
+        def initialize: (
+          id: String,
+          active_in: bool,
+          created_at: Time,
+          effective_date: Date,
+          employer_id: String,
+          name: String,
+          rules: ::Array[VitableConnect::BenefitEligibilityPolicy::Data::Rule],
+          updated_at: Time,
+          ?description: String?,
+          ?replaced_policy_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          active_in: bool,
+          created_at: Time,
+          effective_date: Date,
+          employer_id: String,
+          name: String,
+          rules: ::Array[VitableConnect::BenefitEligibilityPolicy::Data::Rule],
+          updated_at: Time,
+          description: String?,
+          replaced_policy_id: String?
+        }
+
+        type rule = { operator: String, rule_type: String, value: top }
+
+        class Rule < VitableConnect::Internal::Type::BaseModel
+          attr_accessor operator: String
+
+          attr_accessor rule_type: String
+
+          attr_accessor value: top
+
+          def initialize: (
+            operator: String,
+            rule_type: String,
+            value: top
+          ) -> void
+
+          def to_hash: -> { operator: String, rule_type: String, value: top }
+        end
+      end
+    end
+  end
+end

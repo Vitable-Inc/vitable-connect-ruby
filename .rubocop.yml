@@ -40,9 +40,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "VitableConnectAPI::Internal::Type::BaseModel$"
+    - "VitableConnect::Internal::Type::BaseModel$"
     - "^\\s*[A-Z0-9_]+ = :"
-    - "VitableConnectAPI::(Models|Resources|Test)::"
+    - "VitableConnect::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:

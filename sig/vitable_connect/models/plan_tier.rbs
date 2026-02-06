@@ -1,0 +1,16 @@
+module VitableConnect
+  module Models
+    type plan_tier = :Bronze | :Silver | :Gold | :Platinum
+
+    module PlanTier
+      extend VitableConnect::Internal::Type::Enum
+
+      BRONZE: :Bronze
+      SILVER: :Silver
+      GOLD: :Gold
+      PLATINUM: :Platinum
+
+      def self?.values: -> ::Array[VitableConnect::Models::plan_tier]
+    end
+  end
+end

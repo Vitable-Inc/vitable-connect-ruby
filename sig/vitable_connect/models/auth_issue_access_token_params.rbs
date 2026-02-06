@@ -1,0 +1,56 @@
+module VitableConnect
+  module Models
+    type auth_issue_access_token_params =
+      {
+        grant_type: VitableConnect::Models::AuthIssueAccessTokenParams::grant_type,
+        bound_entity: VitableConnect::AuthIssueAccessTokenParams::BoundEntity?
+      }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class AuthIssueAccessTokenParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor grant_type: VitableConnect::Models::AuthIssueAccessTokenParams::grant_type
+
+      attr_accessor bound_entity: VitableConnect::AuthIssueAccessTokenParams::BoundEntity?
+
+      def initialize: (
+        grant_type: VitableConnect::Models::AuthIssueAccessTokenParams::grant_type,
+        ?bound_entity: VitableConnect::AuthIssueAccessTokenParams::BoundEntity?,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        grant_type: VitableConnect::Models::AuthIssueAccessTokenParams::grant_type,
+        bound_entity: VitableConnect::AuthIssueAccessTokenParams::BoundEntity?,
+        request_options: VitableConnect::RequestOptions
+      }
+
+      type grant_type = :client_credentials
+
+      module GrantType
+        extend VitableConnect::Internal::Type::Enum
+
+        CLIENT_CREDENTIALS: :client_credentials
+
+        def self?.values: -> ::Array[VitableConnect::Models::AuthIssueAccessTokenParams::grant_type]
+      end
+
+      type bound_entity = { id: String, type: VitableConnect::Models::type_ }
+
+      class BoundEntity < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor type: VitableConnect::Models::type_
+
+        def initialize: (
+          id: String,
+          type: VitableConnect::Models::type_
+        ) -> void
+
+        def to_hash: -> { id: String, type: VitableConnect::Models::type_ }
+      end
+    end
+  end
+end

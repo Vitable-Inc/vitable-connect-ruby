@@ -1,0 +1,26 @@
+module VitableConnect
+  module Models
+    module Employers
+      type employee_class =
+        :"Full Time"
+        | :"Part Time"
+        | :Temporary
+        | :Intern
+        | :Seasonal
+        | :"Individual Contractor"
+
+      module EmployeeClass
+        extend VitableConnect::Internal::Type::Enum
+
+        FULL_TIME: :"Full Time"
+        PART_TIME: :"Part Time"
+        TEMPORARY: :Temporary
+        INTERN: :Intern
+        SEASONAL: :Seasonal
+        INDIVIDUAL_CONTRACTOR: :"Individual Contractor"
+
+        def self?.values: -> ::Array[VitableConnect::Models::Employers::employee_class]
+      end
+    end
+  end
+end

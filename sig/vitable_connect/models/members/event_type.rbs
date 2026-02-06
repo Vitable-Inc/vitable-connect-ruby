@@ -1,0 +1,36 @@
+module VitableConnect
+  module Models
+    module Members
+      type event_type =
+        :Marriage
+        | :Birth
+        | :Adoption
+        | :Divorce
+        | :Death
+        | :"Job Loss"
+        | :"Reduction In Hours"
+        | :"Employer Bankruptcy"
+        | :"Medicare Entitlement"
+        | :Termination
+        | :Other
+
+      module EventType
+        extend VitableConnect::Internal::Type::Enum
+
+        MARRIAGE: :Marriage
+        BIRTH: :Birth
+        ADOPTION: :Adoption
+        DIVORCE: :Divorce
+        DEATH: :Death
+        JOB_LOSS: :"Job Loss"
+        REDUCTION_IN_HOURS: :"Reduction In Hours"
+        EMPLOYER_BANKRUPTCY: :"Employer Bankruptcy"
+        MEDICARE_ENTITLEMENT: :"Medicare Entitlement"
+        TERMINATION: :Termination
+        OTHER: :Other
+
+        def self?.values: -> ::Array[VitableConnect::Models::Members::event_type]
+      end
+    end
+  end
+end

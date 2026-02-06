@@ -1,0 +1,18 @@
+module VitableConnect
+  module Resources
+    class BenefitProducts
+      attr_reader plan_years: VitableConnect::Resources::BenefitProducts::PlanYears
+
+      def list: (
+        ?active_in: bool,
+        ?category: VitableConnect::Models::category,
+        ?limit: Integer,
+        ?page: Integer,
+        ?product_code: VitableConnect::Models::product_code,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::BenefitProductListResponse
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end

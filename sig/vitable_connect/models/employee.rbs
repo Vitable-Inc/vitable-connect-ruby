@@ -1,0 +1,166 @@
+module VitableConnect
+  module Models
+    type employee =
+      {
+        id: String,
+        active_in: bool,
+        created_at: Time,
+        employer_id: String,
+        member: VitableConnect::Employee::Member,
+        start_date: Date,
+        updated_at: Time,
+        address: VitableConnect::Employee::Address?,
+        employee_class: VitableConnect::Models::Employers::employee_class?,
+        termination_date: Date?
+      }
+
+    class Employee < VitableConnect::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor active_in: bool
+
+      attr_accessor created_at: Time
+
+      attr_accessor employer_id: String
+
+      attr_accessor member: VitableConnect::Employee::Member
+
+      attr_accessor start_date: Date
+
+      attr_accessor updated_at: Time
+
+      attr_accessor address: VitableConnect::Employee::Address?
+
+      attr_accessor employee_class: VitableConnect::Models::Employers::employee_class?
+
+      attr_accessor termination_date: Date?
+
+      def initialize: (
+        id: String,
+        active_in: bool,
+        created_at: Time,
+        employer_id: String,
+        member: VitableConnect::Employee::Member,
+        start_date: Date,
+        updated_at: Time,
+        ?address: VitableConnect::Employee::Address?,
+        ?employee_class: VitableConnect::Models::Employers::employee_class?,
+        ?termination_date: Date?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        active_in: bool,
+        created_at: Time,
+        employer_id: String,
+        member: VitableConnect::Employee::Member,
+        start_date: Date,
+        updated_at: Time,
+        address: VitableConnect::Employee::Address?,
+        employee_class: VitableConnect::Models::Employers::employee_class?,
+        termination_date: Date?
+      }
+
+      type member =
+        {
+          id: String,
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          sex: VitableConnect::Models::Employers::sex,
+          email: String?,
+          gender: String?,
+          phone: String?,
+          suffix: String?
+        }
+
+      class Member < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor date_of_birth: Date
+
+        attr_accessor first_name: String
+
+        attr_accessor last_name: String
+
+        attr_accessor sex: VitableConnect::Models::Employers::sex
+
+        attr_accessor email: String?
+
+        attr_accessor gender: String?
+
+        attr_accessor phone: String?
+
+        attr_accessor suffix: String?
+
+        def initialize: (
+          id: String,
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          sex: VitableConnect::Models::Employers::sex,
+          ?email: String?,
+          ?gender: String?,
+          ?phone: String?,
+          ?suffix: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          sex: VitableConnect::Models::Employers::sex,
+          email: String?,
+          gender: String?,
+          phone: String?,
+          suffix: String?
+        }
+      end
+
+      type address =
+        {
+          city: String,
+          state: String,
+          :street_1 => String,
+          zip_code: String,
+          country: String,
+          :street_2 => String?
+        }
+
+      class Address < VitableConnect::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor state: String
+
+        attr_accessor street_1: String
+
+        attr_accessor zip_code: String
+
+        attr_reader country: String?
+
+        def country=: (String) -> String
+
+        attr_accessor street_2: String?
+
+        def initialize: (
+          city: String,
+          state: String,
+          street_1: String,
+          zip_code: String,
+          ?country: String,
+          ?street_2: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          state: String,
+          :street_1 => String,
+          zip_code: String,
+          country: String,
+          :street_2 => String?
+        }
+      end
+    end
+  end
+end
