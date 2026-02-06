@@ -4,19 +4,19 @@ module VitableConnectAPI
       def retrieve: (
         String enrollment_id,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Enrollment
+      ) -> VitableConnectAPI::Models::EnrollmentRetrieveResponse
 
       def list_plans: (
         String enrollment_id,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Models::enrollment_list_plans_response
+      ) -> VitableConnectAPI::Models::EnrollmentListPlansResponse
 
       def reissue: (
         String enrollment_id,
         qle_id: String,
         ?reason: String?,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Enrollment
+      ) -> VitableConnectAPI::Models::EnrollmentReissueResponse
 
       def initialize: (client: VitableConnectAPI::Client) -> void
     end

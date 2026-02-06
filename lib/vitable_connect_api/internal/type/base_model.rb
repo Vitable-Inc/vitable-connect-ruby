@@ -446,7 +446,7 @@ module VitableConnectAPI
         #   # `benefit_eligibility_policy_api` is a `VitableConnectAPI::BenefitEligibilityPolicyAPI`
         #   benefit_eligibility_policy_api => {
         #     id: id,
-        #     active: active,
+        #     active_in: active_in,
         #     created_at: created_at
         #   }
         def deconstruct_keys(keys)

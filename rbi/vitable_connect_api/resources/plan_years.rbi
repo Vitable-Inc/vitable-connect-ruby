@@ -10,7 +10,7 @@ module VitableConnectAPI
         params(
           plan_year_id: String,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::BenefitProducts::PlanYear)
+        ).returns(VitableConnectAPI::Models::PlanYearRetrieveResponse)
       end
       def retrieve(
         # Unique plan year identifier (plyr\_\*)
@@ -35,7 +35,7 @@ module VitableConnectAPI
           open_enrollment_start: T.nilable(Date),
           status: T.nilable(String),
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::BenefitProducts::PlanYear)
+        ).returns(VitableConnectAPI::Models::PlanYearUpdateResponse)
       end
       def update(
         # Unique plan year identifier (plyr\_\*)

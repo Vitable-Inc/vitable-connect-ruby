@@ -25,7 +25,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<VitableConnectAPI::Models::Enrollment>]
+        # @return [VitableConnectAPI::Models::Employees::EnrollmentListResponse]
         #
         # @see VitableConnectAPI::Models::Employees::EnrollmentListParams
         def list(employee_id, params = {})
@@ -34,7 +34,7 @@ module VitableConnectAPI
             method: :get,
             path: ["v1/employees/%1$s/enrollments", employee_id],
             query: parsed,
-            model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Enrollment],
+            model: VitableConnectAPI::Models::Employees::EnrollmentListResponse,
             options: options
           )
         end
@@ -52,7 +52,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<VitableConnectAPI::Models::Enrollment>]
+        # @return [VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsResponse]
         #
         # @see VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams
         def submit_elections(employee_id, params)
@@ -61,7 +61,7 @@ module VitableConnectAPI
             method: :post,
             path: ["v1/employees/%1$s/enrollments/elect", employee_id],
             body: parsed,
-            model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Enrollment],
+            model: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsResponse,
             options: options
           )
         end

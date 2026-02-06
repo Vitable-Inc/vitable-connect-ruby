@@ -16,7 +16,9 @@ module VitableConnectAPI
             status:
               VitableConnectAPI::Members::QualifyingLifeEventStatus::OrSymbol,
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(T::Array[VitableConnectAPI::Members::QualifyingLifeEvent])
+          ).returns(
+            VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse
+          )
         end
         def list(
           # Unique member identifier (mbr\_\*)
@@ -43,7 +45,9 @@ module VitableConnectAPI
             event_type: VitableConnectAPI::Members::EventType::OrSymbol,
             notes: T.nilable(String),
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(VitableConnectAPI::Members::QualifyingLifeEvent)
+          ).returns(
+            VitableConnectAPI::Models::Members::QualifyingLifeEventRecordResponse
+          )
         end
         def record(
           # Unique member identifier (mbr\_\*)

@@ -8,28 +8,20 @@ class VitableConnectAPI::Test::Resources::EmployersTest < VitableConnectAPI::Tes
 
     response =
       @vitable_connect_api.employers.create(
-        address: {city: "city", state: "xx", street_1: "street_1", zip_code: "zip_code"},
-        ein: "xxxxxxxxx",
-        legal_name: "x",
-        name: "x"
+        address: {address_line_1: "789 Business Blvd", city: "Seattle", state: "WA", zipcode: "98101"},
+        ein: "12-3456789",
+        email: "hr@newco.com",
+        legal_name: "NewCo Industries LLC",
+        name: "NewCo Industries"
       )
 
     assert_pattern do
-      response => VitableConnectAPI::Employer
+      response => VitableConnectAPI::Models::EmployerCreateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        legal_name: String,
-        name: String,
-        organization_id: String,
-        updated_at: Time,
-        address: VitableConnectAPI::Employer::Address | nil,
-        ein: String | nil,
-        eligibility_policy_id: String | nil
+        data: VitableConnectAPI::Employer
       }
     end
   end
@@ -40,21 +32,12 @@ class VitableConnectAPI::Test::Resources::EmployersTest < VitableConnectAPI::Tes
     response = @vitable_connect_api.employers.retrieve("empr_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::Employer
+      response => VitableConnectAPI::Models::EmployerRetrieveResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        legal_name: String,
-        name: String,
-        organization_id: String,
-        updated_at: Time,
-        address: VitableConnectAPI::Employer::Address | nil,
-        ein: String | nil,
-        eligibility_policy_id: String | nil
+        data: VitableConnectAPI::Employer
       }
     end
   end
@@ -65,21 +48,12 @@ class VitableConnectAPI::Test::Resources::EmployersTest < VitableConnectAPI::Tes
     response = @vitable_connect_api.employers.update("empr_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::Employer
+      response => VitableConnectAPI::Models::EmployerUpdateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        legal_name: String,
-        name: String,
-        organization_id: String,
-        updated_at: Time,
-        address: VitableConnectAPI::Employer::Address | nil,
-        ein: String | nil,
-        eligibility_policy_id: String | nil
+        data: VitableConnectAPI::Employer
       }
     end
   end
@@ -90,37 +64,13 @@ class VitableConnectAPI::Test::Resources::EmployersTest < VitableConnectAPI::Tes
     response = @vitable_connect_api.employers.list
 
     assert_pattern do
-      response => ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Employer])
-    end
-  end
-
-  def test_create_eligibility_policy_required_params
-    skip("Prism tests are disabled")
-
-    response =
-      @vitable_connect_api.employers.create_eligibility_policy(
-        "empr_abc123def456",
-        effective_date: "2019-12-27",
-        name: "x",
-        rules: [{operator: "operator", rule_type: "rule_type", value: "value"}]
-      )
-
-    assert_pattern do
-      response => VitableConnectAPI::BenefitEligibilityPolicyAPI
+      response => VitableConnectAPI::Models::EmployerListResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        effective_date: Date,
-        employer_id: String,
-        name: String,
-        rules: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitEligibilityPolicyAPI::Rule]),
-        updated_at: Time,
-        description: String | nil,
-        replaced_policy_id: String | nil
+        data: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Employer]),
+        pagination: VitableConnectAPI::Models::EmployerListResponse::Pagination
       }
     end
   end

@@ -12,7 +12,7 @@ module VitableConnectAPI
         params(
           employee_id: String,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Employee)
+        ).returns(VitableConnectAPI::Models::EmployeeRetrieveResponse)
       end
       def retrieve(
         # Unique employee identifier (empl\_\*)
@@ -36,7 +36,7 @@ module VitableConnectAPI
           phone: T.nilable(String),
           termination_date: T.nilable(Date),
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Employee)
+        ).returns(VitableConnectAPI::Models::EmployeeUpdateResponse)
       end
       def update(
         # Unique employee identifier (empl\_\*)

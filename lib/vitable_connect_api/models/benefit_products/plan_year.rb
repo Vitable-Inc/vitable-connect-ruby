@@ -3,7 +3,6 @@
 module VitableConnectAPI
   module Models
     module BenefitProducts
-      # @see VitableConnectAPI::Resources::BenefitProducts::PlanYears#create
       class PlanYear < VitableConnectAPI::Internal::Type::BaseModel
         # @!attribute id
         #   Unique plan year identifier with 'plyr\_' prefix
@@ -61,7 +60,7 @@ module VitableConnectAPI
         required :open_enrollment_start_date, Date
 
         # @!attribute plans
-        #   List of insurance plans available in this plan year
+        #   List of benefit plans available in this plan year
         #
         #   @return [Array<VitableConnectAPI::Models::BenefitProducts::PlanYear::Plan>]
         required :plans,
@@ -109,7 +108,7 @@ module VitableConnectAPI
         #
         #   @param open_enrollment_start_date [Date] Date when open enrollment period begins
         #
-        #   @param plans [Array<VitableConnectAPI::Models::BenefitProducts::PlanYear::Plan>] List of insurance plans available in this plan year
+        #   @param plans [Array<VitableConnectAPI::Models::BenefitProducts::PlanYear::Plan>] List of benefit plans available in this plan year
         #
         #   @param status [Symbol, VitableConnectAPI::Models::BenefitProducts::PlanYearStatus] - `draft` - Draft
         #
@@ -121,6 +120,16 @@ module VitableConnectAPI
           #
           #   @return [String]
           required :id, String
+
+          # @!attribute coverage_tier
+          #   - `Unspecified` - Unspecified
+          #   - `EE` - Ee
+          #   - `ES` - Es
+          #   - `EC` - Ec
+          #   - `EF` - Ef
+          #
+          #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
+          required :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }
 
           # @!attribute employee_contribution_cents
           #   Employee's monthly contribution amount in cents
@@ -140,17 +149,7 @@ module VitableConnectAPI
           #   @return [String]
           required :employment, String
 
-          # @!attribute family_status
-          #   - `Unspecified` - Unspecified
-          #   - `EE` - Ee
-          #   - `ES` - Es
-          #   - `EC` - Ec
-          #   - `EF` - Ef
-          #
-          #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
-          required :family_status, enum: -> { VitableConnectAPI::CoverageTier }
-
-          # @!method initialize(id:, employee_contribution_cents:, employer_contribution_cents:, employment:, family_status:)
+          # @!method initialize(id:, coverage_tier:, employee_contribution_cents:, employer_contribution_cents:, employment:)
           #   Some parameter documentations has been truncated, see
           #   {VitableConnectAPI::Models::BenefitProducts::PlanYear::ContributionClass} for
           #   more details.
@@ -162,13 +161,13 @@ module VitableConnectAPI
           #
           #   @param id [String] Unique contribution class identifier
           #
+          #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
+          #
           #   @param employee_contribution_cents [Integer] Employee's monthly contribution amount in cents
           #
           #   @param employer_contribution_cents [Integer] Employer's monthly contribution amount in cents
           #
           #   @param employment [String] Employment type for this contribution class (e.g., 'full_time', 'part_time')
-          #
-          #   @param family_status [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
         end
 
         class Plan < VitableConnectAPI::Internal::Type::BaseModel
@@ -191,7 +190,7 @@ module VitableConnectAPI
           required :monthly_premium_cents, Integer
 
           # @!attribute name
-          #   Display name of the insurance plan
+          #   Display name of the benefit plan
           #
           #   @return [String]
           required :name, String
@@ -229,7 +228,7 @@ module VitableConnectAPI
           #
           #   @param monthly_premium_cents [Integer] Base monthly premium in cents
           #
-          #   @param name [String] Display name of the insurance plan
+          #   @param name [String] Display name of the benefit plan
           #
           #   @param deductible_cents [Integer, nil] Annual deductible amount in cents
           #

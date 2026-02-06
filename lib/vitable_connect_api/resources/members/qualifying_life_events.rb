@@ -22,7 +22,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<VitableConnectAPI::Models::Members::QualifyingLifeEvent>]
+        # @return [VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse]
         #
         # @see VitableConnectAPI::Models::Members::QualifyingLifeEventListParams
         def list(member_id, params = {})
@@ -31,7 +31,7 @@ module VitableConnectAPI
             method: :get,
             path: ["v1/members/%1$s/qualifying-life-events", member_id],
             query: parsed,
-            model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Members::QualifyingLifeEvent],
+            model: VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse,
             options: options
           )
         end
@@ -56,7 +56,7 @@ module VitableConnectAPI
         #
         # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [VitableConnectAPI::Models::Members::QualifyingLifeEvent]
+        # @return [VitableConnectAPI::Models::Members::QualifyingLifeEventRecordResponse]
         #
         # @see VitableConnectAPI::Models::Members::QualifyingLifeEventRecordParams
         def record(member_id, params)
@@ -65,7 +65,7 @@ module VitableConnectAPI
             method: :post,
             path: ["v1/members/%1$s/qualifying-life-events", member_id],
             body: parsed,
-            model: VitableConnectAPI::Members::QualifyingLifeEvent,
+            model: VitableConnectAPI::Models::Members::QualifyingLifeEventRecordResponse,
             options: options
           )
         end

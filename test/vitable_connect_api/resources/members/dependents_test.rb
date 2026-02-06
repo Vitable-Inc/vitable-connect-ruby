@@ -9,32 +9,20 @@ class VitableConnectAPI::Test::Resources::Members::DependentsTest < VitableConne
     response =
       @vitable_connect_api.members.dependents.create(
         "mbr_abc123def456",
-        date_of_birth: "2019-12-27",
-        first_name: "x",
-        last_name: "x",
-        relationship: :Spouse,
-        sex: :Male
+        date_of_birth: "2020-05-15",
+        first_name: "Emily",
+        last_name: "Doe",
+        relationship: :Child,
+        sex: :Female
       )
 
     assert_pattern do
-      response => VitableConnectAPI::Dependent
+      response => VitableConnectAPI::Models::Members::DependentCreateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        date_of_birth: Date,
-        first_name: String,
-        last_name: String,
-        member_id: String,
-        relationship: VitableConnectAPI::Members::Relationship,
-        sex: VitableConnectAPI::Sex,
-        updated_at: Time,
-        gender: String | nil,
-        ssn_last_four: String | nil,
-        suffix: String | nil
+        data: VitableConnectAPI::Dependent
       }
     end
   end
@@ -45,7 +33,14 @@ class VitableConnectAPI::Test::Resources::Members::DependentsTest < VitableConne
     response = @vitable_connect_api.members.dependents.list("mbr_abc123def456")
 
     assert_pattern do
-      response => ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Dependent])
+      response => VitableConnectAPI::Models::Members::DependentListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Dependent]),
+        pagination: VitableConnectAPI::Models::Members::DependentListResponse::Pagination
+      }
     end
   end
 end

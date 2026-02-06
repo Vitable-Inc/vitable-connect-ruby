@@ -2,7 +2,6 @@
 
 module VitableConnectAPI
   module Models
-    # @see VitableConnectAPI::Resources::BenefitEligibilityPolicy#retrieve
     class BenefitEligibilityPolicyAPI < VitableConnectAPI::Internal::Type::BaseModel
       # @!attribute id
       #   Unique eligibility policy identifier with 'epol\_' prefix
@@ -10,11 +9,11 @@ module VitableConnectAPI
       #   @return [String]
       required :id, String
 
-      # @!attribute active
+      # @!attribute active_in
       #   Whether this policy is currently active
       #
       #   @return [Boolean]
-      required :active, VitableConnectAPI::Internal::Type::Boolean
+      required :active_in, VitableConnectAPI::Internal::Type::Boolean
 
       # @!attribute created_at
       #   Timestamp when the policy was created
@@ -65,7 +64,7 @@ module VitableConnectAPI
       #   @return [String, nil]
       optional :replaced_policy_id, String, nil?: true
 
-      # @!method initialize(id:, active:, created_at:, effective_date:, employer_id:, name:, rules:, updated_at:, description: nil, replaced_policy_id: nil)
+      # @!method initialize(id:, active_in:, created_at:, effective_date:, employer_id:, name:, rules:, updated_at:, description: nil, replaced_policy_id: nil)
       #   Serializer for Benefit Eligibility Policy entity.
       #
       #   Eligibility policies define rules that determine which employees qualify for
@@ -73,7 +72,7 @@ module VitableConnectAPI
       #
       #   @param id [String] Unique eligibility policy identifier with 'epol\_' prefix
       #
-      #   @param active [Boolean] Whether this policy is currently active
+      #   @param active_in [Boolean] Whether this policy is currently active
       #
       #   @param created_at [Time] Timestamp when the policy was created
       #

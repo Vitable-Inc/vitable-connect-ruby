@@ -6,8 +6,8 @@ module VitableConnectAPI
           id: String,
           created_at: Time,
           employee_id: String,
-          enrollment_window_end: Date,
-          enrollment_window_start: Date,
+          enrollment_window_end: Time,
+          enrollment_window_start: Time,
           event_date: Date,
           event_type: String,
           member_id: String,
@@ -25,9 +25,9 @@ module VitableConnectAPI
 
         attr_accessor employee_id: String
 
-        attr_accessor enrollment_window_end: Date
+        attr_accessor enrollment_window_end: Time
 
-        attr_accessor enrollment_window_start: Date
+        attr_accessor enrollment_window_start: Time
 
         attr_accessor event_date: Date
 
@@ -49,8 +49,8 @@ module VitableConnectAPI
           id: String,
           created_at: Time,
           employee_id: String,
-          enrollment_window_end: Date,
-          enrollment_window_start: Date,
+          enrollment_window_end: Time,
+          enrollment_window_start: Time,
           event_date: Date,
           event_type: String,
           member_id: String,
@@ -65,8 +65,8 @@ module VitableConnectAPI
           id: String,
           created_at: Time,
           employee_id: String,
-          enrollment_window_end: Date,
-          enrollment_window_start: Date,
+          enrollment_window_end: Time,
+          enrollment_window_start: Time,
           event_date: Date,
           event_type: String,
           member_id: String,

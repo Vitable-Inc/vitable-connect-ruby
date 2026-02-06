@@ -2,9 +2,58 @@ module VitableConnectAPI
   module Models
     module BenefitProducts
       type plan_year_list_response =
-        ::Array[VitableConnectAPI::BenefitProducts::PlanYear]
+        {
+          data: ::Array[VitableConnectAPI::BenefitProducts::PlanYear],
+          pagination: VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse::Pagination
+        }
 
-      PlanYearListResponse: VitableConnectAPI::Internal::Type::Converter
+      class PlanYearListResponse < VitableConnectAPI::Internal::Type::BaseModel
+        attr_accessor data: ::Array[VitableConnectAPI::BenefitProducts::PlanYear]
+
+        attr_accessor pagination: VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse::Pagination
+
+        def initialize: (
+          data: ::Array[VitableConnectAPI::BenefitProducts::PlanYear],
+          pagination: VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse::Pagination
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[VitableConnectAPI::BenefitProducts::PlanYear],
+          pagination: VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse::Pagination
+        }
+
+        type pagination =
+          {
+            limit: Integer,
+            page: Integer,
+            total: Integer,
+            total_pages: Integer
+          }
+
+        class Pagination < VitableConnectAPI::Internal::Type::BaseModel
+          attr_accessor limit: Integer
+
+          attr_accessor page: Integer
+
+          attr_accessor total: Integer
+
+          attr_accessor total_pages: Integer
+
+          def initialize: (
+            limit: Integer,
+            page: Integer,
+            total: Integer,
+            total_pages: Integer
+          ) -> void
+
+          def to_hash: -> {
+            limit: Integer,
+            page: Integer,
+            total: Integer,
+            total_pages: Integer
+          }
+        end
+      end
     end
   end
 end

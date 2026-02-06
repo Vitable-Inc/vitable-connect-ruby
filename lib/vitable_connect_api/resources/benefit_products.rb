@@ -24,7 +24,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<VitableConnectAPI::Models::BenefitProductListResponseItem>]
+      # @return [VitableConnectAPI::Models::BenefitProductListResponse]
       #
       # @see VitableConnectAPI::Models::BenefitProductListParams
       def list(params = {})
@@ -33,7 +33,7 @@ module VitableConnectAPI
           method: :get,
           path: "v1/benefit-products",
           query: parsed,
-          model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Models::BenefitProductListResponseItem],
+          model: VitableConnectAPI::Models::BenefitProductListResponse,
           options: options
         )
       end

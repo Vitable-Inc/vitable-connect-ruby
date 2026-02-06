@@ -91,6 +91,14 @@ module VitableConnectAPI
             )
           end
 
+        # - `Unspecified` - Unspecified
+        # - `EE` - Ee
+        # - `ES` - Es
+        # - `EC` - Ec
+        # - `EF` - Ef
+        sig { returns(VitableConnectAPI::CoverageTier::OrSymbol) }
+        attr_accessor :coverage_tier
+
         # Employee's monthly contribution in cents
         sig { returns(Integer) }
         attr_accessor :employee_contribution_cents
@@ -103,45 +111,38 @@ module VitableConnectAPI
         sig { returns(String) }
         attr_accessor :employment
 
-        # - `Unspecified` - Unspecified
-        # - `EE` - Ee
-        # - `ES` - Es
-        # - `EC` - Ec
-        # - `EF` - Ef
-        sig { returns(VitableConnectAPI::CoverageTier::OrSymbol) }
-        attr_accessor :family_status
-
+        # Contribution class input for plan year update.
         sig do
           params(
+            coverage_tier: VitableConnectAPI::CoverageTier::OrSymbol,
             employee_contribution_cents: Integer,
             employer_contribution_cents: Integer,
-            employment: String,
-            family_status: VitableConnectAPI::CoverageTier::OrSymbol
+            employment: String
           ).returns(T.attached_class)
         end
         def self.new(
-          # Employee's monthly contribution in cents
-          employee_contribution_cents:,
-          # Employer's monthly contribution in cents
-          employer_contribution_cents:,
-          # Employment type
-          employment:,
           # - `Unspecified` - Unspecified
           # - `EE` - Ee
           # - `ES` - Es
           # - `EC` - Ec
           # - `EF` - Ef
-          family_status:
+          coverage_tier:,
+          # Employee's monthly contribution in cents
+          employee_contribution_cents:,
+          # Employer's monthly contribution in cents
+          employer_contribution_cents:,
+          # Employment type
+          employment:
         )
         end
 
         sig do
           override.returns(
             {
+              coverage_tier: VitableConnectAPI::CoverageTier::OrSymbol,
               employee_contribution_cents: Integer,
               employer_contribution_cents: Integer,
-              employment: String,
-              family_status: VitableConnectAPI::CoverageTier::OrSymbol
+              employment: String
             }
           )
         end

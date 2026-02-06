@@ -7,14 +7,16 @@ module VitableConnectAPI
       attr_reader :employees
 
       # Creates a new employer for the authenticated organization. Requires employer
-      # name, legal name, EIN, and address information. Returns the created employer
-      # with its assigned ID.
+      # name, legal name, EIN, email, and address information. Returns the created
+      # employer with its assigned ID.
       #
-      # @overload create(address:, ein:, legal_name:, name:, request_options: {})
+      # @overload create(address:, ein:, email:, legal_name:, name:, request_options: {})
       #
       # @param address [VitableConnectAPI::Models::EmployerCreateParams::Address] Employer address
       #
-      # @param ein [String] Employer Identification Number (format: XX-XXXXXXX or XXXXXXXXX)
+      # @param ein [String] Employer Identification Number (format: XX-XXXXXXX)
+      #
+      # @param email [String] Email address for billing and communications
       #
       # @param legal_name [String] Legal business name
       #
@@ -22,7 +24,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Employer]
+      # @return [VitableConnectAPI::Models::EmployerCreateResponse]
       #
       # @see VitableConnectAPI::Models::EmployerCreateParams
       def create(params)
@@ -31,7 +33,7 @@ module VitableConnectAPI
           method: :post,
           path: "v1/employers",
           body: parsed,
-          model: VitableConnectAPI::Employer,
+          model: VitableConnectAPI::Models::EmployerCreateResponse,
           options: options
         )
       end
@@ -41,18 +43,18 @@ module VitableConnectAPI
       #
       # @overload retrieve(employer_id, request_options: {})
       #
-      # @param employer_id [String] Unique employer identifier (empr\_\*)
+      # @param employer_id [String] Filter by employer ID
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Employer]
+      # @return [VitableConnectAPI::Models::EmployerRetrieveResponse]
       #
       # @see VitableConnectAPI::Models::EmployerRetrieveParams
       def retrieve(employer_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/employers/%1$s", employer_id],
-          model: VitableConnectAPI::Employer,
+          model: VitableConnectAPI::Models::EmployerRetrieveResponse,
           options: params[:request_options]
         )
       end
@@ -62,7 +64,7 @@ module VitableConnectAPI
       #
       # @overload update(employer_id, active: nil, address: nil, legal_name: nil, name: nil, request_options: {})
       #
-      # @param employer_id [String] Unique employer identifier (empr\_\*)
+      # @param employer_id [String] Filter by employer ID
       #
       # @param active [Boolean, nil] Whether the employer is active
       #
@@ -74,7 +76,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Employer]
+      # @return [VitableConnectAPI::Models::EmployerUpdateResponse]
       #
       # @see VitableConnectAPI::Models::EmployerUpdateParams
       def update(employer_id, params = {})
@@ -83,7 +85,7 @@ module VitableConnectAPI
           method: :put,
           path: ["v1/employers/%1$s", employer_id],
           body: parsed,
-          model: VitableConnectAPI::Employer,
+          model: VitableConnectAPI::Models::EmployerUpdateResponse,
           options: options
         )
       end
@@ -104,7 +106,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<VitableConnectAPI::Models::Employer>]
+      # @return [VitableConnectAPI::Models::EmployerListResponse]
       #
       # @see VitableConnectAPI::Models::EmployerListParams
       def list(params = {})
@@ -113,46 +115,7 @@ module VitableConnectAPI
           method: :get,
           path: "v1/employers",
           query: parsed,
-          model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Employer],
-          options: options
-        )
-      end
-
-      # Creates a new benefit eligibility policy for a specific employer. Eligibility
-      # policies define rules that determine which employees qualify for benefits based
-      # on criteria such as employment status (full-time, part-time), hours worked per
-      # week, waiting periods after hire date, or other custom requirements. Optionally
-      # provide 'policy_to_replace_id' as a query parameter to replace an existing
-      # policy.
-      #
-      # @overload create_eligibility_policy(employer_id, effective_date:, name:, rules:, policy_to_replace_id: nil, description: nil, request_options: {})
-      #
-      # @param employer_id [String] Path param: Unique employer identifier (empr\_\*)
-      #
-      # @param effective_date [Date] Body param: Date when policy becomes effective
-      #
-      # @param name [String] Body param: Display name for the policy
-      #
-      # @param rules [Array<VitableConnectAPI::Models::EmployerCreateEligibilityPolicyParams::Rule>] Body param: List of eligibility rules (at least one required)
-      #
-      # @param policy_to_replace_id [String] Query param: ID of existing policy to replace (epol\_\*)
-      #
-      # @param description [String, nil] Body param: Detailed description
-      #
-      # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [VitableConnectAPI::Models::BenefitEligibilityPolicyAPI]
-      #
-      # @see VitableConnectAPI::Models::EmployerCreateEligibilityPolicyParams
-      def create_eligibility_policy(employer_id, params)
-        parsed, options = VitableConnectAPI::EmployerCreateEligibilityPolicyParams.dump_request(params)
-        query_params = [:policy_to_replace_id]
-        @client.request(
-          method: :post,
-          path: ["v1/employers/%1$s/benefit-eligibility-policy", employer_id],
-          query: parsed.slice(*query_params),
-          body: parsed.except(*query_params),
-          model: VitableConnectAPI::BenefitEligibilityPolicyAPI,
+          model: VitableConnectAPI::Models::EmployerListResponse,
           options: options
         )
       end

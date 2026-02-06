@@ -11,37 +11,32 @@ class VitableConnectAPI::Test::Resources::BenefitProducts::PlanYearsTest < Vitab
         "bprd_abc123def456",
         contribution_classes: [
           {
-            employee_contribution_cents: 0,
-            employer_contribution_cents: 0,
-            employment: "employment",
-            family_status: :Unspecified
+            coverage_tier: :EE,
+            employee_contribution_cents: 20_000,
+            employer_contribution_cents: 45_000,
+            employment: "full_time"
+          },
+          {
+            coverage_tier: :EF,
+            employee_contribution_cents: 50_000,
+            employer_contribution_cents: 60_000,
+            employment: "full_time"
           }
         ],
-        coverage_end: "2019-12-27",
-        coverage_start: "2019-12-27",
-        employer_id: "employer_id",
-        open_enrollment_end: "2019-12-27",
-        open_enrollment_start: "2019-12-27"
+        coverage_end: "2026-12-31",
+        coverage_start: "2026-01-01",
+        employer_id: "empr_abc123",
+        open_enrollment_end: "2025-11-30",
+        open_enrollment_start: "2025-10-15"
       )
 
     assert_pattern do
-      response => VitableConnectAPI::BenefitProducts::PlanYear
+      response => VitableConnectAPI::Models::BenefitProducts::PlanYearCreateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        benefit_product_id: String,
-        contribution_classes: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear::ContributionClass]),
-        coverage_end: Date,
-        coverage_start: Date,
-        created_at: Time,
-        employer_id: String,
-        open_enrollment_end_date: Date,
-        open_enrollment_start_date: Date,
-        plans: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear::Plan]),
-        status: VitableConnectAPI::BenefitProducts::PlanYearStatus,
-        updated_at: Time
+        data: VitableConnectAPI::BenefitProducts::PlanYear
       }
     end
   end
@@ -52,7 +47,14 @@ class VitableConnectAPI::Test::Resources::BenefitProducts::PlanYearsTest < Vitab
     response = @vitable_connect_api.benefit_products.plan_years.list("bprd_abc123def456")
 
     assert_pattern do
-      response => ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear])
+      response => VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::BenefitProducts::PlanYear]),
+        pagination: VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse::Pagination
+      }
     end
   end
 end

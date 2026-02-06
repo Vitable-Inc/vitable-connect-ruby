@@ -6,15 +6,16 @@ module VitableConnectAPI
       def create: (
         address: VitableConnectAPI::EmployerCreateParams::Address,
         ein: String,
+        email: String,
         legal_name: String,
         name: String,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Employer
+      ) -> VitableConnectAPI::Models::EmployerCreateResponse
 
       def retrieve: (
         String employer_id,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Employer
+      ) -> VitableConnectAPI::Models::EmployerRetrieveResponse
 
       def update: (
         String employer_id,
@@ -23,7 +24,7 @@ module VitableConnectAPI
         ?legal_name: String?,
         ?name: String?,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Employer
+      ) -> VitableConnectAPI::Models::EmployerUpdateResponse
 
       def list: (
         ?active_in: bool,
@@ -31,17 +32,7 @@ module VitableConnectAPI
         ?name: String,
         ?page: Integer,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Models::employer_list_response
-
-      def create_eligibility_policy: (
-        String employer_id,
-        effective_date: Date,
-        name: String,
-        rules: ::Array[VitableConnectAPI::EmployerCreateEligibilityPolicyParams::Rule],
-        ?policy_to_replace_id: String,
-        ?description: String?,
-        ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::BenefitEligibilityPolicyAPI
+      ) -> VitableConnectAPI::Models::EmployerListResponse
 
       def initialize: (client: VitableConnectAPI::Client) -> void
     end

@@ -11,7 +11,7 @@ module VitableConnectAPI
           open_enrollment_end: Date,
           open_enrollment_start: Date,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::BenefitProducts::PlanYear
+        ) -> VitableConnectAPI::Models::BenefitProducts::PlanYearCreateResponse
 
         def list: (
           String benefit_product_id,
@@ -20,7 +20,7 @@ module VitableConnectAPI
           ?page: Integer,
           ?status: VitableConnectAPI::Models::BenefitProducts::plan_year_status,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Models::BenefitProducts::plan_year_list_response
+        ) -> VitableConnectAPI::Models::BenefitProducts::PlanYearListResponse
 
         def initialize: (client: VitableConnectAPI::Client) -> void
       end

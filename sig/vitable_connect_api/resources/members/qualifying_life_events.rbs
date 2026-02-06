@@ -9,7 +9,7 @@ module VitableConnectAPI
           ?page: Integer,
           ?status: VitableConnectAPI::Models::Members::qualifying_life_event_status,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Models::Members::qualifying_life_event_list_response
+        ) -> VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse
 
         def record: (
           String member_id,
@@ -17,7 +17,7 @@ module VitableConnectAPI
           event_type: VitableConnectAPI::Models::Members::event_type,
           ?notes: String?,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Members::QualifyingLifeEvent
+        ) -> VitableConnectAPI::Models::Members::QualifyingLifeEventRecordResponse
 
         def initialize: (client: VitableConnectAPI::Client) -> void
       end

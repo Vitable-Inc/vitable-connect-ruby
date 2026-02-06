@@ -9,7 +9,7 @@ module VitableConnectAPI
         params(
           dependent_id: String,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Dependent)
+        ).returns(VitableConnectAPI::Models::DependentRetrieveResponse)
       end
       def retrieve(
         # Unique dependent identifier (dpnd\_\*)
@@ -29,7 +29,7 @@ module VitableConnectAPI
           relationship:
             T.nilable(VitableConnectAPI::Members::Relationship::OrSymbol),
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Dependent)
+        ).returns(VitableConnectAPI::Models::DependentUpdateResponse)
       end
       def update(
         # Unique dependent identifier (dpnd\_\*)

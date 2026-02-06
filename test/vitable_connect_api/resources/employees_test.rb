@@ -9,21 +9,12 @@ class VitableConnectAPI::Test::Resources::EmployeesTest < VitableConnectAPI::Tes
     response = @vitable_connect_api.employees.retrieve("empl_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::Employee
+      response => VitableConnectAPI::Models::EmployeeRetrieveResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        employer_id: String,
-        member: VitableConnectAPI::Employee::Member,
-        start_date: Date,
-        updated_at: Time,
-        address: VitableConnectAPI::Employee::Address | nil,
-        employee_class: VitableConnectAPI::Employers::EmployeeClass | nil,
-        termination_date: Date | nil
+        data: VitableConnectAPI::Employee
       }
     end
   end
@@ -34,21 +25,12 @@ class VitableConnectAPI::Test::Resources::EmployeesTest < VitableConnectAPI::Tes
     response = @vitable_connect_api.employees.update("empl_abc123def456")
 
     assert_pattern do
-      response => VitableConnectAPI::Employee
+      response => VitableConnectAPI::Models::EmployeeUpdateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        employer_id: String,
-        member: VitableConnectAPI::Employee::Member,
-        start_date: Date,
-        updated_at: Time,
-        address: VitableConnectAPI::Employee::Address | nil,
-        employee_class: VitableConnectAPI::Employers::EmployeeClass | nil,
-        termination_date: Date | nil
+        data: VitableConnectAPI::Employee
       }
     end
   end

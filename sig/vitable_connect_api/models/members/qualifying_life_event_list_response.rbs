@@ -2,9 +2,58 @@ module VitableConnectAPI
   module Models
     module Members
       type qualifying_life_event_list_response =
-        ::Array[VitableConnectAPI::Members::QualifyingLifeEvent]
+        {
+          data: ::Array[VitableConnectAPI::Members::QualifyingLifeEvent],
+          pagination: VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse::Pagination
+        }
 
-      QualifyingLifeEventListResponse: VitableConnectAPI::Internal::Type::Converter
+      class QualifyingLifeEventListResponse < VitableConnectAPI::Internal::Type::BaseModel
+        attr_accessor data: ::Array[VitableConnectAPI::Members::QualifyingLifeEvent]
+
+        attr_accessor pagination: VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse::Pagination
+
+        def initialize: (
+          data: ::Array[VitableConnectAPI::Members::QualifyingLifeEvent],
+          pagination: VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse::Pagination
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[VitableConnectAPI::Members::QualifyingLifeEvent],
+          pagination: VitableConnectAPI::Models::Members::QualifyingLifeEventListResponse::Pagination
+        }
+
+        type pagination =
+          {
+            limit: Integer,
+            page: Integer,
+            total: Integer,
+            total_pages: Integer
+          }
+
+        class Pagination < VitableConnectAPI::Internal::Type::BaseModel
+          attr_accessor limit: Integer
+
+          attr_accessor page: Integer
+
+          attr_accessor total: Integer
+
+          attr_accessor total_pages: Integer
+
+          def initialize: (
+            limit: Integer,
+            page: Integer,
+            total: Integer,
+            total_pages: Integer
+          ) -> void
+
+          def to_hash: -> {
+            limit: Integer,
+            page: Integer,
+            total: Integer,
+            total_pages: Integer
+          }
+        end
+      end
     end
   end
 end

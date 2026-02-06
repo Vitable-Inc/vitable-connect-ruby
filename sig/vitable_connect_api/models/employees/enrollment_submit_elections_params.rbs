@@ -25,36 +25,36 @@ module VitableConnectAPI
 
         type election =
           {
+            coverage_tier: VitableConnectAPI::Models::coverage_tier,
             decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision,
             enrollment_id: String,
-            coverage_tier: VitableConnectAPI::Models::coverage_tier?,
             dependent_ids: ::Array[String]?,
             selected_plan_id: String?
           }
 
         class Election < VitableConnectAPI::Internal::Type::BaseModel
+          attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier
+
           attr_accessor decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision
 
           attr_accessor enrollment_id: String
-
-          attr_accessor coverage_tier: VitableConnectAPI::Models::coverage_tier?
 
           attr_accessor dependent_ids: ::Array[String]?
 
           attr_accessor selected_plan_id: String?
 
           def initialize: (
+            coverage_tier: VitableConnectAPI::Models::coverage_tier,
             decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision,
             enrollment_id: String,
-            ?coverage_tier: VitableConnectAPI::Models::coverage_tier?,
             ?dependent_ids: ::Array[String]?,
             ?selected_plan_id: String?
           ) -> void
 
           def to_hash: -> {
+            coverage_tier: VitableConnectAPI::Models::coverage_tier,
             decision: VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsParams::Election::decision,
             enrollment_id: String,
-            coverage_tier: VitableConnectAPI::Models::coverage_tier?,
             dependent_ids: ::Array[String]?,
             selected_plan_id: String?
           }

@@ -10,7 +10,7 @@ module VitableConnectAPI
         ?page: Integer,
         ?product_code: VitableConnectAPI::Models::product_code,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Models::benefit_product_list_response
+      ) -> VitableConnectAPI::Models::BenefitProductListResponse
 
       def initialize: (client: VitableConnectAPI::Client) -> void
     end

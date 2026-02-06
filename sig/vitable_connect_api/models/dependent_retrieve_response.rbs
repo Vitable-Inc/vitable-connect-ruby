@@ -1,0 +1,13 @@
+module VitableConnectAPI
+  module Models
+    type dependent_retrieve_response = { data: VitableConnectAPI::Dependent }
+
+    class DependentRetrieveResponse < VitableConnectAPI::Internal::Type::BaseModel
+      attr_accessor data: VitableConnectAPI::Dependent
+
+      def initialize: (data: VitableConnectAPI::Dependent) -> void
+
+      def to_hash: -> { data: VitableConnectAPI::Dependent }
+    end
+  end
+end

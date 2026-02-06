@@ -3,7 +3,7 @@ module VitableConnectAPI
     type dependent =
       {
         id: String,
-        active: bool,
+        active_in: bool,
         created_at: Time,
         date_of_birth: Date,
         first_name: String,
@@ -20,7 +20,7 @@ module VitableConnectAPI
     class Dependent < VitableConnectAPI::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor active: bool
+      attr_accessor active_in: bool
 
       attr_accessor created_at: Time
 
@@ -46,7 +46,7 @@ module VitableConnectAPI
 
       def initialize: (
         id: String,
-        active: bool,
+        active_in: bool,
         created_at: Time,
         date_of_birth: Date,
         first_name: String,
@@ -62,7 +62,7 @@ module VitableConnectAPI
 
       def to_hash: -> {
         id: String,
-        active: bool,
+        active_in: bool,
         created_at: Time,
         date_of_birth: Date,
         first_name: String,

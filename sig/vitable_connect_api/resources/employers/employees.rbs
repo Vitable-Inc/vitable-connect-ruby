@@ -17,7 +17,7 @@ module VitableConnectAPI
           ?phone: String?,
           ?suffix: String?,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Employee
+        ) -> VitableConnectAPI::Models::Employers::EmployeeCreateResponse
 
         def list: (
           String employer_id,
@@ -26,7 +26,7 @@ module VitableConnectAPI
           ?limit: Integer,
           ?page: Integer,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Models::Employers::employee_list_response
+        ) -> VitableConnectAPI::Models::Employers::EmployeeListResponse
 
         def initialize: (client: VitableConnectAPI::Client) -> void
       end

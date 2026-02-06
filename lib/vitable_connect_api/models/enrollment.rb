@@ -2,7 +2,6 @@
 
 module VitableConnectAPI
   module Models
-    # @see VitableConnectAPI::Resources::Enrollments#retrieve
     class Enrollment < VitableConnectAPI::Internal::Type::BaseModel
       # @!attribute id
       #   Unique enrollment identifier with 'enrl\_' prefix
@@ -15,6 +14,16 @@ module VitableConnectAPI
       #
       #   @return [String]
       required :benefit_product_id, String
+
+      # @!attribute coverage_tier
+      #   - `Unspecified` - Unspecified
+      #   - `EE` - Ee
+      #   - `ES` - Es
+      #   - `EC` - Ec
+      #   - `EF` - Ef
+      #
+      #   @return [Symbol, VitableConnectAPI::Models::CoverageTier]
+      required :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }
 
       # @!attribute created_at
       #   Timestamp when the enrollment was created
@@ -61,16 +70,6 @@ module VitableConnectAPI
       #   @return [Date, nil]
       optional :coverage_start_date, Date, nil?: true
 
-      # @!attribute coverage_tier
-      #   - `Unspecified` - Unspecified
-      #   - `EE` - Ee
-      #   - `ES` - Es
-      #   - `EC` - Ec
-      #   - `EF` - Ef
-      #
-      #   @return [Symbol, VitableConnectAPI::Models::CoverageTier, nil]
-      optional :coverage_tier, enum: -> { VitableConnectAPI::CoverageTier }, nil?: true
-
       # @!attribute decision
       #   Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
       #
@@ -108,7 +107,7 @@ module VitableConnectAPI
       #   @return [String, nil]
       optional :selected_plan_name, String, nil?: true
 
-      # @!method initialize(id:, benefit_product_id:, created_at:, employee_id:, plan_year_id:, status:, updated_at:, coverage_end_date: nil, coverage_start_date: nil, coverage_tier: nil, decision: nil, employee_contribution_cents: nil, employer_contribution_cents: nil, enrolled_dependents: nil, selected_plan_id: nil, selected_plan_name: nil)
+      # @!method initialize(id:, benefit_product_id:, coverage_tier:, created_at:, employee_id:, plan_year_id:, status:, updated_at:, coverage_end_date: nil, coverage_start_date: nil, decision: nil, employee_contribution_cents: nil, employer_contribution_cents: nil, enrolled_dependents: nil, selected_plan_id: nil, selected_plan_name: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnectAPI::Models::Enrollment} for more details.
       #
@@ -120,6 +119,8 @@ module VitableConnectAPI
       #   @param id [String] Unique enrollment identifier with 'enrl\_' prefix
       #
       #   @param benefit_product_id [String] ID of the benefit product (bprd\_\*)
+      #
+      #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier] - `Unspecified` - Unspecified
       #
       #   @param created_at [Time] Timestamp when the enrollment was created
       #
@@ -134,8 +135,6 @@ module VitableConnectAPI
       #   @param coverage_end_date [Date, nil] Date when coverage ends
       #
       #   @param coverage_start_date [Date, nil] Date when coverage begins
-      #
-      #   @param coverage_tier [Symbol, VitableConnectAPI::Models::CoverageTier, nil] - `Unspecified` - Unspecified
       #
       #   @param decision [String, nil] Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
       #

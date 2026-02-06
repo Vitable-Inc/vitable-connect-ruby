@@ -9,31 +9,22 @@ class VitableConnectAPI::Test::Resources::Employers::EmployeesTest < VitableConn
     response =
       @vitable_connect_api.employers.employees.create(
         "empr_abc123def456",
-        date_of_birth: "2019-12-27",
-        email: "dev@stainless.com",
-        first_name: "x",
-        last_name: "x",
+        date_of_birth: "1992-08-25",
+        email: "michael.johnson@example.com",
+        first_name: "Michael",
+        last_name: "Johnson",
         sex: :Male,
-        ssn: "xxxxxxxxx",
-        start_date: "2019-12-27"
+        ssn: "123-45-6789",
+        start_date: "2024-12-01"
       )
 
     assert_pattern do
-      response => VitableConnectAPI::Employee
+      response => VitableConnectAPI::Models::Employers::EmployeeCreateResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
-        active: VitableConnectAPI::Internal::Type::Boolean,
-        created_at: Time,
-        employer_id: String,
-        member: VitableConnectAPI::Employee::Member,
-        start_date: Date,
-        updated_at: Time,
-        address: VitableConnectAPI::Employee::Address | nil,
-        employee_class: VitableConnectAPI::Employers::EmployeeClass | nil,
-        termination_date: Date | nil
+        data: VitableConnectAPI::Employee
       }
     end
   end
@@ -44,7 +35,14 @@ class VitableConnectAPI::Test::Resources::Employers::EmployeesTest < VitableConn
     response = @vitable_connect_api.employers.employees.list("empr_abc123def456")
 
     assert_pattern do
-      response => ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Employee])
+      response => VitableConnectAPI::Models::Employers::EmployeeListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Employee]),
+        pagination: VitableConnectAPI::Models::Employers::EmployeeListResponse::Pagination
+      }
     end
   end
 end

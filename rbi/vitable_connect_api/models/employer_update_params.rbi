@@ -87,6 +87,10 @@ module VitableConnectAPI
             )
           end
 
+        # Primary street address
+        sig { returns(String) }
+        attr_accessor :address_line_1
+
         # City name
         sig { returns(String) }
         attr_accessor :city
@@ -95,61 +99,46 @@ module VitableConnectAPI
         sig { returns(String) }
         attr_accessor :state
 
-        # Primary street address
-        sig { returns(String) }
-        attr_accessor :street_1
-
         # ZIP code
         sig { returns(String) }
-        attr_accessor :zip_code
-
-        # Country code
-        sig { returns(T.nilable(String)) }
-        attr_reader :country
-
-        sig { params(country: String).void }
-        attr_writer :country
+        attr_accessor :zipcode
 
         # Secondary street address
         sig { returns(T.nilable(String)) }
-        attr_accessor :street_2
+        attr_accessor :address_line_2
 
         # Employer address
         sig do
           params(
+            address_line_1: String,
             city: String,
             state: String,
-            street_1: String,
-            zip_code: String,
-            country: String,
-            street_2: T.nilable(String)
+            zipcode: String,
+            address_line_2: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
+          # Primary street address
+          address_line_1:,
           # City name
           city:,
           # Two-letter state code
           state:,
-          # Primary street address
-          street_1:,
           # ZIP code
-          zip_code:,
-          # Country code
-          country: nil,
+          zipcode:,
           # Secondary street address
-          street_2: nil
+          address_line_2: nil
         )
         end
 
         sig do
           override.returns(
             {
+              address_line_1: String,
               city: String,
               state: String,
-              street_1: String,
-              zip_code: String,
-              country: String,
-              street_2: T.nilable(String)
+              zipcode: String,
+              address_line_2: T.nilable(String)
             }
           )
         end

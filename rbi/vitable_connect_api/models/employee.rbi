@@ -17,7 +17,7 @@ module VitableConnectAPI
 
       # Whether the employee is currently active
       sig { returns(T::Boolean) }
-      attr_accessor :active
+      attr_accessor :active_in
 
       # Timestamp when the employee was created
       sig { returns(Time) }
@@ -79,7 +79,7 @@ module VitableConnectAPI
       sig do
         params(
           id: String,
-          active: T::Boolean,
+          active_in: T::Boolean,
           created_at: Time,
           employer_id: String,
           member: VitableConnectAPI::Employee::Member::OrHash,
@@ -95,7 +95,7 @@ module VitableConnectAPI
         # Unique employee identifier with 'empl\_' prefix
         id:,
         # Whether the employee is currently active
-        active:,
+        active_in:,
         # Timestamp when the employee was created
         created_at:,
         # ID of the employer this employee works for (empr\_\*)
@@ -126,7 +126,7 @@ module VitableConnectAPI
         override.returns(
           {
             id: String,
-            active: T::Boolean,
+            active_in: T::Boolean,
             created_at: Time,
             employer_id: String,
             member: VitableConnectAPI::Employee::Member,

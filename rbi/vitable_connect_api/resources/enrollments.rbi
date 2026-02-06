@@ -10,7 +10,7 @@ module VitableConnectAPI
         params(
           enrollment_id: String,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Enrollment)
+        ).returns(VitableConnectAPI::Models::EnrollmentRetrieveResponse)
       end
       def retrieve(
         # Unique enrollment identifier (enrl\_\*)
@@ -19,7 +19,7 @@ module VitableConnectAPI
       )
       end
 
-      # Retrieves all insurance plans eligible for selection for a specific enrollment.
+      # Retrieves all benefit plans eligible for selection for a specific enrollment.
       # Returns available plan options with coverage tiers, premium costs, deductibles,
       # and carrier info. Use during enrollment process to show employees their plan
       # choices.
@@ -27,9 +27,7 @@ module VitableConnectAPI
         params(
           enrollment_id: String,
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(
-          T::Array[VitableConnectAPI::Models::EnrollmentListPlansResponseItem]
-        )
+        ).returns(VitableConnectAPI::Models::EnrollmentListPlansResponse)
       end
       def list_plans(
         # Unique enrollment identifier (enrl\_\*)
@@ -48,7 +46,7 @@ module VitableConnectAPI
           qle_id: String,
           reason: T.nilable(String),
           request_options: VitableConnectAPI::RequestOptions::OrHash
-        ).returns(VitableConnectAPI::Enrollment)
+        ).returns(VitableConnectAPI::Models::EnrollmentReissueResponse)
       end
       def reissue(
         # Unique enrollment identifier (enrl\_\*)

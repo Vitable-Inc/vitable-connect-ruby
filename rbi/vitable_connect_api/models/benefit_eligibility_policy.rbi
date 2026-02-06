@@ -17,7 +17,7 @@ module VitableConnectAPI
 
       # Whether this policy is currently active
       sig { returns(T::Boolean) }
-      attr_accessor :active
+      attr_accessor :active_in
 
       # Timestamp when the policy was created
       sig { returns(Time) }
@@ -60,7 +60,7 @@ module VitableConnectAPI
       sig do
         params(
           id: String,
-          active: T::Boolean,
+          active_in: T::Boolean,
           created_at: Time,
           effective_date: Date,
           employer_id: String,
@@ -78,7 +78,7 @@ module VitableConnectAPI
         # Unique eligibility policy identifier with 'epol\_' prefix
         id:,
         # Whether this policy is currently active
-        active:,
+        active_in:,
         # Timestamp when the policy was created
         created_at:,
         # Date when this policy becomes effective
@@ -102,7 +102,7 @@ module VitableConnectAPI
         override.returns(
           {
             id: String,
-            active: T::Boolean,
+            active_in: T::Boolean,
             created_at: Time,
             effective_date: Date,
             employer_id: String,

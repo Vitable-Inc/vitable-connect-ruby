@@ -13,14 +13,14 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::BenefitProducts::PlanYear]
+      # @return [VitableConnectAPI::Models::PlanYearRetrieveResponse]
       #
       # @see VitableConnectAPI::Models::PlanYearRetrieveParams
       def retrieve(plan_year_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/plan-years/%1$s", plan_year_id],
-          model: VitableConnectAPI::BenefitProducts::PlanYear,
+          model: VitableConnectAPI::Models::PlanYearRetrieveResponse,
           options: params[:request_options]
         )
       end
@@ -43,7 +43,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::BenefitProducts::PlanYear]
+      # @return [VitableConnectAPI::Models::PlanYearUpdateResponse]
       #
       # @see VitableConnectAPI::Models::PlanYearUpdateParams
       def update(plan_year_id, params = {})
@@ -52,7 +52,7 @@ module VitableConnectAPI
           method: :put,
           path: ["v1/plan-years/%1$s", plan_year_id],
           body: parsed,
-          model: VitableConnectAPI::BenefitProducts::PlanYear,
+          model: VitableConnectAPI::Models::PlanYearUpdateResponse,
           options: options
         )
       end

@@ -25,13 +25,13 @@ require "bundler/setup"
 require "vitable_connect_api"
 
 vitable_connect_api = VitableConnectAPI::Client.new(
-  api_key: ENV["VITABLE_connect_API_API_KEY"], # This is the default and can be omitted
+  api_key: "My API Key",
   environment: "environment_1" # defaults to "production"
 )
 
-benefit_eligibility_policy = vitable_connect_api.benefit_eligibility_policy.retrieve("REPLACE_ME")
+benefit_products = vitable_connect_api.benefit_products.list
 
-puts(benefit_eligibility_policy.id)
+puts(benefit_products.data)
 ```
 
 ### Handling errors
@@ -40,7 +40,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  benefit_eligibility_policy = vitable_connect_api.benefit_eligibility_policy.retrieve("REPLACE_ME")
+  benefit_product = vitable_connect_api.benefit_products.list
 rescue VitableConnectAPI::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -79,11 +79,12 @@ You can use the `max_retries` option to configure or disable this:
 ```ruby
 # Configure the default for all requests:
 vitable_connect_api = VitableConnectAPI::Client.new(
-  max_retries: 0 # default is 2
+  max_retries: 0, # default is 2
+  api_key: "My API Key"
 )
 
 # Or, configure per-request:
-vitable_connect_api.benefit_eligibility_policy.retrieve("REPLACE_ME", request_options: {max_retries: 5})
+vitable_connect_api.benefit_products.list(request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -93,11 +94,12 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 ```ruby
 # Configure the default for all requests:
 vitable_connect_api = VitableConnectAPI::Client.new(
-  timeout: nil # default is 60
+  timeout: nil, # default is 60
+  api_key: "My API Key"
 )
 
 # Or, configure per-request:
-vitable_connect_api.benefit_eligibility_policy.retrieve("REPLACE_ME", request_options: {timeout: 5})
+vitable_connect_api.benefit_products.list(request_options: {timeout: 5})
 ```
 
 On timeout, `VitableConnectAPI::Errors::APITimeoutError` is raised.
@@ -127,9 +129,8 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 Note: the `extra_` parameters of the same name overrides the documented parameters.
 
 ```ruby
-benefit_eligibility_policy =
-  vitable_connect_api.benefit_eligibility_policy.retrieve(
-    "REPLACE_ME",
+benefit_products =
+  vitable_connect_api.benefit_products.list(
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -137,7 +138,7 @@ benefit_eligibility_policy =
     }
   )
 
-puts(benefit_eligibility_policy[:my_undocumented_property])
+puts(benefit_products[:my_undocumented_property])
 ```
 
 #### Undocumented request params
@@ -175,18 +176,18 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-vitable_connect_api.benefit_eligibility_policy.retrieve("REPLACE_ME")
+vitable_connect_api.benefit_products.list
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-vitable_connect_api.benefit_eligibility_policy.retrieve("REPLACE_ME")
+vitable_connect_api.benefit_products.list
 
 # You can also splat a full Params class:
-params = VitableConnectAPI::BenefitEligibilityPolicyRetrieveParams.new
-vitable_connect_api.benefit_eligibility_policy.retrieve("REPLACE_ME", **params)
+params = VitableConnectAPI::BenefitProductListParams.new
+vitable_connect_api.benefit_products.list(**params)
 ```
 
 ### Enums

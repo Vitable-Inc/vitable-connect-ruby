@@ -13,19 +13,19 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Enrollment]
+      # @return [VitableConnectAPI::Models::EnrollmentRetrieveResponse]
       #
       # @see VitableConnectAPI::Models::EnrollmentRetrieveParams
       def retrieve(enrollment_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/enrollments/%1$s", enrollment_id],
-          model: VitableConnectAPI::Enrollment,
+          model: VitableConnectAPI::Models::EnrollmentRetrieveResponse,
           options: params[:request_options]
         )
       end
 
-      # Retrieves all insurance plans eligible for selection for a specific enrollment.
+      # Retrieves all benefit plans eligible for selection for a specific enrollment.
       # Returns available plan options with coverage tiers, premium costs, deductibles,
       # and carrier info. Use during enrollment process to show employees their plan
       # choices.
@@ -36,14 +36,14 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<VitableConnectAPI::Models::EnrollmentListPlansResponseItem>]
+      # @return [VitableConnectAPI::Models::EnrollmentListPlansResponse]
       #
       # @see VitableConnectAPI::Models::EnrollmentListPlansParams
       def list_plans(enrollment_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/enrollments/%1$s/plans", enrollment_id],
-          model: VitableConnectAPI::Internal::Type::ArrayOf[VitableConnectAPI::Models::EnrollmentListPlansResponseItem],
+          model: VitableConnectAPI::Models::EnrollmentListPlansResponse,
           options: params[:request_options]
         )
       end
@@ -63,7 +63,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Enrollment]
+      # @return [VitableConnectAPI::Models::EnrollmentReissueResponse]
       #
       # @see VitableConnectAPI::Models::EnrollmentReissueParams
       def reissue(enrollment_id, params)
@@ -72,7 +72,7 @@ module VitableConnectAPI
           method: :post,
           path: ["v1/enrollments/%1$s/reissue", enrollment_id],
           body: parsed,
-          model: VitableConnectAPI::Enrollment,
+          model: VitableConnectAPI::Models::EnrollmentReissueResponse,
           options: options
         )
       end

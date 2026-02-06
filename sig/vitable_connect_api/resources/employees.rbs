@@ -6,7 +6,7 @@ module VitableConnectAPI
       def retrieve: (
         String employee_id,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Employee
+      ) -> VitableConnectAPI::Models::EmployeeRetrieveResponse
 
       def update: (
         String employee_id,
@@ -17,7 +17,7 @@ module VitableConnectAPI
         ?phone: String?,
         ?termination_date: Date?,
         ?request_options: VitableConnectAPI::request_opts
-      ) -> VitableConnectAPI::Employee
+      ) -> VitableConnectAPI::Models::EmployeeUpdateResponse
 
       def terminate: (
         String employee_id,

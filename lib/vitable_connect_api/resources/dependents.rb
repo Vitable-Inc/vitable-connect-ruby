@@ -12,14 +12,14 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Dependent]
+      # @return [VitableConnectAPI::Models::DependentRetrieveResponse]
       #
       # @see VitableConnectAPI::Models::DependentRetrieveParams
       def retrieve(dependent_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/dependents/%1$s", dependent_id],
-          model: VitableConnectAPI::Dependent,
+          model: VitableConnectAPI::Models::DependentRetrieveResponse,
           options: params[:request_options]
         )
       end
@@ -43,7 +43,7 @@ module VitableConnectAPI
       #
       # @param request_options [VitableConnectAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnectAPI::Models::Dependent]
+      # @return [VitableConnectAPI::Models::DependentUpdateResponse]
       #
       # @see VitableConnectAPI::Models::DependentUpdateParams
       def update(dependent_id, params = {})
@@ -52,7 +52,7 @@ module VitableConnectAPI
           method: :put,
           path: ["v1/dependents/%1$s", dependent_id],
           body: parsed,
-          model: VitableConnectAPI::Dependent,
+          model: VitableConnectAPI::Models::DependentUpdateResponse,
           options: options
         )
       end

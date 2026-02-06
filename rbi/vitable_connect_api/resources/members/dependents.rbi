@@ -19,7 +19,7 @@ module VitableConnectAPI
             ssn: T.nilable(String),
             suffix: T.nilable(String),
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(VitableConnectAPI::Dependent)
+          ).returns(VitableConnectAPI::Models::Members::DependentCreateResponse)
         end
         def create(
           # Unique member identifier (mbr\_\*)
@@ -59,7 +59,7 @@ module VitableConnectAPI
             page: Integer,
             relationship: VitableConnectAPI::Members::Relationship::OrSymbol,
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(T::Array[VitableConnectAPI::Dependent])
+          ).returns(VitableConnectAPI::Models::Members::DependentListResponse)
         end
         def list(
           # Unique member identifier (mbr\_\*)

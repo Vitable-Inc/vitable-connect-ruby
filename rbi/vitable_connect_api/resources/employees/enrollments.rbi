@@ -17,7 +17,9 @@ module VitableConnectAPI
             plan_year: Integer,
             status: VitableConnectAPI::Employees::EnrollmentStatus::OrSymbol,
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(T::Array[VitableConnectAPI::Enrollment])
+          ).returns(
+            VitableConnectAPI::Models::Employees::EnrollmentListResponse
+          )
         end
         def list(
           # Unique employee identifier (empl\_\*)
@@ -48,7 +50,9 @@ module VitableConnectAPI
                 VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election::OrHash
               ],
             request_options: VitableConnectAPI::RequestOptions::OrHash
-          ).returns(T::Array[VitableConnectAPI::Enrollment])
+          ).returns(
+            VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsResponse
+          )
         end
         def submit_elections(
           # Unique employee identifier (empl\_\*)

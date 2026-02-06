@@ -1,7 +1,52 @@
 module VitableConnectAPI
   module Models
-    type employer_list_response = ::Array[VitableConnectAPI::Employer]
+    type employer_list_response =
+      {
+        data: ::Array[VitableConnectAPI::Employer],
+        pagination: VitableConnectAPI::Models::EmployerListResponse::Pagination
+      }
 
-    EmployerListResponse: VitableConnectAPI::Internal::Type::Converter
+    class EmployerListResponse < VitableConnectAPI::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnectAPI::Employer]
+
+      attr_accessor pagination: VitableConnectAPI::Models::EmployerListResponse::Pagination
+
+      def initialize: (
+        data: ::Array[VitableConnectAPI::Employer],
+        pagination: VitableConnectAPI::Models::EmployerListResponse::Pagination
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[VitableConnectAPI::Employer],
+        pagination: VitableConnectAPI::Models::EmployerListResponse::Pagination
+      }
+
+      type pagination =
+        { limit: Integer, page: Integer, total: Integer, total_pages: Integer }
+
+      class Pagination < VitableConnectAPI::Internal::Type::BaseModel
+        attr_accessor limit: Integer
+
+        attr_accessor page: Integer
+
+        attr_accessor total: Integer
+
+        attr_accessor total_pages: Integer
+
+        def initialize: (
+          limit: Integer,
+          page: Integer,
+          total: Integer,
+          total_pages: Integer
+        ) -> void
+
+        def to_hash: -> {
+          limit: Integer,
+          page: Integer,
+          total: Integer,
+          total_pages: Integer
+        }
+      end
+    end
   end
 end

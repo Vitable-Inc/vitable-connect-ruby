@@ -10,13 +10,13 @@ module VitableConnectAPI
           ?plan_year: Integer,
           ?status: VitableConnectAPI::Models::Employees::enrollment_status,
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Models::Employees::enrollment_list_response
+        ) -> VitableConnectAPI::Models::Employees::EnrollmentListResponse
 
         def submit_elections: (
           String employee_id,
           elections: ::Array[VitableConnectAPI::Employees::EnrollmentSubmitElectionsParams::Election],
           ?request_options: VitableConnectAPI::request_opts
-        ) -> VitableConnectAPI::Models::Employees::enrollment_submit_elections_response
+        ) -> VitableConnectAPI::Models::Employees::EnrollmentSubmitElectionsResponse
 
         def initialize: (client: VitableConnectAPI::Client) -> void
       end
