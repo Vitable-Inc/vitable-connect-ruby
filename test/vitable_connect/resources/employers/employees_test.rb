@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class VitableConnect::Test::Resources::Employers::EmployeesTest < VitableConnect::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @vitable_connect.employers.employees.create(
@@ -30,7 +30,7 @@ class VitableConnect::Test::Resources::Employers::EmployeesTest < VitableConnect
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.employers.employees.list("empr_abc123def456")
 

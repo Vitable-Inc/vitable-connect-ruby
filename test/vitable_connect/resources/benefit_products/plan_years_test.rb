@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class VitableConnect::Test::Resources::BenefitProducts::PlanYearsTest < VitableConnect::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @vitable_connect.benefit_products.plan_years.create(
@@ -42,7 +42,7 @@ class VitableConnect::Test::Resources::BenefitProducts::PlanYearsTest < VitableC
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.benefit_products.plan_years.list("bprd_abc123def456")
 

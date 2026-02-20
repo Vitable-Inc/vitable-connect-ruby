@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class VitableConnect::Test::Resources::PlanYearsTest < VitableConnect::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.plan_years.retrieve("plyr_abc123def456")
 
@@ -20,7 +20,7 @@ class VitableConnect::Test::Resources::PlanYearsTest < VitableConnect::Test::Res
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.plan_years.update("plyr_abc123def456")
 

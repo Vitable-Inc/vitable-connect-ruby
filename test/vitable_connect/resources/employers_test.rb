@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @vitable_connect.employers.create(
@@ -27,7 +27,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.employers.retrieve("empr_abc123def456")
 
@@ -43,7 +43,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.employers.update("empr_abc123def456")
 
@@ -59,7 +59,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.employers.list
 
@@ -76,7 +76,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
   end
 
   def test_create_eligibility_policy_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @vitable_connect.employers.create_eligibility_policy(
