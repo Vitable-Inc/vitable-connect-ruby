@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class VitableConnect::Test::Resources::Members::QualifyingLifeEventsTest < VitableConnect::Test::ResourceTest
   def test_retrieve_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @vitable_connect.members.qualifying_life_events.retrieve(
@@ -24,7 +24,7 @@ class VitableConnect::Test::Resources::Members::QualifyingLifeEventsTest < Vitab
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.members.qualifying_life_events.list("mbr_abc123def456")
 
@@ -41,7 +41,7 @@ class VitableConnect::Test::Resources::Members::QualifyingLifeEventsTest < Vitab
   end
 
   def test_record_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @vitable_connect.members.qualifying_life_events.record(

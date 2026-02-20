@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class VitableConnect::Test::Resources::AuthTest < VitableConnect::Test::ResourceTest
   def test_issue_access_token_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.auth.issue_access_token(grant_type: :client_credentials)
 

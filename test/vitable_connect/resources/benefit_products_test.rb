@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class VitableConnect::Test::Resources::BenefitProductsTest < VitableConnect::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.benefit_products.list
 

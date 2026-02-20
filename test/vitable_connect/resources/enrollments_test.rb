@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.enrollments.retrieve("enrl_abc123def456")
 
@@ -20,7 +20,7 @@ class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::R
   end
 
   def test_list_plans
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.enrollments.list_plans("enrl_abc123def456")
 
@@ -37,7 +37,7 @@ class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::R
   end
 
   def test_reissue_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @vitable_connect.enrollments.reissue("enrl_abc123def456", qle_id: "qle_marriage123abc")
 
