@@ -2,7 +2,9 @@
 
 module VitableConnect
   module Resources
+    # Browse available benefit products that can be offered to employers
     class BenefitProducts
+      # Configure annual benefit periods with coverage dates and contribution settings
       # @return [VitableConnect::Resources::BenefitProducts::PlanYears]
       attr_reader :plan_years
 
@@ -29,10 +31,11 @@ module VitableConnect
       # @see VitableConnect::Models::BenefitProductListParams
       def list(params = {})
         parsed, options = VitableConnect::BenefitProductListParams.dump_request(params)
+        query = VitableConnect::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "v1/benefit-products",
-          query: parsed,
+          query: query,
           model: VitableConnect::Models::BenefitProductListResponse,
           options: options
         )

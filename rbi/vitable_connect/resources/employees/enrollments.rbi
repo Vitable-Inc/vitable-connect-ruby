@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Employees
+      # Manage benefit enrollments and elections for employees
       class Enrollments
         # Retrieves a paginated list of benefit enrollments for an employee. Enrollments
         # have statuses: 'pending' (in enrollment period), 'enrolled' (active coverage),

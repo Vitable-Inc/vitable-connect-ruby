@@ -2,6 +2,7 @@
 
 module VitableConnect
   module Resources
+    # Define rules that determine which employees qualify for benefits
     class BenefitEligibilityPolicies
       # Retrieves detailed information for a specific benefit eligibility policy by ID.
       # Returns the complete policy configuration including all eligibility rules,

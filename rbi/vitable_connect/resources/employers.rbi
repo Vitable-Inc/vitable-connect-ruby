@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Employers
+      # Manage employee records for employers
       sig { returns(VitableConnect::Resources::Employers::Employees) }
       attr_reader :employees
 

@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Employers
+      # Manage employee records for employers
       class Employees
         # Creates a new employee for a specific employer. Requires personal information
         # (name, DOB, SSN) and employment details (start date). Note: SSN can only be

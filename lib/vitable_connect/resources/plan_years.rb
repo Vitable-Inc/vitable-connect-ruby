@@ -2,6 +2,7 @@
 
 module VitableConnect
   module Resources
+    # Configure annual benefit periods with coverage dates and contribution settings
     class PlanYears
       # Retrieves detailed configuration for a specific plan year by ID. Returns
       # coverage dates, open enrollment period, available plans, and contribution

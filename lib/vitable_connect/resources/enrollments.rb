@@ -2,6 +2,7 @@
 
 module VitableConnect
   module Resources
+    # Manage benefit enrollments and elections for employees
     class Enrollments
       # Retrieves detailed information for a specific enrollment by ID. Returns selected
       # plan, coverage dates, enrolled dependents, premium amounts, and status. This

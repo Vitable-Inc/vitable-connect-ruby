@@ -2,6 +2,7 @@
 
 module VitableConnect
   module Resources
+    # Manage dependent records (spouses, children) for employees
     class Dependents
       # Retrieves detailed information for a specific dependent by ID. Returns dependent
       # profile including name, date of birth, and relationship type.
