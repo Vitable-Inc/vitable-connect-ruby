@@ -2,6 +2,7 @@
 
 module VitableConnect
   module Resources
+    # Issue short-lived access tokens for scoped API access
     class Auth
       # Issues a short-lived access token from the authenticated API key. Access tokens
       # can optionally be bound to a specific employer or employee for scoped access.

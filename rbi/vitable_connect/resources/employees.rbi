@@ -2,7 +2,9 @@
 
 module VitableConnect
   module Resources
+    # Manage employee records for employers
     class Employees
+      # Manage benefit enrollments and elections for employees
       sig { returns(VitableConnect::Resources::Employees::Enrollments) }
       attr_reader :enrollments
 

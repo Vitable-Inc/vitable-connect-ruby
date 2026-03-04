@@ -24,30 +24,37 @@ module VitableConnect
     sig { returns(String) }
     attr_reader :api_key
 
+    # Issue short-lived access tokens for scoped API access
     sig { returns(VitableConnect::Resources::Auth) }
     attr_reader :auth
 
+    # Define rules that determine which employees qualify for benefits
     sig { returns(VitableConnect::Resources::BenefitEligibilityPolicies) }
     attr_reader :benefit_eligibility_policies
 
+    # Browse available benefit products that can be offered to employers
     sig { returns(VitableConnect::Resources::BenefitProducts) }
     attr_reader :benefit_products
 
+    # Manage dependent records (spouses, children) for employees
     sig { returns(VitableConnect::Resources::Dependents) }
     attr_reader :dependents
 
+    # Manage employee records for employers
     sig { returns(VitableConnect::Resources::Employees) }
     attr_reader :employees
 
     sig { returns(VitableConnect::Resources::Employers) }
     attr_reader :employers
 
+    # Manage benefit enrollments and elections for employees
     sig { returns(VitableConnect::Resources::Enrollments) }
     attr_reader :enrollments
 
     sig { returns(VitableConnect::Resources::Members) }
     attr_reader :members
 
+    # Configure annual benefit periods with coverage dates and contribution settings
     sig { returns(VitableConnect::Resources::PlanYears) }
     attr_reader :plan_years
 

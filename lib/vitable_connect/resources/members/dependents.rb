@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Members
+      # Manage dependent records (spouses, children) for employees
       class Dependents
         # Some parameter documentations has been truncated, see
         # {VitableConnect::Models::Members::DependentCreateParams} for more details.
@@ -70,10 +71,11 @@ module VitableConnect
         # @see VitableConnect::Models::Members::DependentListParams
         def list(member_id, params = {})
           parsed, options = VitableConnect::Members::DependentListParams.dump_request(params)
+          query = VitableConnect::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["v1/members/%1$s/dependents", member_id],
-            query: parsed,
+            query: query,
             model: VitableConnect::Models::Members::DependentListResponse,
             options: options
           )

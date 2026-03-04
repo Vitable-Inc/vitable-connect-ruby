@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Members
+      # Manage dependent records (spouses, children) for employees
       class Dependents
         # Creates a new dependent record for a member. Required: first name, last name,
         # date of birth, sex, and relationship type. SSN is optional but recommended for

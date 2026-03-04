@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Employees
+      # Manage benefit enrollments and elections for employees
       class Enrollments
         # Retrieves a paginated list of benefit enrollments for an employee. Enrollments
         # have statuses: 'pending' (in enrollment period), 'enrolled' (active coverage),
@@ -30,10 +31,11 @@ module VitableConnect
         # @see VitableConnect::Models::Employees::EnrollmentListParams
         def list(employee_id, params = {})
           parsed, options = VitableConnect::Employees::EnrollmentListParams.dump_request(params)
+          query = VitableConnect::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["v1/employees/%1$s/enrollments", employee_id],
-            query: parsed,
+            query: query,
             model: VitableConnect::Employees::EnrollmentList,
             options: options
           )

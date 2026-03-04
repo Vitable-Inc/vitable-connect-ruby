@@ -2,7 +2,9 @@
 
 module VitableConnect
   module Resources
+    # Browse available benefit products that can be offered to employers
     class BenefitProducts
+      # Configure annual benefit periods with coverage dates and contribution settings
       sig { returns(VitableConnect::Resources::BenefitProducts::PlanYears) }
       attr_reader :plan_years
 

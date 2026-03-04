@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Members
+      # Record life events that trigger special enrollment periods
       class QualifyingLifeEvents
         # Retrieves detailed information for a specific QLE by ID. Returns event type,
         # date, status, and enrollment window information.
@@ -55,10 +56,11 @@ module VitableConnect
         # @see VitableConnect::Models::Members::QualifyingLifeEventListParams
         def list(member_id, params = {})
           parsed, options = VitableConnect::Members::QualifyingLifeEventListParams.dump_request(params)
+          query = VitableConnect::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["v1/members/%1$s/qualifying-life-events", member_id],
-            query: parsed,
+            query: query,
             model: VitableConnect::Models::Members::QualifyingLifeEventListResponse,
             options: options
           )

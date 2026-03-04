@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Employers
+      # Manage employee records for employers
       class Employees
         # Some parameter documentations has been truncated, see
         # {VitableConnect::Models::Employers::EmployeeCreateParams} for more details.
@@ -79,10 +80,11 @@ module VitableConnect
         # @see VitableConnect::Models::Employers::EmployeeListParams
         def list(employer_id, params = {})
           parsed, options = VitableConnect::Employers::EmployeeListParams.dump_request(params)
+          query = VitableConnect::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["v1/employers/%1$s/employees", employer_id],
-            query: parsed,
+            query: query,
             model: VitableConnect::Models::Employers::EmployeeListResponse,
             options: options
           )

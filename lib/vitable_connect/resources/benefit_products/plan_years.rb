@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class BenefitProducts
+      # Configure annual benefit periods with coverage dates and contribution settings
       class PlanYears
         # Creates a new plan year configuration for a benefit product and employer.
         # Configures coverage period dates, open enrollment window, and contribution
@@ -63,10 +64,11 @@ module VitableConnect
         # @see VitableConnect::Models::BenefitProducts::PlanYearListParams
         def list(benefit_product_id, params = {})
           parsed, options = VitableConnect::BenefitProducts::PlanYearListParams.dump_request(params)
+          query = VitableConnect::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["v1/benefit-products/%1$s/plan-years", benefit_product_id],
-            query: parsed,
+            query: query,
             model: VitableConnect::Models::BenefitProducts::PlanYearListResponse,
             options: options
           )

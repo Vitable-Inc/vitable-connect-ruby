@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Members
+      # Record life events that trigger special enrollment periods
       class QualifyingLifeEvents
         # Retrieves detailed information for a specific QLE by ID. Returns event type,
         # date, status, and enrollment window information.

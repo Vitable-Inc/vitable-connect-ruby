@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class BenefitProducts
+      # Configure annual benefit periods with coverage dates and contribution settings
       class PlanYears
         # Creates a new plan year configuration for a benefit product and employer.
         # Configures coverage period dates, open enrollment window, and contribution

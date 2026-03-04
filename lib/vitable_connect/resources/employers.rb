@@ -3,6 +3,7 @@
 module VitableConnect
   module Resources
     class Employers
+      # Manage employee records for employers
       # @return [VitableConnect::Resources::Employers::Employees]
       attr_reader :employees
 
@@ -111,10 +112,11 @@ module VitableConnect
       # @see VitableConnect::Models::EmployerListParams
       def list(params = {})
         parsed, options = VitableConnect::EmployerListParams.dump_request(params)
+        query = VitableConnect::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "v1/employers",
-          query: parsed,
+          query: query,
           model: VitableConnect::Models::EmployerListResponse,
           options: options
         )
@@ -147,12 +149,13 @@ module VitableConnect
       #
       # @see VitableConnect::Models::EmployerCreateEligibilityPolicyParams
       def create_eligibility_policy(employer_id, params)
-        parsed, options = VitableConnect::EmployerCreateEligibilityPolicyParams.dump_request(params)
         query_params = [:policy_to_replace_id]
+        parsed, options = VitableConnect::EmployerCreateEligibilityPolicyParams.dump_request(params)
+        query = VitableConnect::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :post,
           path: ["v1/employers/%1$s/benefit-eligibility-policies", employer_id],
-          query: parsed.slice(*query_params),
+          query: query,
           body: parsed.except(*query_params),
           model: VitableConnect::BenefitEligibilityPolicy,
           options: options
