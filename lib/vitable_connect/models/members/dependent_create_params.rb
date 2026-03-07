@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute member_id
+        #   Unique member identifier (mbr\_\*)
+        #
+        #   @return [String]
+        required :member_id, String
+
         # @!attribute date_of_birth
         #   Date of birth (YYYY-MM-DD)
         #
@@ -60,9 +66,11 @@ module VitableConnect
         #   @return [String, nil]
         optional :suffix, String, nil?: true
 
-        # @!method initialize(date_of_birth:, first_name:, last_name:, relationship:, sex:, gender: nil, ssn: nil, suffix: nil, request_options: {})
+        # @!method initialize(member_id:, date_of_birth:, first_name:, last_name:, relationship:, sex:, gender: nil, ssn: nil, suffix: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::Members::DependentCreateParams} for more details.
+        #
+        #   @param member_id [String] Unique member identifier (mbr\_\*)
         #
         #   @param date_of_birth [Date] Date of birth (YYYY-MM-DD)
         #

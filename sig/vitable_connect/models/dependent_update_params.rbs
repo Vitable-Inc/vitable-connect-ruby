@@ -2,6 +2,7 @@ module VitableConnect
   module Models
     type dependent_update_params =
       {
+        dependent_id: String,
         active: bool?,
         gender: String?,
         relationship: VitableConnect::Models::Members::relationship?
@@ -12,6 +13,8 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      attr_accessor dependent_id: String
+
       attr_accessor active: bool?
 
       attr_accessor gender: String?
@@ -19,6 +22,7 @@ module VitableConnect
       attr_accessor relationship: VitableConnect::Models::Members::relationship?
 
       def initialize: (
+        dependent_id: String,
         ?active: bool?,
         ?gender: String?,
         ?relationship: VitableConnect::Models::Members::relationship?,
@@ -26,6 +30,7 @@ module VitableConnect
       ) -> void
 
       def to_hash: -> {
+        dependent_id: String,
         active: bool?,
         gender: String?,
         relationship: VitableConnect::Models::Members::relationship?,

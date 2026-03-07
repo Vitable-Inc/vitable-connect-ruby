@@ -3,6 +3,7 @@ module VitableConnect
     module Members
       type qualifying_life_event_list_params =
         {
+          member_id: String,
           event_type: VitableConnect::Models::Members::event_type,
           limit: Integer,
           page: Integer,
@@ -13,6 +14,8 @@ module VitableConnect
       class QualifyingLifeEventListParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor member_id: String
 
         attr_reader event_type: VitableConnect::Models::Members::event_type?
 
@@ -35,6 +38,7 @@ module VitableConnect
         ) -> VitableConnect::Models::Members::qualifying_life_event_status
 
         def initialize: (
+          member_id: String,
           ?event_type: VitableConnect::Models::Members::event_type,
           ?limit: Integer,
           ?page: Integer,
@@ -43,6 +47,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          member_id: String,
           event_type: VitableConnect::Models::Members::event_type,
           limit: Integer,
           page: Integer,

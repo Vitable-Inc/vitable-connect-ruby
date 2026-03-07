@@ -3,6 +3,7 @@ module VitableConnect
     module Employees
       type enrollment_submit_elections_params =
         {
+          employee_id: String,
           elections: ::Array[VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election]
         }
         & VitableConnect::Internal::Type::request_parameters
@@ -11,14 +12,18 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        attr_accessor employee_id: String
+
         attr_accessor elections: ::Array[VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election]
 
         def initialize: (
+          employee_id: String,
           elections: ::Array[VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election],
           ?request_options: VitableConnect::request_opts
         ) -> void
 
         def to_hash: -> {
+          employee_id: String,
           elections: ::Array[VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election],
           request_options: VitableConnect::RequestOptions
         }

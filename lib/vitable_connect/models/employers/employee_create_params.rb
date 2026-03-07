@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute employer_id
+        #   Filter by employer ID
+        #
+        #   @return [String]
+        required :employer_id, String
+
         # @!attribute date_of_birth
         #   Date of birth (YYYY-MM-DD)
         #
@@ -88,9 +94,11 @@ module VitableConnect
         #   @return [String, nil]
         optional :suffix, String, nil?: true
 
-        # @!method initialize(date_of_birth:, email:, first_name:, last_name:, sex:, ssn:, start_date:, address: nil, employee_class: nil, gender: nil, phone: nil, suffix: nil, request_options: {})
+        # @!method initialize(employer_id:, date_of_birth:, email:, first_name:, last_name:, sex:, ssn:, start_date:, address: nil, employee_class: nil, gender: nil, phone: nil, suffix: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::Employers::EmployeeCreateParams} for more details.
+        #
+        #   @param employer_id [String] Filter by employer ID
         #
         #   @param date_of_birth [Date] Date of birth (YYYY-MM-DD)
         #

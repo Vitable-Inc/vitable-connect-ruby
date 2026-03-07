@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute employee_id
+        #   Unique employee identifier (empl\_\*)
+        #
+        #   @return [String]
+        required :employee_id, String
+
         # @!attribute elections
         #   List of enrollment elections
         #
@@ -15,7 +21,9 @@ module VitableConnect
         required :elections,
                  -> { VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election] }
 
-        # @!method initialize(elections:, request_options: {})
+        # @!method initialize(employee_id:, elections:, request_options: {})
+        #   @param employee_id [String] Unique employee identifier (empl\_\*)
+        #
         #   @param elections [Array<VitableConnect::Models::Employees::EnrollmentSubmitElectionsParams::Election>] List of enrollment elections
         #
         #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]

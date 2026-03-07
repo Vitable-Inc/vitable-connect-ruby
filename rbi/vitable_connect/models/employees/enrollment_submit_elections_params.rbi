@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique employee identifier (empl\_\*)
+        sig { returns(String) }
+        attr_accessor :employee_id
+
         # List of enrollment elections
         sig do
           returns(
@@ -27,6 +31,7 @@ module VitableConnect
 
         sig do
           params(
+            employee_id: String,
             elections:
               T::Array[
                 VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election::OrHash
@@ -35,6 +40,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique employee identifier (empl\_\*)
+          employee_id:,
           # List of enrollment elections
           elections:,
           request_options: {}
@@ -44,6 +51,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              employee_id: String,
               elections:
                 T::Array[
                   VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election

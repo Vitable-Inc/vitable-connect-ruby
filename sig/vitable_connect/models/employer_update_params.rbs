@@ -2,6 +2,7 @@ module VitableConnect
   module Models
     type employer_update_params =
       {
+        employer_id: String,
         active: bool?,
         address: VitableConnect::EmployerUpdateParams::Address?,
         legal_name: String?,
@@ -13,6 +14,8 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      attr_accessor employer_id: String
+
       attr_accessor active: bool?
 
       attr_accessor address: VitableConnect::EmployerUpdateParams::Address?
@@ -22,6 +25,7 @@ module VitableConnect
       attr_accessor name: String?
 
       def initialize: (
+        employer_id: String,
         ?active: bool?,
         ?address: VitableConnect::EmployerUpdateParams::Address?,
         ?legal_name: String?,
@@ -30,6 +34,7 @@ module VitableConnect
       ) -> void
 
       def to_hash: -> {
+        employer_id: String,
         active: bool?,
         address: VitableConnect::EmployerUpdateParams::Address?,
         legal_name: String?,

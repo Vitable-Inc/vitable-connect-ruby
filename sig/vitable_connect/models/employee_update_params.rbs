@@ -2,6 +2,7 @@ module VitableConnect
   module Models
     type employee_update_params =
       {
+        employee_id: String,
         address: VitableConnect::EmployeeUpdateParams::Address?,
         email: String?,
         employee_class: VitableConnect::Models::Employers::employee_class?,
@@ -14,6 +15,8 @@ module VitableConnect
     class EmployeeUpdateParams < VitableConnect::Internal::Type::BaseModel
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employee_id: String
 
       attr_accessor address: VitableConnect::EmployeeUpdateParams::Address?
 
@@ -28,6 +31,7 @@ module VitableConnect
       attr_accessor termination_date: Date?
 
       def initialize: (
+        employee_id: String,
         ?address: VitableConnect::EmployeeUpdateParams::Address?,
         ?email: String?,
         ?employee_class: VitableConnect::Models::Employers::employee_class?,
@@ -38,6 +42,7 @@ module VitableConnect
       ) -> void
 
       def to_hash: -> {
+        employee_id: String,
         address: VitableConnect::EmployeeUpdateParams::Address?,
         email: String?,
         employee_class: VitableConnect::Models::Employers::employee_class?,

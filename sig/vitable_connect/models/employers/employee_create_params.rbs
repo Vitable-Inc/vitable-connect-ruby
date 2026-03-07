@@ -3,6 +3,7 @@ module VitableConnect
     module Employers
       type employee_create_params =
         {
+          employer_id: String,
           date_of_birth: Date,
           email: String,
           first_name: String,
@@ -21,6 +22,8 @@ module VitableConnect
       class EmployeeCreateParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor employer_id: String
 
         attr_accessor date_of_birth: Date
 
@@ -47,6 +50,7 @@ module VitableConnect
         attr_accessor suffix: String?
 
         def initialize: (
+          employer_id: String,
           date_of_birth: Date,
           email: String,
           first_name: String,
@@ -63,6 +67,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          employer_id: String,
           date_of_birth: Date,
           email: String,
           first_name: String,

@@ -2,6 +2,7 @@ module VitableConnect
   module Models
     type plan_year_update_params =
       {
+        plan_year_id: String,
         contribution_classes: ::Array[VitableConnect::PlanYearUpdateParams::ContributionClass]?,
         open_enrollment_end: Date?,
         open_enrollment_start: Date?,
@@ -13,6 +14,8 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      attr_accessor plan_year_id: String
+
       attr_accessor contribution_classes: ::Array[VitableConnect::PlanYearUpdateParams::ContributionClass]?
 
       attr_accessor open_enrollment_end: Date?
@@ -22,6 +25,7 @@ module VitableConnect
       attr_accessor status: String?
 
       def initialize: (
+        plan_year_id: String,
         ?contribution_classes: ::Array[VitableConnect::PlanYearUpdateParams::ContributionClass]?,
         ?open_enrollment_end: Date?,
         ?open_enrollment_start: Date?,
@@ -30,6 +34,7 @@ module VitableConnect
       ) -> void
 
       def to_hash: -> {
+        plan_year_id: String,
         contribution_classes: ::Array[VitableConnect::PlanYearUpdateParams::ContributionClass]?,
         open_enrollment_end: Date?,
         open_enrollment_start: Date?,

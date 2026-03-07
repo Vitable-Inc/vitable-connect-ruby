@@ -3,6 +3,7 @@ module VitableConnect
     module Employers
       type employee_list_params =
         {
+          employer_id: String,
           active_in: bool,
           employee_class: VitableConnect::Models::Employers::employee_class,
           limit: Integer,
@@ -13,6 +14,8 @@ module VitableConnect
       class EmployeeListParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor employer_id: String
 
         attr_reader active_in: bool?
 
@@ -33,6 +36,7 @@ module VitableConnect
         def page=: (Integer) -> Integer
 
         def initialize: (
+          employer_id: String,
           ?active_in: bool,
           ?employee_class: VitableConnect::Models::Employers::employee_class,
           ?limit: Integer,
@@ -41,6 +45,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          employer_id: String,
           active_in: bool,
           employee_class: VitableConnect::Models::Employers::employee_class,
           limit: Integer,

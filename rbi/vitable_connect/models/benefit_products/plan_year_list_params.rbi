@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique benefit product identifier (bprd\_\*)
+        sig { returns(String) }
+        attr_accessor :benefit_product_id
+
         # Filter by employer ID
         sig { returns(T.nilable(String)) }
         attr_reader :employer_id
@@ -53,6 +57,7 @@ module VitableConnect
 
         sig do
           params(
+            benefit_product_id: String,
             employer_id: String,
             limit: Integer,
             page: Integer,
@@ -61,6 +66,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique benefit product identifier (bprd\_\*)
+          benefit_product_id:,
           # Filter by employer ID
           employer_id: nil,
           # Items per page (default: 20, max: 100)
@@ -76,6 +83,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              benefit_product_id: String,
               employer_id: String,
               limit: Integer,
               page: Integer,

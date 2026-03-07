@@ -14,16 +14,30 @@ module VitableConnect
           )
         end
 
+      # Unique plan year identifier (plyr\_\*)
+      sig { returns(String) }
+      attr_accessor :plan_year_id
+
       sig do
-        params(request_options: VitableConnect::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          plan_year_id: String,
+          request_options: VitableConnect::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # Unique plan year identifier (plyr\_\*)
+        plan_year_id:,
+        request_options: {}
+      )
       end
 
       sig do
-        override.returns({ request_options: VitableConnect::RequestOptions })
+        override.returns(
+          {
+            plan_year_id: String,
+            request_options: VitableConnect::RequestOptions
+          }
+        )
       end
       def to_hash
       end

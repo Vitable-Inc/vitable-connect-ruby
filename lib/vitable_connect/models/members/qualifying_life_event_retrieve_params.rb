@@ -14,8 +14,16 @@ module VitableConnect
         #   @return [String]
         required :member_id, String
 
-        # @!method initialize(member_id:, request_options: {})
+        # @!attribute qle_id
+        #   Unique qualifying life event identifier (qle\_\*)
+        #
+        #   @return [String]
+        required :qle_id, String
+
+        # @!method initialize(member_id:, qle_id:, request_options: {})
         #   @param member_id [String] Unique member identifier (mbr\_\*)
+        #
+        #   @param qle_id [String] Unique qualifying life event identifier (qle\_\*)
         #
         #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
       end

@@ -7,6 +7,12 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      # @!attribute employee_id
+      #   Unique employee identifier (empl\_\*)
+      #
+      #   @return [String]
+      required :employee_id, String
+
       # @!attribute address
       #   Employee's residential address
       #
@@ -48,9 +54,11 @@ module VitableConnect
       #   @return [Date, nil]
       optional :termination_date, Date, nil?: true
 
-      # @!method initialize(address: nil, email: nil, employee_class: nil, gender: nil, phone: nil, termination_date: nil, request_options: {})
+      # @!method initialize(employee_id:, address: nil, email: nil, employee_class: nil, gender: nil, phone: nil, termination_date: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::EmployeeUpdateParams} for more details.
+      #
+      #   @param employee_id [String] Unique employee identifier (empl\_\*)
       #
       #   @param address [VitableConnect::Models::EmployeeUpdateParams::Address, nil] Employee's residential address
       #

@@ -14,6 +14,10 @@ module VitableConnect
           )
         end
 
+      # Filter by employer ID
+      sig { returns(String) }
+      attr_accessor :employer_id
+
       # Date when policy becomes effective
       sig { returns(Date) }
       attr_accessor :effective_date
@@ -43,6 +47,7 @@ module VitableConnect
 
       sig do
         params(
+          employer_id: String,
           effective_date: Date,
           name: String,
           rules:
@@ -55,6 +60,8 @@ module VitableConnect
         ).returns(T.attached_class)
       end
       def self.new(
+        # Filter by employer ID
+        employer_id:,
         # Date when policy becomes effective
         effective_date:,
         # Display name for the policy
@@ -72,6 +79,7 @@ module VitableConnect
       sig do
         override.returns(
           {
+            employer_id: String,
             effective_date: Date,
             name: String,
             rules:

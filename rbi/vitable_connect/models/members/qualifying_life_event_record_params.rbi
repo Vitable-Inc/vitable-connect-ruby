@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique member identifier (mbr\_\*)
+        sig { returns(String) }
+        attr_accessor :member_id
+
         # Date when the event occurred
         sig { returns(Date) }
         attr_accessor :event_date
@@ -39,6 +43,7 @@ module VitableConnect
 
         sig do
           params(
+            member_id: String,
             event_date: Date,
             event_type: VitableConnect::Members::EventType::OrSymbol,
             notes: T.nilable(String),
@@ -46,6 +51,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique member identifier (mbr\_\*)
+          member_id:,
           # Date when the event occurred
           event_date:,
           # - `Marriage` - Marriage
@@ -69,6 +76,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              member_id: String,
               event_date: Date,
               event_type: VitableConnect::Members::EventType::OrSymbol,
               notes: T.nilable(String),

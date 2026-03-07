@@ -14,6 +14,10 @@ module VitableConnect
           )
         end
 
+      # Unique dependent identifier (dpnd\_\*)
+      sig { returns(String) }
+      attr_accessor :dependent_id
+
       # Whether the dependent is active
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :active
@@ -31,6 +35,7 @@ module VitableConnect
 
       sig do
         params(
+          dependent_id: String,
           active: T.nilable(T::Boolean),
           gender: T.nilable(String),
           relationship:
@@ -39,6 +44,8 @@ module VitableConnect
         ).returns(T.attached_class)
       end
       def self.new(
+        # Unique dependent identifier (dpnd\_\*)
+        dependent_id:,
         # Whether the dependent is active
         active: nil,
         # Gender identity
@@ -53,6 +60,7 @@ module VitableConnect
       sig do
         override.returns(
           {
+            dependent_id: String,
             active: T.nilable(T::Boolean),
             gender: T.nilable(String),
             relationship:

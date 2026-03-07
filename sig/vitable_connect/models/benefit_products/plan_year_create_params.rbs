@@ -3,6 +3,7 @@ module VitableConnect
     module BenefitProducts
       type plan_year_create_params =
         {
+          benefit_product_id: String,
           contribution_classes: ::Array[VitableConnect::BenefitProducts::PlanYearCreateParams::ContributionClass],
           coverage_end: Date,
           coverage_start: Date,
@@ -15,6 +16,8 @@ module VitableConnect
       class PlanYearCreateParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor benefit_product_id: String
 
         attr_accessor contribution_classes: ::Array[VitableConnect::BenefitProducts::PlanYearCreateParams::ContributionClass]
 
@@ -29,6 +32,7 @@ module VitableConnect
         attr_accessor open_enrollment_start: Date
 
         def initialize: (
+          benefit_product_id: String,
           contribution_classes: ::Array[VitableConnect::BenefitProducts::PlanYearCreateParams::ContributionClass],
           coverage_end: Date,
           coverage_start: Date,
@@ -39,6 +43,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          benefit_product_id: String,
           contribution_classes: ::Array[VitableConnect::BenefitProducts::PlanYearCreateParams::ContributionClass],
           coverage_end: Date,
           coverage_start: Date,

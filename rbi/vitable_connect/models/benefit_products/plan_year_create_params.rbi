@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique benefit product identifier (bprd\_\*)
+        sig { returns(String) }
+        attr_accessor :benefit_product_id
+
         # List of contribution classes (at least one required)
         sig do
           returns(
@@ -47,6 +51,7 @@ module VitableConnect
 
         sig do
           params(
+            benefit_product_id: String,
             contribution_classes:
               T::Array[
                 VitableConnect::BenefitProducts::PlanYearCreateParams::ContributionClass::OrHash
@@ -60,6 +65,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique benefit product identifier (bprd\_\*)
+          benefit_product_id:,
           # List of contribution classes (at least one required)
           contribution_classes:,
           # Coverage end date
@@ -79,6 +86,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              benefit_product_id: String,
               contribution_classes:
                 T::Array[
                   VitableConnect::BenefitProducts::PlanYearCreateParams::ContributionClass

@@ -1,15 +1,24 @@
 module VitableConnect
   module Models
     type employer_retrieve_params =
-      {  } & VitableConnect::Internal::Type::request_parameters
+      { employer_id: String }
+      & VitableConnect::Internal::Type::request_parameters
 
     class EmployerRetrieveParams < VitableConnect::Internal::Type::BaseModel
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: VitableConnect::request_opts) -> void
+      attr_accessor employer_id: String
 
-      def to_hash: -> { request_options: VitableConnect::RequestOptions }
+      def initialize: (
+        employer_id: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employer_id: String,
+        request_options: VitableConnect::RequestOptions
+      }
     end
   end
 end

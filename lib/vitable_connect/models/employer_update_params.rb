@@ -7,6 +7,12 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      # @!attribute employer_id
+      #   Filter by employer ID
+      #
+      #   @return [String]
+      required :employer_id, String
+
       # @!attribute active
       #   Whether the employer is active
       #
@@ -31,7 +37,9 @@ module VitableConnect
       #   @return [String, nil]
       optional :name, String, nil?: true
 
-      # @!method initialize(active: nil, address: nil, legal_name: nil, name: nil, request_options: {})
+      # @!method initialize(employer_id:, active: nil, address: nil, legal_name: nil, name: nil, request_options: {})
+      #   @param employer_id [String] Filter by employer ID
+      #
       #   @param active [Boolean, nil] Whether the employer is active
       #
       #   @param address [VitableConnect::Models::EmployerUpdateParams::Address, nil] Employer address

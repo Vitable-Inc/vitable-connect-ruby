@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute member_id
+        #   Unique member identifier (mbr\_\*)
+        #
+        #   @return [String]
+        required :member_id, String
+
         # @!attribute event_type
         #   Filter by QLE type
         #
@@ -32,7 +38,9 @@ module VitableConnect
         #   @return [Symbol, VitableConnect::Models::Members::QualifyingLifeEventStatus, nil]
         optional :status, enum: -> { VitableConnect::Members::QualifyingLifeEventStatus }
 
-        # @!method initialize(event_type: nil, limit: nil, page: nil, status: nil, request_options: {})
+        # @!method initialize(member_id:, event_type: nil, limit: nil, page: nil, status: nil, request_options: {})
+        #   @param member_id [String] Unique member identifier (mbr\_\*)
+        #
         #   @param event_type [Symbol, VitableConnect::Models::Members::EventType] Filter by QLE type
         #
         #   @param limit [Integer] Items per page (default: 20, max: 100)

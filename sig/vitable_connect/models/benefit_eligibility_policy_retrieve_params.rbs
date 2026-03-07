@@ -1,15 +1,23 @@
 module VitableConnect
   module Models
     type benefit_eligibility_policy_retrieve_params =
-      {  } & VitableConnect::Internal::Type::request_parameters
+      { policy_id: String } & VitableConnect::Internal::Type::request_parameters
 
     class BenefitEligibilityPolicyRetrieveParams < VitableConnect::Internal::Type::BaseModel
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: VitableConnect::request_opts) -> void
+      attr_accessor policy_id: String
 
-      def to_hash: -> { request_options: VitableConnect::RequestOptions }
+      def initialize: (
+        policy_id: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        policy_id: String,
+        request_options: VitableConnect::RequestOptions
+      }
     end
   end
 end
