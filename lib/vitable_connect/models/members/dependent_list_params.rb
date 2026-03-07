@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute member_id
+        #   Unique member identifier (mbr\_\*)
+        #
+        #   @return [String]
+        required :member_id, String
+
         # @!attribute active_in
         #   Filter by active status
         #
@@ -32,7 +38,9 @@ module VitableConnect
         #   @return [Symbol, VitableConnect::Models::Members::Relationship, nil]
         optional :relationship, enum: -> { VitableConnect::Members::Relationship }
 
-        # @!method initialize(active_in: nil, limit: nil, page: nil, relationship: nil, request_options: {})
+        # @!method initialize(member_id:, active_in: nil, limit: nil, page: nil, relationship: nil, request_options: {})
+        #   @param member_id [String] Unique member identifier (mbr\_\*)
+        #
         #   @param active_in [Boolean] Filter by active status
         #
         #   @param limit [Integer] Items per page (default: 20, max: 100)

@@ -2,6 +2,7 @@ module VitableConnect
   module Models
     type employer_create_eligibility_policy_params =
       {
+        employer_id: String,
         effective_date: Date,
         name: String,
         rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule],
@@ -13,6 +14,8 @@ module VitableConnect
     class EmployerCreateEligibilityPolicyParams < VitableConnect::Internal::Type::BaseModel
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employer_id: String
 
       attr_accessor effective_date: Date
 
@@ -27,6 +30,7 @@ module VitableConnect
       attr_accessor description: String?
 
       def initialize: (
+        employer_id: String,
         effective_date: Date,
         name: String,
         rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule],
@@ -36,6 +40,7 @@ module VitableConnect
       ) -> void
 
       def to_hash: -> {
+        employer_id: String,
         effective_date: Date,
         name: String,
         rules: ::Array[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule],

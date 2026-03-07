@@ -3,6 +3,7 @@ module VitableConnect
     module BenefitProducts
       type plan_year_list_params =
         {
+          benefit_product_id: String,
           employer_id: String,
           limit: Integer,
           page: Integer,
@@ -13,6 +14,8 @@ module VitableConnect
       class PlanYearListParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor benefit_product_id: String
 
         attr_reader employer_id: String?
 
@@ -33,6 +36,7 @@ module VitableConnect
         ) -> VitableConnect::Models::BenefitProducts::plan_year_status
 
         def initialize: (
+          benefit_product_id: String,
           ?employer_id: String,
           ?limit: Integer,
           ?page: Integer,
@@ -41,6 +45,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          benefit_product_id: String,
           employer_id: String,
           limit: Integer,
           page: Integer,

@@ -3,6 +3,7 @@ module VitableConnect
     module Members
       type dependent_create_params =
         {
+          member_id: String,
           date_of_birth: Date,
           first_name: String,
           last_name: String,
@@ -17,6 +18,8 @@ module VitableConnect
       class DependentCreateParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor member_id: String
 
         attr_accessor date_of_birth: Date
 
@@ -35,6 +38,7 @@ module VitableConnect
         attr_accessor suffix: String?
 
         def initialize: (
+          member_id: String,
           date_of_birth: Date,
           first_name: String,
           last_name: String,
@@ -47,6 +51,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          member_id: String,
           date_of_birth: Date,
           first_name: String,
           last_name: String,

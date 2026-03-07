@@ -14,16 +14,30 @@ module VitableConnect
           )
         end
 
+      # Filter by employer ID
+      sig { returns(String) }
+      attr_accessor :employer_id
+
       sig do
-        params(request_options: VitableConnect::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          employer_id: String,
+          request_options: VitableConnect::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # Filter by employer ID
+        employer_id:,
+        request_options: {}
+      )
       end
 
       sig do
-        override.returns({ request_options: VitableConnect::RequestOptions })
+        override.returns(
+          {
+            employer_id: String,
+            request_options: VitableConnect::RequestOptions
+          }
+        )
       end
       def to_hash
       end

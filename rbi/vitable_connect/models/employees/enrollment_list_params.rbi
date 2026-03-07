@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique employee identifier (empl\_\*)
+        sig { returns(String) }
+        attr_accessor :employee_id
+
         # Filter by coverage year
         sig { returns(T.nilable(Integer)) }
         attr_reader :coverage_effective_start_year
@@ -60,6 +64,7 @@ module VitableConnect
 
         sig do
           params(
+            employee_id: String,
             coverage_effective_start_year: Integer,
             limit: Integer,
             page: Integer,
@@ -69,6 +74,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique employee identifier (empl\_\*)
+          employee_id:,
           # Filter by coverage year
           coverage_effective_start_year: nil,
           # Items per page (default: 20, max: 100)
@@ -86,6 +93,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              employee_id: String,
               coverage_effective_start_year: Integer,
               limit: Integer,
               page: Integer,

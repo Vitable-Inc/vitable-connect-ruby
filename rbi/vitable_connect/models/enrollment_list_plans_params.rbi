@@ -14,16 +14,30 @@ module VitableConnect
           )
         end
 
+      # Unique enrollment identifier (enrl\_\*)
+      sig { returns(String) }
+      attr_accessor :enrollment_id
+
       sig do
-        params(request_options: VitableConnect::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          enrollment_id: String,
+          request_options: VitableConnect::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # Unique enrollment identifier (enrl\_\*)
+        enrollment_id:,
+        request_options: {}
+      )
       end
 
       sig do
-        override.returns({ request_options: VitableConnect::RequestOptions })
+        override.returns(
+          {
+            enrollment_id: String,
+            request_options: VitableConnect::RequestOptions
+          }
+        )
       end
       def to_hash
       end

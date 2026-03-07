@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute employee_id
+        #   Unique employee identifier (empl\_\*)
+        #
+        #   @return [String]
+        required :employee_id, String
+
         # @!attribute coverage_effective_start_year
         #   Filter by coverage year
         #
@@ -38,7 +44,9 @@ module VitableConnect
         #   @return [Symbol, VitableConnect::Models::Employees::EnrollmentStatus, nil]
         optional :status, enum: -> { VitableConnect::Employees::EnrollmentStatus }
 
-        # @!method initialize(coverage_effective_start_year: nil, limit: nil, page: nil, plan_year: nil, status: nil, request_options: {})
+        # @!method initialize(employee_id:, coverage_effective_start_year: nil, limit: nil, page: nil, plan_year: nil, status: nil, request_options: {})
+        #   @param employee_id [String] Unique employee identifier (empl\_\*)
+        #
         #   @param coverage_effective_start_year [Integer] Filter by coverage year
         #
         #   @param limit [Integer] Items per page (default: 20, max: 100)

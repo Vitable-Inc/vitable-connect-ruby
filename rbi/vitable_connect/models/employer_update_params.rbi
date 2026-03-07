@@ -14,6 +14,10 @@ module VitableConnect
           )
         end
 
+      # Filter by employer ID
+      sig { returns(String) }
+      attr_accessor :employer_id
+
       # Whether the employer is active
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :active
@@ -40,6 +44,7 @@ module VitableConnect
 
       sig do
         params(
+          employer_id: String,
           active: T.nilable(T::Boolean),
           address:
             T.nilable(VitableConnect::EmployerUpdateParams::Address::OrHash),
@@ -49,6 +54,8 @@ module VitableConnect
         ).returns(T.attached_class)
       end
       def self.new(
+        # Filter by employer ID
+        employer_id:,
         # Whether the employer is active
         active: nil,
         # Employer address
@@ -64,6 +71,7 @@ module VitableConnect
       sig do
         override.returns(
           {
+            employer_id: String,
             active: T.nilable(T::Boolean),
             address: T.nilable(VitableConnect::EmployerUpdateParams::Address),
             legal_name: T.nilable(String),

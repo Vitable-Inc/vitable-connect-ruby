@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique member identifier (mbr\_\*)
+        sig { returns(String) }
+        attr_accessor :member_id
+
         # Date of birth (YYYY-MM-DD)
         sig { returns(Date) }
         attr_accessor :date_of_birth
@@ -53,6 +57,7 @@ module VitableConnect
 
         sig do
           params(
+            member_id: String,
             date_of_birth: Date,
             first_name: String,
             last_name: String,
@@ -65,6 +70,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique member identifier (mbr\_\*)
+          member_id:,
           # Date of birth (YYYY-MM-DD)
           date_of_birth:,
           # Dependent's legal first name
@@ -92,6 +99,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              member_id: String,
               date_of_birth: Date,
               first_name: String,
               last_name: String,

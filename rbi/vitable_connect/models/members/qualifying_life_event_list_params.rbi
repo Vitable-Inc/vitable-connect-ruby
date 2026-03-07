@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique member identifier (mbr\_\*)
+        sig { returns(String) }
+        attr_accessor :member_id
+
         # Filter by QLE type
         sig { returns(T.nilable(VitableConnect::Members::EventType::OrSymbol)) }
         attr_reader :event_type
@@ -57,6 +61,7 @@ module VitableConnect
 
         sig do
           params(
+            member_id: String,
             event_type: VitableConnect::Members::EventType::OrSymbol,
             limit: Integer,
             page: Integer,
@@ -66,6 +71,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique member identifier (mbr\_\*)
+          member_id:,
           # Filter by QLE type
           event_type: nil,
           # Items per page (default: 20, max: 100)
@@ -81,6 +88,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              member_id: String,
               event_type: VitableConnect::Members::EventType::OrSymbol,
               limit: Integer,
               page: Integer,

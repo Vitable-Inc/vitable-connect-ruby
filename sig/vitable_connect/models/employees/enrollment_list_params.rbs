@@ -3,6 +3,7 @@ module VitableConnect
     module Employees
       type enrollment_list_params =
         {
+          employee_id: String,
           coverage_effective_start_year: Integer,
           limit: Integer,
           page: Integer,
@@ -14,6 +15,8 @@ module VitableConnect
       class EnrollmentListParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor employee_id: String
 
         attr_reader coverage_effective_start_year: Integer?
 
@@ -38,6 +41,7 @@ module VitableConnect
         ) -> VitableConnect::Models::Employees::enrollment_status
 
         def initialize: (
+          employee_id: String,
           ?coverage_effective_start_year: Integer,
           ?limit: Integer,
           ?page: Integer,
@@ -47,6 +51,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          employee_id: String,
           coverage_effective_start_year: Integer,
           limit: Integer,
           page: Integer,

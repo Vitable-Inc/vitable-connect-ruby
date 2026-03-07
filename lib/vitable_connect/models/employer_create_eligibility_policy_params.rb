@@ -7,6 +7,12 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      # @!attribute employer_id
+      #   Filter by employer ID
+      #
+      #   @return [String]
+      required :employer_id, String
+
       # @!attribute effective_date
       #   Date when policy becomes effective
       #
@@ -38,7 +44,9 @@ module VitableConnect
       #   @return [String, nil]
       optional :description, String, nil?: true
 
-      # @!method initialize(effective_date:, name:, rules:, policy_to_replace_id: nil, description: nil, request_options: {})
+      # @!method initialize(employer_id:, effective_date:, name:, rules:, policy_to_replace_id: nil, description: nil, request_options: {})
+      #   @param employer_id [String] Filter by employer ID
+      #
       #   @param effective_date [Date] Date when policy becomes effective
       #
       #   @param name [String] Display name for the policy

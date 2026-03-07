@@ -7,7 +7,15 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute employee_id
+      #   Unique employee identifier (empl\_\*)
+      #
+      #   @return [String]
+      required :employee_id, String
+
+      # @!method initialize(employee_id:, request_options: {})
+      #   @param employee_id [String] Unique employee identifier (empl\_\*)
+      #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
     end
   end

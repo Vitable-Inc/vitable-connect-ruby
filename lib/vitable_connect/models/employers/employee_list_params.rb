@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute employer_id
+        #   Filter by employer ID
+        #
+        #   @return [String]
+        required :employer_id, String
+
         # @!attribute active_in
         #   Filter by active status
         #
@@ -32,7 +38,9 @@ module VitableConnect
         #   @return [Integer, nil]
         optional :page, Integer
 
-        # @!method initialize(active_in: nil, employee_class: nil, limit: nil, page: nil, request_options: {})
+        # @!method initialize(employer_id:, active_in: nil, employee_class: nil, limit: nil, page: nil, request_options: {})
+        #   @param employer_id [String] Filter by employer ID
+        #
         #   @param active_in [Boolean] Filter by active status
         #
         #   @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass] Filter by employment classification

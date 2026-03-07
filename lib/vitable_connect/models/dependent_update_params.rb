@@ -7,6 +7,12 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      # @!attribute dependent_id
+      #   Unique dependent identifier (dpnd\_\*)
+      #
+      #   @return [String]
+      required :dependent_id, String
+
       # @!attribute active
       #   Whether the dependent is active
       #
@@ -26,9 +32,11 @@ module VitableConnect
       #   @return [Symbol, VitableConnect::Models::Members::Relationship, nil]
       optional :relationship, enum: -> { VitableConnect::Members::Relationship }, nil?: true
 
-      # @!method initialize(active: nil, gender: nil, relationship: nil, request_options: {})
+      # @!method initialize(dependent_id:, active: nil, gender: nil, relationship: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::DependentUpdateParams} for more details.
+      #
+      #   @param dependent_id [String] Unique dependent identifier (dpnd\_\*)
       #
       #   @param active [Boolean, nil] Whether the dependent is active
       #

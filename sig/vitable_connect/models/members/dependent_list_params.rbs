@@ -3,6 +3,7 @@ module VitableConnect
     module Members
       type dependent_list_params =
         {
+          member_id: String,
           active_in: bool,
           limit: Integer,
           page: Integer,
@@ -13,6 +14,8 @@ module VitableConnect
       class DependentListParams < VitableConnect::Internal::Type::BaseModel
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
+
+        attr_accessor member_id: String
 
         attr_reader active_in: bool?
 
@@ -33,6 +36,7 @@ module VitableConnect
         ) -> VitableConnect::Models::Members::relationship
 
         def initialize: (
+          member_id: String,
           ?active_in: bool,
           ?limit: Integer,
           ?page: Integer,
@@ -41,6 +45,7 @@ module VitableConnect
         ) -> void
 
         def to_hash: -> {
+          member_id: String,
           active_in: bool,
           limit: Integer,
           page: Integer,

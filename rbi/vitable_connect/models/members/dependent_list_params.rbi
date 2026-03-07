@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Unique member identifier (mbr\_\*)
+        sig { returns(String) }
+        attr_accessor :member_id
+
         # Filter by active status
         sig { returns(T.nilable(T::Boolean)) }
         attr_reader :active_in
@@ -51,6 +55,7 @@ module VitableConnect
 
         sig do
           params(
+            member_id: String,
             active_in: T::Boolean,
             limit: Integer,
             page: Integer,
@@ -59,6 +64,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Unique member identifier (mbr\_\*)
+          member_id:,
           # Filter by active status
           active_in: nil,
           # Items per page (default: 20, max: 100)
@@ -74,6 +81,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              member_id: String,
               active_in: T::Boolean,
               limit: Integer,
               page: Integer,

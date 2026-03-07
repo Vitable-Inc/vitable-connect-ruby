@@ -14,6 +14,10 @@ module VitableConnect
           )
         end
 
+      # Unique plan year identifier (plyr\_\*)
+      sig { returns(String) }
+      attr_accessor :plan_year_id
+
       # Updated contribution classes
       sig do
         returns(
@@ -38,6 +42,7 @@ module VitableConnect
 
       sig do
         params(
+          plan_year_id: String,
           contribution_classes:
             T.nilable(
               T::Array[
@@ -51,6 +56,8 @@ module VitableConnect
         ).returns(T.attached_class)
       end
       def self.new(
+        # Unique plan year identifier (plyr\_\*)
+        plan_year_id:,
         # Updated contribution classes
         contribution_classes: nil,
         # Open enrollment end date
@@ -66,6 +73,7 @@ module VitableConnect
       sig do
         override.returns(
           {
+            plan_year_id: String,
             contribution_classes:
               T.nilable(
                 T::Array[

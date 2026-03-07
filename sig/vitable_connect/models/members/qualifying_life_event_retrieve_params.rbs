@@ -2,7 +2,7 @@ module VitableConnect
   module Models
     module Members
       type qualifying_life_event_retrieve_params =
-        { member_id: String }
+        { member_id: String, qle_id: String }
         & VitableConnect::Internal::Type::request_parameters
 
       class QualifyingLifeEventRetrieveParams < VitableConnect::Internal::Type::BaseModel
@@ -11,13 +11,17 @@ module VitableConnect
 
         attr_accessor member_id: String
 
+        attr_accessor qle_id: String
+
         def initialize: (
           member_id: String,
+          qle_id: String,
           ?request_options: VitableConnect::request_opts
         ) -> void
 
         def to_hash: -> {
           member_id: String,
+          qle_id: String,
           request_options: VitableConnect::RequestOptions
         }
       end

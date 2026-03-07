@@ -15,6 +15,10 @@ module VitableConnect
             )
           end
 
+        # Filter by employer ID
+        sig { returns(String) }
+        attr_accessor :employer_id
+
         # Date of birth (YYYY-MM-DD)
         sig { returns(Date) }
         attr_accessor :date_of_birth
@@ -89,6 +93,7 @@ module VitableConnect
 
         sig do
           params(
+            employer_id: String,
             date_of_birth: Date,
             email: String,
             first_name: String,
@@ -109,6 +114,8 @@ module VitableConnect
           ).returns(T.attached_class)
         end
         def self.new(
+          # Filter by employer ID
+          employer_id:,
           # Date of birth (YYYY-MM-DD)
           date_of_birth:,
           # Email address
@@ -148,6 +155,7 @@ module VitableConnect
         sig do
           override.returns(
             {
+              employer_id: String,
               date_of_birth: Date,
               email: String,
               first_name: String,

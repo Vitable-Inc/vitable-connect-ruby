@@ -7,6 +7,12 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
+      # @!attribute plan_year_id
+      #   Unique plan year identifier (plyr\_\*)
+      #
+      #   @return [String]
+      required :plan_year_id, String
+
       # @!attribute contribution_classes
       #   Updated contribution classes
       #
@@ -35,7 +41,9 @@ module VitableConnect
       #   @return [String, nil]
       optional :status, String, nil?: true
 
-      # @!method initialize(contribution_classes: nil, open_enrollment_end: nil, open_enrollment_start: nil, status: nil, request_options: {})
+      # @!method initialize(plan_year_id:, contribution_classes: nil, open_enrollment_end: nil, open_enrollment_start: nil, status: nil, request_options: {})
+      #   @param plan_year_id [String] Unique plan year identifier (plyr\_\*)
+      #
       #   @param contribution_classes [Array<VitableConnect::Models::PlanYearUpdateParams::ContributionClass>, nil] Updated contribution classes
       #
       #   @param open_enrollment_end [Date, nil] Open enrollment end date

@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute member_id
+        #   Unique member identifier (mbr\_\*)
+        #
+        #   @return [String]
+        required :member_id, String
+
         # @!attribute event_date
         #   Date when the event occurred
         #
@@ -36,10 +42,12 @@ module VitableConnect
         #   @return [String, nil]
         optional :notes, String, nil?: true
 
-        # @!method initialize(event_date:, event_type:, notes: nil, request_options: {})
+        # @!method initialize(member_id:, event_date:, event_type:, notes: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::Members::QualifyingLifeEventRecordParams} for more
         #   details.
+        #
+        #   @param member_id [String] Unique member identifier (mbr\_\*)
         #
         #   @param event_date [Date] Date when the event occurred
         #

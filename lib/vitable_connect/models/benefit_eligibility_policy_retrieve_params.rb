@@ -7,7 +7,15 @@ module VitableConnect
       extend VitableConnect::Internal::Type::RequestParameters::Converter
       include VitableConnect::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute policy_id
+      #   Unique benefit eligibility policy identifier (epol\_\*)
+      #
+      #   @return [String]
+      required :policy_id, String
+
+      # @!method initialize(policy_id:, request_options: {})
+      #   @param policy_id [String] Unique benefit eligibility policy identifier (epol\_\*)
+      #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
     end
   end

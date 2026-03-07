@@ -8,6 +8,12 @@ module VitableConnect
         extend VitableConnect::Internal::Type::RequestParameters::Converter
         include VitableConnect::Internal::Type::RequestParameters
 
+        # @!attribute benefit_product_id
+        #   Unique benefit product identifier (bprd\_\*)
+        #
+        #   @return [String]
+        required :benefit_product_id, String
+
         # @!attribute contribution_classes
         #   List of contribution classes (at least one required)
         #
@@ -45,7 +51,9 @@ module VitableConnect
         #   @return [Date]
         required :open_enrollment_start, Date
 
-        # @!method initialize(contribution_classes:, coverage_end:, coverage_start:, employer_id:, open_enrollment_end:, open_enrollment_start:, request_options: {})
+        # @!method initialize(benefit_product_id:, contribution_classes:, coverage_end:, coverage_start:, employer_id:, open_enrollment_end:, open_enrollment_start:, request_options: {})
+        #   @param benefit_product_id [String] Unique benefit product identifier (bprd\_\*)
+        #
         #   @param contribution_classes [Array<VitableConnect::Models::BenefitProducts::PlanYearCreateParams::ContributionClass>] List of contribution classes (at least one required)
         #
         #   @param coverage_end [Date] Coverage end date
