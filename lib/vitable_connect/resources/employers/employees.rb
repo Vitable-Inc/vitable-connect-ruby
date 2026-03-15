@@ -25,7 +25,7 @@ module VitableConnect
         #
         # @param last_name [String] Employee's legal last name
         #
-        # @param sex [Symbol, VitableConnect::Models::Employers::Sex] - `Male` - Male
+        # @param sex [Symbol, VitableConnect::Models::Sex] - `Male` - Male
         #
         # @param ssn [String] Social Security Number (XXX-XX-XXXX or XXXXXXXXX). Only accepted on create.
         #
@@ -33,7 +33,7 @@ module VitableConnect
         #
         # @param address [VitableConnect::Models::Employers::EmployeeCreateParams::Address, nil] Employee's residential address
         #
-        # @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil] - `Full Time` - Full Time
+        # @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
         #
         # @param gender [String, nil] Gender identity
         #
@@ -67,7 +67,7 @@ module VitableConnect
         #
         # @param active_in [Boolean] Filter by active status
         #
-        # @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass] Filter by employment classification
+        # @param employee_class [Symbol, VitableConnect::Models::EmployeeClass] Filter by employment classification
         #
         # @param limit [Integer] Items per page (default: 20, max: 100)
         #

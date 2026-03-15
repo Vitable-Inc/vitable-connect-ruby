@@ -14,8 +14,8 @@ module VitableConnect
             date_of_birth: Date,
             first_name: String,
             last_name: String,
-            relationship: VitableConnect::Members::Relationship::OrSymbol,
-            sex: VitableConnect::Employers::Sex::OrSymbol,
+            relationship: VitableConnect::Relationship::OrSymbol,
+            sex: VitableConnect::Sex::OrSymbol,
             gender: T.nilable(String),
             ssn: T.nilable(String),
             suffix: T.nilable(String),
@@ -58,7 +58,7 @@ module VitableConnect
             active_in: T::Boolean,
             limit: Integer,
             page: Integer,
-            relationship: VitableConnect::Members::Relationship::OrSymbol,
+            relationship: VitableConnect::Relationship::OrSymbol,
             request_options: VitableConnect::RequestOptions::OrHash
           ).returns(VitableConnect::Models::Members::DependentListResponse)
         end

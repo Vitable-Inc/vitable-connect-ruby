@@ -41,15 +41,11 @@ module VitableConnect
         attr_writer :page
 
         # Filter by relationship type
-        sig do
-          returns(T.nilable(VitableConnect::Members::Relationship::OrSymbol))
-        end
+        sig { returns(T.nilable(VitableConnect::Relationship::OrSymbol)) }
         attr_reader :relationship
 
         sig do
-          params(
-            relationship: VitableConnect::Members::Relationship::OrSymbol
-          ).void
+          params(relationship: VitableConnect::Relationship::OrSymbol).void
         end
         attr_writer :relationship
 
@@ -59,7 +55,7 @@ module VitableConnect
             active_in: T::Boolean,
             limit: Integer,
             page: Integer,
-            relationship: VitableConnect::Members::Relationship::OrSymbol,
+            relationship: VitableConnect::Relationship::OrSymbol,
             request_options: VitableConnect::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -85,7 +81,7 @@ module VitableConnect
               active_in: T::Boolean,
               limit: Integer,
               page: Integer,
-              relationship: VitableConnect::Members::Relationship::OrSymbol,
+              relationship: VitableConnect::Relationship::OrSymbol,
               request_options: VitableConnect::RequestOptions
             }
           )

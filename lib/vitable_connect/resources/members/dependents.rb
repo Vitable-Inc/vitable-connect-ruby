@@ -22,9 +22,9 @@ module VitableConnect
         #
         # @param last_name [String] Dependent's legal last name
         #
-        # @param relationship [Symbol, VitableConnect::Models::Members::Relationship] - `Spouse` - Spouse
+        # @param relationship [Symbol, VitableConnect::Models::Relationship] - `Spouse` - Spouse
         #
-        # @param sex [Symbol, VitableConnect::Models::Employers::Sex] - `Male` - Male
+        # @param sex [Symbol, VitableConnect::Models::Sex] - `Male` - Male
         #
         # @param gender [String, nil] Gender identity
         #
@@ -62,7 +62,7 @@ module VitableConnect
         #
         # @param page [Integer] Page number (default: 1)
         #
-        # @param relationship [Symbol, VitableConnect::Models::Members::Relationship] Filter by relationship type
+        # @param relationship [Symbol, VitableConnect::Models::Relationship] Filter by relationship type
         #
         # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
         #

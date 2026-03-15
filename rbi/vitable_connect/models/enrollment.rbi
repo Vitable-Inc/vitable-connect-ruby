@@ -40,7 +40,7 @@ module VitableConnect
       # - `enrolled` - Enrolled
       # - `waived` - Waived
       # - `inactive` - Inactive
-      sig { returns(VitableConnect::Employees::EnrollmentStatus::TaggedSymbol) }
+      sig { returns(VitableConnect::EnrollmentStatus::TaggedSymbol) }
       attr_accessor :status
 
       # Timestamp when the enrollment was last updated
@@ -103,7 +103,7 @@ module VitableConnect
           created_at: Time,
           employee_id: String,
           plan_year_id: String,
-          status: VitableConnect::Employees::EnrollmentStatus::OrSymbol,
+          status: VitableConnect::EnrollmentStatus::OrSymbol,
           updated_at: Time,
           coverage_end_date: T.nilable(Date),
           coverage_start_date: T.nilable(Date),
@@ -168,7 +168,7 @@ module VitableConnect
             created_at: Time,
             employee_id: String,
             plan_year_id: String,
-            status: VitableConnect::Employees::EnrollmentStatus::TaggedSymbol,
+            status: VitableConnect::EnrollmentStatus::TaggedSymbol,
             updated_at: Time,
             coverage_end_date: T.nilable(Date),
             coverage_start_date: T.nilable(Date),
@@ -208,7 +208,7 @@ module VitableConnect
 
         # - `Spouse` - Spouse
         # - `Child` - Child
-        sig { returns(VitableConnect::Members::Relationship::TaggedSymbol) }
+        sig { returns(VitableConnect::Relationship::TaggedSymbol) }
         attr_accessor :relationship
 
         # Dependent included in an enrollment.
@@ -217,7 +217,7 @@ module VitableConnect
             dependent_id: String,
             first_name: String,
             last_name: String,
-            relationship: VitableConnect::Members::Relationship::OrSymbol
+            relationship: VitableConnect::Relationship::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -239,7 +239,7 @@ module VitableConnect
               dependent_id: String,
               first_name: String,
               last_name: String,
-              relationship: VitableConnect::Members::Relationship::TaggedSymbol
+              relationship: VitableConnect::Relationship::TaggedSymbol
             }
           )
         end

@@ -23,8 +23,8 @@ module VitableConnect
         # @!attribute employee_class
         #   Filter by employment classification
         #
-        #   @return [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil]
-        optional :employee_class, enum: -> { VitableConnect::Employers::EmployeeClass }
+        #   @return [Symbol, VitableConnect::Models::EmployeeClass, nil]
+        optional :employee_class, enum: -> { VitableConnect::EmployeeClass }
 
         # @!attribute limit
         #   Items per page (default: 20, max: 100)
@@ -43,7 +43,7 @@ module VitableConnect
         #
         #   @param active_in [Boolean] Filter by active status
         #
-        #   @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass] Filter by employment classification
+        #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass] Filter by employment classification
         #
         #   @param limit [Integer] Items per page (default: 20, max: 100)
         #

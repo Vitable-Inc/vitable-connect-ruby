@@ -10,7 +10,7 @@ module VitableConnect
         start_date: Date,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
-        employee_class: VitableConnect::Models::Employers::employee_class?,
+        employee_class: VitableConnect::Models::employee_class?,
         termination_date: Date?
       }
 
@@ -31,7 +31,7 @@ module VitableConnect
 
       attr_accessor address: VitableConnect::Employee::Address?
 
-      attr_accessor employee_class: VitableConnect::Models::Employers::employee_class?
+      attr_accessor employee_class: VitableConnect::Models::employee_class?
 
       attr_accessor termination_date: Date?
 
@@ -44,7 +44,7 @@ module VitableConnect
         start_date: Date,
         updated_at: Time,
         ?address: VitableConnect::Employee::Address?,
-        ?employee_class: VitableConnect::Models::Employers::employee_class?,
+        ?employee_class: VitableConnect::Models::employee_class?,
         ?termination_date: Date?
       ) -> void
 
@@ -57,7 +57,7 @@ module VitableConnect
         start_date: Date,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
-        employee_class: VitableConnect::Models::Employers::employee_class?,
+        employee_class: VitableConnect::Models::employee_class?,
         termination_date: Date?
       }
 
@@ -67,7 +67,7 @@ module VitableConnect
           date_of_birth: Date,
           first_name: String,
           last_name: String,
-          sex: VitableConnect::Models::Employers::sex,
+          sex: VitableConnect::Models::sex,
           email: String?,
           gender: String?,
           phone: String?,
@@ -83,7 +83,7 @@ module VitableConnect
 
         attr_accessor last_name: String
 
-        attr_accessor sex: VitableConnect::Models::Employers::sex
+        attr_accessor sex: VitableConnect::Models::sex
 
         attr_accessor email: String?
 
@@ -98,7 +98,7 @@ module VitableConnect
           date_of_birth: Date,
           first_name: String,
           last_name: String,
-          sex: VitableConnect::Models::Employers::sex,
+          sex: VitableConnect::Models::sex,
           ?email: String?,
           ?gender: String?,
           ?phone: String?,
@@ -110,7 +110,7 @@ module VitableConnect
           date_of_birth: Date,
           first_name: String,
           last_name: String,
-          sex: VitableConnect::Models::Employers::sex,
+          sex: VitableConnect::Models::sex,
           email: String?,
           gender: String?,
           phone: String?,

@@ -16,15 +16,14 @@ module VitableConnect
             email: String,
             first_name: String,
             last_name: String,
-            sex: VitableConnect::Employers::Sex::OrSymbol,
+            sex: VitableConnect::Sex::OrSymbol,
             ssn: String,
             start_date: Date,
             address:
               T.nilable(
                 VitableConnect::Employers::EmployeeCreateParams::Address::OrHash
               ),
-            employee_class:
-              T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol),
+            employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
             gender: T.nilable(String),
             phone: T.nilable(String),
             suffix: T.nilable(String),
@@ -77,7 +76,7 @@ module VitableConnect
           params(
             employer_id: String,
             active_in: T::Boolean,
-            employee_class: VitableConnect::Employers::EmployeeClass::OrSymbol,
+            employee_class: VitableConnect::EmployeeClass::OrSymbol,
             limit: Integer,
             page: Integer,
             request_options: VitableConnect::RequestOptions::OrHash

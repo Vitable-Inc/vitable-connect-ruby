@@ -27,15 +27,11 @@ module VitableConnect
         attr_writer :active_in
 
         # Filter by employment classification
-        sig do
-          returns(T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol))
-        end
+        sig { returns(T.nilable(VitableConnect::EmployeeClass::OrSymbol)) }
         attr_reader :employee_class
 
         sig do
-          params(
-            employee_class: VitableConnect::Employers::EmployeeClass::OrSymbol
-          ).void
+          params(employee_class: VitableConnect::EmployeeClass::OrSymbol).void
         end
         attr_writer :employee_class
 
@@ -57,7 +53,7 @@ module VitableConnect
           params(
             employer_id: String,
             active_in: T::Boolean,
-            employee_class: VitableConnect::Employers::EmployeeClass::OrSymbol,
+            employee_class: VitableConnect::EmployeeClass::OrSymbol,
             limit: Integer,
             page: Integer,
             request_options: VitableConnect::RequestOptions::OrHash
@@ -83,8 +79,7 @@ module VitableConnect
             {
               employer_id: String,
               active_in: T::Boolean,
-              employee_class:
-                VitableConnect::Employers::EmployeeClass::OrSymbol,
+              employee_class: VitableConnect::EmployeeClass::OrSymbol,
               limit: Integer,
               page: Integer,
               request_options: VitableConnect::RequestOptions

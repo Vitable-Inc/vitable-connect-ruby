@@ -58,11 +58,7 @@ module VitableConnect
       # - `Intern` - Intern
       # - `Seasonal` - Seasonal
       # - `Individual Contractor` - Individual Contractor
-      sig do
-        returns(
-          T.nilable(VitableConnect::Employers::EmployeeClass::TaggedSymbol)
-        )
-      end
+      sig { returns(T.nilable(VitableConnect::EmployeeClass::TaggedSymbol)) }
       attr_accessor :employee_class
 
       # Employee's termination date, if terminated
@@ -83,8 +79,7 @@ module VitableConnect
           start_date: Date,
           updated_at: Time,
           address: T.nilable(VitableConnect::Employee::Address::OrHash),
-          employee_class:
-            T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol),
+          employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
           termination_date: T.nilable(Date)
         ).returns(T.attached_class)
       end
@@ -131,7 +126,7 @@ module VitableConnect
             updated_at: Time,
             address: T.nilable(VitableConnect::Employee::Address),
             employee_class:
-              T.nilable(VitableConnect::Employers::EmployeeClass::TaggedSymbol),
+              T.nilable(VitableConnect::EmployeeClass::TaggedSymbol),
             termination_date: T.nilable(Date)
           }
         )
@@ -168,7 +163,7 @@ module VitableConnect
         # - `Female` - Female
         # - `Other` - Other
         # - `Unknown` - Unknown
-        sig { returns(VitableConnect::Employers::Sex::TaggedSymbol) }
+        sig { returns(VitableConnect::Sex::TaggedSymbol) }
         attr_accessor :sex
 
         # Email address for communications
@@ -196,7 +191,7 @@ module VitableConnect
             date_of_birth: Date,
             first_name: String,
             last_name: String,
-            sex: VitableConnect::Employers::Sex::OrSymbol,
+            sex: VitableConnect::Sex::OrSymbol,
             email: T.nilable(String),
             gender: T.nilable(String),
             phone: T.nilable(String),
@@ -235,7 +230,7 @@ module VitableConnect
               date_of_birth: Date,
               first_name: String,
               last_name: String,
-              sex: VitableConnect::Employers::Sex::TaggedSymbol,
+              sex: VitableConnect::Sex::TaggedSymbol,
               email: T.nilable(String),
               gender: T.nilable(String),
               phone: T.nilable(String),

@@ -61,8 +61,8 @@ module VitableConnect
       #   - `Seasonal` - Seasonal
       #   - `Individual Contractor` - Individual Contractor
       #
-      #   @return [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil]
-      optional :employee_class, enum: -> { VitableConnect::Employers::EmployeeClass }, nil?: true
+      #   @return [Symbol, VitableConnect::Models::EmployeeClass, nil]
+      optional :employee_class, enum: -> { VitableConnect::EmployeeClass }, nil?: true
 
       # @!attribute termination_date
       #   Employee's termination date, if terminated
@@ -95,7 +95,7 @@ module VitableConnect
       #
       #   @param address [VitableConnect::Models::Employee::Address, nil] Nested address for employee.
       #
-      #   @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil] - `Full Time` - Full Time
+      #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
       #
       #   @param termination_date [Date, nil] Employee's termination date, if terminated
 
@@ -131,8 +131,8 @@ module VitableConnect
         #   - `Other` - Other
         #   - `Unknown` - Unknown
         #
-        #   @return [Symbol, VitableConnect::Models::Employers::Sex]
-        required :sex, enum: -> { VitableConnect::Employers::Sex }
+        #   @return [Symbol, VitableConnect::Models::Sex]
+        required :sex, enum: -> { VitableConnect::Sex }
 
         # @!attribute email
         #   Email address for communications
@@ -174,7 +174,7 @@ module VitableConnect
         #
         #   @param last_name [String] Member's legal last name
         #
-        #   @param sex [Symbol, VitableConnect::Models::Employers::Sex] - `Male` - Male
+        #   @param sex [Symbol, VitableConnect::Models::Sex] - `Male` - Male
         #
         #   @param email [String, nil] Email address for communications
         #

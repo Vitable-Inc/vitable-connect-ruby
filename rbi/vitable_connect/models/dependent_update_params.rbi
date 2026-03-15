@@ -28,9 +28,7 @@ module VitableConnect
 
       # - `Spouse` - Spouse
       # - `Child` - Child
-      sig do
-        returns(T.nilable(VitableConnect::Members::Relationship::OrSymbol))
-      end
+      sig { returns(T.nilable(VitableConnect::Relationship::OrSymbol)) }
       attr_accessor :relationship
 
       sig do
@@ -38,8 +36,7 @@ module VitableConnect
           dependent_id: String,
           active: T.nilable(T::Boolean),
           gender: T.nilable(String),
-          relationship:
-            T.nilable(VitableConnect::Members::Relationship::OrSymbol),
+          relationship: T.nilable(VitableConnect::Relationship::OrSymbol),
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -63,8 +60,7 @@ module VitableConnect
             dependent_id: String,
             active: T.nilable(T::Boolean),
             gender: T.nilable(String),
-            relationship:
-              T.nilable(VitableConnect::Members::Relationship::OrSymbol),
+            relationship: T.nilable(VitableConnect::Relationship::OrSymbol),
             request_options: VitableConnect::RequestOptions
           }
         )

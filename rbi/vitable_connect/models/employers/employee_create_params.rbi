@@ -39,7 +39,7 @@ module VitableConnect
         # - `Female` - Female
         # - `Other` - Other
         # - `Unknown` - Unknown
-        sig { returns(VitableConnect::Employers::Sex::OrSymbol) }
+        sig { returns(VitableConnect::Sex::OrSymbol) }
         attr_accessor :sex
 
         # Social Security Number (XXX-XX-XXXX or XXXXXXXXX). Only accepted on create.
@@ -74,9 +74,7 @@ module VitableConnect
         # - `Intern` - Intern
         # - `Seasonal` - Seasonal
         # - `Individual Contractor` - Individual Contractor
-        sig do
-          returns(T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol))
-        end
+        sig { returns(T.nilable(VitableConnect::EmployeeClass::OrSymbol)) }
         attr_accessor :employee_class
 
         # Gender identity
@@ -98,15 +96,14 @@ module VitableConnect
             email: String,
             first_name: String,
             last_name: String,
-            sex: VitableConnect::Employers::Sex::OrSymbol,
+            sex: VitableConnect::Sex::OrSymbol,
             ssn: String,
             start_date: Date,
             address:
               T.nilable(
                 VitableConnect::Employers::EmployeeCreateParams::Address::OrHash
               ),
-            employee_class:
-              T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol),
+            employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
             gender: T.nilable(String),
             phone: T.nilable(String),
             suffix: T.nilable(String),
@@ -160,7 +157,7 @@ module VitableConnect
               email: String,
               first_name: String,
               last_name: String,
-              sex: VitableConnect::Employers::Sex::OrSymbol,
+              sex: VitableConnect::Sex::OrSymbol,
               ssn: String,
               start_date: Date,
               address:
@@ -168,7 +165,7 @@ module VitableConnect
                   VitableConnect::Employers::EmployeeCreateParams::Address
                 ),
               employee_class:
-                T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol),
+                T.nilable(VitableConnect::EmployeeClass::OrSymbol),
               gender: T.nilable(String),
               phone: T.nilable(String),
               suffix: T.nilable(String),

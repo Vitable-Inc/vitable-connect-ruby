@@ -48,18 +48,10 @@ module VitableConnect
         attr_writer :plan_year
 
         # Filter by enrollment status
-        sig do
-          returns(
-            T.nilable(VitableConnect::Employees::EnrollmentStatus::OrSymbol)
-          )
-        end
+        sig { returns(T.nilable(VitableConnect::EnrollmentStatus::OrSymbol)) }
         attr_reader :status
 
-        sig do
-          params(
-            status: VitableConnect::Employees::EnrollmentStatus::OrSymbol
-          ).void
-        end
+        sig { params(status: VitableConnect::EnrollmentStatus::OrSymbol).void }
         attr_writer :status
 
         sig do
@@ -69,7 +61,7 @@ module VitableConnect
             limit: Integer,
             page: Integer,
             plan_year: Integer,
-            status: VitableConnect::Employees::EnrollmentStatus::OrSymbol,
+            status: VitableConnect::EnrollmentStatus::OrSymbol,
             request_options: VitableConnect::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -98,7 +90,7 @@ module VitableConnect
               limit: Integer,
               page: Integer,
               plan_year: Integer,
-              status: VitableConnect::Employees::EnrollmentStatus::OrSymbol,
+              status: VitableConnect::EnrollmentStatus::OrSymbol,
               request_options: VitableConnect::RequestOptions
             }
           )

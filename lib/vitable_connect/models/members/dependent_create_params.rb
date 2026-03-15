@@ -36,8 +36,8 @@ module VitableConnect
         #   - `Spouse` - Spouse
         #   - `Child` - Child
         #
-        #   @return [Symbol, VitableConnect::Models::Members::Relationship]
-        required :relationship, enum: -> { VitableConnect::Members::Relationship }
+        #   @return [Symbol, VitableConnect::Models::Relationship]
+        required :relationship, enum: -> { VitableConnect::Relationship }
 
         # @!attribute sex
         #   - `Male` - Male
@@ -45,8 +45,8 @@ module VitableConnect
         #   - `Other` - Other
         #   - `Unknown` - Unknown
         #
-        #   @return [Symbol, VitableConnect::Models::Employers::Sex]
-        required :sex, enum: -> { VitableConnect::Employers::Sex }
+        #   @return [Symbol, VitableConnect::Models::Sex]
+        required :sex, enum: -> { VitableConnect::Sex }
 
         # @!attribute gender
         #   Gender identity
@@ -78,9 +78,9 @@ module VitableConnect
         #
         #   @param last_name [String] Dependent's legal last name
         #
-        #   @param relationship [Symbol, VitableConnect::Models::Members::Relationship] - `Spouse` - Spouse
+        #   @param relationship [Symbol, VitableConnect::Models::Relationship] - `Spouse` - Spouse
         #
-        #   @param sex [Symbol, VitableConnect::Models::Employers::Sex] - `Male` - Male
+        #   @param sex [Symbol, VitableConnect::Models::Sex] - `Male` - Male
         #
         #   @param gender [String, nil] Gender identity
         #

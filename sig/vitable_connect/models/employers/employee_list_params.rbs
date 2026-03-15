@@ -5,7 +5,7 @@ module VitableConnect
         {
           employer_id: String,
           active_in: bool,
-          employee_class: VitableConnect::Models::Employers::employee_class,
+          employee_class: VitableConnect::Models::employee_class,
           limit: Integer,
           page: Integer
         }
@@ -21,11 +21,11 @@ module VitableConnect
 
         def active_in=: (bool) -> bool
 
-        attr_reader employee_class: VitableConnect::Models::Employers::employee_class?
+        attr_reader employee_class: VitableConnect::Models::employee_class?
 
         def employee_class=: (
-          VitableConnect::Models::Employers::employee_class
-        ) -> VitableConnect::Models::Employers::employee_class
+          VitableConnect::Models::employee_class
+        ) -> VitableConnect::Models::employee_class
 
         attr_reader limit: Integer?
 
@@ -38,7 +38,7 @@ module VitableConnect
         def initialize: (
           employer_id: String,
           ?active_in: bool,
-          ?employee_class: VitableConnect::Models::Employers::employee_class,
+          ?employee_class: VitableConnect::Models::employee_class,
           ?limit: Integer,
           ?page: Integer,
           ?request_options: VitableConnect::request_opts
@@ -47,7 +47,7 @@ module VitableConnect
         def to_hash: -> {
           employer_id: String,
           active_in: bool,
-          employee_class: VitableConnect::Models::Employers::employee_class,
+          employee_class: VitableConnect::Models::employee_class,
           limit: Integer,
           page: Integer,
           request_options: VitableConnect::RequestOptions

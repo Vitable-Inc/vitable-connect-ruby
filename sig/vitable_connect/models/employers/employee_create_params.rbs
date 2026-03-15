@@ -8,11 +8,11 @@ module VitableConnect
           email: String,
           first_name: String,
           last_name: String,
-          sex: VitableConnect::Models::Employers::sex,
+          sex: VitableConnect::Models::sex,
           ssn: String,
           start_date: Date,
           address: VitableConnect::Employers::EmployeeCreateParams::Address?,
-          employee_class: VitableConnect::Models::Employers::employee_class?,
+          employee_class: VitableConnect::Models::employee_class?,
           gender: String?,
           phone: String?,
           suffix: String?
@@ -33,7 +33,7 @@ module VitableConnect
 
         attr_accessor last_name: String
 
-        attr_accessor sex: VitableConnect::Models::Employers::sex
+        attr_accessor sex: VitableConnect::Models::sex
 
         attr_accessor ssn: String
 
@@ -41,7 +41,7 @@ module VitableConnect
 
         attr_accessor address: VitableConnect::Employers::EmployeeCreateParams::Address?
 
-        attr_accessor employee_class: VitableConnect::Models::Employers::employee_class?
+        attr_accessor employee_class: VitableConnect::Models::employee_class?
 
         attr_accessor gender: String?
 
@@ -55,11 +55,11 @@ module VitableConnect
           email: String,
           first_name: String,
           last_name: String,
-          sex: VitableConnect::Models::Employers::sex,
+          sex: VitableConnect::Models::sex,
           ssn: String,
           start_date: Date,
           ?address: VitableConnect::Employers::EmployeeCreateParams::Address?,
-          ?employee_class: VitableConnect::Models::Employers::employee_class?,
+          ?employee_class: VitableConnect::Models::employee_class?,
           ?gender: String?,
           ?phone: String?,
           ?suffix: String?,
@@ -72,11 +72,11 @@ module VitableConnect
           email: String,
           first_name: String,
           last_name: String,
-          sex: VitableConnect::Models::Employers::sex,
+          sex: VitableConnect::Models::sex,
           ssn: String,
           start_date: Date,
           address: VitableConnect::Employers::EmployeeCreateParams::Address?,
-          employee_class: VitableConnect::Models::Employers::employee_class?,
+          employee_class: VitableConnect::Models::employee_class?,
           gender: String?,
           phone: String?,
           suffix: String?,

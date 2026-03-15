@@ -8,7 +8,7 @@ module VitableConnect
           limit: Integer,
           page: Integer,
           plan_year: Integer,
-          status: VitableConnect::Models::Employees::enrollment_status
+          status: VitableConnect::Models::enrollment_status
         }
         & VitableConnect::Internal::Type::request_parameters
 
@@ -34,11 +34,11 @@ module VitableConnect
 
         def plan_year=: (Integer) -> Integer
 
-        attr_reader status: VitableConnect::Models::Employees::enrollment_status?
+        attr_reader status: VitableConnect::Models::enrollment_status?
 
         def status=: (
-          VitableConnect::Models::Employees::enrollment_status
-        ) -> VitableConnect::Models::Employees::enrollment_status
+          VitableConnect::Models::enrollment_status
+        ) -> VitableConnect::Models::enrollment_status
 
         def initialize: (
           employee_id: String,
@@ -46,7 +46,7 @@ module VitableConnect
           ?limit: Integer,
           ?page: Integer,
           ?plan_year: Integer,
-          ?status: VitableConnect::Models::Employees::enrollment_status,
+          ?status: VitableConnect::Models::enrollment_status,
           ?request_options: VitableConnect::request_opts
         ) -> void
 
@@ -56,7 +56,7 @@ module VitableConnect
           limit: Integer,
           page: Integer,
           plan_year: Integer,
-          status: VitableConnect::Models::Employees::enrollment_status,
+          status: VitableConnect::Models::enrollment_status,
           request_options: VitableConnect::RequestOptions
         }
       end

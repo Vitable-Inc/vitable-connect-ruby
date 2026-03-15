@@ -10,7 +10,7 @@ module VitableConnect
         String dependent_id,
         ?active: bool?,
         ?gender: String?,
-        ?relationship: VitableConnect::Models::Members::relationship?,
+        ?relationship: VitableConnect::Models::relationship?,
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::DependentResponse
 

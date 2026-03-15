@@ -1,0 +1,14 @@
+module VitableConnect
+  module Models
+    type relationship = :Spouse | :Child
+
+    module Relationship
+      extend VitableConnect::Internal::Type::Enum
+
+      SPOUSE: :Spouse
+      CHILD: :Child
+
+      def self?.values: -> ::Array[VitableConnect::Models::relationship]
+    end
+  end
+end

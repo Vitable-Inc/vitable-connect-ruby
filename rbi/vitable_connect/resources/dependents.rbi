@@ -27,8 +27,7 @@ module VitableConnect
           dependent_id: String,
           active: T.nilable(T::Boolean),
           gender: T.nilable(String),
-          relationship:
-            T.nilable(VitableConnect::Members::Relationship::OrSymbol),
+          relationship: T.nilable(VitableConnect::Relationship::OrSymbol),
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::DependentResponse)
       end

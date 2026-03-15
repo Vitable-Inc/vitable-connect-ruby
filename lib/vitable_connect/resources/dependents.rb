@@ -40,7 +40,7 @@ module VitableConnect
       #
       # @param gender [String, nil] Gender identity
       #
-      # @param relationship [Symbol, VitableConnect::Models::Members::Relationship, nil] - `Spouse` - Spouse
+      # @param relationship [Symbol, VitableConnect::Models::Relationship, nil] - `Spouse` - Spouse
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #

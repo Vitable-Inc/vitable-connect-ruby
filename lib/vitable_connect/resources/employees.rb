@@ -44,7 +44,7 @@ module VitableConnect
       #
       # @param email [String, nil] Email address
       #
-      # @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil] - `Full Time` - Full Time
+      # @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
       #
       # @param gender [String, nil] Gender identity
       #

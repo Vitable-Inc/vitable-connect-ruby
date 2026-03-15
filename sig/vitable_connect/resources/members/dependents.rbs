@@ -7,8 +7,8 @@ module VitableConnect
           date_of_birth: Date,
           first_name: String,
           last_name: String,
-          relationship: VitableConnect::Models::Members::relationship,
-          sex: VitableConnect::Models::Employers::sex,
+          relationship: VitableConnect::Models::relationship,
+          sex: VitableConnect::Models::sex,
           ?gender: String?,
           ?ssn: String?,
           ?suffix: String?,
@@ -20,7 +20,7 @@ module VitableConnect
           ?active_in: bool,
           ?limit: Integer,
           ?page: Integer,
-          ?relationship: VitableConnect::Models::Members::relationship,
+          ?relationship: VitableConnect::Models::relationship,
           ?request_options: VitableConnect::request_opts
         ) -> VitableConnect::Models::Members::DependentListResponse
 
