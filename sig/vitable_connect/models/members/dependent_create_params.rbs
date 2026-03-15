@@ -7,8 +7,8 @@ module VitableConnect
           date_of_birth: Date,
           first_name: String,
           last_name: String,
-          relationship: VitableConnect::Models::Members::relationship,
-          sex: VitableConnect::Models::Employers::sex,
+          relationship: VitableConnect::Models::relationship,
+          sex: VitableConnect::Models::sex,
           gender: String?,
           ssn: String?,
           suffix: String?
@@ -27,9 +27,9 @@ module VitableConnect
 
         attr_accessor last_name: String
 
-        attr_accessor relationship: VitableConnect::Models::Members::relationship
+        attr_accessor relationship: VitableConnect::Models::relationship
 
-        attr_accessor sex: VitableConnect::Models::Employers::sex
+        attr_accessor sex: VitableConnect::Models::sex
 
         attr_accessor gender: String?
 
@@ -42,8 +42,8 @@ module VitableConnect
           date_of_birth: Date,
           first_name: String,
           last_name: String,
-          relationship: VitableConnect::Models::Members::relationship,
-          sex: VitableConnect::Models::Employers::sex,
+          relationship: VitableConnect::Models::relationship,
+          sex: VitableConnect::Models::sex,
           ?gender: String?,
           ?ssn: String?,
           ?suffix: String?,
@@ -55,8 +55,8 @@ module VitableConnect
           date_of_birth: Date,
           first_name: String,
           last_name: String,
-          relationship: VitableConnect::Models::Members::relationship,
-          sex: VitableConnect::Models::Employers::sex,
+          relationship: VitableConnect::Models::relationship,
+          sex: VitableConnect::Models::sex,
           gender: String?,
           ssn: String?,
           suffix: String?,

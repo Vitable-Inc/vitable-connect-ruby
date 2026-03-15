@@ -29,8 +29,8 @@ module VitableConnect
       #   - `Spouse` - Spouse
       #   - `Child` - Child
       #
-      #   @return [Symbol, VitableConnect::Models::Members::Relationship, nil]
-      optional :relationship, enum: -> { VitableConnect::Members::Relationship }, nil?: true
+      #   @return [Symbol, VitableConnect::Models::Relationship, nil]
+      optional :relationship, enum: -> { VitableConnect::Relationship }, nil?: true
 
       # @!method initialize(dependent_id:, active: nil, gender: nil, relationship: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -42,7 +42,7 @@ module VitableConnect
       #
       #   @param gender [String, nil] Gender identity
       #
-      #   @param relationship [Symbol, VitableConnect::Models::Members::Relationship, nil] - `Spouse` - Spouse
+      #   @param relationship [Symbol, VitableConnect::Models::Relationship, nil] - `Spouse` - Spouse
       #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
     end

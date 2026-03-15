@@ -5,7 +5,7 @@ module VitableConnect
         employee_id: String,
         address: VitableConnect::EmployeeUpdateParams::Address?,
         email: String?,
-        employee_class: VitableConnect::Models::Employers::employee_class?,
+        employee_class: VitableConnect::Models::employee_class?,
         gender: String?,
         phone: String?,
         termination_date: Date?
@@ -22,7 +22,7 @@ module VitableConnect
 
       attr_accessor email: String?
 
-      attr_accessor employee_class: VitableConnect::Models::Employers::employee_class?
+      attr_accessor employee_class: VitableConnect::Models::employee_class?
 
       attr_accessor gender: String?
 
@@ -34,7 +34,7 @@ module VitableConnect
         employee_id: String,
         ?address: VitableConnect::EmployeeUpdateParams::Address?,
         ?email: String?,
-        ?employee_class: VitableConnect::Models::Employers::employee_class?,
+        ?employee_class: VitableConnect::Models::employee_class?,
         ?gender: String?,
         ?phone: String?,
         ?termination_date: Date?,
@@ -45,7 +45,7 @@ module VitableConnect
         employee_id: String,
         address: VitableConnect::EmployeeUpdateParams::Address?,
         email: String?,
-        employee_class: VitableConnect::Models::Employers::employee_class?,
+        employee_class: VitableConnect::Models::employee_class?,
         gender: String?,
         phone: String?,
         termination_date: Date?,

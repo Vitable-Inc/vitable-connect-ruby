@@ -33,8 +33,8 @@ module VitableConnect
       #   - `Seasonal` - Seasonal
       #   - `Individual Contractor` - Individual Contractor
       #
-      #   @return [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil]
-      optional :employee_class, enum: -> { VitableConnect::Employers::EmployeeClass }, nil?: true
+      #   @return [Symbol, VitableConnect::Models::EmployeeClass, nil]
+      optional :employee_class, enum: -> { VitableConnect::EmployeeClass }, nil?: true
 
       # @!attribute gender
       #   Gender identity
@@ -64,7 +64,7 @@ module VitableConnect
       #
       #   @param email [String, nil] Email address
       #
-      #   @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil] - `Full Time` - Full Time
+      #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
       #
       #   @param gender [String, nil] Gender identity
       #

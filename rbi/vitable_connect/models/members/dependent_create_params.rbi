@@ -33,14 +33,14 @@ module VitableConnect
 
         # - `Spouse` - Spouse
         # - `Child` - Child
-        sig { returns(VitableConnect::Members::Relationship::OrSymbol) }
+        sig { returns(VitableConnect::Relationship::OrSymbol) }
         attr_accessor :relationship
 
         # - `Male` - Male
         # - `Female` - Female
         # - `Other` - Other
         # - `Unknown` - Unknown
-        sig { returns(VitableConnect::Employers::Sex::OrSymbol) }
+        sig { returns(VitableConnect::Sex::OrSymbol) }
         attr_accessor :sex
 
         # Gender identity
@@ -61,8 +61,8 @@ module VitableConnect
             date_of_birth: Date,
             first_name: String,
             last_name: String,
-            relationship: VitableConnect::Members::Relationship::OrSymbol,
-            sex: VitableConnect::Employers::Sex::OrSymbol,
+            relationship: VitableConnect::Relationship::OrSymbol,
+            sex: VitableConnect::Sex::OrSymbol,
             gender: T.nilable(String),
             ssn: T.nilable(String),
             suffix: T.nilable(String),
@@ -103,8 +103,8 @@ module VitableConnect
               date_of_birth: Date,
               first_name: String,
               last_name: String,
-              relationship: VitableConnect::Members::Relationship::OrSymbol,
-              sex: VitableConnect::Employers::Sex::OrSymbol,
+              relationship: VitableConnect::Relationship::OrSymbol,
+              sex: VitableConnect::Sex::OrSymbol,
               gender: T.nilable(String),
               ssn: T.nilable(String),
               suffix: T.nilable(String),

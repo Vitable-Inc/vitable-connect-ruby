@@ -7,7 +7,7 @@ module VitableConnect
           active_in: bool,
           limit: Integer,
           page: Integer,
-          relationship: VitableConnect::Models::Members::relationship
+          relationship: VitableConnect::Models::relationship
         }
         & VitableConnect::Internal::Type::request_parameters
 
@@ -29,18 +29,18 @@ module VitableConnect
 
         def page=: (Integer) -> Integer
 
-        attr_reader relationship: VitableConnect::Models::Members::relationship?
+        attr_reader relationship: VitableConnect::Models::relationship?
 
         def relationship=: (
-          VitableConnect::Models::Members::relationship
-        ) -> VitableConnect::Models::Members::relationship
+          VitableConnect::Models::relationship
+        ) -> VitableConnect::Models::relationship
 
         def initialize: (
           member_id: String,
           ?active_in: bool,
           ?limit: Integer,
           ?page: Integer,
-          ?relationship: VitableConnect::Models::Members::relationship,
+          ?relationship: VitableConnect::Models::relationship,
           ?request_options: VitableConnect::request_opts
         ) -> void
 
@@ -49,7 +49,7 @@ module VitableConnect
           active_in: bool,
           limit: Integer,
           page: Integer,
-          relationship: VitableConnect::Models::Members::relationship,
+          relationship: VitableConnect::Models::relationship,
           request_options: VitableConnect::RequestOptions
         }
       end

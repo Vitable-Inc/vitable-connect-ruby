@@ -38,14 +38,14 @@ module VitableConnect
 
       # - `Spouse` - Spouse
       # - `Child` - Child
-      sig { returns(VitableConnect::Members::Relationship::TaggedSymbol) }
+      sig { returns(VitableConnect::Relationship::TaggedSymbol) }
       attr_accessor :relationship
 
       # - `Male` - Male
       # - `Female` - Female
       # - `Other` - Other
       # - `Unknown` - Unknown
-      sig { returns(VitableConnect::Employers::Sex::TaggedSymbol) }
+      sig { returns(VitableConnect::Sex::TaggedSymbol) }
       attr_accessor :sex
 
       # Timestamp when the dependent was last updated
@@ -77,8 +77,8 @@ module VitableConnect
           first_name: String,
           last_name: String,
           member_id: String,
-          relationship: VitableConnect::Members::Relationship::OrSymbol,
-          sex: VitableConnect::Employers::Sex::OrSymbol,
+          relationship: VitableConnect::Relationship::OrSymbol,
+          sex: VitableConnect::Sex::OrSymbol,
           updated_at: Time,
           gender: T.nilable(String),
           ssn_last_four: T.nilable(String),
@@ -129,8 +129,8 @@ module VitableConnect
             first_name: String,
             last_name: String,
             member_id: String,
-            relationship: VitableConnect::Members::Relationship::TaggedSymbol,
-            sex: VitableConnect::Employers::Sex::TaggedSymbol,
+            relationship: VitableConnect::Relationship::TaggedSymbol,
+            sex: VitableConnect::Sex::TaggedSymbol,
             updated_at: Time,
             gender: T.nilable(String),
             ssn_last_four: T.nilable(String),

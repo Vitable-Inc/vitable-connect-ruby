@@ -66,6 +66,8 @@ module VitableConnect
 
   Employee = VitableConnect::Models::Employee
 
+  EmployeeClass = VitableConnect::Models::EmployeeClass
+
   EmployeeResponse = VitableConnect::Models::EmployeeResponse
 
   EmployeeRetrieveParams = VitableConnect::Models::EmployeeRetrieveParams
@@ -102,6 +104,8 @@ module VitableConnect
 
   EnrollmentRetrieveParams = VitableConnect::Models::EnrollmentRetrieveParams
 
+  EnrollmentStatus = VitableConnect::Models::EnrollmentStatus
+
   Members = VitableConnect::Models::Members
 
   Pagination = VitableConnect::Models::Pagination
@@ -113,6 +117,10 @@ module VitableConnect
   PlanYearUpdateParams = VitableConnect::Models::PlanYearUpdateParams
 
   ProductCode = VitableConnect::Models::ProductCode
+
+  Relationship = VitableConnect::Models::Relationship
+
+  Sex = VitableConnect::Models::Sex
 
   Type = VitableConnect::Models::Type
 end

@@ -5,7 +5,7 @@ module VitableConnect
         dependent_id: String,
         active: bool?,
         gender: String?,
-        relationship: VitableConnect::Models::Members::relationship?
+        relationship: VitableConnect::Models::relationship?
       }
       & VitableConnect::Internal::Type::request_parameters
 
@@ -19,13 +19,13 @@ module VitableConnect
 
       attr_accessor gender: String?
 
-      attr_accessor relationship: VitableConnect::Models::Members::relationship?
+      attr_accessor relationship: VitableConnect::Models::relationship?
 
       def initialize: (
         dependent_id: String,
         ?active: bool?,
         ?gender: String?,
-        ?relationship: VitableConnect::Models::Members::relationship?,
+        ?relationship: VitableConnect::Models::relationship?,
         ?request_options: VitableConnect::request_opts
       ) -> void
 
@@ -33,7 +33,7 @@ module VitableConnect
         dependent_id: String,
         active: bool?,
         gender: String?,
-        relationship: VitableConnect::Models::Members::relationship?,
+        relationship: VitableConnect::Models::relationship?,
         request_options: VitableConnect::RequestOptions
       }
     end

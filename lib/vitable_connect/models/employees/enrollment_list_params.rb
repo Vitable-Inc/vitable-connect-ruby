@@ -41,8 +41,8 @@ module VitableConnect
         # @!attribute status
         #   Filter by enrollment status
         #
-        #   @return [Symbol, VitableConnect::Models::Employees::EnrollmentStatus, nil]
-        optional :status, enum: -> { VitableConnect::Employees::EnrollmentStatus }
+        #   @return [Symbol, VitableConnect::Models::EnrollmentStatus, nil]
+        optional :status, enum: -> { VitableConnect::EnrollmentStatus }
 
         # @!method initialize(employee_id:, coverage_effective_start_year: nil, limit: nil, page: nil, plan_year: nil, status: nil, request_options: {})
         #   @param employee_id [String] Unique employee identifier (empl\_\*)
@@ -55,7 +55,7 @@ module VitableConnect
         #
         #   @param plan_year [Integer] Filter by plan year start (YYYY)
         #
-        #   @param status [Symbol, VitableConnect::Models::Employees::EnrollmentStatus] Filter by enrollment status
+        #   @param status [Symbol, VitableConnect::Models::EnrollmentStatus] Filter by enrollment status
         #
         #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
       end

@@ -8,11 +8,11 @@ module VitableConnect
           email: String,
           first_name: String,
           last_name: String,
-          sex: VitableConnect::Models::Employers::sex,
+          sex: VitableConnect::Models::sex,
           ssn: String,
           start_date: Date,
           ?address: VitableConnect::Employers::EmployeeCreateParams::Address?,
-          ?employee_class: VitableConnect::Models::Employers::employee_class?,
+          ?employee_class: VitableConnect::Models::employee_class?,
           ?gender: String?,
           ?phone: String?,
           ?suffix: String?,
@@ -22,7 +22,7 @@ module VitableConnect
         def list: (
           String employer_id,
           ?active_in: bool,
-          ?employee_class: VitableConnect::Models::Employers::employee_class,
+          ?employee_class: VitableConnect::Models::employee_class,
           ?limit: Integer,
           ?page: Integer,
           ?request_options: VitableConnect::request_opts

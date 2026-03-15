@@ -16,7 +16,7 @@ module VitableConnect
             limit: Integer,
             page: Integer,
             plan_year: Integer,
-            status: VitableConnect::Employees::EnrollmentStatus::OrSymbol,
+            status: VitableConnect::EnrollmentStatus::OrSymbol,
             request_options: VitableConnect::RequestOptions::OrHash
           ).returns(VitableConnect::Employees::EnrollmentList)
         end

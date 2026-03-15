@@ -35,8 +35,8 @@ module VitableConnect
         # @!attribute relationship
         #   Filter by relationship type
         #
-        #   @return [Symbol, VitableConnect::Models::Members::Relationship, nil]
-        optional :relationship, enum: -> { VitableConnect::Members::Relationship }
+        #   @return [Symbol, VitableConnect::Models::Relationship, nil]
+        optional :relationship, enum: -> { VitableConnect::Relationship }
 
         # @!method initialize(member_id:, active_in: nil, limit: nil, page: nil, relationship: nil, request_options: {})
         #   @param member_id [String] Unique member identifier (mbr\_\*)
@@ -47,7 +47,7 @@ module VitableConnect
         #
         #   @param page [Integer] Page number (default: 1)
         #
-        #   @param relationship [Symbol, VitableConnect::Models::Members::Relationship] Filter by relationship type
+        #   @param relationship [Symbol, VitableConnect::Models::Relationship] Filter by relationship type
         #
         #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
       end

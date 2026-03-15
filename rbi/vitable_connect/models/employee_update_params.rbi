@@ -40,9 +40,7 @@ module VitableConnect
       # - `Intern` - Intern
       # - `Seasonal` - Seasonal
       # - `Individual Contractor` - Individual Contractor
-      sig do
-        returns(T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol))
-      end
+      sig { returns(T.nilable(VitableConnect::EmployeeClass::OrSymbol)) }
       attr_accessor :employee_class
 
       # Gender identity
@@ -63,8 +61,7 @@ module VitableConnect
           address:
             T.nilable(VitableConnect::EmployeeUpdateParams::Address::OrHash),
           email: T.nilable(String),
-          employee_class:
-            T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol),
+          employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
           gender: T.nilable(String),
           phone: T.nilable(String),
           termination_date: T.nilable(Date),
@@ -101,8 +98,7 @@ module VitableConnect
             employee_id: String,
             address: T.nilable(VitableConnect::EmployeeUpdateParams::Address),
             email: T.nilable(String),
-            employee_class:
-              T.nilable(VitableConnect::Employers::EmployeeClass::OrSymbol),
+            employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
             gender: T.nilable(String),
             phone: T.nilable(String),
             termination_date: T.nilable(Date),

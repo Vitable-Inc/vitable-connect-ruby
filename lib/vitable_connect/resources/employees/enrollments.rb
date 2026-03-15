@@ -22,7 +22,7 @@ module VitableConnect
         #
         # @param plan_year [Integer] Filter by plan year start (YYYY)
         #
-        # @param status [Symbol, VitableConnect::Models::Employees::EnrollmentStatus] Filter by enrollment status
+        # @param status [Symbol, VitableConnect::Models::EnrollmentStatus] Filter by enrollment status
         #
         # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
         #

@@ -44,8 +44,8 @@ module VitableConnect
         #   - `Other` - Other
         #   - `Unknown` - Unknown
         #
-        #   @return [Symbol, VitableConnect::Models::Employers::Sex]
-        required :sex, enum: -> { VitableConnect::Employers::Sex }
+        #   @return [Symbol, VitableConnect::Models::Sex]
+        required :sex, enum: -> { VitableConnect::Sex }
 
         # @!attribute ssn
         #   Social Security Number (XXX-XX-XXXX or XXXXXXXXX). Only accepted on create.
@@ -73,8 +73,8 @@ module VitableConnect
         #   - `Seasonal` - Seasonal
         #   - `Individual Contractor` - Individual Contractor
         #
-        #   @return [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil]
-        optional :employee_class, enum: -> { VitableConnect::Employers::EmployeeClass }, nil?: true
+        #   @return [Symbol, VitableConnect::Models::EmployeeClass, nil]
+        optional :employee_class, enum: -> { VitableConnect::EmployeeClass }, nil?: true
 
         # @!attribute gender
         #   Gender identity
@@ -108,7 +108,7 @@ module VitableConnect
         #
         #   @param last_name [String] Employee's legal last name
         #
-        #   @param sex [Symbol, VitableConnect::Models::Employers::Sex] - `Male` - Male
+        #   @param sex [Symbol, VitableConnect::Models::Sex] - `Male` - Male
         #
         #   @param ssn [String] Social Security Number (XXX-XX-XXXX or XXXXXXXXX). Only accepted on create.
         #
@@ -116,7 +116,7 @@ module VitableConnect
         #
         #   @param address [VitableConnect::Models::Employers::EmployeeCreateParams::Address, nil] Employee's residential address
         #
-        #   @param employee_class [Symbol, VitableConnect::Models::Employers::EmployeeClass, nil] - `Full Time` - Full Time
+        #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
         #
         #   @param gender [String, nil] Gender identity
         #

@@ -8,7 +8,7 @@ module VitableConnect
           ?limit: Integer,
           ?page: Integer,
           ?plan_year: Integer,
-          ?status: VitableConnect::Models::Employees::enrollment_status,
+          ?status: VitableConnect::Models::enrollment_status,
           ?request_options: VitableConnect::request_opts
         ) -> VitableConnect::Employees::EnrollmentList
 

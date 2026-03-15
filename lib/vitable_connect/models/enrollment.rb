@@ -49,8 +49,8 @@ module VitableConnect
       #   - `waived` - Waived
       #   - `inactive` - Inactive
       #
-      #   @return [Symbol, VitableConnect::Models::Employees::EnrollmentStatus]
-      required :status, enum: -> { VitableConnect::Employees::EnrollmentStatus }
+      #   @return [Symbol, VitableConnect::Models::EnrollmentStatus]
+      required :status, enum: -> { VitableConnect::EnrollmentStatus }
 
       # @!attribute updated_at
       #   Timestamp when the enrollment was last updated
@@ -128,7 +128,7 @@ module VitableConnect
       #
       #   @param plan_year_id [String] ID of the plan year (plyr\_\*)
       #
-      #   @param status [Symbol, VitableConnect::Models::Employees::EnrollmentStatus] - `pending` - Pending
+      #   @param status [Symbol, VitableConnect::Models::EnrollmentStatus] - `pending` - Pending
       #
       #   @param updated_at [Time] Timestamp when the enrollment was last updated
       #
@@ -171,8 +171,8 @@ module VitableConnect
         #   - `Spouse` - Spouse
         #   - `Child` - Child
         #
-        #   @return [Symbol, VitableConnect::Models::Members::Relationship]
-        required :relationship, enum: -> { VitableConnect::Members::Relationship }
+        #   @return [Symbol, VitableConnect::Models::Relationship]
+        required :relationship, enum: -> { VitableConnect::Relationship }
 
         # @!method initialize(dependent_id:, first_name:, last_name:, relationship:)
         #   Some parameter documentations has been truncated, see
@@ -186,7 +186,7 @@ module VitableConnect
         #
         #   @param last_name [String] Dependent's last name
         #
-        #   @param relationship [Symbol, VitableConnect::Models::Members::Relationship] - `Spouse` - Spouse
+        #   @param relationship [Symbol, VitableConnect::Models::Relationship] - `Spouse` - Spouse
       end
     end
   end

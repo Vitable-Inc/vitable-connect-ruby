@@ -12,7 +12,7 @@ module VitableConnect
         String employee_id,
         ?address: VitableConnect::EmployeeUpdateParams::Address?,
         ?email: String?,
-        ?employee_class: VitableConnect::Models::Employers::employee_class?,
+        ?employee_class: VitableConnect::Models::employee_class?,
         ?gender: String?,
         ?phone: String?,
         ?termination_date: Date?,

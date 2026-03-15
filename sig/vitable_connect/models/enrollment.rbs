@@ -8,7 +8,7 @@ module VitableConnect
         created_at: Time,
         employee_id: String,
         plan_year_id: String,
-        status: VitableConnect::Models::Employees::enrollment_status,
+        status: VitableConnect::Models::enrollment_status,
         updated_at: Time,
         coverage_end_date: Date?,
         coverage_start_date: Date?,
@@ -33,7 +33,7 @@ module VitableConnect
 
       attr_accessor plan_year_id: String
 
-      attr_accessor status: VitableConnect::Models::Employees::enrollment_status
+      attr_accessor status: VitableConnect::Models::enrollment_status
 
       attr_accessor updated_at: Time
 
@@ -64,7 +64,7 @@ module VitableConnect
         created_at: Time,
         employee_id: String,
         plan_year_id: String,
-        status: VitableConnect::Models::Employees::enrollment_status,
+        status: VitableConnect::Models::enrollment_status,
         updated_at: Time,
         ?coverage_end_date: Date?,
         ?coverage_start_date: Date?,
@@ -83,7 +83,7 @@ module VitableConnect
         created_at: Time,
         employee_id: String,
         plan_year_id: String,
-        status: VitableConnect::Models::Employees::enrollment_status,
+        status: VitableConnect::Models::enrollment_status,
         updated_at: Time,
         coverage_end_date: Date?,
         coverage_start_date: Date?,
@@ -100,7 +100,7 @@ module VitableConnect
           dependent_id: String,
           first_name: String,
           last_name: String,
-          relationship: VitableConnect::Models::Members::relationship
+          relationship: VitableConnect::Models::relationship
         }
 
       class EnrolledDependent < VitableConnect::Internal::Type::BaseModel
@@ -110,20 +110,20 @@ module VitableConnect
 
         attr_accessor last_name: String
 
-        attr_accessor relationship: VitableConnect::Models::Members::relationship
+        attr_accessor relationship: VitableConnect::Models::relationship
 
         def initialize: (
           dependent_id: String,
           first_name: String,
           last_name: String,
-          relationship: VitableConnect::Models::Members::relationship
+          relationship: VitableConnect::Models::relationship
         ) -> void
 
         def to_hash: -> {
           dependent_id: String,
           first_name: String,
           last_name: String,
-          relationship: VitableConnect::Models::Members::relationship
+          relationship: VitableConnect::Models::relationship
         }
       end
     end
