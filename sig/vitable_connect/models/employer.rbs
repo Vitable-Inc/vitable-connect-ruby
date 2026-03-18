@@ -10,9 +10,11 @@ module VitableConnect
         eligibility_policy_id: String?,
         legal_name: String,
         name: String,
-        organization_id: String,
+        organization_id: String?,
         updated_at: Time,
-        email: String?
+        email: String?,
+        phone_number: String?,
+        reference_id: String?
       }
 
     class Employer < VitableConnect::Internal::Type::BaseModel
@@ -30,13 +32,17 @@ module VitableConnect
 
       attr_accessor email: String?
 
+      attr_accessor phone_number: String?
+
+      attr_accessor reference_id: String?
+
       attr_accessor id: String
 
       attr_accessor ein: String?
 
       attr_accessor eligibility_policy_id: String?
 
-      attr_accessor organization_id: String
+      attr_accessor organization_id: String?
 
       def initialize: (
         id: String,
@@ -47,9 +53,11 @@ module VitableConnect
         eligibility_policy_id: String?,
         legal_name: String,
         name: String,
-        organization_id: String,
+        organization_id: String?,
         updated_at: Time,
-        ?email: String?
+        ?email: String?,
+        ?phone_number: String?,
+        ?reference_id: String?
       ) -> void
 
       def to_hash: -> {
@@ -61,9 +69,11 @@ module VitableConnect
         eligibility_policy_id: String?,
         legal_name: String,
         name: String,
-        organization_id: String,
+        organization_id: String?,
         updated_at: Time,
-        email: String?
+        email: String?,
+        phone_number: String?,
+        reference_id: String?
       }
 
       type address =

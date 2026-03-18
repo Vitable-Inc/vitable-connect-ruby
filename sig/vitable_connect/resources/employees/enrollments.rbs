@@ -4,17 +4,8 @@ module VitableConnect
       class Enrollments
         def list: (
           String employee_id,
-          ?coverage_effective_start_year: Integer,
           ?limit: Integer,
           ?page: Integer,
-          ?plan_year: Integer,
-          ?status: VitableConnect::Models::enrollment_status,
-          ?request_options: VitableConnect::request_opts
-        ) -> VitableConnect::Employees::EnrollmentList
-
-        def submit_elections: (
-          String employee_id,
-          elections: ::Array[VitableConnect::Employees::EnrollmentSubmitElectionsParams::Election],
           ?request_options: VitableConnect::request_opts
         ) -> VitableConnect::Employees::EnrollmentList
 

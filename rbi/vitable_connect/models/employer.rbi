@@ -39,6 +39,14 @@ module VitableConnect
       sig { returns(T.nilable(String)) }
       attr_accessor :email
 
+      # Employer phone number (E.164 format recommended)
+      sig { returns(T.nilable(String)) }
+      attr_accessor :phone_number
+
+      # Partner-assigned reference ID for the employer
+      sig { returns(T.nilable(String)) }
+      attr_accessor :reference_id
+
       # Unique employer identifier with 'empr\_' prefix
       sig { returns(String) }
       attr_accessor :id
@@ -52,7 +60,7 @@ module VitableConnect
       attr_accessor :eligibility_policy_id
 
       # ID of the parent organization (org\_\*)
-      sig { returns(String) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :organization_id
 
       # Serializer for Employer entity in public API responses.
@@ -66,9 +74,11 @@ module VitableConnect
           eligibility_policy_id: T.nilable(String),
           legal_name: String,
           name: String,
-          organization_id: String,
+          organization_id: T.nilable(String),
           updated_at: Time,
-          email: T.nilable(String)
+          email: T.nilable(String),
+          phone_number: T.nilable(String),
+          reference_id: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -93,7 +103,11 @@ module VitableConnect
         # Timestamp when the employer was last updated
         updated_at:,
         # Email address for billing and communications
-        email: nil
+        email: nil,
+        # Employer phone number (E.164 format recommended)
+        phone_number: nil,
+        # Partner-assigned reference ID for the employer
+        reference_id: nil
       )
       end
 
@@ -108,9 +122,11 @@ module VitableConnect
             eligibility_policy_id: T.nilable(String),
             legal_name: String,
             name: String,
-            organization_id: String,
+            organization_id: T.nilable(String),
             updated_at: Time,
-            email: T.nilable(String)
+            email: T.nilable(String),
+            phone_number: T.nilable(String),
+            reference_id: T.nilable(String)
           }
         )
       end

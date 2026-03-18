@@ -2,27 +2,8 @@ module VitableConnect
   module Resources
     class Employers
       class Employees
-        def create: (
-          String employer_id,
-          date_of_birth: Date,
-          email: String,
-          first_name: String,
-          last_name: String,
-          sex: VitableConnect::Models::sex,
-          ssn: String,
-          start_date: Date,
-          ?address: VitableConnect::Employers::EmployeeCreateParams::Address?,
-          ?employee_class: VitableConnect::Models::employee_class?,
-          ?gender: String?,
-          ?phone: String?,
-          ?suffix: String?,
-          ?request_options: VitableConnect::request_opts
-        ) -> VitableConnect::EmployeeResponse
-
         def list: (
           String employer_id,
-          ?active_in: bool,
-          ?employee_class: VitableConnect::Models::employee_class,
           ?limit: Integer,
           ?page: Integer,
           ?request_options: VitableConnect::request_opts

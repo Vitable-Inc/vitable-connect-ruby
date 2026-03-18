@@ -45,6 +45,18 @@ module VitableConnect
       #   @return [String, nil]
       optional :email, String, nil?: true
 
+      # @!attribute phone_number
+      #   Employer phone number (E.164 format recommended)
+      #
+      #   @return [String, nil]
+      optional :phone_number, String, nil?: true
+
+      # @!attribute reference_id
+      #   Partner-assigned reference ID for the employer
+      #
+      #   @return [String, nil]
+      optional :reference_id, String, nil?: true
+
       response_only do
         # @!attribute id
         #   Unique employer identifier with 'empr\_' prefix
@@ -67,11 +79,11 @@ module VitableConnect
         # @!attribute organization_id
         #   ID of the parent organization (org\_\*)
         #
-        #   @return [String]
-        required :organization_id, String
+        #   @return [String, nil]
+        required :organization_id, String, nil?: true
       end
 
-      # @!method initialize(id:, active:, address:, created_at:, ein:, eligibility_policy_id:, legal_name:, name:, organization_id:, updated_at:, email: nil)
+      # @!method initialize(id:, active:, address:, created_at:, ein:, eligibility_policy_id:, legal_name:, name:, organization_id:, updated_at:, email: nil, phone_number: nil, reference_id: nil)
       #   Serializer for Employer entity in public API responses.
       #
       #   @param id [String] Unique employer identifier with 'empr\_' prefix
@@ -90,11 +102,15 @@ module VitableConnect
       #
       #   @param name [String] Display name of the employer
       #
-      #   @param organization_id [String] ID of the parent organization (org\_\*)
+      #   @param organization_id [String, nil] ID of the parent organization (org\_\*)
       #
       #   @param updated_at [Time] Timestamp when the employer was last updated
       #
       #   @param email [String, nil] Email address for billing and communications
+      #
+      #   @param phone_number [String, nil] Employer phone number (E.164 format recommended)
+      #
+      #   @param reference_id [String, nil] Partner-assigned reference ID for the employer
 
       # @see VitableConnect::Models::Employer#address
       class Address < VitableConnect::Internal::Type::BaseModel

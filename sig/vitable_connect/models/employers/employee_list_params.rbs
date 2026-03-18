@@ -2,13 +2,7 @@ module VitableConnect
   module Models
     module Employers
       type employee_list_params =
-        {
-          employer_id: String,
-          active_in: bool,
-          employee_class: VitableConnect::Models::employee_class,
-          limit: Integer,
-          page: Integer
-        }
+        { employer_id: String, limit: Integer, page: Integer }
         & VitableConnect::Internal::Type::request_parameters
 
       class EmployeeListParams < VitableConnect::Internal::Type::BaseModel
@@ -16,16 +10,6 @@ module VitableConnect
         include VitableConnect::Internal::Type::RequestParameters
 
         attr_accessor employer_id: String
-
-        attr_reader active_in: bool?
-
-        def active_in=: (bool) -> bool
-
-        attr_reader employee_class: VitableConnect::Models::employee_class?
-
-        def employee_class=: (
-          VitableConnect::Models::employee_class
-        ) -> VitableConnect::Models::employee_class
 
         attr_reader limit: Integer?
 
@@ -37,8 +21,6 @@ module VitableConnect
 
         def initialize: (
           employer_id: String,
-          ?active_in: bool,
-          ?employee_class: VitableConnect::Models::employee_class,
           ?limit: Integer,
           ?page: Integer,
           ?request_options: VitableConnect::request_opts
@@ -46,8 +28,6 @@ module VitableConnect
 
         def to_hash: -> {
           employer_id: String,
-          active_in: bool,
-          employee_class: VitableConnect::Models::employee_class,
           limit: Integer,
           page: Integer,
           request_options: VitableConnect::RequestOptions

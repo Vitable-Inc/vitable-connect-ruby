@@ -44,7 +44,7 @@ module VitableConnect
       #
       # @overload retrieve(employer_id, request_options: {})
       #
-      # @param employer_id [String] Filter by employer ID
+      # @param employer_id [String] Unique employer identifier (empr\_\*)
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -60,48 +60,13 @@ module VitableConnect
         )
       end
 
-      # Updates an existing employer's information. All fields are optional - only
-      # provided fields will be updated. Note: EIN cannot be changed after creation.
+      # Retrieves a paginated list of all employers belonging to the authenticated
+      # organization. Results are sorted by creation date (newest first) and paginated
+      # using page and limit parameters.
       #
-      # @overload update(employer_id, active: nil, address: nil, legal_name: nil, name: nil, request_options: {})
-      #
-      # @param employer_id [String] Filter by employer ID
-      #
-      # @param active [Boolean, nil] Whether the employer is active
-      #
-      # @param address [VitableConnect::Models::EmployerUpdateParams::Address, nil] Employer address
-      #
-      # @param legal_name [String, nil] Legal business name
-      #
-      # @param name [String, nil] Employer display name
-      #
-      # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [VitableConnect::Models::EmployerResponse]
-      #
-      # @see VitableConnect::Models::EmployerUpdateParams
-      def update(employer_id, params = {})
-        parsed, options = VitableConnect::EmployerUpdateParams.dump_request(params)
-        @client.request(
-          method: :put,
-          path: ["v1/employers/%1$s", employer_id],
-          body: parsed,
-          model: VitableConnect::EmployerResponse,
-          options: options
-        )
-      end
-
-      # Retrieves a paginated list of all employers that the authenticated organization
-      # has access to. Use query parameters to filter by name or active status. Results
-      # are paginated using page and limit parameters.
-      #
-      # @overload list(active_in: nil, limit: nil, name: nil, page: nil, request_options: {})
-      #
-      # @param active_in [Boolean] Filter by active status
+      # @overload list(limit: nil, page: nil, request_options: {})
       #
       # @param limit [Integer] Items per page (default: 20, max: 100)
-      #
-      # @param name [String] Filter by employer name (partial match)
       #
       # @param page [Integer] Page number (default: 1)
       #
@@ -122,26 +87,19 @@ module VitableConnect
         )
       end
 
-      # Creates a new benefit eligibility policy for a specific employer. Eligibility
-      # policies define rules that determine which employees qualify for benefits based
-      # on criteria such as employment status (full-time, part-time), hours worked per
-      # week, waiting periods after hire date, or other custom requirements. Optionally
-      # provide 'policy_to_replace_id' as a query parameter to replace an existing
-      # policy.
+      # Some parameter documentations has been truncated, see
+      # {VitableConnect::Models::EmployerCreateEligibilityPolicyParams} for more
+      # details.
       #
-      # @overload create_eligibility_policy(employer_id, effective_date:, name:, rules:, policy_to_replace_id: nil, description: nil, request_options: {})
+      # Creates a benefit eligibility policy for the specified employer.
       #
-      # @param employer_id [String] Path param: Filter by employer ID
+      # @overload create_eligibility_policy(employer_id, classification:, waiting_period:, request_options: {})
       #
-      # @param effective_date [Date] Body param: Date when policy becomes effective
+      # @param employer_id [String] Unique employer identifier (empr\_\*)
       #
-      # @param name [String] Body param: Display name for the policy
+      # @param classification [String] Which employee classifications are eligible. One of: full_time, part_time, all
       #
-      # @param rules [Array<VitableConnect::Models::EmployerCreateEligibilityPolicyParams::Rule>] Body param: List of eligibility rules (at least one required)
-      #
-      # @param policy_to_replace_id [String] Query param: ID of existing policy to replace (epol\_\*)
-      #
-      # @param description [String, nil] Body param: Detailed description
+      # @param waiting_period [String] Waiting period before eligibility. One of: first_of_following_month, 30_days, 60
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -149,14 +107,11 @@ module VitableConnect
       #
       # @see VitableConnect::Models::EmployerCreateEligibilityPolicyParams
       def create_eligibility_policy(employer_id, params)
-        query_params = [:policy_to_replace_id]
         parsed, options = VitableConnect::EmployerCreateEligibilityPolicyParams.dump_request(params)
-        query = VitableConnect::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :post,
           path: ["v1/employers/%1$s/benefit-eligibility-policies", employer_id],
-          query: query,
-          body: parsed.except(*query_params),
+          body: parsed,
           model: VitableConnect::BenefitEligibilityPolicy,
           options: options
         )

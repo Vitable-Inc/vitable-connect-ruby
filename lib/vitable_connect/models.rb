@@ -48,21 +48,7 @@ module VitableConnect
 
   BenefitEligibilityPolicyRetrieveParams = VitableConnect::Models::BenefitEligibilityPolicyRetrieveParams
 
-  BenefitProductListParams = VitableConnect::Models::BenefitProductListParams
-
-  BenefitProducts = VitableConnect::Models::BenefitProducts
-
   Category = VitableConnect::Models::Category
-
-  CoverageTier = VitableConnect::Models::CoverageTier
-
-  Dependent = VitableConnect::Models::Dependent
-
-  DependentResponse = VitableConnect::Models::DependentResponse
-
-  DependentRetrieveParams = VitableConnect::Models::DependentRetrieveParams
-
-  DependentUpdateParams = VitableConnect::Models::DependentUpdateParams
 
   Employee = VitableConnect::Models::Employee
 
@@ -73,10 +59,6 @@ module VitableConnect
   EmployeeRetrieveParams = VitableConnect::Models::EmployeeRetrieveParams
 
   Employees = VitableConnect::Models::Employees
-
-  EmployeeTerminateParams = VitableConnect::Models::EmployeeTerminateParams
-
-  EmployeeUpdateParams = VitableConnect::Models::EmployeeUpdateParams
 
   Employer = VitableConnect::Models::Employer
 
@@ -92,13 +74,7 @@ module VitableConnect
 
   Employers = VitableConnect::Models::Employers
 
-  EmployerUpdateParams = VitableConnect::Models::EmployerUpdateParams
-
   Enrollment = VitableConnect::Models::Enrollment
-
-  EnrollmentListPlansParams = VitableConnect::Models::EnrollmentListPlansParams
-
-  EnrollmentReissueParams = VitableConnect::Models::EnrollmentReissueParams
 
   EnrollmentResponse = VitableConnect::Models::EnrollmentResponse
 
@@ -106,21 +82,9 @@ module VitableConnect
 
   EnrollmentStatus = VitableConnect::Models::EnrollmentStatus
 
-  Members = VitableConnect::Models::Members
-
   Pagination = VitableConnect::Models::Pagination
 
-  PlanTier = VitableConnect::Models::PlanTier
-
-  PlanYearRetrieveParams = VitableConnect::Models::PlanYearRetrieveParams
-
-  PlanYearUpdateParams = VitableConnect::Models::PlanYearUpdateParams
-
   ProductCode = VitableConnect::Models::ProductCode
-
-  Relationship = VitableConnect::Models::Relationship
-
-  Sex = VitableConnect::Models::Sex
 
   Type = VitableConnect::Models::Type
 end

@@ -11,10 +11,6 @@ module VitableConnect
           )
         end
 
-      # Serializer for Enrollment entity in public API responses.
-      #
-      # An Enrollment represents an employee's benefit enrollment for a specific plan
-      # year.
       sig { returns(VitableConnect::Enrollment) }
       attr_reader :data
 
@@ -27,13 +23,7 @@ module VitableConnect
           T.attached_class
         )
       end
-      def self.new(
-        # Serializer for Enrollment entity in public API responses.
-        #
-        # An Enrollment represents an employee's benefit enrollment for a specific plan
-        # year.
-        data:
-      )
+      def self.new(data:)
       end
 
       sig { override.returns({ data: VitableConnect::Enrollment }) }

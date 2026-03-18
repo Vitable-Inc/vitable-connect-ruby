@@ -32,11 +32,9 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::BenefitEligibilityPolicies) }
     attr_reader :benefit_eligibility_policies
 
-    # Browse available benefit products that can be offered to employers
     sig { returns(VitableConnect::Resources::BenefitProducts) }
     attr_reader :benefit_products
 
-    # Manage dependent records (spouses, children) for employees
     sig { returns(VitableConnect::Resources::Dependents) }
     attr_reader :dependents
 
@@ -54,7 +52,6 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::Members) }
     attr_reader :members
 
-    # Configure annual benefit periods with coverage dates and contribution settings
     sig { returns(VitableConnect::Resources::PlanYears) }
     attr_reader :plan_years
 

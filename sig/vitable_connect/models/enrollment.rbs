@@ -3,127 +3,108 @@ module VitableConnect
     type enrollment =
       {
         id: String,
-        benefit_product_id: String,
-        coverage_tier: VitableConnect::Models::coverage_tier,
+        answered_at: Time?,
+        benefit: VitableConnect::Enrollment::Benefit,
+        coverage_end: Date?,
+        coverage_start: Date,
         created_at: Time,
+        employee_deduction_in_cents: Integer?,
         employee_id: String,
-        plan_year_id: String,
+        employer_contribution_in_cents: Integer?,
+        employer_id: String,
         status: VitableConnect::Models::enrollment_status,
-        updated_at: Time,
-        coverage_end_date: Date?,
-        coverage_start_date: Date?,
-        decision: String?,
-        employee_contribution_cents: Integer?,
-        employer_contribution_cents: Integer?,
-        enrolled_dependents: ::Array[VitableConnect::Enrollment::EnrolledDependent],
-        selected_plan_id: String?,
-        selected_plan_name: String?
+        terminated_at: Time?,
+        updated_at: Time
       }
 
     class Enrollment < VitableConnect::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor benefit_product_id: String
+      attr_accessor answered_at: Time?
 
-      attr_accessor coverage_tier: VitableConnect::Models::coverage_tier
+      attr_accessor benefit: VitableConnect::Enrollment::Benefit
+
+      attr_accessor coverage_end: Date?
+
+      attr_accessor coverage_start: Date
 
       attr_accessor created_at: Time
 
+      attr_accessor employee_deduction_in_cents: Integer?
+
       attr_accessor employee_id: String
 
-      attr_accessor plan_year_id: String
+      attr_accessor employer_contribution_in_cents: Integer?
+
+      attr_accessor employer_id: String
 
       attr_accessor status: VitableConnect::Models::enrollment_status
 
+      attr_accessor terminated_at: Time?
+
       attr_accessor updated_at: Time
-
-      attr_accessor coverage_end_date: Date?
-
-      attr_accessor coverage_start_date: Date?
-
-      attr_accessor decision: String?
-
-      attr_accessor employee_contribution_cents: Integer?
-
-      attr_accessor employer_contribution_cents: Integer?
-
-      attr_reader enrolled_dependents: ::Array[VitableConnect::Enrollment::EnrolledDependent]?
-
-      def enrolled_dependents=: (
-        ::Array[VitableConnect::Enrollment::EnrolledDependent]
-      ) -> ::Array[VitableConnect::Enrollment::EnrolledDependent]
-
-      attr_accessor selected_plan_id: String?
-
-      attr_accessor selected_plan_name: String?
 
       def initialize: (
         id: String,
-        benefit_product_id: String,
-        coverage_tier: VitableConnect::Models::coverage_tier,
+        answered_at: Time?,
+        benefit: VitableConnect::Enrollment::Benefit,
+        coverage_end: Date?,
+        coverage_start: Date,
         created_at: Time,
+        employee_deduction_in_cents: Integer?,
         employee_id: String,
-        plan_year_id: String,
+        employer_contribution_in_cents: Integer?,
+        employer_id: String,
         status: VitableConnect::Models::enrollment_status,
-        updated_at: Time,
-        ?coverage_end_date: Date?,
-        ?coverage_start_date: Date?,
-        ?decision: String?,
-        ?employee_contribution_cents: Integer?,
-        ?employer_contribution_cents: Integer?,
-        ?enrolled_dependents: ::Array[VitableConnect::Enrollment::EnrolledDependent],
-        ?selected_plan_id: String?,
-        ?selected_plan_name: String?
+        terminated_at: Time?,
+        updated_at: Time
       ) -> void
 
       def to_hash: -> {
         id: String,
-        benefit_product_id: String,
-        coverage_tier: VitableConnect::Models::coverage_tier,
+        answered_at: Time?,
+        benefit: VitableConnect::Enrollment::Benefit,
+        coverage_end: Date?,
+        coverage_start: Date,
         created_at: Time,
+        employee_deduction_in_cents: Integer?,
         employee_id: String,
-        plan_year_id: String,
+        employer_contribution_in_cents: Integer?,
+        employer_id: String,
         status: VitableConnect::Models::enrollment_status,
-        updated_at: Time,
-        coverage_end_date: Date?,
-        coverage_start_date: Date?,
-        decision: String?,
-        employee_contribution_cents: Integer?,
-        employer_contribution_cents: Integer?,
-        enrolled_dependents: ::Array[VitableConnect::Enrollment::EnrolledDependent],
-        selected_plan_id: String?,
-        selected_plan_name: String?
+        terminated_at: Time?,
+        updated_at: Time
       }
 
-      type enrolled_dependent =
+      type benefit =
         {
-          dependent_id: String,
-          first_name: String,
-          last_name: String,
-          relationship: VitableConnect::Models::relationship
+          id: String,
+          category: VitableConnect::Models::category,
+          name: String,
+          product_code: VitableConnect::Models::product_code
         }
 
-      class EnrolledDependent < VitableConnect::Internal::Type::BaseModel
-        attr_accessor dependent_id: String
+      class Benefit < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        attr_accessor first_name: String
+        attr_accessor category: VitableConnect::Models::category
 
-        attr_accessor last_name: String
+        attr_accessor name: String
 
-        attr_accessor relationship: VitableConnect::Models::relationship
+        attr_accessor product_code: VitableConnect::Models::product_code
 
         def initialize: (
-          dependent_id: String,
-          first_name: String,
-          last_name: String,
-          relationship: VitableConnect::Models::relationship
+          id: String,
+          category: VitableConnect::Models::category,
+          name: String,
+          product_code: VitableConnect::Models::product_code
         ) -> void
 
         def to_hash: -> {
-          dependent_id: String,
-          first_name: String,
-          last_name: String,
-          relationship: VitableConnect::Models::relationship
+          id: String,
+          category: VitableConnect::Models::category,
+          name: String,
+          product_code: VitableConnect::Models::product_code
         }
       end
     end

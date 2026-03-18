@@ -2,26 +2,6 @@ module VitableConnect
   module Resources
     class BenefitProducts
       class PlanYears
-        def create: (
-          String benefit_product_id,
-          contribution_classes: ::Array[VitableConnect::BenefitProducts::PlanYearCreateParams::ContributionClass],
-          coverage_end: Date,
-          coverage_start: Date,
-          employer_id: String,
-          open_enrollment_end: Date,
-          open_enrollment_start: Date,
-          ?request_options: VitableConnect::request_opts
-        ) -> VitableConnect::BenefitProducts::PlanYearResponse
-
-        def list: (
-          String benefit_product_id,
-          ?employer_id: String,
-          ?limit: Integer,
-          ?page: Integer,
-          ?status: VitableConnect::Models::BenefitProducts::plan_year_status,
-          ?request_options: VitableConnect::request_opts
-        ) -> VitableConnect::Models::BenefitProducts::PlanYearListResponse
-
         def initialize: (client: VitableConnect::Client) -> void
       end
     end
