@@ -3,29 +3,37 @@ module VitableConnect
     type employee =
       {
         id: String,
-        active_in: bool,
         created_at: Time,
-        employer_id: String,
-        member: VitableConnect::Employee::Member,
-        start_date: Date,
+        date_of_birth: Date,
+        email: String,
+        enrollments: ::Array[VitableConnect::Employee::Enrollment],
+        first_name: String,
+        last_name: String,
+        member_id: String,
+        status: String,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
         employee_class: VitableConnect::Models::employee_class?,
+        gender: String?,
+        hire_date: Date?,
+        phone: String?,
+        reference_id: String?,
+        suffix: String?,
         termination_date: Date?
       }
 
     class Employee < VitableConnect::Internal::Type::BaseModel
-      attr_accessor id: String
-
-      attr_accessor active_in: bool
-
       attr_accessor created_at: Time
 
-      attr_accessor employer_id: String
+      attr_accessor date_of_birth: Date
 
-      attr_accessor member: VitableConnect::Employee::Member
+      attr_accessor email: String
 
-      attr_accessor start_date: Date
+      attr_accessor enrollments: ::Array[VitableConnect::Employee::Enrollment]
+
+      attr_accessor first_name: String
+
+      attr_accessor last_name: String
 
       attr_accessor updated_at: Time
 
@@ -33,132 +41,127 @@ module VitableConnect
 
       attr_accessor employee_class: VitableConnect::Models::employee_class?
 
+      attr_accessor gender: String?
+
+      attr_accessor hire_date: Date?
+
+      attr_accessor phone: String?
+
+      attr_accessor reference_id: String?
+
+      attr_accessor suffix: String?
+
       attr_accessor termination_date: Date?
+
+      attr_accessor id: String
+
+      attr_accessor member_id: String
+
+      attr_accessor status: String
 
       def initialize: (
         id: String,
-        active_in: bool,
         created_at: Time,
-        employer_id: String,
-        member: VitableConnect::Employee::Member,
-        start_date: Date,
+        date_of_birth: Date,
+        email: String,
+        enrollments: ::Array[VitableConnect::Employee::Enrollment],
+        first_name: String,
+        last_name: String,
+        member_id: String,
+        status: String,
         updated_at: Time,
         ?address: VitableConnect::Employee::Address?,
         ?employee_class: VitableConnect::Models::employee_class?,
+        ?gender: String?,
+        ?hire_date: Date?,
+        ?phone: String?,
+        ?reference_id: String?,
+        ?suffix: String?,
         ?termination_date: Date?
       ) -> void
 
       def to_hash: -> {
         id: String,
-        active_in: bool,
         created_at: Time,
-        employer_id: String,
-        member: VitableConnect::Employee::Member,
-        start_date: Date,
+        date_of_birth: Date,
+        email: String,
+        enrollments: ::Array[VitableConnect::Employee::Enrollment],
+        first_name: String,
+        last_name: String,
+        member_id: String,
+        status: String,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
         employee_class: VitableConnect::Models::employee_class?,
+        gender: String?,
+        hire_date: Date?,
+        phone: String?,
+        reference_id: String?,
+        suffix: String?,
         termination_date: Date?
       }
 
-      type member =
+      type enrollment =
         {
           id: String,
-          date_of_birth: Date,
-          first_name: String,
-          last_name: String,
-          sex: VitableConnect::Models::sex,
-          email: String?,
-          gender: String?,
-          phone: String?,
-          suffix: String?
+          status: VitableConnect::Models::enrollment_status,
+          answered_at: Time?
         }
 
-      class Member < VitableConnect::Internal::Type::BaseModel
+      class Enrollment < VitableConnect::Internal::Type::BaseModel
+        attr_accessor status: VitableConnect::Models::enrollment_status
+
+        attr_accessor answered_at: Time?
+
         attr_accessor id: String
-
-        attr_accessor date_of_birth: Date
-
-        attr_accessor first_name: String
-
-        attr_accessor last_name: String
-
-        attr_accessor sex: VitableConnect::Models::sex
-
-        attr_accessor email: String?
-
-        attr_accessor gender: String?
-
-        attr_accessor phone: String?
-
-        attr_accessor suffix: String?
 
         def initialize: (
           id: String,
-          date_of_birth: Date,
-          first_name: String,
-          last_name: String,
-          sex: VitableConnect::Models::sex,
-          ?email: String?,
-          ?gender: String?,
-          ?phone: String?,
-          ?suffix: String?
+          status: VitableConnect::Models::enrollment_status,
+          ?answered_at: Time?
         ) -> void
 
         def to_hash: -> {
           id: String,
-          date_of_birth: Date,
-          first_name: String,
-          last_name: String,
-          sex: VitableConnect::Models::sex,
-          email: String?,
-          gender: String?,
-          phone: String?,
-          suffix: String?
+          status: VitableConnect::Models::enrollment_status,
+          answered_at: Time?
         }
       end
 
       type address =
         {
+          :address_line_1 => String,
           city: String,
           state: String,
-          :street_1 => String,
-          zip_code: String,
-          country: String,
-          :street_2 => String?
+          zipcode: String,
+          :address_line_2 => String?
         }
 
       class Address < VitableConnect::Internal::Type::BaseModel
+        attr_accessor address_line_1: String
+
         attr_accessor city: String
 
         attr_accessor state: String
 
-        attr_accessor street_1: String
+        attr_accessor zipcode: String
 
-        attr_accessor zip_code: String
-
-        attr_reader country: String?
-
-        def country=: (String) -> String
-
-        attr_accessor street_2: String?
+        attr_accessor address_line_2: String?
 
         def initialize: (
+          address_line_1: String,
           city: String,
           state: String,
-          street_1: String,
-          zip_code: String,
-          ?country: String,
-          ?street_2: String?
+          zipcode: String,
+          ?address_line_2: String?
         ) -> void
 
         def to_hash: -> {
+          :address_line_1 => String,
           city: String,
           state: String,
-          :street_1 => String,
-          zip_code: String,
-          country: String,
-          :street_2 => String?
+          zipcode: String,
+          :address_line_2 => String?
         }
       end
     end

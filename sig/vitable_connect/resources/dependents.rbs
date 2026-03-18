@@ -1,19 +1,6 @@
 module VitableConnect
   module Resources
     class Dependents
-      def retrieve: (
-        String dependent_id,
-        ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::DependentResponse
-
-      def update: (
-        String dependent_id,
-        ?active: bool?,
-        ?gender: String?,
-        ?relationship: VitableConnect::Models::relationship?,
-        ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::DependentResponse
-
       def initialize: (client: VitableConnect::Client) -> void
     end
   end

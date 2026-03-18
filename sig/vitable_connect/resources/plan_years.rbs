@@ -1,20 +1,6 @@
 module VitableConnect
   module Resources
     class PlanYears
-      def retrieve: (
-        String plan_year_id,
-        ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::BenefitProducts::PlanYearResponse
-
-      def update: (
-        String plan_year_id,
-        ?contribution_classes: ::Array[VitableConnect::PlanYearUpdateParams::ContributionClass]?,
-        ?open_enrollment_end: Date?,
-        ?open_enrollment_start: Date?,
-        ?status: String?,
-        ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::BenefitProducts::PlanYearResponse
-
       def initialize: (client: VitableConnect::Client) -> void
     end
   end

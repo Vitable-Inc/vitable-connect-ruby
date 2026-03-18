@@ -8,83 +8,36 @@ module VitableConnect
       include VitableConnect::Internal::Type::RequestParameters
 
       # @!attribute employer_id
-      #   Filter by employer ID
+      #   Unique employer identifier (empr\_\*)
       #
       #   @return [String]
       required :employer_id, String
 
-      # @!attribute effective_date
-      #   Date when policy becomes effective
-      #
-      #   @return [Date]
-      required :effective_date, Date
-
-      # @!attribute name
-      #   Display name for the policy
+      # @!attribute classification
+      #   Which employee classifications are eligible. One of: full_time, part_time, all
       #
       #   @return [String]
-      required :name, String
+      required :classification, String
 
-      # @!attribute rules
-      #   List of eligibility rules (at least one required)
+      # @!attribute waiting_period
+      #   Waiting period before eligibility. One of: first_of_following_month, 30_days,
+      #   60_days, none
       #
-      #   @return [Array<VitableConnect::Models::EmployerCreateEligibilityPolicyParams::Rule>]
-      required :rules,
-               -> { VitableConnect::Internal::Type::ArrayOf[VitableConnect::EmployerCreateEligibilityPolicyParams::Rule] }
+      #   @return [String]
+      required :waiting_period, String
 
-      # @!attribute policy_to_replace_id
-      #   ID of existing policy to replace (epol\_\*)
+      # @!method initialize(employer_id:, classification:, waiting_period:, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {VitableConnect::Models::EmployerCreateEligibilityPolicyParams} for more
+      #   details.
       #
-      #   @return [String, nil]
-      optional :policy_to_replace_id, String
-
-      # @!attribute description
-      #   Detailed description
+      #   @param employer_id [String] Unique employer identifier (empr\_\*)
       #
-      #   @return [String, nil]
-      optional :description, String, nil?: true
-
-      # @!method initialize(employer_id:, effective_date:, name:, rules:, policy_to_replace_id: nil, description: nil, request_options: {})
-      #   @param employer_id [String] Filter by employer ID
+      #   @param classification [String] Which employee classifications are eligible. One of: full_time, part_time, all
       #
-      #   @param effective_date [Date] Date when policy becomes effective
-      #
-      #   @param name [String] Display name for the policy
-      #
-      #   @param rules [Array<VitableConnect::Models::EmployerCreateEligibilityPolicyParams::Rule>] List of eligibility rules (at least one required)
-      #
-      #   @param policy_to_replace_id [String] ID of existing policy to replace (epol\_\*)
-      #
-      #   @param description [String, nil] Detailed description
+      #   @param waiting_period [String] Waiting period before eligibility. One of: first_of_following_month, 30_days, 60
       #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
-
-      class Rule < VitableConnect::Internal::Type::BaseModel
-        # @!attribute operator
-        #   Comparison operator
-        #
-        #   @return [String]
-        required :operator, String
-
-        # @!attribute rule_type
-        #   Type of eligibility rule
-        #
-        #   @return [String]
-        required :rule_type, String
-
-        # @!attribute value
-        #   Value to compare against (can be string, number, boolean, or list)
-        #
-        #   @return [String]
-        required :value, String
-
-        # @!method initialize(operator:, rule_type:, value:)
-        #   @param operator [String] Comparison operator
-        #
-        #   @param rule_type [String] Type of eligibility rule
-        #
-        #   @param value [String] Value to compare against (can be string, number, boolean, or list)
-      end
     end
   end
 end

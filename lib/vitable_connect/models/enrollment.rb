@@ -4,44 +4,64 @@ module VitableConnect
   module Models
     class Enrollment < VitableConnect::Internal::Type::BaseModel
       # @!attribute id
-      #   Unique enrollment identifier with 'enrl\_' prefix
+      #   Unique enrollment identifier (enrl\_\*)
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute benefit_product_id
-      #   ID of the benefit product (bprd\_\*)
+      # @!attribute answered_at
+      #   When the employee enrolled or waived
       #
-      #   @return [String]
-      required :benefit_product_id, String
+      #   @return [Time, nil]
+      required :answered_at, Time, nil?: true
 
-      # @!attribute coverage_tier
-      #   - `Unspecified` - Unspecified
-      #   - `EE` - Ee
-      #   - `ES` - Es
-      #   - `EC` - Ec
-      #   - `EF` - Ef
+      # @!attribute benefit
+      #   Nested benefit product summary
       #
-      #   @return [Symbol, VitableConnect::Models::CoverageTier]
-      required :coverage_tier, enum: -> { VitableConnect::CoverageTier }
+      #   @return [VitableConnect::Models::Enrollment::Benefit]
+      required :benefit, -> { VitableConnect::Enrollment::Benefit }
+
+      # @!attribute coverage_end
+      #   Coverage period end date
+      #
+      #   @return [Date, nil]
+      required :coverage_end, Date, nil?: true
+
+      # @!attribute coverage_start
+      #   Coverage period start date
+      #
+      #   @return [Date]
+      required :coverage_start, Date
 
       # @!attribute created_at
-      #   Timestamp when the enrollment was created
+      #   When the enrollment was created
       #
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute employee_deduction_in_cents
+      #   Employee monthly payroll deduction in cents
+      #
+      #   @return [Integer, nil]
+      required :employee_deduction_in_cents, Integer, nil?: true
+
       # @!attribute employee_id
-      #   ID of the employee (empl\_\*)
+      #   Employee ID (empl\_\*)
       #
       #   @return [String]
       required :employee_id, String
 
-      # @!attribute plan_year_id
-      #   ID of the plan year (plyr\_\*)
+      # @!attribute employer_contribution_in_cents
+      #   Employer monthly contribution in cents
+      #
+      #   @return [Integer, nil]
+      required :employer_contribution_in_cents, Integer, nil?: true
+
+      # @!attribute employer_id
+      #   Employer ID (empr\_\*)
       #
       #   @return [String]
-      required :plan_year_id, String
+      required :employer_id, String
 
       # @!attribute status
       #   - `pending` - Pending
@@ -52,141 +72,104 @@ module VitableConnect
       #   @return [Symbol, VitableConnect::Models::EnrollmentStatus]
       required :status, enum: -> { VitableConnect::EnrollmentStatus }
 
+      # @!attribute terminated_at
+      #   When coverage was terminated
+      #
+      #   @return [Time, nil]
+      required :terminated_at, Time, nil?: true
+
       # @!attribute updated_at
-      #   Timestamp when the enrollment was last updated
+      #   When the enrollment was last updated
       #
       #   @return [Time]
       required :updated_at, Time
 
-      # @!attribute coverage_end_date
-      #   Date when coverage ends
-      #
-      #   @return [Date, nil]
-      optional :coverage_end_date, Date, nil?: true
-
-      # @!attribute coverage_start_date
-      #   Date when coverage begins
-      #
-      #   @return [Date, nil]
-      optional :coverage_start_date, Date, nil?: true
-
-      # @!attribute decision
-      #   Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
-      #
-      #   @return [String, nil]
-      optional :decision, String, nil?: true
-
-      # @!attribute employee_contribution_cents
-      #   Employee's monthly contribution in cents
-      #
-      #   @return [Integer, nil]
-      optional :employee_contribution_cents, Integer, nil?: true
-
-      # @!attribute employer_contribution_cents
-      #   Employer's monthly contribution in cents
-      #
-      #   @return [Integer, nil]
-      optional :employer_contribution_cents, Integer, nil?: true
-
-      # @!attribute enrolled_dependents
-      #   List of dependents included in this enrollment
-      #
-      #   @return [Array<VitableConnect::Models::Enrollment::EnrolledDependent>, nil]
-      optional :enrolled_dependents,
-               -> { VitableConnect::Internal::Type::ArrayOf[VitableConnect::Enrollment::EnrolledDependent] }
-
-      # @!attribute selected_plan_id
-      #   ID of the selected plan (plan\_\*), if enrolled
-      #
-      #   @return [String, nil]
-      optional :selected_plan_id, String, nil?: true
-
-      # @!attribute selected_plan_name
-      #   Name of the selected plan
-      #
-      #   @return [String, nil]
-      optional :selected_plan_name, String, nil?: true
-
-      # @!method initialize(id:, benefit_product_id:, coverage_tier:, created_at:, employee_id:, plan_year_id:, status:, updated_at:, coverage_end_date: nil, coverage_start_date: nil, decision: nil, employee_contribution_cents: nil, employer_contribution_cents: nil, enrolled_dependents: nil, selected_plan_id: nil, selected_plan_name: nil)
+      # @!method initialize(id:, answered_at:, benefit:, coverage_end:, coverage_start:, created_at:, employee_deduction_in_cents:, employee_id:, employer_contribution_in_cents:, employer_id:, status:, terminated_at:, updated_at:)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Enrollment} for more details.
       #
-      #   Serializer for Enrollment entity in public API responses.
+      #   @param id [String] Unique enrollment identifier (enrl\_\*)
       #
-      #   An Enrollment represents an employee's benefit enrollment for a specific plan
-      #   year.
+      #   @param answered_at [Time, nil] When the employee enrolled or waived
       #
-      #   @param id [String] Unique enrollment identifier with 'enrl\_' prefix
+      #   @param benefit [VitableConnect::Models::Enrollment::Benefit] Nested benefit product summary
       #
-      #   @param benefit_product_id [String] ID of the benefit product (bprd\_\*)
+      #   @param coverage_end [Date, nil] Coverage period end date
       #
-      #   @param coverage_tier [Symbol, VitableConnect::Models::CoverageTier] - `Unspecified` - Unspecified
+      #   @param coverage_start [Date] Coverage period start date
       #
-      #   @param created_at [Time] Timestamp when the enrollment was created
+      #   @param created_at [Time] When the enrollment was created
       #
-      #   @param employee_id [String] ID of the employee (empl\_\*)
+      #   @param employee_deduction_in_cents [Integer, nil] Employee monthly payroll deduction in cents
       #
-      #   @param plan_year_id [String] ID of the plan year (plyr\_\*)
+      #   @param employee_id [String] Employee ID (empl\_\*)
+      #
+      #   @param employer_contribution_in_cents [Integer, nil] Employer monthly contribution in cents
+      #
+      #   @param employer_id [String] Employer ID (empr\_\*)
       #
       #   @param status [Symbol, VitableConnect::Models::EnrollmentStatus] - `pending` - Pending
       #
-      #   @param updated_at [Time] Timestamp when the enrollment was last updated
+      #   @param terminated_at [Time, nil] When coverage was terminated
       #
-      #   @param coverage_end_date [Date, nil] Date when coverage ends
-      #
-      #   @param coverage_start_date [Date, nil] Date when coverage begins
-      #
-      #   @param decision [String, nil] Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
-      #
-      #   @param employee_contribution_cents [Integer, nil] Employee's monthly contribution in cents
-      #
-      #   @param employer_contribution_cents [Integer, nil] Employer's monthly contribution in cents
-      #
-      #   @param enrolled_dependents [Array<VitableConnect::Models::Enrollment::EnrolledDependent>] List of dependents included in this enrollment
-      #
-      #   @param selected_plan_id [String, nil] ID of the selected plan (plan\_\*), if enrolled
-      #
-      #   @param selected_plan_name [String, nil] Name of the selected plan
+      #   @param updated_at [Time] When the enrollment was last updated
 
-      class EnrolledDependent < VitableConnect::Internal::Type::BaseModel
-        # @!attribute dependent_id
-        #   ID of the dependent (dpnd\_\*)
+      # @see VitableConnect::Models::Enrollment#benefit
+      class Benefit < VitableConnect::Internal::Type::BaseModel
+        # @!attribute id
+        #   Benefit product ID (bprd\_\*)
         #
         #   @return [String]
-        required :dependent_id, String
+        required :id, String
 
-        # @!attribute first_name
-        #   Dependent's first name
+        # @!attribute category
+        #   - `Medical` - Medical
+        #   - `Dental` - Dental
+        #   - `Vision` - Vision
+        #   - `Hospital` - Hospital
+        #
+        #   @return [Symbol, VitableConnect::Models::Category]
+        required :category, enum: -> { VitableConnect::Category }
+
+        # @!attribute name
+        #   Display name of the benefit product
         #
         #   @return [String]
-        required :first_name, String
+        required :name, String
 
-        # @!attribute last_name
-        #   Dependent's last name
+        # @!attribute product_code
+        #   - `EBA` - Eba Mec
+        #   - `VPC` - Vpc Enhanced
+        #   - `VPC_CORE` - Vpc Core
+        #   - `MEC` - Vpc Mec
+        #   - `MEC2` - Mec2
+        #   - `MEC_PLUS` - Mec Plus
+        #   - `MVP` - Mvp
+        #   - `MVP2` - Mvp2
+        #   - `MVPSL` - Mvpsl
+        #   - `MVPSL2` - Mvpsl2
+        #   - `VD` - Dental
+        #   - `VV` - Vision
+        #   - `ICHRA` - Ichra
+        #   - `ICHRA_PREMIUM_PLUS` - Ichra Premium Plus
+        #   - `ICHRA_REIMBURSEMENT_ONLY` - Ichra Reimbursement Only
         #
-        #   @return [String]
-        required :last_name, String
+        #   @return [Symbol, VitableConnect::Models::ProductCode]
+        required :product_code, enum: -> { VitableConnect::ProductCode }
 
-        # @!attribute relationship
-        #   - `Spouse` - Spouse
-        #   - `Child` - Child
-        #
-        #   @return [Symbol, VitableConnect::Models::Relationship]
-        required :relationship, enum: -> { VitableConnect::Relationship }
-
-        # @!method initialize(dependent_id:, first_name:, last_name:, relationship:)
+        # @!method initialize(id:, category:, name:, product_code:)
         #   Some parameter documentations has been truncated, see
-        #   {VitableConnect::Models::Enrollment::EnrolledDependent} for more details.
+        #   {VitableConnect::Models::Enrollment::Benefit} for more details.
         #
-        #   Dependent included in an enrollment.
+        #   Nested benefit product summary
         #
-        #   @param dependent_id [String] ID of the dependent (dpnd\_\*)
+        #   @param id [String] Benefit product ID (bprd\_\*)
         #
-        #   @param first_name [String] Dependent's first name
+        #   @param category [Symbol, VitableConnect::Models::Category] - `Medical` - Medical
         #
-        #   @param last_name [String] Dependent's last name
+        #   @param name [String] Display name of the benefit product
         #
-        #   @param relationship [Symbol, VitableConnect::Models::Relationship] - `Spouse` - Spouse
+        #   @param product_code [Symbol, VitableConnect::Models::ProductCode] - `EBA` - Eba Mec
       end
     end
   end

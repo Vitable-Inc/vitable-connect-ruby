@@ -11,10 +11,6 @@ module VitableConnect
           )
         end
 
-      # Serializer for Benefit Eligibility Policy entity.
-      #
-      # Eligibility policies define rules that determine which employees qualify for
-      # benefits.
       sig { returns(VitableConnect::BenefitEligibilityPolicy::Data) }
       attr_reader :data
 
@@ -31,13 +27,7 @@ module VitableConnect
           data: VitableConnect::BenefitEligibilityPolicy::Data::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(
-        # Serializer for Benefit Eligibility Policy entity.
-        #
-        # Eligibility policies define rules that determine which employees qualify for
-        # benefits.
-        data:
-      )
+      def self.new(data:)
       end
 
       sig do
@@ -57,92 +47,46 @@ module VitableConnect
             )
           end
 
-        # Unique eligibility policy identifier with 'epol\_' prefix
-        sig { returns(String) }
-        attr_accessor :id
-
-        # Whether this policy is currently active
         sig { returns(T::Boolean) }
-        attr_accessor :active_in
+        attr_accessor :active
 
-        # Timestamp when the policy was created
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # Date when this policy becomes effective
-        sig { returns(Date) }
-        attr_accessor :effective_date
-
-        # ID of the employer this policy belongs to (empr\_\*)
-        sig { returns(String) }
-        attr_accessor :employer_id
-
-        # Display name for the eligibility policy
-        sig { returns(String) }
-        attr_accessor :name
-
-        # List of eligibility rules that must be satisfied
-        sig do
-          returns(
-            T::Array[VitableConnect::BenefitEligibilityPolicy::Data::Rule]
-          )
-        end
-        attr_accessor :rules
-
-        # Timestamp when the policy was last updated
         sig { returns(Time) }
         attr_accessor :updated_at
 
-        # Detailed description of the policy
-        sig { returns(T.nilable(String)) }
-        attr_accessor :description
+        sig { returns(String) }
+        attr_accessor :id
 
-        # ID of the policy this one replaces, if any (epol\_\*)
-        sig { returns(T.nilable(String)) }
-        attr_accessor :replaced_policy_id
+        sig { returns(String) }
+        attr_accessor :classification
 
-        # Serializer for Benefit Eligibility Policy entity.
-        #
-        # Eligibility policies define rules that determine which employees qualify for
-        # benefits.
+        sig { returns(String) }
+        attr_accessor :employer_id
+
+        sig { returns(String) }
+        attr_accessor :waiting_period
+
         sig do
           params(
             id: String,
-            active_in: T::Boolean,
+            active: T::Boolean,
+            classification: String,
             created_at: Time,
-            effective_date: Date,
             employer_id: String,
-            name: String,
-            rules:
-              T::Array[
-                VitableConnect::BenefitEligibilityPolicy::Data::Rule::OrHash
-              ],
             updated_at: Time,
-            description: T.nilable(String),
-            replaced_policy_id: T.nilable(String)
+            waiting_period: String
           ).returns(T.attached_class)
         end
         def self.new(
-          # Unique eligibility policy identifier with 'epol\_' prefix
           id:,
-          # Whether this policy is currently active
-          active_in:,
-          # Timestamp when the policy was created
+          active:,
+          classification:,
           created_at:,
-          # Date when this policy becomes effective
-          effective_date:,
-          # ID of the employer this policy belongs to (empr\_\*)
           employer_id:,
-          # Display name for the eligibility policy
-          name:,
-          # List of eligibility rules that must be satisfied
-          rules:,
-          # Timestamp when the policy was last updated
           updated_at:,
-          # Detailed description of the policy
-          description: nil,
-          # ID of the policy this one replaces, if any (epol\_\*)
-          replaced_policy_id: nil
+          waiting_period:
         )
         end
 
@@ -150,70 +94,16 @@ module VitableConnect
           override.returns(
             {
               id: String,
-              active_in: T::Boolean,
+              active: T::Boolean,
+              classification: String,
               created_at: Time,
-              effective_date: Date,
               employer_id: String,
-              name: String,
-              rules:
-                T::Array[VitableConnect::BenefitEligibilityPolicy::Data::Rule],
               updated_at: Time,
-              description: T.nilable(String),
-              replaced_policy_id: T.nilable(String)
+              waiting_period: String
             }
           )
         end
         def to_hash
-        end
-
-        class Rule < VitableConnect::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                VitableConnect::BenefitEligibilityPolicy::Data::Rule,
-                VitableConnect::Internal::AnyHash
-              )
-            end
-
-          # Comparison operator (e.g., 'equals', 'greater_than', 'in')
-          sig { returns(String) }
-          attr_accessor :operator
-
-          # Type of eligibility rule (e.g., 'employment_status', 'hours_per_week',
-          # 'waiting_period')
-          sig { returns(String) }
-          attr_accessor :rule_type
-
-          # Value to compare against (type depends on rule_type)
-          sig { returns(T.anything) }
-          attr_accessor :value
-
-          # Individual eligibility rule within a policy.
-          sig do
-            params(
-              operator: String,
-              rule_type: String,
-              value: T.anything
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Comparison operator (e.g., 'equals', 'greater_than', 'in')
-            operator:,
-            # Type of eligibility rule (e.g., 'employment_status', 'hours_per_week',
-            # 'waiting_period')
-            rule_type:,
-            # Value to compare against (type depends on rule_type)
-            value:
-          )
-          end
-
-          sig do
-            override.returns(
-              { operator: String, rule_type: String, value: T.anything }
-            )
-          end
-          def to_hash
-          end
         end
       end
     end

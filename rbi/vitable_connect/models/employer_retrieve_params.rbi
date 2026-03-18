@@ -14,7 +14,7 @@ module VitableConnect
           )
         end
 
-      # Filter by employer ID
+      # Unique employer identifier (empr\_\*)
       sig { returns(String) }
       attr_accessor :employer_id
 
@@ -25,7 +25,7 @@ module VitableConnect
         ).returns(T.attached_class)
       end
       def self.new(
-        # Filter by employer ID
+        # Unique employer identifier (empr\_\*)
         employer_id:,
         request_options: {}
       )

@@ -18,30 +18,4 @@ class VitableConnect::Test::Resources::EmployeesTest < VitableConnect::Test::Res
       }
     end
   end
-
-  def test_update
-    skip("Mock server tests are disabled")
-
-    response = @vitable_connect.employees.update("empl_abc123def456")
-
-    assert_pattern do
-      response => VitableConnect::EmployeeResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: VitableConnect::Employee
-      }
-    end
-  end
-
-  def test_terminate
-    skip("Mock server tests are disabled")
-
-    response = @vitable_connect.employees.terminate("empl_abc123def456")
-
-    assert_pattern do
-      response => nil
-    end
-  end
 end

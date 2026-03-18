@@ -3,43 +3,42 @@
 module VitableConnect
   module Models
     class Employee < VitableConnect::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique employee identifier with 'empl\_' prefix
-      #
-      #   @return [String]
-      required :id, String
-
-      # @!attribute active_in
-      #   Whether the employee is currently active
-      #
-      #   @return [Boolean]
-      required :active_in, VitableConnect::Internal::Type::Boolean
-
       # @!attribute created_at
       #   Timestamp when the employee was created
       #
       #   @return [Time]
       required :created_at, Time
 
-      # @!attribute employer_id
-      #   ID of the employer this employee works for (empr\_\*)
-      #
-      #   @return [String]
-      required :employer_id, String
-
-      # @!attribute member
-      #   Nested member entity containing personal identity information.
-      #
-      #   Matches MemberEntity from account module domain.
-      #
-      #   @return [VitableConnect::Models::Employee::Member]
-      required :member, -> { VitableConnect::Employee::Member }
-
-      # @!attribute start_date
-      #   Employee's start/hire date with the employer
+      # @!attribute date_of_birth
+      #   Date of birth (YYYY-MM-DD)
       #
       #   @return [Date]
-      required :start_date, Date
+      required :date_of_birth, Date
+
+      # @!attribute email
+      #   Email address
+      #
+      #   @return [String]
+      required :email, String
+
+      # @!attribute enrollments
+      #   Benefit enrollments for this employee
+      #
+      #   @return [Array<VitableConnect::Models::Employee::Enrollment>]
+      required :enrollments,
+               -> { VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Enrollment] }
+
+      # @!attribute first_name
+      #   Employee's legal first name
+      #
+      #   @return [String]
+      required :first_name, String
+
+      # @!attribute last_name
+      #   Employee's legal last name
+      #
+      #   @return [String]
+      required :last_name, String
 
       # @!attribute updated_at
       #   Timestamp when the employee was last updated
@@ -48,7 +47,7 @@ module VitableConnect
       required :updated_at, Time
 
       # @!attribute address
-      #   Nested address for employee.
+      #   Employee's residential address
       #
       #   @return [VitableConnect::Models::Employee::Address, nil]
       optional :address, -> { VitableConnect::Employee::Address }, nil?: true
@@ -64,129 +63,145 @@ module VitableConnect
       #   @return [Symbol, VitableConnect::Models::EmployeeClass, nil]
       optional :employee_class, enum: -> { VitableConnect::EmployeeClass }, nil?: true
 
+      # @!attribute gender
+      #   Gender identity, if provided
+      #
+      #   @return [String, nil]
+      optional :gender, String, nil?: true
+
+      # @!attribute hire_date
+      #   Employee's hire date with the employer
+      #
+      #   @return [Date, nil]
+      optional :hire_date, Date, nil?: true
+
+      # @!attribute phone
+      #   Phone number (10-digit US domestic string)
+      #
+      #   @return [String, nil]
+      optional :phone, String, nil?: true
+
+      # @!attribute reference_id
+      #   Partner-assigned reference ID for the employee
+      #
+      #   @return [String, nil]
+      optional :reference_id, String, nil?: true
+
+      # @!attribute suffix
+      #   Name suffix (e.g., Jr., Sr., III)
+      #
+      #   @return [String, nil]
+      optional :suffix, String, nil?: true
+
       # @!attribute termination_date
       #   Employee's termination date, if terminated
       #
       #   @return [Date, nil]
       optional :termination_date, Date, nil?: true
 
-      # @!method initialize(id:, active_in:, created_at:, employer_id:, member:, start_date:, updated_at:, address: nil, employee_class: nil, termination_date: nil)
-      #   Some parameter documentations has been truncated, see
-      #   {VitableConnect::Models::Employee} for more details.
-      #
-      #   Serializer for Employee entity in public API responses.
-      #
-      #   Note: Employee is in the company module but exposed via account public API.
-      #   Contains nested MemberEntity with personal identity information.
-      #
-      #   @param id [String] Unique employee identifier with 'empl\_' prefix
-      #
-      #   @param active_in [Boolean] Whether the employee is currently active
-      #
-      #   @param created_at [Time] Timestamp when the employee was created
-      #
-      #   @param employer_id [String] ID of the employer this employee works for (empr\_\*)
-      #
-      #   @param member [VitableConnect::Models::Employee::Member] Nested member entity containing personal identity information.
-      #
-      #   @param start_date [Date] Employee's start/hire date with the employer
-      #
-      #   @param updated_at [Time] Timestamp when the employee was last updated
-      #
-      #   @param address [VitableConnect::Models::Employee::Address, nil] Nested address for employee.
-      #
-      #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
-      #
-      #   @param termination_date [Date, nil] Employee's termination date, if terminated
-
-      # @see VitableConnect::Models::Employee#member
-      class Member < VitableConnect::Internal::Type::BaseModel
+      response_only do
         # @!attribute id
-        #   Unique member identifier with 'mbr\_' prefix
+        #   Unique employee identifier with 'empl\_' prefix
         #
         #   @return [String]
         required :id, String
 
-        # @!attribute date_of_birth
-        #   Member's date of birth (YYYY-MM-DD)
-        #
-        #   @return [Date]
-        required :date_of_birth, Date
-
-        # @!attribute first_name
-        #   Member's legal first name
+        # @!attribute member_id
+        #   Unique member identifier with 'mbr\_' prefix
         #
         #   @return [String]
-        required :first_name, String
+        required :member_id, String
 
-        # @!attribute last_name
-        #   Member's legal last name
+        # @!attribute status
+        #   Employee status (active or terminated)
         #
         #   @return [String]
-        required :last_name, String
+        required :status, String
+      end
 
-        # @!attribute sex
-        #   - `Male` - Male
-        #   - `Female` - Female
-        #   - `Other` - Other
-        #   - `Unknown` - Unknown
+      # @!method initialize(id:, created_at:, date_of_birth:, email:, enrollments:, first_name:, last_name:, member_id:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, phone: nil, reference_id: nil, suffix: nil, termination_date: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {VitableConnect::Models::Employee} for more details.
+      #
+      #   @param id [String] Unique employee identifier with 'empl\_' prefix
+      #
+      #   @param created_at [Time] Timestamp when the employee was created
+      #
+      #   @param date_of_birth [Date] Date of birth (YYYY-MM-DD)
+      #
+      #   @param email [String] Email address
+      #
+      #   @param enrollments [Array<VitableConnect::Models::Employee::Enrollment>] Benefit enrollments for this employee
+      #
+      #   @param first_name [String] Employee's legal first name
+      #
+      #   @param last_name [String] Employee's legal last name
+      #
+      #   @param member_id [String] Unique member identifier with 'mbr\_' prefix
+      #
+      #   @param status [String] Employee status (active or terminated)
+      #
+      #   @param updated_at [Time] Timestamp when the employee was last updated
+      #
+      #   @param address [VitableConnect::Models::Employee::Address, nil] Employee's residential address
+      #
+      #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
+      #
+      #   @param gender [String, nil] Gender identity, if provided
+      #
+      #   @param hire_date [Date, nil] Employee's hire date with the employer
+      #
+      #   @param phone [String, nil] Phone number (10-digit US domestic string)
+      #
+      #   @param reference_id [String, nil] Partner-assigned reference ID for the employee
+      #
+      #   @param suffix [String, nil] Name suffix (e.g., Jr., Sr., III)
+      #
+      #   @param termination_date [Date, nil] Employee's termination date, if terminated
+
+      class Enrollment < VitableConnect::Internal::Type::BaseModel
+        # @!attribute status
+        #   - `pending` - Pending
+        #   - `enrolled` - Enrolled
+        #   - `waived` - Waived
+        #   - `inactive` - Inactive
         #
-        #   @return [Symbol, VitableConnect::Models::Sex]
-        required :sex, enum: -> { VitableConnect::Sex }
+        #   @return [Symbol, VitableConnect::Models::EnrollmentStatus]
+        required :status, enum: -> { VitableConnect::EnrollmentStatus }
 
-        # @!attribute email
-        #   Email address for communications
+        # @!attribute answered_at
+        #   Timestamp when the enrollment decision was made
         #
-        #   @return [String, nil]
-        optional :email, String, nil?: true
+        #   @return [Time, nil]
+        optional :answered_at, Time, nil?: true
 
-        # @!attribute gender
-        #   Gender identity, if provided
-        #
-        #   @return [String, nil]
-        optional :gender, String, nil?: true
+        response_only do
+          # @!attribute id
+          #   Unique enrollment identifier with 'enrl\_' prefix
+          #
+          #   @return [String]
+          required :id, String
+        end
 
-        # @!attribute phone
-        #   Phone number
-        #
-        #   @return [String, nil]
-        optional :phone, String, nil?: true
-
-        # @!attribute suffix
-        #   Name suffix (e.g., Jr., Sr., III)
-        #
-        #   @return [String, nil]
-        optional :suffix, String, nil?: true
-
-        # @!method initialize(id:, date_of_birth:, first_name:, last_name:, sex:, email: nil, gender: nil, phone: nil, suffix: nil)
+        # @!method initialize(id:, status:, answered_at: nil)
         #   Some parameter documentations has been truncated, see
-        #   {VitableConnect::Models::Employee::Member} for more details.
+        #   {VitableConnect::Models::Employee::Enrollment} for more details.
         #
-        #   Nested member entity containing personal identity information.
+        #   @param id [String] Unique enrollment identifier with 'enrl\_' prefix
         #
-        #   Matches MemberEntity from account module domain.
+        #   @param status [Symbol, VitableConnect::Models::EnrollmentStatus] - `pending` - Pending
         #
-        #   @param id [String] Unique member identifier with 'mbr\_' prefix
-        #
-        #   @param date_of_birth [Date] Member's date of birth (YYYY-MM-DD)
-        #
-        #   @param first_name [String] Member's legal first name
-        #
-        #   @param last_name [String] Member's legal last name
-        #
-        #   @param sex [Symbol, VitableConnect::Models::Sex] - `Male` - Male
-        #
-        #   @param email [String, nil] Email address for communications
-        #
-        #   @param gender [String, nil] Gender identity, if provided
-        #
-        #   @param phone [String, nil] Phone number
-        #
-        #   @param suffix [String, nil] Name suffix (e.g., Jr., Sr., III)
+        #   @param answered_at [Time, nil] Timestamp when the enrollment decision was made
       end
 
       # @see VitableConnect::Models::Employee#address
       class Address < VitableConnect::Internal::Type::BaseModel
+        # @!attribute address_line_1
+        #   Primary street address
+        #
+        #   @return [String]
+        required :address_line_1, String
+
         # @!attribute city
         #   City name
         #
@@ -194,49 +209,35 @@ module VitableConnect
         required :city, String
 
         # @!attribute state
-        #   Two-letter state code
+        #   Two-letter state code (e.g., CA, NY)
         #
         #   @return [String]
         required :state, String
 
-        # @!attribute street_1
-        #   Primary street address
+        # @!attribute zipcode
+        #   ZIP code (5 or 9 digit)
         #
         #   @return [String]
-        required :street_1, String
+        required :zipcode, String
 
-        # @!attribute zip_code
-        #   ZIP code
-        #
-        #   @return [String]
-        required :zip_code, String
-
-        # @!attribute country
-        #   Country code
+        # @!attribute address_line_2
+        #   Secondary street address (apt, suite, etc.)
         #
         #   @return [String, nil]
-        optional :country, String
+        optional :address_line_2, String, nil?: true
 
-        # @!attribute street_2
-        #   Secondary street address
+        # @!method initialize(address_line_1:, city:, state:, zipcode:, address_line_2: nil)
+        #   Employee's residential address
         #
-        #   @return [String, nil]
-        optional :street_2, String, nil?: true
-
-        # @!method initialize(city:, state:, street_1:, zip_code:, country: nil, street_2: nil)
-        #   Nested address for employee.
+        #   @param address_line_1 [String] Primary street address
         #
         #   @param city [String] City name
         #
-        #   @param state [String] Two-letter state code
+        #   @param state [String] Two-letter state code (e.g., CA, NY)
         #
-        #   @param street_1 [String] Primary street address
+        #   @param zipcode [String] ZIP code (5 or 9 digit)
         #
-        #   @param zip_code [String] ZIP code
-        #
-        #   @param country [String] Country code
-        #
-        #   @param street_2 [String, nil] Secondary street address
+        #   @param address_line_2 [String, nil] Secondary street address (apt, suite, etc.)
       end
     end
   end

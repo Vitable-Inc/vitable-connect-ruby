@@ -2,29 +2,6 @@ module VitableConnect
   module Resources
     class Members
       class QualifyingLifeEvents
-        def retrieve: (
-          String qle_id,
-          member_id: String,
-          ?request_options: VitableConnect::request_opts
-        ) -> VitableConnect::Members::QualifyingLifeEventResponse
-
-        def list: (
-          String member_id,
-          ?event_type: VitableConnect::Models::Members::event_type,
-          ?limit: Integer,
-          ?page: Integer,
-          ?status: VitableConnect::Models::Members::qualifying_life_event_status,
-          ?request_options: VitableConnect::request_opts
-        ) -> VitableConnect::Models::Members::QualifyingLifeEventListResponse
-
-        def record: (
-          String member_id,
-          event_date: Date,
-          event_type: VitableConnect::Models::Members::event_type,
-          ?notes: String?,
-          ?request_options: VitableConnect::request_opts
-        ) -> VitableConnect::Members::QualifyingLifeEventResponse
-
         def initialize: (client: VitableConnect::Client) -> void
       end
     end

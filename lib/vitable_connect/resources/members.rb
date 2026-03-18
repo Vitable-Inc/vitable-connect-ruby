@@ -3,11 +3,9 @@
 module VitableConnect
   module Resources
     class Members
-      # Manage dependent records (spouses, children) for employees
       # @return [VitableConnect::Resources::Members::Dependents]
       attr_reader :dependents
 
-      # Record life events that trigger special enrollment periods
       # @return [VitableConnect::Resources::Members::QualifyingLifeEvents]
       attr_reader :qualifying_life_events
 

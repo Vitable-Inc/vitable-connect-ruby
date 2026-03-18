@@ -8,33 +8,48 @@ module VitableConnect
           T.any(VitableConnect::Enrollment, VitableConnect::Internal::AnyHash)
         end
 
-      # Unique enrollment identifier with 'enrl\_' prefix
+      # Unique enrollment identifier (enrl\_\*)
       sig { returns(String) }
       attr_accessor :id
 
-      # ID of the benefit product (bprd\_\*)
-      sig { returns(String) }
-      attr_accessor :benefit_product_id
+      # When the employee enrolled or waived
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :answered_at
 
-      # - `Unspecified` - Unspecified
-      # - `EE` - Ee
-      # - `ES` - Es
-      # - `EC` - Ec
-      # - `EF` - Ef
-      sig { returns(VitableConnect::CoverageTier::TaggedSymbol) }
-      attr_accessor :coverage_tier
+      # Nested benefit product summary
+      sig { returns(VitableConnect::Enrollment::Benefit) }
+      attr_reader :benefit
 
-      # Timestamp when the enrollment was created
+      sig { params(benefit: VitableConnect::Enrollment::Benefit::OrHash).void }
+      attr_writer :benefit
+
+      # Coverage period end date
+      sig { returns(T.nilable(Date)) }
+      attr_accessor :coverage_end
+
+      # Coverage period start date
+      sig { returns(Date) }
+      attr_accessor :coverage_start
+
+      # When the enrollment was created
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # ID of the employee (empl\_\*)
+      # Employee monthly payroll deduction in cents
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :employee_deduction_in_cents
+
+      # Employee ID (empl\_\*)
       sig { returns(String) }
       attr_accessor :employee_id
 
-      # ID of the plan year (plyr\_\*)
+      # Employer monthly contribution in cents
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :employer_contribution_in_cents
+
+      # Employer ID (empr\_\*)
       sig { returns(String) }
-      attr_accessor :plan_year_id
+      attr_accessor :employer_id
 
       # - `pending` - Pending
       # - `enrolled` - Enrolled
@@ -43,119 +58,61 @@ module VitableConnect
       sig { returns(VitableConnect::EnrollmentStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # Timestamp when the enrollment was last updated
+      # When coverage was terminated
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :terminated_at
+
+      # When the enrollment was last updated
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # Date when coverage ends
-      sig { returns(T.nilable(Date)) }
-      attr_accessor :coverage_end_date
-
-      # Date when coverage begins
-      sig { returns(T.nilable(Date)) }
-      attr_accessor :coverage_start_date
-
-      # Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
-      sig { returns(T.nilable(String)) }
-      attr_accessor :decision
-
-      # Employee's monthly contribution in cents
-      sig { returns(T.nilable(Integer)) }
-      attr_accessor :employee_contribution_cents
-
-      # Employer's monthly contribution in cents
-      sig { returns(T.nilable(Integer)) }
-      attr_accessor :employer_contribution_cents
-
-      # List of dependents included in this enrollment
-      sig do
-        returns(
-          T.nilable(T::Array[VitableConnect::Enrollment::EnrolledDependent])
-        )
-      end
-      attr_reader :enrolled_dependents
-
-      sig do
-        params(
-          enrolled_dependents:
-            T::Array[VitableConnect::Enrollment::EnrolledDependent::OrHash]
-        ).void
-      end
-      attr_writer :enrolled_dependents
-
-      # ID of the selected plan (plan\_\*), if enrolled
-      sig { returns(T.nilable(String)) }
-      attr_accessor :selected_plan_id
-
-      # Name of the selected plan
-      sig { returns(T.nilable(String)) }
-      attr_accessor :selected_plan_name
-
-      # Serializer for Enrollment entity in public API responses.
-      #
-      # An Enrollment represents an employee's benefit enrollment for a specific plan
-      # year.
       sig do
         params(
           id: String,
-          benefit_product_id: String,
-          coverage_tier: VitableConnect::CoverageTier::OrSymbol,
+          answered_at: T.nilable(Time),
+          benefit: VitableConnect::Enrollment::Benefit::OrHash,
+          coverage_end: T.nilable(Date),
+          coverage_start: Date,
           created_at: Time,
+          employee_deduction_in_cents: T.nilable(Integer),
           employee_id: String,
-          plan_year_id: String,
+          employer_contribution_in_cents: T.nilable(Integer),
+          employer_id: String,
           status: VitableConnect::EnrollmentStatus::OrSymbol,
-          updated_at: Time,
-          coverage_end_date: T.nilable(Date),
-          coverage_start_date: T.nilable(Date),
-          decision: T.nilable(String),
-          employee_contribution_cents: T.nilable(Integer),
-          employer_contribution_cents: T.nilable(Integer),
-          enrolled_dependents:
-            T::Array[VitableConnect::Enrollment::EnrolledDependent::OrHash],
-          selected_plan_id: T.nilable(String),
-          selected_plan_name: T.nilable(String)
+          terminated_at: T.nilable(Time),
+          updated_at: Time
         ).returns(T.attached_class)
       end
       def self.new(
-        # Unique enrollment identifier with 'enrl\_' prefix
+        # Unique enrollment identifier (enrl\_\*)
         id:,
-        # ID of the benefit product (bprd\_\*)
-        benefit_product_id:,
-        # - `Unspecified` - Unspecified
-        # - `EE` - Ee
-        # - `ES` - Es
-        # - `EC` - Ec
-        # - `EF` - Ef
-        coverage_tier:,
-        # Timestamp when the enrollment was created
+        # When the employee enrolled or waived
+        answered_at:,
+        # Nested benefit product summary
+        benefit:,
+        # Coverage period end date
+        coverage_end:,
+        # Coverage period start date
+        coverage_start:,
+        # When the enrollment was created
         created_at:,
-        # ID of the employee (empl\_\*)
+        # Employee monthly payroll deduction in cents
+        employee_deduction_in_cents:,
+        # Employee ID (empl\_\*)
         employee_id:,
-        # ID of the plan year (plyr\_\*)
-        plan_year_id:,
+        # Employer monthly contribution in cents
+        employer_contribution_in_cents:,
+        # Employer ID (empr\_\*)
+        employer_id:,
         # - `pending` - Pending
         # - `enrolled` - Enrolled
         # - `waived` - Waived
         # - `inactive` - Inactive
         status:,
-        # Timestamp when the enrollment was last updated
-        updated_at:,
-        # Date when coverage ends
-        coverage_end_date: nil,
-        # Date when coverage begins
-        coverage_start_date: nil,
-        # Employee's election decision: 'enrolled' (accepted) or 'waived' (declined)
-        decision: nil,
-        # Employee's monthly contribution in cents
-        employee_contribution_cents: nil,
-        # Employer's monthly contribution in cents
-        employer_contribution_cents: nil,
-        # List of dependents included in this enrollment
-        enrolled_dependents: nil,
-        # ID of the selected plan (plan\_\*), if enrolled
-        selected_plan_id: nil,
-        # Name of the selected plan
-        selected_plan_name: nil
+        # When coverage was terminated
+        terminated_at:,
+        # When the enrollment was last updated
+        updated_at:
       )
       end
 
@@ -163,83 +120,111 @@ module VitableConnect
         override.returns(
           {
             id: String,
-            benefit_product_id: String,
-            coverage_tier: VitableConnect::CoverageTier::TaggedSymbol,
+            answered_at: T.nilable(Time),
+            benefit: VitableConnect::Enrollment::Benefit,
+            coverage_end: T.nilable(Date),
+            coverage_start: Date,
             created_at: Time,
+            employee_deduction_in_cents: T.nilable(Integer),
             employee_id: String,
-            plan_year_id: String,
+            employer_contribution_in_cents: T.nilable(Integer),
+            employer_id: String,
             status: VitableConnect::EnrollmentStatus::TaggedSymbol,
-            updated_at: Time,
-            coverage_end_date: T.nilable(Date),
-            coverage_start_date: T.nilable(Date),
-            decision: T.nilable(String),
-            employee_contribution_cents: T.nilable(Integer),
-            employer_contribution_cents: T.nilable(Integer),
-            enrolled_dependents:
-              T::Array[VitableConnect::Enrollment::EnrolledDependent],
-            selected_plan_id: T.nilable(String),
-            selected_plan_name: T.nilable(String)
+            terminated_at: T.nilable(Time),
+            updated_at: Time
           }
         )
       end
       def to_hash
       end
 
-      class EnrolledDependent < VitableConnect::Internal::Type::BaseModel
+      class Benefit < VitableConnect::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              VitableConnect::Enrollment::EnrolledDependent,
+              VitableConnect::Enrollment::Benefit,
               VitableConnect::Internal::AnyHash
             )
           end
 
-        # ID of the dependent (dpnd\_\*)
+        # Benefit product ID (bprd\_\*)
         sig { returns(String) }
-        attr_accessor :dependent_id
+        attr_accessor :id
 
-        # Dependent's first name
+        # - `Medical` - Medical
+        # - `Dental` - Dental
+        # - `Vision` - Vision
+        # - `Hospital` - Hospital
+        sig { returns(VitableConnect::Category::TaggedSymbol) }
+        attr_accessor :category
+
+        # Display name of the benefit product
         sig { returns(String) }
-        attr_accessor :first_name
+        attr_accessor :name
 
-        # Dependent's last name
-        sig { returns(String) }
-        attr_accessor :last_name
+        # - `EBA` - Eba Mec
+        # - `VPC` - Vpc Enhanced
+        # - `VPC_CORE` - Vpc Core
+        # - `MEC` - Vpc Mec
+        # - `MEC2` - Mec2
+        # - `MEC_PLUS` - Mec Plus
+        # - `MVP` - Mvp
+        # - `MVP2` - Mvp2
+        # - `MVPSL` - Mvpsl
+        # - `MVPSL2` - Mvpsl2
+        # - `VD` - Dental
+        # - `VV` - Vision
+        # - `ICHRA` - Ichra
+        # - `ICHRA_PREMIUM_PLUS` - Ichra Premium Plus
+        # - `ICHRA_REIMBURSEMENT_ONLY` - Ichra Reimbursement Only
+        sig { returns(VitableConnect::ProductCode::TaggedSymbol) }
+        attr_accessor :product_code
 
-        # - `Spouse` - Spouse
-        # - `Child` - Child
-        sig { returns(VitableConnect::Relationship::TaggedSymbol) }
-        attr_accessor :relationship
-
-        # Dependent included in an enrollment.
+        # Nested benefit product summary
         sig do
           params(
-            dependent_id: String,
-            first_name: String,
-            last_name: String,
-            relationship: VitableConnect::Relationship::OrSymbol
+            id: String,
+            category: VitableConnect::Category::OrSymbol,
+            name: String,
+            product_code: VitableConnect::ProductCode::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
-          # ID of the dependent (dpnd\_\*)
-          dependent_id:,
-          # Dependent's first name
-          first_name:,
-          # Dependent's last name
-          last_name:,
-          # - `Spouse` - Spouse
-          # - `Child` - Child
-          relationship:
+          # Benefit product ID (bprd\_\*)
+          id:,
+          # - `Medical` - Medical
+          # - `Dental` - Dental
+          # - `Vision` - Vision
+          # - `Hospital` - Hospital
+          category:,
+          # Display name of the benefit product
+          name:,
+          # - `EBA` - Eba Mec
+          # - `VPC` - Vpc Enhanced
+          # - `VPC_CORE` - Vpc Core
+          # - `MEC` - Vpc Mec
+          # - `MEC2` - Mec2
+          # - `MEC_PLUS` - Mec Plus
+          # - `MVP` - Mvp
+          # - `MVP2` - Mvp2
+          # - `MVPSL` - Mvpsl
+          # - `MVPSL2` - Mvpsl2
+          # - `VD` - Dental
+          # - `VV` - Vision
+          # - `ICHRA` - Ichra
+          # - `ICHRA_PREMIUM_PLUS` - Ichra Premium Plus
+          # - `ICHRA_REIMBURSEMENT_ONLY` - Ichra Reimbursement Only
+          product_code:
         )
         end
 
         sig do
           override.returns(
             {
-              dependent_id: String,
-              first_name: String,
-              last_name: String,
-              relationship: VitableConnect::Relationship::TaggedSymbol
+              id: String,
+              category: VitableConnect::Category::TaggedSymbol,
+              name: String,
+              product_code: VitableConnect::ProductCode::TaggedSymbol
             }
           )
         end

@@ -4,10 +4,7 @@ module VitableConnect
   module Resources
     # Define rules that determine which employees qualify for benefits
     class BenefitEligibilityPolicies
-      # Retrieves detailed information for a specific benefit eligibility policy by ID.
-      # Returns the complete policy configuration including all eligibility rules,
-      # effective dates, associated employer information, and any waiting period
-      # requirements.
+      # Retrieves a benefit eligibility policy by ID.
       sig do
         params(
           policy_id: String,

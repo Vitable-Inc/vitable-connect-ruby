@@ -2,14 +2,7 @@ module VitableConnect
   module Models
     module Employees
       type enrollment_list_params =
-        {
-          employee_id: String,
-          coverage_effective_start_year: Integer,
-          limit: Integer,
-          page: Integer,
-          plan_year: Integer,
-          status: VitableConnect::Models::enrollment_status
-        }
+        { employee_id: String, limit: Integer, page: Integer }
         & VitableConnect::Internal::Type::request_parameters
 
       class EnrollmentListParams < VitableConnect::Internal::Type::BaseModel
@@ -17,10 +10,6 @@ module VitableConnect
         include VitableConnect::Internal::Type::RequestParameters
 
         attr_accessor employee_id: String
-
-        attr_reader coverage_effective_start_year: Integer?
-
-        def coverage_effective_start_year=: (Integer) -> Integer
 
         attr_reader limit: Integer?
 
@@ -30,33 +19,17 @@ module VitableConnect
 
         def page=: (Integer) -> Integer
 
-        attr_reader plan_year: Integer?
-
-        def plan_year=: (Integer) -> Integer
-
-        attr_reader status: VitableConnect::Models::enrollment_status?
-
-        def status=: (
-          VitableConnect::Models::enrollment_status
-        ) -> VitableConnect::Models::enrollment_status
-
         def initialize: (
           employee_id: String,
-          ?coverage_effective_start_year: Integer,
           ?limit: Integer,
           ?page: Integer,
-          ?plan_year: Integer,
-          ?status: VitableConnect::Models::enrollment_status,
           ?request_options: VitableConnect::request_opts
         ) -> void
 
         def to_hash: -> {
           employee_id: String,
-          coverage_effective_start_year: Integer,
           limit: Integer,
           page: Integer,
-          plan_year: Integer,
-          status: VitableConnect::Models::enrollment_status,
           request_options: VitableConnect::RequestOptions
         }
       end

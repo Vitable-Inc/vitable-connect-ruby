@@ -42,22 +42,6 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
     end
   end
 
-  def test_update
-    skip("Mock server tests are disabled")
-
-    response = @vitable_connect.employers.update("empr_abc123def456")
-
-    assert_pattern do
-      response => VitableConnect::EmployerResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: VitableConnect::Employer
-      }
-    end
-  end
-
   def test_list
     skip("Mock server tests are disabled")
 
@@ -81,12 +65,8 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
     response =
       @vitable_connect.employers.create_eligibility_policy(
         "empr_abc123def456",
-        effective_date: "2025-01-01",
-        name: "Standard Full-Time Eligibility",
-        rules: [
-          {operator: "in", rule_type: "employment_status", value: "full_time,part_time_30_plus"},
-          {operator: "greater_than_or_equal", rule_type: "waiting_period_days", value: "30"}
-        ]
+        classification: "classification",
+        waiting_period: "waiting_period"
       )
 
     assert_pattern do

@@ -6,18 +6,6 @@ module VitableConnect
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::EnrollmentResponse
 
-      def list_plans: (
-        String enrollment_id,
-        ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::Models::EnrollmentListPlansResponse
-
-      def reissue: (
-        String enrollment_id,
-        qle_id: String,
-        ?reason: String?,
-        ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::EnrollmentResponse
-
       def initialize: (client: VitableConnect::Client) -> void
     end
   end
