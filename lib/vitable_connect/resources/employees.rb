@@ -36,7 +36,7 @@ module VitableConnect
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Models::EmployeeListEnrollmentsResponse]
+      # @return [VitableConnect::Internal::PageNumberPage<VitableConnect::Models::Enrollment>]
       #
       # @see VitableConnect::Models::EmployeeListEnrollmentsParams
       def list_enrollments(employee_id, params = {})
@@ -46,7 +46,8 @@ module VitableConnect
           method: :get,
           path: ["v1/employees/%1$s/enrollments", employee_id],
           query: query,
-          model: VitableConnect::Models::EmployeeListEnrollmentsResponse,
+          page: VitableConnect::Internal::PageNumberPage,
+          model: VitableConnect::Enrollment,
           options: options
         )
       end

@@ -12,14 +12,14 @@ module VitableConnect
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Models::BenefitEligibilityPolicy]
+      # @return [VitableConnect::Models::BenefitEligibilityPolicyResponse]
       #
       # @see VitableConnect::Models::BenefitEligibilityPolicyRetrieveParams
       def retrieve(policy_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/benefit-eligibility-policies/%1$s", policy_id],
-          model: VitableConnect::BenefitEligibilityPolicy,
+          model: VitableConnect::BenefitEligibilityPolicyResponse,
           options: params[:request_options]
         )
       end

@@ -9,7 +9,7 @@ module VitableConnect
         params(
           policy_id: String,
           request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::BenefitEligibilityPolicy)
+        ).returns(VitableConnect::BenefitEligibilityPolicyResponse)
       end
       def retrieve(
         # Unique benefit eligibility policy identifier (epol\_\*)

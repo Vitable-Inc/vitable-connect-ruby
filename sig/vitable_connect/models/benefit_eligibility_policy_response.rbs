@@ -1,0 +1,14 @@
+module VitableConnect
+  module Models
+    type benefit_eligibility_policy_response =
+      { data: VitableConnect::BenefitEligibilityPolicy }
+
+    class BenefitEligibilityPolicyResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::BenefitEligibilityPolicy
+
+      def initialize: (data: VitableConnect::BenefitEligibilityPolicy) -> void
+
+      def to_hash: -> { data: VitableConnect::BenefitEligibilityPolicy }
+    end
+  end
+end

@@ -9,12 +9,12 @@ class VitableConnect::Test::Resources::BenefitEligibilityPoliciesTest < VitableC
     response = @vitable_connect.benefit_eligibility_policies.retrieve("epol_abc123def456")
 
     assert_pattern do
-      response => VitableConnect::BenefitEligibilityPolicy
+      response => VitableConnect::BenefitEligibilityPolicyResponse
     end
 
     assert_pattern do
       response => {
-        data: VitableConnect::BenefitEligibilityPolicy::Data
+        data: VitableConnect::BenefitEligibilityPolicy
       }
     end
   end

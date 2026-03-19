@@ -2,6 +2,7 @@
 
 module VitableConnect
   module Models
+    # @see VitableConnect::Resources::Employers#list
     class Employer < VitableConnect::Internal::Type::BaseModel
       # @!attribute active
       #   Whether the employer is currently active in the system

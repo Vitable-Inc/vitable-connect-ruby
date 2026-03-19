@@ -3,6 +3,8 @@ module VitableConnect
 
   class BenefitEligibilityPolicy = VitableConnect::Models::BenefitEligibilityPolicy
 
+  class BenefitEligibilityPolicyResponse = VitableConnect::Models::BenefitEligibilityPolicyResponse
+
   class BenefitEligibilityPolicyRetrieveParams = VitableConnect::Models::BenefitEligibilityPolicyRetrieveParams
 
   class Employee = VitableConnect::Models::Employee

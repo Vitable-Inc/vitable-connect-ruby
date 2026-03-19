@@ -54,7 +54,9 @@ module VitableConnect
           limit: Integer,
           page: Integer,
           request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::Models::EmployerListResponse)
+        ).returns(
+          VitableConnect::Internal::PageNumberPage[VitableConnect::Employer]
+        )
       end
       def list(
         # Items per page (default: 20, max: 100)
@@ -72,7 +74,7 @@ module VitableConnect
           classification: String,
           waiting_period: String,
           request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::BenefitEligibilityPolicy)
+        ).returns(VitableConnect::BenefitEligibilityPolicyResponse)
       end
       def create_benefit_eligibility_policy(
         # Unique employer identifier (empr\_\*)
@@ -94,7 +96,9 @@ module VitableConnect
           limit: Integer,
           page: Integer,
           request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::Models::EmployerListEmployeesResponse)
+        ).returns(
+          VitableConnect::Internal::PageNumberPage[VitableConnect::Employee]
+        )
       end
       def list_employees(
         # Unique employer identifier (empr\_\*)
