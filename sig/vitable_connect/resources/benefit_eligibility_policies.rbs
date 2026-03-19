@@ -4,7 +4,7 @@ module VitableConnect
       def retrieve: (
         String policy_id,
         ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::BenefitEligibilityPolicy
+      ) -> VitableConnect::BenefitEligibilityPolicyResponse
 
       def initialize: (client: VitableConnect::Client) -> void
     end

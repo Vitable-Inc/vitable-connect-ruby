@@ -48,13 +48,31 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
     response = @vitable_connect.employers.list
 
     assert_pattern do
-      response => VitableConnect::Models::EmployerListResponse
+      response => VitableConnect::Internal::PageNumberPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => VitableConnect::Employer
     end
 
     assert_pattern do
-      response => {
-        data: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employer]),
-        pagination: VitableConnect::Pagination
+      row => {
+        id: String,
+        active: VitableConnect::Internal::Type::Boolean,
+        address: VitableConnect::Employer::Address,
+        created_at: Time,
+        ein: String | nil,
+        eligibility_policy_id: String | nil,
+        legal_name: String,
+        name: String,
+        organization_id: String | nil,
+        updated_at: Time,
+        email: String | nil,
+        phone_number: String | nil,
+        reference_id: String | nil
       }
     end
   end
@@ -70,12 +88,12 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
       )
 
     assert_pattern do
-      response => VitableConnect::BenefitEligibilityPolicy
+      response => VitableConnect::BenefitEligibilityPolicyResponse
     end
 
     assert_pattern do
       response => {
-        data: VitableConnect::BenefitEligibilityPolicy::Data
+        data: VitableConnect::BenefitEligibilityPolicy
       }
     end
   end
@@ -86,13 +104,36 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
     response = @vitable_connect.employers.list_employees("empr_abc123def456")
 
     assert_pattern do
-      response => VitableConnect::Models::EmployerListEmployeesResponse
+      response => VitableConnect::Internal::PageNumberPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => VitableConnect::Employee
     end
 
     assert_pattern do
-      response => {
-        data: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee]),
-        pagination: VitableConnect::Pagination
+      row => {
+        id: String,
+        created_at: Time,
+        date_of_birth: Date,
+        email: String,
+        enrollments: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Enrollment]),
+        first_name: String,
+        last_name: String,
+        member_id: String,
+        status: String,
+        updated_at: Time,
+        address: VitableConnect::Employee::Address | nil,
+        employee_class: VitableConnect::EmployeeClass | nil,
+        gender: String | nil,
+        hire_date: Date | nil,
+        phone: String | nil,
+        reference_id: String | nil,
+        suffix: String | nil,
+        termination_date: Date | nil
       }
     end
   end

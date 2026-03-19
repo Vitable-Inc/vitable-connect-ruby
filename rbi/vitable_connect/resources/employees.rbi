@@ -25,7 +25,9 @@ module VitableConnect
           limit: Integer,
           page: Integer,
           request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::Models::EmployeeListEnrollmentsResponse)
+        ).returns(
+          VitableConnect::Internal::PageNumberPage[VitableConnect::Enrollment]
+        )
       end
       def list_enrollments(
         # Unique employee identifier (empl\_\*)

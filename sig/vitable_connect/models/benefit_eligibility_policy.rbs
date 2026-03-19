@@ -1,63 +1,50 @@
 module VitableConnect
   module Models
     type benefit_eligibility_policy =
-      { data: VitableConnect::BenefitEligibilityPolicy::Data }
+      {
+        id: String,
+        active: bool,
+        classification: String,
+        created_at: Time,
+        employer_id: String,
+        updated_at: Time,
+        waiting_period: String
+      }
 
     class BenefitEligibilityPolicy < VitableConnect::Internal::Type::BaseModel
-      attr_accessor data: VitableConnect::BenefitEligibilityPolicy::Data
+      attr_accessor active: bool
+
+      attr_accessor created_at: Time
+
+      attr_accessor updated_at: Time
+
+      attr_accessor id: String
+
+      attr_accessor classification: String
+
+      attr_accessor employer_id: String
+
+      attr_accessor waiting_period: String
 
       def initialize: (
-        data: VitableConnect::BenefitEligibilityPolicy::Data
+        id: String,
+        active: bool,
+        classification: String,
+        created_at: Time,
+        employer_id: String,
+        updated_at: Time,
+        waiting_period: String
       ) -> void
 
-      def to_hash: -> { data: VitableConnect::BenefitEligibilityPolicy::Data }
-
-      type data =
-        {
-          id: String,
-          active: bool,
-          classification: String,
-          created_at: Time,
-          employer_id: String,
-          updated_at: Time,
-          waiting_period: String
-        }
-
-      class Data < VitableConnect::Internal::Type::BaseModel
-        attr_accessor active: bool
-
-        attr_accessor created_at: Time
-
-        attr_accessor updated_at: Time
-
-        attr_accessor id: String
-
-        attr_accessor classification: String
-
-        attr_accessor employer_id: String
-
-        attr_accessor waiting_period: String
-
-        def initialize: (
-          id: String,
-          active: bool,
-          classification: String,
-          created_at: Time,
-          employer_id: String,
-          updated_at: Time,
-          waiting_period: String
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          active: bool,
-          classification: String,
-          created_at: Time,
-          employer_id: String,
-          updated_at: Time,
-          waiting_period: String
-        }
-      end
+      def to_hash: -> {
+        id: String,
+        active: bool,
+        classification: String,
+        created_at: Time,
+        employer_id: String,
+        updated_at: Time,
+        waiting_period: String
+      }
     end
   end
 end

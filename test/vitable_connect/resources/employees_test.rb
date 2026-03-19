@@ -25,13 +25,31 @@ class VitableConnect::Test::Resources::EmployeesTest < VitableConnect::Test::Res
     response = @vitable_connect.employees.list_enrollments("empl_abc123def456")
 
     assert_pattern do
-      response => VitableConnect::Models::EmployeeListEnrollmentsResponse
+      response => VitableConnect::Internal::PageNumberPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => VitableConnect::Enrollment
     end
 
     assert_pattern do
-      response => {
-        data: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Enrollment]),
-        pagination: VitableConnect::Pagination
+      row => {
+        id: String,
+        answered_at: Time | nil,
+        benefit: VitableConnect::Enrollment::Benefit,
+        coverage_end: Date | nil,
+        coverage_start: Date,
+        created_at: Time,
+        employee_deduction_in_cents: Integer | nil,
+        employee_id: String,
+        employer_contribution_in_cents: Integer | nil,
+        employer_id: String,
+        status: VitableConnect::EnrollmentStatus,
+        terminated_at: Time | nil,
+        updated_at: Time
       }
     end
   end

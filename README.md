@@ -34,6 +34,34 @@ response = vitable_connect.auth.issue_access_token(grant_type: "client_credentia
 puts(response.access_token)
 ```
 
+### Pagination
+
+List methods in the Vitable Connect API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```ruby
+page = vitable_connect.employees.list_enrollments
+
+# Fetch single item from page.
+employee = page.data[0]
+puts(employee.id)
+
+# Automatically fetches more pages as needed.
+page.auto_paging_each do |employee|
+  puts(employee.id)
+end
+```
+
+Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+
+```ruby
+if page.next_page?
+  new_page = page.next_page
+  puts(new_page.data[0].id)
+end
+```
+
 ### Handling errors
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `VitableConnect::Errors::APIError` will be thrown:

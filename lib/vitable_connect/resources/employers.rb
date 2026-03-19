@@ -68,7 +68,7 @@ module VitableConnect
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Models::EmployerListResponse]
+      # @return [VitableConnect::Internal::PageNumberPage<VitableConnect::Models::Employer>]
       #
       # @see VitableConnect::Models::EmployerListParams
       def list(params = {})
@@ -78,7 +78,8 @@ module VitableConnect
           method: :get,
           path: "v1/employers",
           query: query,
-          model: VitableConnect::Models::EmployerListResponse,
+          page: VitableConnect::Internal::PageNumberPage,
+          model: VitableConnect::Employer,
           options: options
         )
       end
@@ -99,7 +100,7 @@ module VitableConnect
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Models::BenefitEligibilityPolicy]
+      # @return [VitableConnect::Models::BenefitEligibilityPolicyResponse]
       #
       # @see VitableConnect::Models::EmployerCreateBenefitEligibilityPolicyParams
       def create_benefit_eligibility_policy(employer_id, params)
@@ -108,7 +109,7 @@ module VitableConnect
           method: :post,
           path: ["v1/employers/%1$s/benefit-eligibility-policies", employer_id],
           body: parsed,
-          model: VitableConnect::BenefitEligibilityPolicy,
+          model: VitableConnect::BenefitEligibilityPolicyResponse,
           options: options
         )
       end
@@ -126,7 +127,7 @@ module VitableConnect
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Models::EmployerListEmployeesResponse]
+      # @return [VitableConnect::Internal::PageNumberPage<VitableConnect::Models::Employee>]
       #
       # @see VitableConnect::Models::EmployerListEmployeesParams
       def list_employees(employer_id, params = {})
@@ -136,7 +137,8 @@ module VitableConnect
           method: :get,
           path: ["v1/employers/%1$s/employees", employer_id],
           query: query,
-          model: VitableConnect::Models::EmployerListEmployeesResponse,
+          page: VitableConnect::Internal::PageNumberPage,
+          model: VitableConnect::Employee,
           options: options
         )
       end

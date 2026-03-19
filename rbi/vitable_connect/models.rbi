@@ -6,6 +6,9 @@ module VitableConnect
 
   BenefitEligibilityPolicy = VitableConnect::Models::BenefitEligibilityPolicy
 
+  BenefitEligibilityPolicyResponse =
+    VitableConnect::Models::BenefitEligibilityPolicyResponse
+
   BenefitEligibilityPolicyRetrieveParams =
     VitableConnect::Models::BenefitEligibilityPolicyRetrieveParams
 
