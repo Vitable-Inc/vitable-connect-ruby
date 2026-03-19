@@ -9,7 +9,7 @@ module VitableConnect
         params(
           enrollment_id: String,
           request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::EnrollmentResponse)
+        ).returns(VitableConnect::Models::EnrollmentRetrieveResponse)
       end
       def retrieve(
         # Unique enrollment identifier (enrl\_\*)

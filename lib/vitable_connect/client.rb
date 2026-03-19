@@ -34,13 +34,6 @@ module VitableConnect
     # @return [VitableConnect::Resources::BenefitEligibilityPolicies]
     attr_reader :benefit_eligibility_policies
 
-    # @return [VitableConnect::Resources::BenefitProducts]
-    attr_reader :benefit_products
-
-    # @return [VitableConnect::Resources::Dependents]
-    attr_reader :dependents
-
-    # Manage employee records for employers
     # @return [VitableConnect::Resources::Employees]
     attr_reader :employees
 
@@ -50,12 +43,6 @@ module VitableConnect
     # Manage benefit enrollments and elections for employees
     # @return [VitableConnect::Resources::Enrollments]
     attr_reader :enrollments
-
-    # @return [VitableConnect::Resources::Members]
-    attr_reader :members
-
-    # @return [VitableConnect::Resources::PlanYears]
-    attr_reader :plan_years
 
     # @api private
     #
@@ -119,13 +106,9 @@ module VitableConnect
 
       @auth = VitableConnect::Resources::Auth.new(client: self)
       @benefit_eligibility_policies = VitableConnect::Resources::BenefitEligibilityPolicies.new(client: self)
-      @benefit_products = VitableConnect::Resources::BenefitProducts.new(client: self)
-      @dependents = VitableConnect::Resources::Dependents.new(client: self)
       @employees = VitableConnect::Resources::Employees.new(client: self)
       @employers = VitableConnect::Resources::Employers.new(client: self)
       @enrollments = VitableConnect::Resources::Enrollments.new(client: self)
-      @members = VitableConnect::Resources::Members.new(client: self)
-      @plan_years = VitableConnect::Resources::PlanYears.new(client: self)
     end
   end
 end

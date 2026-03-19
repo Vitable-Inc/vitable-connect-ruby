@@ -128,8 +128,8 @@ module VitableConnect
         #   - `Vision` - Vision
         #   - `Hospital` - Hospital
         #
-        #   @return [Symbol, VitableConnect::Models::Category]
-        required :category, enum: -> { VitableConnect::Category }
+        #   @return [Symbol, VitableConnect::Models::Enrollment::Benefit::Category]
+        required :category, enum: -> { VitableConnect::Enrollment::Benefit::Category }
 
         # @!attribute name
         #   Display name of the benefit product
@@ -154,8 +154,8 @@ module VitableConnect
         #   - `ICHRA_PREMIUM_PLUS` - Ichra Premium Plus
         #   - `ICHRA_REIMBURSEMENT_ONLY` - Ichra Reimbursement Only
         #
-        #   @return [Symbol, VitableConnect::Models::ProductCode]
-        required :product_code, enum: -> { VitableConnect::ProductCode }
+        #   @return [Symbol, VitableConnect::Models::Enrollment::Benefit::ProductCode]
+        required :product_code, enum: -> { VitableConnect::Enrollment::Benefit::ProductCode }
 
         # @!method initialize(id:, category:, name:, product_code:)
         #   Some parameter documentations has been truncated, see
@@ -165,11 +165,69 @@ module VitableConnect
         #
         #   @param id [String] Benefit product ID (bprd\_\*)
         #
-        #   @param category [Symbol, VitableConnect::Models::Category] - `Medical` - Medical
+        #   @param category [Symbol, VitableConnect::Models::Enrollment::Benefit::Category] - `Medical` - Medical
         #
         #   @param name [String] Display name of the benefit product
         #
-        #   @param product_code [Symbol, VitableConnect::Models::ProductCode] - `EBA` - Eba Mec
+        #   @param product_code [Symbol, VitableConnect::Models::Enrollment::Benefit::ProductCode] - `EBA` - Eba Mec
+
+        # - `Medical` - Medical
+        # - `Dental` - Dental
+        # - `Vision` - Vision
+        # - `Hospital` - Hospital
+        #
+        # @see VitableConnect::Models::Enrollment::Benefit#category
+        module Category
+          extend VitableConnect::Internal::Type::Enum
+
+          MEDICAL = :Medical
+          DENTAL = :Dental
+          VISION = :Vision
+          HOSPITAL = :Hospital
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # - `EBA` - Eba Mec
+        # - `VPC` - Vpc Enhanced
+        # - `VPC_CORE` - Vpc Core
+        # - `MEC` - Vpc Mec
+        # - `MEC2` - Mec2
+        # - `MEC_PLUS` - Mec Plus
+        # - `MVP` - Mvp
+        # - `MVP2` - Mvp2
+        # - `MVPSL` - Mvpsl
+        # - `MVPSL2` - Mvpsl2
+        # - `VD` - Dental
+        # - `VV` - Vision
+        # - `ICHRA` - Ichra
+        # - `ICHRA_PREMIUM_PLUS` - Ichra Premium Plus
+        # - `ICHRA_REIMBURSEMENT_ONLY` - Ichra Reimbursement Only
+        #
+        # @see VitableConnect::Models::Enrollment::Benefit#product_code
+        module ProductCode
+          extend VitableConnect::Internal::Type::Enum
+
+          EBA = :EBA
+          VPC = :VPC
+          VPC_CORE = :VPC_CORE
+          MEC = :MEC
+          MEC2 = :MEC2
+          MEC_PLUS = :MEC_PLUS
+          MVP = :MVP
+          MVP2 = :MVP2
+          MVPSL = :MVPSL
+          MVPSL2 = :MVPSL2
+          VD = :VD
+          VV = :VV
+          ICHRA = :ICHRA
+          ICHRA_PREMIUM_PLUS = :ICHRA_PREMIUM_PLUS
+          ICHRA_REIMBURSEMENT_ONLY = :ICHRA_REIMBURSEMENT_ONLY
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

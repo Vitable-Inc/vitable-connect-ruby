@@ -1,8 +1,6 @@
 module VitableConnect
   module Resources
     class Employers
-      attr_reader employees: VitableConnect::Resources::Employers::Employees
-
       def create: (
         address: VitableConnect::EmployerCreateParams::Address,
         ein: String,
@@ -23,12 +21,25 @@ module VitableConnect
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Models::EmployerListResponse
 
-      def create_eligibility_policy: (
+      def create_benefit_eligibility_policy: (
         String employer_id,
         classification: String,
         waiting_period: String,
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::BenefitEligibilityPolicy
+
+      def list_employees: (
+        String employer_id,
+        ?limit: Integer,
+        ?page: Integer,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerListEmployeesResponse
+
+      def submit_census_sync: (
+        String employer_id,
+        employees: ::Array[VitableConnect::EmployerSubmitCensusSyncParams::Employee],
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerSubmitCensusSyncResponse
 
       def initialize: (client: VitableConnect::Client) -> void
     end

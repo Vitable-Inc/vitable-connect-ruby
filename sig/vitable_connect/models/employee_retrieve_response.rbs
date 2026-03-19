@@ -1,0 +1,13 @@
+module VitableConnect
+  module Models
+    type employee_retrieve_response = { data: VitableConnect::Employee }
+
+    class EmployeeRetrieveResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::Employee
+
+      def initialize: (data: VitableConnect::Employee) -> void
+
+      def to_hash: -> { data: VitableConnect::Employee }
+    end
+  end
+end

@@ -12,14 +12,14 @@ module VitableConnect
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Models::EnrollmentResponse]
+      # @return [VitableConnect::Models::EnrollmentRetrieveResponse]
       #
       # @see VitableConnect::Models::EnrollmentRetrieveParams
       def retrieve(enrollment_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/enrollments/%1$s", enrollment_id],
-          model: VitableConnect::EnrollmentResponse,
+          model: VitableConnect::Models::EnrollmentRetrieveResponse,
           options: params[:request_options]
         )
       end

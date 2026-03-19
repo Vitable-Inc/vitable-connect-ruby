@@ -19,19 +19,11 @@ module VitableConnect
 
     attr_reader benefit_eligibility_policies: VitableConnect::Resources::BenefitEligibilityPolicies
 
-    attr_reader benefit_products: VitableConnect::Resources::BenefitProducts
-
-    attr_reader dependents: VitableConnect::Resources::Dependents
-
     attr_reader employees: VitableConnect::Resources::Employees
 
     attr_reader employers: VitableConnect::Resources::Employers
 
     attr_reader enrollments: VitableConnect::Resources::Enrollments
-
-    attr_reader members: VitableConnect::Resources::Members
-
-    attr_reader plan_years: VitableConnect::Resources::PlanYears
 
     private def auth_headers: -> ::Hash[String, String]
 

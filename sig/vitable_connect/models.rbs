@@ -5,23 +5,21 @@ module VitableConnect
 
   class BenefitEligibilityPolicyRetrieveParams = VitableConnect::Models::BenefitEligibilityPolicyRetrieveParams
 
-  module Category = VitableConnect::Models::Category
-
   class Employee = VitableConnect::Models::Employee
 
   module EmployeeClass = VitableConnect::Models::EmployeeClass
 
-  class EmployeeResponse = VitableConnect::Models::EmployeeResponse
+  class EmployeeListEnrollmentsParams = VitableConnect::Models::EmployeeListEnrollmentsParams
 
   class EmployeeRetrieveParams = VitableConnect::Models::EmployeeRetrieveParams
 
-  module Employees = VitableConnect::Models::Employees
-
   class Employer = VitableConnect::Models::Employer
 
-  class EmployerCreateEligibilityPolicyParams = VitableConnect::Models::EmployerCreateEligibilityPolicyParams
+  class EmployerCreateBenefitEligibilityPolicyParams = VitableConnect::Models::EmployerCreateBenefitEligibilityPolicyParams
 
   class EmployerCreateParams = VitableConnect::Models::EmployerCreateParams
+
+  class EmployerListEmployeesParams = VitableConnect::Models::EmployerListEmployeesParams
 
   class EmployerListParams = VitableConnect::Models::EmployerListParams
 
@@ -29,19 +27,15 @@ module VitableConnect
 
   class EmployerRetrieveParams = VitableConnect::Models::EmployerRetrieveParams
 
-  module Employers = VitableConnect::Models::Employers
+  class EmployerSubmitCensusSyncParams = VitableConnect::Models::EmployerSubmitCensusSyncParams
 
   class Enrollment = VitableConnect::Models::Enrollment
-
-  class EnrollmentResponse = VitableConnect::Models::EnrollmentResponse
 
   class EnrollmentRetrieveParams = VitableConnect::Models::EnrollmentRetrieveParams
 
   module EnrollmentStatus = VitableConnect::Models::EnrollmentStatus
 
   class Pagination = VitableConnect::Models::Pagination
-
-  module ProductCode = VitableConnect::Models::ProductCode
 
   module Type = VitableConnect::Models::Type
 end

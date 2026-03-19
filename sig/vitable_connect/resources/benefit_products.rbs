@@ -1,9 +1,0 @@
-module VitableConnect
-  module Resources
-    class BenefitProducts
-      attr_reader plan_years: VitableConnect::Resources::BenefitProducts::PlanYears
-
-      def initialize: (client: VitableConnect::Client) -> void
-    end
-  end
-end

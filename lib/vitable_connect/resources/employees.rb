@@ -2,12 +2,7 @@
 
 module VitableConnect
   module Resources
-    # Manage employee records for employers
     class Employees
-      # Manage benefit enrollments and elections for employees
-      # @return [VitableConnect::Resources::Employees::Enrollments]
-      attr_reader :enrollments
-
       # Retrieves detailed information for a specific employee by ID. Returns employee
       # details including personal information and employment status.
       #
@@ -17,15 +12,42 @@ module VitableConnect
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Models::EmployeeResponse]
+      # @return [VitableConnect::Models::EmployeeRetrieveResponse]
       #
       # @see VitableConnect::Models::EmployeeRetrieveParams
       def retrieve(employee_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/employees/%1$s", employee_id],
-          model: VitableConnect::EmployeeResponse,
+          model: VitableConnect::Models::EmployeeRetrieveResponse,
           options: params[:request_options]
+        )
+      end
+
+      # Retrieves a paginated list of benefit enrollments for an employee.
+      #
+      # @overload list_enrollments(employee_id, limit: nil, page: nil, request_options: {})
+      #
+      # @param employee_id [String] Unique employee identifier (empl\_\*)
+      #
+      # @param limit [Integer] Items per page (default: 20, max: 100)
+      #
+      # @param page [Integer] Page number (default: 1)
+      #
+      # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [VitableConnect::Models::EmployeeListEnrollmentsResponse]
+      #
+      # @see VitableConnect::Models::EmployeeListEnrollmentsParams
+      def list_enrollments(employee_id, params = {})
+        parsed, options = VitableConnect::EmployeeListEnrollmentsParams.dump_request(params)
+        query = VitableConnect::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["v1/employees/%1$s/enrollments", employee_id],
+          query: query,
+          model: VitableConnect::Models::EmployeeListEnrollmentsResponse,
+          options: options
         )
       end
 
@@ -34,7 +56,6 @@ module VitableConnect
       # @param client [VitableConnect::Client]
       def initialize(client:)
         @client = client
-        @enrollments = VitableConnect::Resources::Employees::Enrollments.new(client: client)
       end
     end
   end

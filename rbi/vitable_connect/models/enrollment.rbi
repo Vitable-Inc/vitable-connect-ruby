@@ -155,7 +155,9 @@ module VitableConnect
         # - `Dental` - Dental
         # - `Vision` - Vision
         # - `Hospital` - Hospital
-        sig { returns(VitableConnect::Category::TaggedSymbol) }
+        sig do
+          returns(VitableConnect::Enrollment::Benefit::Category::TaggedSymbol)
+        end
         attr_accessor :category
 
         # Display name of the benefit product
@@ -177,16 +179,21 @@ module VitableConnect
         # - `ICHRA` - Ichra
         # - `ICHRA_PREMIUM_PLUS` - Ichra Premium Plus
         # - `ICHRA_REIMBURSEMENT_ONLY` - Ichra Reimbursement Only
-        sig { returns(VitableConnect::ProductCode::TaggedSymbol) }
+        sig do
+          returns(
+            VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+          )
+        end
         attr_accessor :product_code
 
         # Nested benefit product summary
         sig do
           params(
             id: String,
-            category: VitableConnect::Category::OrSymbol,
+            category: VitableConnect::Enrollment::Benefit::Category::OrSymbol,
             name: String,
-            product_code: VitableConnect::ProductCode::OrSymbol
+            product_code:
+              VitableConnect::Enrollment::Benefit::ProductCode::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -222,13 +229,171 @@ module VitableConnect
           override.returns(
             {
               id: String,
-              category: VitableConnect::Category::TaggedSymbol,
+              category:
+                VitableConnect::Enrollment::Benefit::Category::TaggedSymbol,
               name: String,
-              product_code: VitableConnect::ProductCode::TaggedSymbol
+              product_code:
+                VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
             }
           )
         end
         def to_hash
+        end
+
+        # - `Medical` - Medical
+        # - `Dental` - Dental
+        # - `Vision` - Vision
+        # - `Hospital` - Hospital
+        module Category
+          extend VitableConnect::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, VitableConnect::Enrollment::Benefit::Category)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          MEDICAL =
+            T.let(
+              :Medical,
+              VitableConnect::Enrollment::Benefit::Category::TaggedSymbol
+            )
+          DENTAL =
+            T.let(
+              :Dental,
+              VitableConnect::Enrollment::Benefit::Category::TaggedSymbol
+            )
+          VISION =
+            T.let(
+              :Vision,
+              VitableConnect::Enrollment::Benefit::Category::TaggedSymbol
+            )
+          HOSPITAL =
+            T.let(
+              :Hospital,
+              VitableConnect::Enrollment::Benefit::Category::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                VitableConnect::Enrollment::Benefit::Category::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # - `EBA` - Eba Mec
+        # - `VPC` - Vpc Enhanced
+        # - `VPC_CORE` - Vpc Core
+        # - `MEC` - Vpc Mec
+        # - `MEC2` - Mec2
+        # - `MEC_PLUS` - Mec Plus
+        # - `MVP` - Mvp
+        # - `MVP2` - Mvp2
+        # - `MVPSL` - Mvpsl
+        # - `MVPSL2` - Mvpsl2
+        # - `VD` - Dental
+        # - `VV` - Vision
+        # - `ICHRA` - Ichra
+        # - `ICHRA_PREMIUM_PLUS` - Ichra Premium Plus
+        # - `ICHRA_REIMBURSEMENT_ONLY` - Ichra Reimbursement Only
+        module ProductCode
+          extend VitableConnect::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, VitableConnect::Enrollment::Benefit::ProductCode)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          EBA =
+            T.let(
+              :EBA,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          VPC =
+            T.let(
+              :VPC,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          VPC_CORE =
+            T.let(
+              :VPC_CORE,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          MEC =
+            T.let(
+              :MEC,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          MEC2 =
+            T.let(
+              :MEC2,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          MEC_PLUS =
+            T.let(
+              :MEC_PLUS,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          MVP =
+            T.let(
+              :MVP,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          MVP2 =
+            T.let(
+              :MVP2,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          MVPSL =
+            T.let(
+              :MVPSL,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          MVPSL2 =
+            T.let(
+              :MVPSL2,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          VD =
+            T.let(
+              :VD,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          VV =
+            T.let(
+              :VV,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          ICHRA =
+            T.let(
+              :ICHRA,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          ICHRA_PREMIUM_PLUS =
+            T.let(
+              :ICHRA_PREMIUM_PLUS,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+          ICHRA_REIMBURSEMENT_ONLY =
+            T.let(
+              :ICHRA_REIMBURSEMENT_ONLY,
+              VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                VitableConnect::Enrollment::Benefit::ProductCode::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

@@ -1,9 +1,0 @@
-module VitableConnect
-  module Resources
-    class Members
-      class Dependents
-        def initialize: (client: VitableConnect::Client) -> void
-      end
-    end
-  end
-end

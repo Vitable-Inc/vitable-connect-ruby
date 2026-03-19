@@ -32,13 +32,6 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::BenefitEligibilityPolicies) }
     attr_reader :benefit_eligibility_policies
 
-    sig { returns(VitableConnect::Resources::BenefitProducts) }
-    attr_reader :benefit_products
-
-    sig { returns(VitableConnect::Resources::Dependents) }
-    attr_reader :dependents
-
-    # Manage employee records for employers
     sig { returns(VitableConnect::Resources::Employees) }
     attr_reader :employees
 
@@ -48,12 +41,6 @@ module VitableConnect
     # Manage benefit enrollments and elections for employees
     sig { returns(VitableConnect::Resources::Enrollments) }
     attr_reader :enrollments
-
-    sig { returns(VitableConnect::Resources::Members) }
-    attr_reader :members
-
-    sig { returns(VitableConnect::Resources::PlanYears) }
-    attr_reader :plan_years
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }

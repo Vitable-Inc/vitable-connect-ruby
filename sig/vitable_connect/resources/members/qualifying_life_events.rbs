@@ -1,9 +1,0 @@
-module VitableConnect
-  module Resources
-    class Members
-      class QualifyingLifeEvents
-        def initialize: (client: VitableConnect::Client) -> void
-      end
-    end
-  end
-end

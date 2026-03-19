@@ -1,0 +1,32 @@
+module VitableConnect
+  module Models
+    type employer_create_benefit_eligibility_policy_params =
+      { employer_id: String, classification: String, waiting_period: String }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployerCreateBenefitEligibilityPolicyParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employer_id: String
+
+      attr_accessor classification: String
+
+      attr_accessor waiting_period: String
+
+      def initialize: (
+        employer_id: String,
+        classification: String,
+        waiting_period: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employer_id: String,
+        classification: String,
+        waiting_period: String,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end

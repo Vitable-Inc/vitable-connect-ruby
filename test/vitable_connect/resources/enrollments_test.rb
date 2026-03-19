@@ -9,7 +9,7 @@ class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::R
     response = @vitable_connect.enrollments.retrieve("enrl_abc123def456")
 
     assert_pattern do
-      response => VitableConnect::EnrollmentResponse
+      response => VitableConnect::Models::EnrollmentRetrieveResponse
     end
 
     assert_pattern do
