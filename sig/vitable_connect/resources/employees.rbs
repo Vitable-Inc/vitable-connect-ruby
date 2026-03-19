@@ -1,12 +1,17 @@
 module VitableConnect
   module Resources
     class Employees
-      attr_reader enrollments: VitableConnect::Resources::Employees::Enrollments
-
       def retrieve: (
         String employee_id,
         ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::EmployeeResponse
+      ) -> VitableConnect::Models::EmployeeRetrieveResponse
+
+      def list_enrollments: (
+        String employee_id,
+        ?limit: Integer,
+        ?page: Integer,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployeeListEnrollmentsResponse
 
       def initialize: (client: VitableConnect::Client) -> void
     end

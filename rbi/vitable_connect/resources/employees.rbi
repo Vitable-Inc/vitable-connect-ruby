@@ -2,23 +2,38 @@
 
 module VitableConnect
   module Resources
-    # Manage employee records for employers
     class Employees
-      # Manage benefit enrollments and elections for employees
-      sig { returns(VitableConnect::Resources::Employees::Enrollments) }
-      attr_reader :enrollments
-
       # Retrieves detailed information for a specific employee by ID. Returns employee
       # details including personal information and employment status.
       sig do
         params(
           employee_id: String,
           request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::EmployeeResponse)
+        ).returns(VitableConnect::Models::EmployeeRetrieveResponse)
       end
       def retrieve(
         # Unique employee identifier (empl\_\*)
         employee_id,
+        request_options: {}
+      )
+      end
+
+      # Retrieves a paginated list of benefit enrollments for an employee.
+      sig do
+        params(
+          employee_id: String,
+          limit: Integer,
+          page: Integer,
+          request_options: VitableConnect::RequestOptions::OrHash
+        ).returns(VitableConnect::Models::EmployeeListEnrollmentsResponse)
+      end
+      def list_enrollments(
+        # Unique employee identifier (empl\_\*)
+        employee_id,
+        # Items per page (default: 20, max: 100)
+        limit: nil,
+        # Page number (default: 1)
+        page: nil,
         request_options: {}
       )
       end

@@ -1,7 +1,0 @@
-module VitableConnect
-  module Resources
-    class PlanYears
-      def initialize: (client: VitableConnect::Client) -> void
-    end
-  end
-end

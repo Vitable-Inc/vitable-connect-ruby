@@ -3,10 +3,6 @@
 module VitableConnect
   module Resources
     class Employers
-      # Manage employee records for employers
-      sig { returns(VitableConnect::Resources::Employers::Employees) }
-      attr_reader :employees
-
       # Creates a new employer for the authenticated organization. Requires employer
       # name, legal name, EIN, email, and address information. Returns the created
       # employer with its assigned ID.
@@ -78,7 +74,7 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::BenefitEligibilityPolicy)
       end
-      def create_eligibility_policy(
+      def create_benefit_eligibility_policy(
         # Unique employer identifier (empr\_\*)
         employer_id,
         # Which employee classifications are eligible. One of: full_time, part_time, all
@@ -86,6 +82,48 @@ module VitableConnect
         # Waiting period before eligibility. One of: first_of_following_month, 30_days,
         # 60_days, none
         waiting_period:,
+        request_options: {}
+      )
+      end
+
+      # Retrieves a paginated list of all employees for a specific employer. Results are
+      # paginated using page and limit parameters.
+      sig do
+        params(
+          employer_id: String,
+          limit: Integer,
+          page: Integer,
+          request_options: VitableConnect::RequestOptions::OrHash
+        ).returns(VitableConnect::Models::EmployerListEmployeesResponse)
+      end
+      def list_employees(
+        # Unique employer identifier (empr\_\*)
+        employer_id,
+        # Items per page (default: 20, max: 100)
+        limit: nil,
+        # Page number (default: 1)
+        page: nil,
+        request_options: {}
+      )
+      end
+
+      # Submits a census sync payload for the specified employer. The employees in the
+      # payload will be queued for processing. Returns an accepted response with the
+      # timestamp of acceptance.
+      sig do
+        params(
+          employer_id: String,
+          employees:
+            T::Array[
+              VitableConnect::EmployerSubmitCensusSyncParams::Employee::OrHash
+            ],
+          request_options: VitableConnect::RequestOptions::OrHash
+        ).returns(VitableConnect::Models::EmployerSubmitCensusSyncResponse)
+      end
+      def submit_census_sync(
+        # Unique employer identifier (empr\_\*)
+        employer_id,
+        employees:,
         request_options: {}
       )
       end

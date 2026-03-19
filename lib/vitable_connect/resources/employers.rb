@@ -3,10 +3,6 @@
 module VitableConnect
   module Resources
     class Employers
-      # Manage employee records for employers
-      # @return [VitableConnect::Resources::Employers::Employees]
-      attr_reader :employees
-
       # Creates a new employer for the authenticated organization. Requires employer
       # name, legal name, EIN, email, and address information. Returns the created
       # employer with its assigned ID.
@@ -88,12 +84,12 @@ module VitableConnect
       end
 
       # Some parameter documentations has been truncated, see
-      # {VitableConnect::Models::EmployerCreateEligibilityPolicyParams} for more
+      # {VitableConnect::Models::EmployerCreateBenefitEligibilityPolicyParams} for more
       # details.
       #
       # Creates a benefit eligibility policy for the specified employer.
       #
-      # @overload create_eligibility_policy(employer_id, classification:, waiting_period:, request_options: {})
+      # @overload create_benefit_eligibility_policy(employer_id, classification:, waiting_period:, request_options: {})
       #
       # @param employer_id [String] Unique employer identifier (empr\_\*)
       #
@@ -105,9 +101,9 @@ module VitableConnect
       #
       # @return [VitableConnect::Models::BenefitEligibilityPolicy]
       #
-      # @see VitableConnect::Models::EmployerCreateEligibilityPolicyParams
-      def create_eligibility_policy(employer_id, params)
-        parsed, options = VitableConnect::EmployerCreateEligibilityPolicyParams.dump_request(params)
+      # @see VitableConnect::Models::EmployerCreateBenefitEligibilityPolicyParams
+      def create_benefit_eligibility_policy(employer_id, params)
+        parsed, options = VitableConnect::EmployerCreateBenefitEligibilityPolicyParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["v1/employers/%1$s/benefit-eligibility-policies", employer_id],
@@ -117,12 +113,65 @@ module VitableConnect
         )
       end
 
+      # Retrieves a paginated list of all employees for a specific employer. Results are
+      # paginated using page and limit parameters.
+      #
+      # @overload list_employees(employer_id, limit: nil, page: nil, request_options: {})
+      #
+      # @param employer_id [String] Unique employer identifier (empr\_\*)
+      #
+      # @param limit [Integer] Items per page (default: 20, max: 100)
+      #
+      # @param page [Integer] Page number (default: 1)
+      #
+      # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [VitableConnect::Models::EmployerListEmployeesResponse]
+      #
+      # @see VitableConnect::Models::EmployerListEmployeesParams
+      def list_employees(employer_id, params = {})
+        parsed, options = VitableConnect::EmployerListEmployeesParams.dump_request(params)
+        query = VitableConnect::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["v1/employers/%1$s/employees", employer_id],
+          query: query,
+          model: VitableConnect::Models::EmployerListEmployeesResponse,
+          options: options
+        )
+      end
+
+      # Submits a census sync payload for the specified employer. The employees in the
+      # payload will be queued for processing. Returns an accepted response with the
+      # timestamp of acceptance.
+      #
+      # @overload submit_census_sync(employer_id, employees:, request_options: {})
+      #
+      # @param employer_id [String] Unique employer identifier (empr\_\*)
+      #
+      # @param employees [Array<VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee>]
+      #
+      # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [VitableConnect::Models::EmployerSubmitCensusSyncResponse]
+      #
+      # @see VitableConnect::Models::EmployerSubmitCensusSyncParams
+      def submit_census_sync(employer_id, params)
+        parsed, options = VitableConnect::EmployerSubmitCensusSyncParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["v1/employers/%1$s/census-sync", employer_id],
+          body: parsed,
+          model: VitableConnect::Models::EmployerSubmitCensusSyncResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [VitableConnect::Client]
       def initialize(client:)
         @client = client
-        @employees = VitableConnect::Resources::Employers::Employees.new(client: client)
       end
     end
   end

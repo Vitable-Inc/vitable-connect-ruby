@@ -1,0 +1,30 @@
+module VitableConnect
+  module Models
+    type employer_submit_census_sync_response =
+      { data: VitableConnect::Models::EmployerSubmitCensusSyncResponse::Data }
+
+    class EmployerSubmitCensusSyncResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::Models::EmployerSubmitCensusSyncResponse::Data
+
+      def initialize: (
+        data: VitableConnect::Models::EmployerSubmitCensusSyncResponse::Data
+      ) -> void
+
+      def to_hash: -> {
+        data: VitableConnect::Models::EmployerSubmitCensusSyncResponse::Data
+      }
+
+      type data = { accepted_at: Time, employer_id: String }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor accepted_at: Time
+
+        attr_accessor employer_id: String
+
+        def initialize: (accepted_at: Time, employer_id: String) -> void
+
+        def to_hash: -> { accepted_at: Time, employer_id: String }
+      end
+    end
+  end
+end

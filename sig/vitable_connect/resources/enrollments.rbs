@@ -4,7 +4,7 @@ module VitableConnect
       def retrieve: (
         String enrollment_id,
         ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::EnrollmentResponse
+      ) -> VitableConnect::Models::EnrollmentRetrieveResponse
 
       def initialize: (client: VitableConnect::Client) -> void
     end
