@@ -44,6 +44,9 @@ module VitableConnect
     # @return [VitableConnect::Resources::Enrollments]
     attr_reader :enrollments
 
+    # @return [VitableConnect::Resources::WebhookEvents]
+    attr_reader :webhook_events
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -109,6 +112,7 @@ module VitableConnect
       @employees = VitableConnect::Resources::Employees.new(client: self)
       @employers = VitableConnect::Resources::Employers.new(client: self)
       @enrollments = VitableConnect::Resources::Enrollments.new(client: self)
+      @webhook_events = VitableConnect::Resources::WebhookEvents.new(client: self)
     end
   end
 end

@@ -225,23 +225,25 @@ vitable_connect.auth.issue_access_token(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :"Full Time"
-puts(VitableConnect::EmployeeClass::FULL_TIME)
+# :"enrollment.accepted"
+puts(VitableConnect::WebhookEventListParams::EventName::ENROLLMENT_ACCEPTED)
 
-# Revealed type: `T.all(VitableConnect::EmployeeClass, Symbol)`
-T.reveal_type(VitableConnect::EmployeeClass::FULL_TIME)
+# Revealed type: `T.all(VitableConnect::WebhookEventListParams::EventName, Symbol)`
+T.reveal_type(VitableConnect::WebhookEventListParams::EventName::ENROLLMENT_ACCEPTED)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
-VitableConnect::Employee.new(
-  employee_class: VitableConnect::EmployeeClass::FULL_TIME,
+# Using the enum constants preserves the tagged type information:
+vitable_connect.webhook_events.list(
+  event_name: VitableConnect::WebhookEventListParams::EventName::ENROLLMENT_ACCEPTED,
   # …
 )
 
-VitableConnect::Employee.new(
-  employee_class: :"Full Time",
+# Literal values are also permissible:
+vitable_connect.webhook_events.list(
+  event_name: :"enrollment.accepted",
   # …
 )
 ```

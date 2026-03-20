@@ -1,0 +1,14 @@
+module VitableConnect
+  module Models
+    type webhook_event_retrieve_response =
+      { data: VitableConnect::WebhookEvent }
+
+    class WebhookEventRetrieveResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::WebhookEvent
+
+      def initialize: (data: VitableConnect::WebhookEvent) -> void
+
+      def to_hash: -> { data: VitableConnect::WebhookEvent }
+    end
+  end
+end

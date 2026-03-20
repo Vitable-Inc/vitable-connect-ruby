@@ -1,0 +1,77 @@
+module VitableConnect
+  module Models
+    type webhook_event_list_deliveries_response =
+      {
+        data: ::Array[VitableConnect::Models::WebhookEventListDeliveriesResponse::Data]
+      }
+
+    class WebhookEventListDeliveriesResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnect::Models::WebhookEventListDeliveriesResponse::Data]
+
+      def initialize: (
+        data: ::Array[VitableConnect::Models::WebhookEventListDeliveriesResponse::Data]
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[VitableConnect::Models::WebhookEventListDeliveriesResponse::Data]
+      }
+
+      type data =
+        {
+          id: String,
+          created_at: Time,
+          delivered_at: Time?,
+          failed_at: Time?,
+          failure_reason: String,
+          started_at: Time?,
+          status: String,
+          subscription_id: String,
+          webhook_event_id: String
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor delivered_at: Time?
+
+        attr_accessor failed_at: Time?
+
+        attr_accessor failure_reason: String
+
+        attr_accessor started_at: Time?
+
+        attr_accessor status: String
+
+        attr_accessor subscription_id: String
+
+        attr_accessor webhook_event_id: String
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          delivered_at: Time?,
+          failed_at: Time?,
+          failure_reason: String,
+          started_at: Time?,
+          status: String,
+          subscription_id: String,
+          webhook_event_id: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          delivered_at: Time?,
+          failed_at: Time?,
+          failure_reason: String,
+          started_at: Time?,
+          status: String,
+          subscription_id: String,
+          webhook_event_id: String
+        }
+      end
+    end
+  end
+end

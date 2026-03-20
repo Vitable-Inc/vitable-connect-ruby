@@ -25,6 +25,8 @@ module VitableConnect
 
     attr_reader enrollments: VitableConnect::Resources::Enrollments
 
+    attr_reader webhook_events: VitableConnect::Resources::WebhookEvents
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

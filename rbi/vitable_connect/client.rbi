@@ -42,6 +42,9 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::Enrollments) }
     attr_reader :enrollments
 
+    sig { returns(VitableConnect::Resources::WebhookEvents) }
+    attr_reader :webhook_events
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
