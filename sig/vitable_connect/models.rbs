@@ -40,4 +40,12 @@ module VitableConnect
   class Pagination = VitableConnect::Models::Pagination
 
   module Type = VitableConnect::Models::Type
+
+  class WebhookEvent = VitableConnect::Models::WebhookEvent
+
+  class WebhookEventListDeliveriesParams = VitableConnect::Models::WebhookEventListDeliveriesParams
+
+  class WebhookEventListParams = VitableConnect::Models::WebhookEventListParams
+
+  class WebhookEventRetrieveParams = VitableConnect::Models::WebhookEventRetrieveParams
 end

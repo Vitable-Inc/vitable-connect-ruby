@@ -1,0 +1,126 @@
+module VitableConnect
+  module Models
+    type webhook_event_list_params =
+      {
+        created_after: Time,
+        created_before: Time,
+        event_name: VitableConnect::Models::WebhookEventListParams::event_name,
+        limit: Integer,
+        page: Integer,
+        resource_id: String,
+        resource_type: VitableConnect::Models::WebhookEventListParams::resource_type
+      }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class WebhookEventListParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_reader created_after: Time?
+
+      def created_after=: (Time) -> Time
+
+      attr_reader created_before: Time?
+
+      def created_before=: (Time) -> Time
+
+      attr_reader event_name: VitableConnect::Models::WebhookEventListParams::event_name?
+
+      def event_name=: (
+        VitableConnect::Models::WebhookEventListParams::event_name
+      ) -> VitableConnect::Models::WebhookEventListParams::event_name
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      attr_reader resource_id: String?
+
+      def resource_id=: (String) -> String
+
+      attr_reader resource_type: VitableConnect::Models::WebhookEventListParams::resource_type?
+
+      def resource_type=: (
+        VitableConnect::Models::WebhookEventListParams::resource_type
+      ) -> VitableConnect::Models::WebhookEventListParams::resource_type
+
+      def initialize: (
+        ?created_after: Time,
+        ?created_before: Time,
+        ?event_name: VitableConnect::Models::WebhookEventListParams::event_name,
+        ?limit: Integer,
+        ?page: Integer,
+        ?resource_id: String,
+        ?resource_type: VitableConnect::Models::WebhookEventListParams::resource_type,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        created_after: Time,
+        created_before: Time,
+        event_name: VitableConnect::Models::WebhookEventListParams::event_name,
+        limit: Integer,
+        page: Integer,
+        resource_id: String,
+        resource_type: VitableConnect::Models::WebhookEventListParams::resource_type,
+        request_options: VitableConnect::RequestOptions
+      }
+
+      type event_name =
+        :"enrollment.accepted"
+        | :"enrollment.terminated"
+        | :"enrollment.elected"
+        | :"enrollment.granted"
+        | :"enrollment.waived"
+        | :"enrollment.started"
+        | :"employee.eligibility_granted"
+        | :"employee.eligibility_terminated"
+        | :"employee.deactivated"
+        | :"payroll_deduction.created"
+        | :"plan_year.eligibility_policy_created"
+
+      module EventName
+        extend VitableConnect::Internal::Type::Enum
+
+        ENROLLMENT_ACCEPTED: :"enrollment.accepted"
+        ENROLLMENT_TERMINATED: :"enrollment.terminated"
+        ENROLLMENT_ELECTED: :"enrollment.elected"
+        ENROLLMENT_GRANTED: :"enrollment.granted"
+        ENROLLMENT_WAIVED: :"enrollment.waived"
+        ENROLLMENT_STARTED: :"enrollment.started"
+        EMPLOYEE_ELIGIBILITY_GRANTED: :"employee.eligibility_granted"
+        EMPLOYEE_ELIGIBILITY_TERMINATED: :"employee.eligibility_terminated"
+        EMPLOYEE_DEACTIVATED: :"employee.deactivated"
+        PAYROLL_DEDUCTION_CREATED: :"payroll_deduction.created"
+        PLAN_YEAR_ELIGIBILITY_POLICY_CREATED: :"plan_year.eligibility_policy_created"
+
+        def self?.values: -> ::Array[VitableConnect::Models::WebhookEventListParams::event_name]
+      end
+
+      type resource_type =
+        :enrollment
+        | :employee
+        | :employer
+        | :dependent
+        | :plan_year
+        | :payroll_deduction
+
+      module ResourceType
+        extend VitableConnect::Internal::Type::Enum
+
+        ENROLLMENT: :enrollment
+        EMPLOYEE: :employee
+        EMPLOYER: :employer
+        DEPENDENT: :dependent
+        PLAN_YEAR: :plan_year
+        PAYROLL_DEDUCTION: :payroll_deduction
+
+        def self?.values: -> ::Array[VitableConnect::Models::WebhookEventListParams::resource_type]
+      end
+    end
+  end
+end
