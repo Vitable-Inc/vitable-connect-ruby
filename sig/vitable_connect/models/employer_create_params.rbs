@@ -6,7 +6,9 @@ module VitableConnect
         ein: String,
         email: String,
         legal_name: String,
-        name: String
+        name: String,
+        phone_number: String?,
+        reference_id: String?
       }
       & VitableConnect::Internal::Type::request_parameters
 
@@ -24,12 +26,18 @@ module VitableConnect
 
       attr_accessor name: String
 
+      attr_accessor phone_number: String?
+
+      attr_accessor reference_id: String?
+
       def initialize: (
         address: VitableConnect::EmployerCreateParams::Address,
         ein: String,
         email: String,
         legal_name: String,
         name: String,
+        ?phone_number: String?,
+        ?reference_id: String?,
         ?request_options: VitableConnect::request_opts
       ) -> void
 
@@ -39,6 +47,8 @@ module VitableConnect
         email: String,
         legal_name: String,
         name: String,
+        phone_number: String?,
+        reference_id: String?,
         request_options: VitableConnect::RequestOptions
       }
 

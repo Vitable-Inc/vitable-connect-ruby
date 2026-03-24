@@ -13,6 +13,8 @@ module VitableConnect
           email: String,
           legal_name: String,
           name: String,
+          phone_number: T.nilable(String),
+          reference_id: T.nilable(String),
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::EmployerResponse)
       end
@@ -27,6 +29,10 @@ module VitableConnect
         legal_name:,
         # Employer display name
         name:,
+        # Employer phone number (10-digit US format, e.g. 5551234567)
+        phone_number: nil,
+        # External reference ID for this employer
+        reference_id: nil,
         request_options: {}
       )
       end

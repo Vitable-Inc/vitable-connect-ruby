@@ -36,7 +36,7 @@ module VitableConnect
       # - `employee.eligibility_terminated` - Employee Eligibility Terminated
       # - `employee.deactivated` - Employee Deactivated
       # - `payroll_deduction.created` - Payroll Deduction Created
-      # - `plan_year.eligibility_policy_created` - Plan Year Eligibility Policy Created
+      # - `employer.eligibility_policy_created` - Employer Eligibility Policy Created
       sig do
         returns(
           T.nilable(VitableConnect::WebhookEventListParams::EventName::OrSymbol)
@@ -122,7 +122,7 @@ module VitableConnect
         # - `employee.eligibility_terminated` - Employee Eligibility Terminated
         # - `employee.deactivated` - Employee Deactivated
         # - `payroll_deduction.created` - Payroll Deduction Created
-        # - `plan_year.eligibility_policy_created` - Plan Year Eligibility Policy Created
+        # - `employer.eligibility_policy_created` - Employer Eligibility Policy Created
         event_name: nil,
         # Items per page (default: 20, max: 100)
         limit: nil,
@@ -169,7 +169,7 @@ module VitableConnect
       # - `employee.eligibility_terminated` - Employee Eligibility Terminated
       # - `employee.deactivated` - Employee Deactivated
       # - `payroll_deduction.created` - Payroll Deduction Created
-      # - `plan_year.eligibility_policy_created` - Plan Year Eligibility Policy Created
+      # - `employer.eligibility_policy_created` - Employer Eligibility Policy Created
       module EventName
         extend VitableConnect::Internal::Type::Enum
 
@@ -229,9 +229,9 @@ module VitableConnect
             :"payroll_deduction.created",
             VitableConnect::WebhookEventListParams::EventName::TaggedSymbol
           )
-        PLAN_YEAR_ELIGIBILITY_POLICY_CREATED =
+        EMPLOYER_ELIGIBILITY_POLICY_CREATED =
           T.let(
-            :"plan_year.eligibility_policy_created",
+            :"employer.eligibility_policy_created",
             VitableConnect::WebhookEventListParams::EventName::TaggedSymbol
           )
 

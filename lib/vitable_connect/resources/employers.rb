@@ -7,7 +7,7 @@ module VitableConnect
       # name, legal name, EIN, email, and address information. Returns the created
       # employer with its assigned ID.
       #
-      # @overload create(address:, ein:, email:, legal_name:, name:, request_options: {})
+      # @overload create(address:, ein:, email:, legal_name:, name:, phone_number: nil, reference_id: nil, request_options: {})
       #
       # @param address [VitableConnect::Models::EmployerCreateParams::Address] Employer address
       #
@@ -18,6 +18,10 @@ module VitableConnect
       # @param legal_name [String] Legal business name
       #
       # @param name [String] Employer display name
+      #
+      # @param phone_number [String, nil] Employer phone number (10-digit US format, e.g. 5551234567)
+      #
+      # @param reference_id [String, nil] External reference ID for this employer
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
