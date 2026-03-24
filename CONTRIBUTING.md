@@ -43,13 +43,13 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "vitable-connect", git: "https://github.com/stainless-sdks/vitable-connect-ruby"
+gem "vitable-connect", git: "https://github.com/Vitable-Inc/vitable-connect-ruby"
 ```
 
 Alternatively, reference local copy of the repo:
 
 ```bash
-$ git clone -- 'https://github.com/stainless-sdks/vitable-connect-ruby' '<path-to-repo>'
+$ git clone -- 'https://github.com/Vitable-Inc/vitable-connect-ruby' '<path-to-repo>'
 ```
 
 ```ruby
