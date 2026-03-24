@@ -41,6 +41,14 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :name
 
+      # Employer phone number (10-digit US format, e.g. 5551234567)
+      sig { returns(T.nilable(String)) }
+      attr_accessor :phone_number
+
+      # External reference ID for this employer
+      sig { returns(T.nilable(String)) }
+      attr_accessor :reference_id
+
       sig do
         params(
           address: VitableConnect::EmployerCreateParams::Address::OrHash,
@@ -48,6 +56,8 @@ module VitableConnect
           email: String,
           legal_name: String,
           name: String,
+          phone_number: T.nilable(String),
+          reference_id: T.nilable(String),
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -62,6 +72,10 @@ module VitableConnect
         legal_name:,
         # Employer display name
         name:,
+        # Employer phone number (10-digit US format, e.g. 5551234567)
+        phone_number: nil,
+        # External reference ID for this employer
+        reference_id: nil,
         request_options: {}
       )
       end
@@ -74,6 +88,8 @@ module VitableConnect
             email: String,
             legal_name: String,
             name: String,
+            phone_number: T.nilable(String),
+            reference_id: T.nilable(String),
             request_options: VitableConnect::RequestOptions
           }
         )

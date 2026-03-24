@@ -45,7 +45,7 @@ module VitableConnect
         # - `employee.eligibility_terminated` - Employee Eligibility Terminated
         # - `employee.deactivated` - Employee Deactivated
         # - `payroll_deduction.created` - Payroll Deduction Created
-        # - `plan_year.eligibility_policy_created` - Plan Year Eligibility Policy Created
+        # - `employer.eligibility_policy_created` - Employer Eligibility Policy Created
         event_name: nil,
         # Items per page (default: 20, max: 100)
         limit: nil,
