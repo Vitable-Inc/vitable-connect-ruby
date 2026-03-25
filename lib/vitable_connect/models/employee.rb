@@ -15,6 +15,13 @@ module VitableConnect
       #   @return [Date]
       required :date_of_birth, Date
 
+      # @!attribute deductions
+      #   Payroll deductions from the most recent statement period. Replaced when a new
+      #   statement is generated.
+      #
+      #   @return [Array<VitableConnect::Models::Employee::Deduction>]
+      required :deductions, -> { VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Deduction] }
+
       # @!attribute email
       #   Email address
       #
@@ -119,7 +126,7 @@ module VitableConnect
         required :status, String
       end
 
-      # @!method initialize(id:, created_at:, date_of_birth:, email:, enrollments:, first_name:, last_name:, member_id:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, phone: nil, reference_id: nil, suffix: nil, termination_date: nil)
+      # @!method initialize(id:, created_at:, date_of_birth:, deductions:, email:, enrollments:, first_name:, last_name:, member_id:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, phone: nil, reference_id: nil, suffix: nil, termination_date: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Employee} for more details.
       #
@@ -128,6 +135,8 @@ module VitableConnect
       #   @param created_at [Time] Timestamp when the employee was created
       #
       #   @param date_of_birth [Date] Date of birth (YYYY-MM-DD)
+      #
+      #   @param deductions [Array<VitableConnect::Models::Employee::Deduction>] Payroll deductions from the most recent statement period. Replaced when a new st
       #
       #   @param email [String] Email address
       #
@@ -158,6 +167,98 @@ module VitableConnect
       #   @param suffix [String, nil] Name suffix (e.g., Jr., Sr., III)
       #
       #   @param termination_date [Date, nil] Employee's termination date, if terminated
+
+      class Deduction < VitableConnect::Internal::Type::BaseModel
+        # @!attribute benefit_name
+        #   Name of the benefit plan
+        #
+        #   @return [String]
+        required :benefit_name, String
+
+        # @!attribute deduction_amount_in_cents
+        #   Employee deduction amount in cents
+        #
+        #   @return [Integer]
+        required :deduction_amount_in_cents, Integer
+
+        # @!attribute deduction_category
+        #   Deduction category (reserved for future use)
+        #
+        #   @return [String, nil]
+        required :deduction_category, String, nil?: true
+
+        # @!attribute frequency
+        #   - `monthly` - Monthly
+        #
+        #   @return [Symbol, VitableConnect::Models::Employee::Deduction::Frequency]
+        required :frequency, enum: -> { VitableConnect::Employee::Deduction::Frequency }
+
+        # @!attribute period_end_date
+        #   Period end date (YYYY-MM-DD)
+        #
+        #   @return [Date]
+        required :period_end_date, Date
+
+        # @!attribute period_start_date
+        #   Period start date (YYYY-MM-DD)
+        #
+        #   @return [Date]
+        required :period_start_date, Date
+
+        # @!attribute tax_classification
+        #   - `Unknown` - Unknown
+        #   - `Pre-tax` - Pre Tax
+        #   - `Post-tax` - Post Tax
+        #
+        #   @return [Symbol, VitableConnect::Models::Employee::Deduction::TaxClassification]
+        required :tax_classification, enum: -> { VitableConnect::Employee::Deduction::TaxClassification }
+
+        # @!method initialize(benefit_name:, deduction_amount_in_cents:, deduction_category:, frequency:, period_end_date:, period_start_date:, tax_classification:)
+        #   Some parameter documentations has been truncated, see
+        #   {VitableConnect::Models::Employee::Deduction} for more details.
+        #
+        #   @param benefit_name [String] Name of the benefit plan
+        #
+        #   @param deduction_amount_in_cents [Integer] Employee deduction amount in cents
+        #
+        #   @param deduction_category [String, nil] Deduction category (reserved for future use)
+        #
+        #   @param frequency [Symbol, VitableConnect::Models::Employee::Deduction::Frequency] - `monthly` - Monthly
+        #
+        #   @param period_end_date [Date] Period end date (YYYY-MM-DD)
+        #
+        #   @param period_start_date [Date] Period start date (YYYY-MM-DD)
+        #
+        #   @param tax_classification [Symbol, VitableConnect::Models::Employee::Deduction::TaxClassification] - `Unknown` - Unknown
+
+        # - `monthly` - Monthly
+        #
+        # @see VitableConnect::Models::Employee::Deduction#frequency
+        module Frequency
+          extend VitableConnect::Internal::Type::Enum
+
+          MONTHLY = :monthly
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # - `Unknown` - Unknown
+        # - `Pre-tax` - Pre Tax
+        # - `Post-tax` - Post Tax
+        #
+        # @see VitableConnect::Models::Employee::Deduction#tax_classification
+        module TaxClassification
+          extend VitableConnect::Internal::Type::Enum
+
+          UNKNOWN = :Unknown
+          PRE_TAX = :"Pre-tax"
+          POST_TAX = :"Post-tax"
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
 
       class Enrollment < VitableConnect::Internal::Type::BaseModel
         # @!attribute status

@@ -119,6 +119,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
         id: String,
         created_at: Time,
         date_of_birth: Date,
+        deductions: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Deduction]),
         email: String,
         enrollments: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Enrollment]),
         first_name: String,
