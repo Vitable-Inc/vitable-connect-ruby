@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 (2026-03-25)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([f919311](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/f91931100038a62655c5e06eaa86271babc56d7a))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([f190ebf](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/f190ebfc6a6fb2885813ca931618c615b815d9c5))
+
 ## 0.1.0 (2026-03-24)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.0.1...v0.1.0)
