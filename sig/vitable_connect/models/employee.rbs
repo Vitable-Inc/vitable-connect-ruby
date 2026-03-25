@@ -5,6 +5,7 @@ module VitableConnect
         id: String,
         created_at: Time,
         date_of_birth: Date,
+        deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
         enrollments: ::Array[VitableConnect::Employee::Enrollment],
         first_name: String,
@@ -26,6 +27,8 @@ module VitableConnect
       attr_accessor created_at: Time
 
       attr_accessor date_of_birth: Date
+
+      attr_accessor deductions: ::Array[VitableConnect::Employee::Deduction]
 
       attr_accessor email: String
 
@@ -63,6 +66,7 @@ module VitableConnect
         id: String,
         created_at: Time,
         date_of_birth: Date,
+        deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
         enrollments: ::Array[VitableConnect::Employee::Enrollment],
         first_name: String,
@@ -84,6 +88,7 @@ module VitableConnect
         id: String,
         created_at: Time,
         date_of_birth: Date,
+        deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
         enrollments: ::Array[VitableConnect::Employee::Enrollment],
         first_name: String,
@@ -100,6 +105,75 @@ module VitableConnect
         suffix: String?,
         termination_date: Date?
       }
+
+      type deduction =
+        {
+          benefit_name: String,
+          deduction_amount_in_cents: Integer,
+          deduction_category: String?,
+          frequency: VitableConnect::Models::Employee::Deduction::frequency,
+          period_end_date: Date,
+          period_start_date: Date,
+          tax_classification: VitableConnect::Models::Employee::Deduction::tax_classification
+        }
+
+      class Deduction < VitableConnect::Internal::Type::BaseModel
+        attr_accessor benefit_name: String
+
+        attr_accessor deduction_amount_in_cents: Integer
+
+        attr_accessor deduction_category: String?
+
+        attr_accessor frequency: VitableConnect::Models::Employee::Deduction::frequency
+
+        attr_accessor period_end_date: Date
+
+        attr_accessor period_start_date: Date
+
+        attr_accessor tax_classification: VitableConnect::Models::Employee::Deduction::tax_classification
+
+        def initialize: (
+          benefit_name: String,
+          deduction_amount_in_cents: Integer,
+          deduction_category: String?,
+          frequency: VitableConnect::Models::Employee::Deduction::frequency,
+          period_end_date: Date,
+          period_start_date: Date,
+          tax_classification: VitableConnect::Models::Employee::Deduction::tax_classification
+        ) -> void
+
+        def to_hash: -> {
+          benefit_name: String,
+          deduction_amount_in_cents: Integer,
+          deduction_category: String?,
+          frequency: VitableConnect::Models::Employee::Deduction::frequency,
+          period_end_date: Date,
+          period_start_date: Date,
+          tax_classification: VitableConnect::Models::Employee::Deduction::tax_classification
+        }
+
+        type frequency = :monthly
+
+        module Frequency
+          extend VitableConnect::Internal::Type::Enum
+
+          MONTHLY: :monthly
+
+          def self?.values: -> ::Array[VitableConnect::Models::Employee::Deduction::frequency]
+        end
+
+        type tax_classification = :Unknown | :"Pre-tax" | :"Post-tax"
+
+        module TaxClassification
+          extend VitableConnect::Internal::Type::Enum
+
+          UNKNOWN: :Unknown
+          PRE_TAX: :"Pre-tax"
+          POST_TAX: :"Post-tax"
+
+          def self?.values: -> ::Array[VitableConnect::Models::Employee::Deduction::tax_classification]
+        end
+      end
 
       type enrollment =
         {

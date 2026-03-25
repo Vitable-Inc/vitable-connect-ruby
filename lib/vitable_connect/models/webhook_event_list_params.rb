@@ -27,8 +27,8 @@ module VitableConnect
       #   - `employee.eligibility_granted` - Employee Eligibility Granted
       #   - `employee.eligibility_terminated` - Employee Eligibility Terminated
       #   - `employee.deactivated` - Employee Deactivated
-      #   - `payroll_deduction.created` - Payroll Deduction Created
       #   - `employer.eligibility_policy_created` - Employer Eligibility Policy Created
+      #   - `employee.deduction_created` - Employee Deduction Created
       #
       #   @return [Symbol, VitableConnect::Models::WebhookEventListParams::EventName, nil]
       optional :event_name, enum: -> { VitableConnect::WebhookEventListParams::EventName }
@@ -90,8 +90,8 @@ module VitableConnect
       # - `employee.eligibility_granted` - Employee Eligibility Granted
       # - `employee.eligibility_terminated` - Employee Eligibility Terminated
       # - `employee.deactivated` - Employee Deactivated
-      # - `payroll_deduction.created` - Payroll Deduction Created
       # - `employer.eligibility_policy_created` - Employer Eligibility Policy Created
+      # - `employee.deduction_created` - Employee Deduction Created
       module EventName
         extend VitableConnect::Internal::Type::Enum
 
@@ -104,8 +104,8 @@ module VitableConnect
         EMPLOYEE_ELIGIBILITY_GRANTED = :"employee.eligibility_granted"
         EMPLOYEE_ELIGIBILITY_TERMINATED = :"employee.eligibility_terminated"
         EMPLOYEE_DEACTIVATED = :"employee.deactivated"
-        PAYROLL_DEDUCTION_CREATED = :"payroll_deduction.created"
         EMPLOYER_ELIGIBILITY_POLICY_CREATED = :"employer.eligibility_policy_created"
+        EMPLOYEE_DEDUCTION_CREATED = :"employee.deduction_created"
 
         # @!method self.values
         #   @return [Array<Symbol>]

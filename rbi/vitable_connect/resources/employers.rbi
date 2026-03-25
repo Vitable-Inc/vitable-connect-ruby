@@ -95,7 +95,9 @@ module VitableConnect
       end
 
       # Retrieves a paginated list of all employees for a specific employer. Results are
-      # paginated using page and limit parameters.
+      # paginated using page and limit parameters. Each employee includes payroll
+      # deductions from the most recent statement period. When a new deduction statement
+      # is generated, previous period deductions are replaced.
       sig do
         params(
           employer_id: String,

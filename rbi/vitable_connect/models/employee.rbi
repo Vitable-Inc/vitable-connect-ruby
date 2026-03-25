@@ -16,6 +16,11 @@ module VitableConnect
       sig { returns(Date) }
       attr_accessor :date_of_birth
 
+      # Payroll deductions from the most recent statement period. Replaced when a new
+      # statement is generated.
+      sig { returns(T::Array[VitableConnect::Employee::Deduction]) }
+      attr_accessor :deductions
+
       # Email address
       sig { returns(String) }
       attr_accessor :email
@@ -97,6 +102,7 @@ module VitableConnect
           id: String,
           created_at: Time,
           date_of_birth: Date,
+          deductions: T::Array[VitableConnect::Employee::Deduction::OrHash],
           email: String,
           enrollments: T::Array[VitableConnect::Employee::Enrollment::OrHash],
           first_name: String,
@@ -121,6 +127,9 @@ module VitableConnect
         created_at:,
         # Date of birth (YYYY-MM-DD)
         date_of_birth:,
+        # Payroll deductions from the most recent statement period. Replaced when a new
+        # statement is generated.
+        deductions:,
         # Email address
         email:,
         # Benefit enrollments for this employee
@@ -165,6 +174,7 @@ module VitableConnect
             id: String,
             created_at: Time,
             date_of_birth: Date,
+            deductions: T::Array[VitableConnect::Employee::Deduction],
             email: String,
             enrollments: T::Array[VitableConnect::Employee::Enrollment],
             first_name: String,
@@ -185,6 +195,171 @@ module VitableConnect
         )
       end
       def to_hash
+      end
+
+      class Deduction < VitableConnect::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              VitableConnect::Employee::Deduction,
+              VitableConnect::Internal::AnyHash
+            )
+          end
+
+        # Name of the benefit plan
+        sig { returns(String) }
+        attr_accessor :benefit_name
+
+        # Employee deduction amount in cents
+        sig { returns(Integer) }
+        attr_accessor :deduction_amount_in_cents
+
+        # Deduction category (reserved for future use)
+        sig { returns(T.nilable(String)) }
+        attr_accessor :deduction_category
+
+        # - `monthly` - Monthly
+        sig do
+          returns(VitableConnect::Employee::Deduction::Frequency::TaggedSymbol)
+        end
+        attr_accessor :frequency
+
+        # Period end date (YYYY-MM-DD)
+        sig { returns(Date) }
+        attr_accessor :period_end_date
+
+        # Period start date (YYYY-MM-DD)
+        sig { returns(Date) }
+        attr_accessor :period_start_date
+
+        # - `Unknown` - Unknown
+        # - `Pre-tax` - Pre Tax
+        # - `Post-tax` - Post Tax
+        sig do
+          returns(
+            VitableConnect::Employee::Deduction::TaxClassification::TaggedSymbol
+          )
+        end
+        attr_accessor :tax_classification
+
+        sig do
+          params(
+            benefit_name: String,
+            deduction_amount_in_cents: Integer,
+            deduction_category: T.nilable(String),
+            frequency: VitableConnect::Employee::Deduction::Frequency::OrSymbol,
+            period_end_date: Date,
+            period_start_date: Date,
+            tax_classification:
+              VitableConnect::Employee::Deduction::TaxClassification::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Name of the benefit plan
+          benefit_name:,
+          # Employee deduction amount in cents
+          deduction_amount_in_cents:,
+          # Deduction category (reserved for future use)
+          deduction_category:,
+          # - `monthly` - Monthly
+          frequency:,
+          # Period end date (YYYY-MM-DD)
+          period_end_date:,
+          # Period start date (YYYY-MM-DD)
+          period_start_date:,
+          # - `Unknown` - Unknown
+          # - `Pre-tax` - Pre Tax
+          # - `Post-tax` - Post Tax
+          tax_classification:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              benefit_name: String,
+              deduction_amount_in_cents: Integer,
+              deduction_category: T.nilable(String),
+              frequency:
+                VitableConnect::Employee::Deduction::Frequency::TaggedSymbol,
+              period_end_date: Date,
+              period_start_date: Date,
+              tax_classification:
+                VitableConnect::Employee::Deduction::TaxClassification::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # - `monthly` - Monthly
+        module Frequency
+          extend VitableConnect::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, VitableConnect::Employee::Deduction::Frequency)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          MONTHLY =
+            T.let(
+              :monthly,
+              VitableConnect::Employee::Deduction::Frequency::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                VitableConnect::Employee::Deduction::Frequency::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # - `Unknown` - Unknown
+        # - `Pre-tax` - Pre Tax
+        # - `Post-tax` - Post Tax
+        module TaxClassification
+          extend VitableConnect::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                VitableConnect::Employee::Deduction::TaxClassification
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          UNKNOWN =
+            T.let(
+              :Unknown,
+              VitableConnect::Employee::Deduction::TaxClassification::TaggedSymbol
+            )
+          PRE_TAX =
+            T.let(
+              :"Pre-tax",
+              VitableConnect::Employee::Deduction::TaxClassification::TaggedSymbol
+            )
+          POST_TAX =
+            T.let(
+              :"Post-tax",
+              VitableConnect::Employee::Deduction::TaxClassification::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                VitableConnect::Employee::Deduction::TaxClassification::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
       end
 
       class Enrollment < VitableConnect::Internal::Type::BaseModel
