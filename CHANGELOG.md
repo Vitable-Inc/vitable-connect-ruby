@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.1 (2026-03-28)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.2.0...v0.2.1)
+
+### Bug Fixes
+
+* **internal:** correct multipart form field name encoding ([f7a59c7](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/f7a59c7c92beba61c6b100dc2addbd21caec3fe2))
+
+
+### Chores
+
+* **ci:** support opting out of skipping builds on metadata-only commits ([03e02f9](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/03e02f904a0e295fc0649474366d2b13ac5cc891))
+
 ## 0.2.0 (2026-03-25)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.1.0...v0.2.0)
