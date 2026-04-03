@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    vitable-connect (0.2.1)
+    vitable-connect (0.2.2)
       cgi
       connection_pool
 

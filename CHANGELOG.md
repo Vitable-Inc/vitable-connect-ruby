@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.2 (2026-04-01)
+
+Full Changelog: [v0.2.1...v0.2.2](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.2.1...v0.2.2)
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([8dffaa7](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/8dffaa70c9a25f8c03eab999b3bcfb3eb0b151b8))
+* variable name typo ([0c72698](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/0c7269861dfb77cc7b901b63229b420122751cbb))
+
 ## 0.2.1 (2026-03-28)
 
 Full Changelog: [v0.2.0...v0.2.1](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.2.0...v0.2.1)
