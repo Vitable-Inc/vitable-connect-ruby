@@ -188,6 +188,9 @@ module VitableConnect
         required :deduction_category, String, nil?: true
 
         # @!attribute frequency
+        #   - `weekly` - Weekly
+        #   - `bi_weekly` - Bi Weekly
+        #   - `semi_monthly` - Semi Monthly
         #   - `monthly` - Monthly
         #
         #   @return [Symbol, VitableConnect::Models::Employee::Deduction::Frequency]
@@ -223,7 +226,7 @@ module VitableConnect
         #
         #   @param deduction_category [String, nil] Deduction category (reserved for future use)
         #
-        #   @param frequency [Symbol, VitableConnect::Models::Employee::Deduction::Frequency] - `monthly` - Monthly
+        #   @param frequency [Symbol, VitableConnect::Models::Employee::Deduction::Frequency] - `weekly` - Weekly
         #
         #   @param period_end_date [Date] Period end date (YYYY-MM-DD)
         #
@@ -231,12 +234,18 @@ module VitableConnect
         #
         #   @param tax_classification [Symbol, VitableConnect::Models::Employee::Deduction::TaxClassification] - `Unknown` - Unknown
 
+        # - `weekly` - Weekly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
         # - `monthly` - Monthly
         #
         # @see VitableConnect::Models::Employee::Deduction#frequency
         module Frequency
           extend VitableConnect::Internal::Type::Enum
 
+          WEEKLY = :weekly
+          BI_WEEKLY = :bi_weekly
+          SEMI_MONTHLY = :semi_monthly
           MONTHLY = :monthly
 
           # @!method self.values
