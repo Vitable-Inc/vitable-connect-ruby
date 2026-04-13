@@ -152,11 +152,14 @@ module VitableConnect
           tax_classification: VitableConnect::Models::Employee::Deduction::tax_classification
         }
 
-        type frequency = :monthly
+        type frequency = :weekly | :bi_weekly | :semi_monthly | :monthly
 
         module Frequency
           extend VitableConnect::Internal::Type::Enum
 
+          WEEKLY: :weekly
+          BI_WEEKLY: :bi_weekly
+          SEMI_MONTHLY: :semi_monthly
           MONTHLY: :monthly
 
           def self?.values: -> ::Array[VitableConnect::Models::Employee::Deduction::frequency]
