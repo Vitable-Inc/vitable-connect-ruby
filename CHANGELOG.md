@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0 (2026-04-17)
+
+Full Changelog: [v0.2.2...v0.3.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.2.2...v0.3.0)
+
+### Features
+
+* **api:** api update ([f0f95aa](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/f0f95aad70b337a6bf9b73b671ffbeb3f082f8d2))
+
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([89441e1](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/89441e17106f9dcdb74cfb1a0ec5e59a8d2030f5))
+
 ## 0.2.2 (2026-04-03)
 
 Full Changelog: [v0.2.1...v0.2.2](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.2.1...v0.2.2)
