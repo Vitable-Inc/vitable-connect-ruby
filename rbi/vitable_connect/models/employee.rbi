@@ -218,6 +218,9 @@ module VitableConnect
         sig { returns(T.nilable(String)) }
         attr_accessor :deduction_category
 
+        # - `weekly` - Weekly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
         # - `monthly` - Monthly
         sig do
           returns(VitableConnect::Employee::Deduction::Frequency::TaggedSymbol)
@@ -261,6 +264,9 @@ module VitableConnect
           deduction_amount_in_cents:,
           # Deduction category (reserved for future use)
           deduction_category:,
+          # - `weekly` - Weekly
+          # - `bi_weekly` - Bi Weekly
+          # - `semi_monthly` - Semi Monthly
           # - `monthly` - Monthly
           frequency:,
           # Period end date (YYYY-MM-DD)
@@ -292,6 +298,9 @@ module VitableConnect
         def to_hash
         end
 
+        # - `weekly` - Weekly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
         # - `monthly` - Monthly
         module Frequency
           extend VitableConnect::Internal::Type::Enum
@@ -302,6 +311,21 @@ module VitableConnect
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+          WEEKLY =
+            T.let(
+              :weekly,
+              VitableConnect::Employee::Deduction::Frequency::TaggedSymbol
+            )
+          BI_WEEKLY =
+            T.let(
+              :bi_weekly,
+              VitableConnect::Employee::Deduction::Frequency::TaggedSymbol
+            )
+          SEMI_MONTHLY =
+            T.let(
+              :semi_monthly,
+              VitableConnect::Employee::Deduction::Frequency::TaggedSymbol
+            )
           MONTHLY =
             T.let(
               :monthly,
