@@ -25,10 +25,6 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :email
 
-      # Benefit enrollments for this employee
-      sig { returns(T::Array[VitableConnect::Employee::Enrollment]) }
-      attr_accessor :enrollments
-
       # Employee's legal first name
       sig { returns(String) }
       attr_accessor :first_name
@@ -104,7 +100,6 @@ module VitableConnect
           date_of_birth: Date,
           deductions: T::Array[VitableConnect::Employee::Deduction::OrHash],
           email: String,
-          enrollments: T::Array[VitableConnect::Employee::Enrollment::OrHash],
           first_name: String,
           last_name: String,
           member_id: String,
@@ -132,8 +127,6 @@ module VitableConnect
         deductions:,
         # Email address
         email:,
-        # Benefit enrollments for this employee
-        enrollments:,
         # Employee's legal first name
         first_name:,
         # Employee's legal last name
@@ -176,7 +169,6 @@ module VitableConnect
             date_of_birth: Date,
             deductions: T::Array[VitableConnect::Employee::Deduction],
             email: String,
-            enrollments: T::Array[VitableConnect::Employee::Enrollment],
             first_name: String,
             last_name: String,
             member_id: String,
@@ -383,63 +375,6 @@ module VitableConnect
           end
           def self.values
           end
-        end
-      end
-
-      class Enrollment < VitableConnect::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              VitableConnect::Employee::Enrollment,
-              VitableConnect::Internal::AnyHash
-            )
-          end
-
-        # - `pending` - Pending
-        # - `enrolled` - Enrolled
-        # - `waived` - Waived
-        # - `inactive` - Inactive
-        sig { returns(VitableConnect::EnrollmentStatus::TaggedSymbol) }
-        attr_accessor :status
-
-        # Timestamp when the enrollment decision was made
-        sig { returns(T.nilable(Time)) }
-        attr_accessor :answered_at
-
-        # Unique enrollment identifier with 'enrl\_' prefix
-        sig { returns(String) }
-        attr_accessor :id
-
-        sig do
-          params(
-            id: String,
-            status: VitableConnect::EnrollmentStatus::OrSymbol,
-            answered_at: T.nilable(Time)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Unique enrollment identifier with 'enrl\_' prefix
-          id:,
-          # - `pending` - Pending
-          # - `enrolled` - Enrolled
-          # - `waived` - Waived
-          # - `inactive` - Inactive
-          status:,
-          # Timestamp when the enrollment decision was made
-          answered_at: nil
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              id: String,
-              status: VitableConnect::EnrollmentStatus::TaggedSymbol,
-              answered_at: T.nilable(Time)
-            }
-          )
-        end
-        def to_hash
         end
       end
 
