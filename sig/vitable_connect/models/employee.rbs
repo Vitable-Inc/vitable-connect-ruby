@@ -7,7 +7,6 @@ module VitableConnect
         date_of_birth: Date,
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
-        enrollments: ::Array[VitableConnect::Employee::Enrollment],
         first_name: String,
         last_name: String,
         member_id: String,
@@ -31,8 +30,6 @@ module VitableConnect
       attr_accessor deductions: ::Array[VitableConnect::Employee::Deduction]
 
       attr_accessor email: String
-
-      attr_accessor enrollments: ::Array[VitableConnect::Employee::Enrollment]
 
       attr_accessor first_name: String
 
@@ -68,7 +65,6 @@ module VitableConnect
         date_of_birth: Date,
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
-        enrollments: ::Array[VitableConnect::Employee::Enrollment],
         first_name: String,
         last_name: String,
         member_id: String,
@@ -90,7 +86,6 @@ module VitableConnect
         date_of_birth: Date,
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
-        enrollments: ::Array[VitableConnect::Employee::Enrollment],
         first_name: String,
         last_name: String,
         member_id: String,
@@ -176,33 +171,6 @@ module VitableConnect
 
           def self?.values: -> ::Array[VitableConnect::Models::Employee::Deduction::tax_classification]
         end
-      end
-
-      type enrollment =
-        {
-          id: String,
-          status: VitableConnect::Models::enrollment_status,
-          answered_at: Time?
-        }
-
-      class Enrollment < VitableConnect::Internal::Type::BaseModel
-        attr_accessor status: VitableConnect::Models::enrollment_status
-
-        attr_accessor answered_at: Time?
-
-        attr_accessor id: String
-
-        def initialize: (
-          id: String,
-          status: VitableConnect::Models::enrollment_status,
-          ?answered_at: Time?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          status: VitableConnect::Models::enrollment_status,
-          answered_at: Time?
-        }
       end
 
       type address =

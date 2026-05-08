@@ -28,13 +28,6 @@ module VitableConnect
       #   @return [String]
       required :email, String
 
-      # @!attribute enrollments
-      #   Benefit enrollments for this employee
-      #
-      #   @return [Array<VitableConnect::Models::Employee::Enrollment>]
-      required :enrollments,
-               -> { VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Enrollment] }
-
       # @!attribute first_name
       #   Employee's legal first name
       #
@@ -126,7 +119,7 @@ module VitableConnect
         required :status, String
       end
 
-      # @!method initialize(id:, created_at:, date_of_birth:, deductions:, email:, enrollments:, first_name:, last_name:, member_id:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, phone: nil, reference_id: nil, suffix: nil, termination_date: nil)
+      # @!method initialize(id:, created_at:, date_of_birth:, deductions:, email:, first_name:, last_name:, member_id:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, phone: nil, reference_id: nil, suffix: nil, termination_date: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Employee} for more details.
       #
@@ -139,8 +132,6 @@ module VitableConnect
       #   @param deductions [Array<VitableConnect::Models::Employee::Deduction>] Payroll deductions from the most recent statement period. Replaced when a new st
       #
       #   @param email [String] Email address
-      #
-      #   @param enrollments [Array<VitableConnect::Models::Employee::Enrollment>] Benefit enrollments for this employee
       #
       #   @param first_name [String] Employee's legal first name
       #
@@ -267,41 +258,6 @@ module VitableConnect
           # @!method self.values
           #   @return [Array<Symbol>]
         end
-      end
-
-      class Enrollment < VitableConnect::Internal::Type::BaseModel
-        # @!attribute status
-        #   - `pending` - Pending
-        #   - `enrolled` - Enrolled
-        #   - `waived` - Waived
-        #   - `inactive` - Inactive
-        #
-        #   @return [Symbol, VitableConnect::Models::EnrollmentStatus]
-        required :status, enum: -> { VitableConnect::EnrollmentStatus }
-
-        # @!attribute answered_at
-        #   Timestamp when the enrollment decision was made
-        #
-        #   @return [Time, nil]
-        optional :answered_at, Time, nil?: true
-
-        response_only do
-          # @!attribute id
-          #   Unique enrollment identifier with 'enrl\_' prefix
-          #
-          #   @return [String]
-          required :id, String
-        end
-
-        # @!method initialize(id:, status:, answered_at: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {VitableConnect::Models::Employee::Enrollment} for more details.
-        #
-        #   @param id [String] Unique enrollment identifier with 'enrl\_' prefix
-        #
-        #   @param status [Symbol, VitableConnect::Models::EnrollmentStatus] - `pending` - Pending
-        #
-        #   @param answered_at [Time, nil] Timestamp when the enrollment decision was made
       end
 
       # @see VitableConnect::Models::Employee#address
