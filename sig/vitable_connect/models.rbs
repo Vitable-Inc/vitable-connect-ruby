@@ -31,13 +31,31 @@ module VitableConnect
 
   class EmployerSubmitCensusSyncParams = VitableConnect::Models::EmployerSubmitCensusSyncParams
 
+  class EmployerUpdateSettingsParams = VitableConnect::Models::EmployerUpdateSettingsParams
+
   class Enrollment = VitableConnect::Models::Enrollment
 
   class EnrollmentRetrieveParams = VitableConnect::Models::EnrollmentRetrieveParams
 
   module EnrollmentStatus = VitableConnect::Models::EnrollmentStatus
 
+  class Group = VitableConnect::Models::Group
+
+  class GroupCreateParams = VitableConnect::Models::GroupCreateParams
+
+  class GroupListParams = VitableConnect::Models::GroupListParams
+
+  class GroupResponse = VitableConnect::Models::GroupResponse
+
+  class GroupRetrieveParams = VitableConnect::Models::GroupRetrieveParams
+
+  module Groups = VitableConnect::Models::Groups
+
+  class GroupUpdateParams = VitableConnect::Models::GroupUpdateParams
+
   class Pagination = VitableConnect::Models::Pagination
+
+  class PlanListParams = VitableConnect::Models::PlanListParams
 
   module Type = VitableConnect::Models::Type
 

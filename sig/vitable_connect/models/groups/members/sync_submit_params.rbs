@@ -1,0 +1,124 @@
+module VitableConnect
+  module Models
+    module Groups
+      module Members
+        type sync_submit_params =
+          {
+            group_id: String,
+            members: ::Array[VitableConnect::Groups::Members::SyncSubmitParams::Member]
+          }
+          & VitableConnect::Internal::Type::request_parameters
+
+        class SyncSubmitParams < VitableConnect::Internal::Type::BaseModel
+          extend VitableConnect::Internal::Type::RequestParameters::Converter
+          include VitableConnect::Internal::Type::RequestParameters
+
+          attr_accessor group_id: String
+
+          attr_accessor members: ::Array[VitableConnect::Groups::Members::SyncSubmitParams::Member]
+
+          def initialize: (
+            group_id: String,
+            members: ::Array[VitableConnect::Groups::Members::SyncSubmitParams::Member],
+            ?request_options: VitableConnect::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            group_id: String,
+            members: ::Array[VitableConnect::Groups::Members::SyncSubmitParams::Member],
+            request_options: VitableConnect::RequestOptions
+          }
+
+          type member =
+            {
+              address: VitableConnect::Groups::Members::SyncSubmitParams::Member::Address,
+              date_of_birth: Date,
+              first_name: String,
+              last_name: String,
+              phone: String,
+              plan_id: String,
+              reference_id: String,
+              email: String?
+            }
+
+          class Member < VitableConnect::Internal::Type::BaseModel
+            attr_accessor address: VitableConnect::Groups::Members::SyncSubmitParams::Member::Address
+
+            attr_accessor date_of_birth: Date
+
+            attr_accessor first_name: String
+
+            attr_accessor last_name: String
+
+            attr_accessor phone: String
+
+            attr_accessor plan_id: String
+
+            attr_accessor reference_id: String
+
+            attr_accessor email: String?
+
+            def initialize: (
+              address: VitableConnect::Groups::Members::SyncSubmitParams::Member::Address,
+              date_of_birth: Date,
+              first_name: String,
+              last_name: String,
+              phone: String,
+              plan_id: String,
+              reference_id: String,
+              ?email: String?
+            ) -> void
+
+            def to_hash: -> {
+              address: VitableConnect::Groups::Members::SyncSubmitParams::Member::Address,
+              date_of_birth: Date,
+              first_name: String,
+              last_name: String,
+              phone: String,
+              plan_id: String,
+              reference_id: String,
+              email: String?
+            }
+
+            type address =
+              {
+                :address_line_1 => String,
+                city: String,
+                state: String,
+                zipcode: String,
+                :address_line_2 => String?
+              }
+
+            class Address < VitableConnect::Internal::Type::BaseModel
+              attr_accessor address_line_1: String
+
+              attr_accessor city: String
+
+              attr_accessor state: String
+
+              attr_accessor zipcode: String
+
+              attr_accessor address_line_2: String?
+
+              def initialize: (
+                address_line_1: String,
+                city: String,
+                state: String,
+                zipcode: String,
+                ?address_line_2: String?
+              ) -> void
+
+              def to_hash: -> {
+                :address_line_1 => String,
+                city: String,
+                state: String,
+                zipcode: String,
+                :address_line_2 => String?
+              }
+            end
+          end
+        end
+      end
+    end
+  end
+end

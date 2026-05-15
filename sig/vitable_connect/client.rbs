@@ -27,6 +27,10 @@ module VitableConnect
 
     attr_reader webhook_events: VitableConnect::Resources::WebhookEvents
 
+    attr_reader groups: VitableConnect::Resources::Groups
+
+    attr_reader plans: VitableConnect::Resources::Plans
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (
