@@ -1,0 +1,11 @@
+module VitableConnect
+  module Resources
+    class Groups
+      class Members
+        attr_reader sync: VitableConnect::Resources::Groups::Members::Sync
+
+        def initialize: (client: VitableConnect::Client) -> void
+      end
+    end
+  end
+end

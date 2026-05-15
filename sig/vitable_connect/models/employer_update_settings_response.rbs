@@ -1,0 +1,48 @@
+module VitableConnect
+  module Models
+    type employer_update_settings_response =
+      { data: VitableConnect::Models::EmployerUpdateSettingsResponse::Data }
+
+    class EmployerUpdateSettingsResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::Models::EmployerUpdateSettingsResponse::Data
+
+      def initialize: (
+        data: VitableConnect::Models::EmployerUpdateSettingsResponse::Data
+      ) -> void
+
+      def to_hash: -> {
+        data: VitableConnect::Models::EmployerUpdateSettingsResponse::Data
+      }
+
+      type data =
+        {
+          pay_frequency: VitableConnect::Models::EmployerUpdateSettingsResponse::Data::pay_frequency?
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor pay_frequency: VitableConnect::Models::EmployerUpdateSettingsResponse::Data::pay_frequency?
+
+        def initialize: (
+          pay_frequency: VitableConnect::Models::EmployerUpdateSettingsResponse::Data::pay_frequency?
+        ) -> void
+
+        def to_hash: -> {
+          pay_frequency: VitableConnect::Models::EmployerUpdateSettingsResponse::Data::pay_frequency?
+        }
+
+        type pay_frequency = :weekly | :bi_weekly | :semi_monthly | :monthly
+
+        module PayFrequency
+          extend VitableConnect::Internal::Type::Enum
+
+          WEEKLY: :weekly
+          BI_WEEKLY: :bi_weekly
+          SEMI_MONTHLY: :semi_monthly
+          MONTHLY: :monthly
+
+          def self?.values: -> ::Array[VitableConnect::Models::EmployerUpdateSettingsResponse::Data::pay_frequency]
+        end
+      end
+    end
+  end
+end

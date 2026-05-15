@@ -1,0 +1,28 @@
+module VitableConnect
+  module Models
+    type group_create_params =
+      { external_reference_id: String, name: String }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class GroupCreateParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor external_reference_id: String
+
+      attr_accessor name: String
+
+      def initialize: (
+        external_reference_id: String,
+        name: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        external_reference_id: String,
+        name: String,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module VitableConnect
+  module Models
+    type group_response = { data: VitableConnect::Group }
+
+    class GroupResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::Group
+
+      def initialize: (data: VitableConnect::Group) -> void
+
+      def to_hash: -> { data: VitableConnect::Group }
+    end
+  end
+end

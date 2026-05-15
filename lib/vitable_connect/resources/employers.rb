@@ -175,6 +175,34 @@ module VitableConnect
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {VitableConnect::Models::EmployerUpdateSettingsParams} for more details.
+      #
+      # Updates configuration settings for a specific employer. The employer must belong
+      # to the authenticated organization.
+      #
+      # @overload update_settings(employer_id, pay_frequency:, request_options: {})
+      #
+      # @param employer_id [String] Unique employer identifier (empr\_\*)
+      #
+      # @param pay_frequency [Symbol, VitableConnect::Models::EmployerUpdateSettingsParams::PayFrequency] - `weekly` - weekly
+      #
+      # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [VitableConnect::Models::EmployerUpdateSettingsResponse]
+      #
+      # @see VitableConnect::Models::EmployerUpdateSettingsParams
+      def update_settings(employer_id, params)
+        parsed, options = VitableConnect::EmployerUpdateSettingsParams.dump_request(params)
+        @client.request(
+          method: :put,
+          path: ["v1/employers/%1$s/settings", employer_id],
+          body: parsed,
+          model: VitableConnect::Models::EmployerUpdateSettingsResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [VitableConnect::Client]

@@ -140,6 +140,28 @@ module VitableConnect
       )
       end
 
+      # Updates configuration settings for a specific employer. The employer must belong
+      # to the authenticated organization.
+      sig do
+        params(
+          employer_id: String,
+          pay_frequency:
+            VitableConnect::EmployerUpdateSettingsParams::PayFrequency::OrSymbol,
+          request_options: VitableConnect::RequestOptions::OrHash
+        ).returns(VitableConnect::Models::EmployerUpdateSettingsResponse)
+      end
+      def update_settings(
+        # Unique employer identifier (empr\_\*)
+        employer_id,
+        # - `weekly` - weekly
+        # - `bi_weekly` - bi_weekly
+        # - `semi_monthly` - semi_monthly
+        # - `monthly` - monthly
+        pay_frequency:,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: VitableConnect::Client).returns(T.attached_class) }
       def self.new(client:)

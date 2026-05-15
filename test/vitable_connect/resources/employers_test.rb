@@ -172,4 +172,20 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
       }
     end
   end
+
+  def test_update_settings_required_params
+    skip("Mock server tests are disabled")
+
+    response = @vitable_connect.employers.update_settings("empr_abc123def456", pay_frequency: :bi_weekly)
+
+    assert_pattern do
+      response => VitableConnect::Models::EmployerUpdateSettingsResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: VitableConnect::Models::EmployerUpdateSettingsResponse::Data
+      }
+    end
+  end
 end

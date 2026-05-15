@@ -40,13 +40,32 @@ module VitableConnect
   EmployerSubmitCensusSyncParams =
     VitableConnect::Models::EmployerSubmitCensusSyncParams
 
+  EmployerUpdateSettingsParams =
+    VitableConnect::Models::EmployerUpdateSettingsParams
+
   Enrollment = VitableConnect::Models::Enrollment
 
   EnrollmentRetrieveParams = VitableConnect::Models::EnrollmentRetrieveParams
 
   EnrollmentStatus = VitableConnect::Models::EnrollmentStatus
 
+  Group = VitableConnect::Models::Group
+
+  GroupCreateParams = VitableConnect::Models::GroupCreateParams
+
+  GroupListParams = VitableConnect::Models::GroupListParams
+
+  GroupResponse = VitableConnect::Models::GroupResponse
+
+  GroupRetrieveParams = VitableConnect::Models::GroupRetrieveParams
+
+  Groups = VitableConnect::Models::Groups
+
+  GroupUpdateParams = VitableConnect::Models::GroupUpdateParams
+
   Pagination = VitableConnect::Models::Pagination
+
+  PlanListParams = VitableConnect::Models::PlanListParams
 
   Type = VitableConnect::Models::Type
 

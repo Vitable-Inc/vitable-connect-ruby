@@ -45,6 +45,12 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::WebhookEvents) }
     attr_reader :webhook_events
 
+    sig { returns(VitableConnect::Resources::Groups) }
+    attr_reader :groups
+
+    sig { returns(VitableConnect::Resources::Plans) }
+    attr_reader :plans
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
