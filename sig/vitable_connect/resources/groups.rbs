@@ -1,0 +1,33 @@
+module VitableConnect
+  module Resources
+    class Groups
+      attr_reader members: VitableConnect::Resources::Groups::Members
+
+      def create: (
+        external_reference_id: String,
+        name: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::GroupResponse
+
+      def retrieve: (
+        String group_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::GroupResponse
+
+      def update: (
+        String group_id,
+        ?external_reference_id: String?,
+        ?name: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::GroupResponse
+
+      def list: (
+        ?limit: Integer,
+        ?page: Integer,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Group]
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end

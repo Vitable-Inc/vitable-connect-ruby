@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.4.0 (2026-05-15)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([5891ffa](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/5891ffad3ab9bd4ece9a1e2c17e66a07ff30a228))
+* **api:** api update ([62eabe5](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/62eabe5767331aa848e6abaf1a229ee068fc299b))
+* **api:** manual updates ([ca33b4f](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/ca33b4fd801e497a4237e7d69bf557857be075d3))
+* support setting headers via env ([707a5d3](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/707a5d38e79b1e64ed132653910fec8a5a5bf125))
+
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([8427bb0](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/8427bb0aefea63b6d8b594cfcb400f8cff2c2b86))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([921ddac](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/921ddac9d3073aeb1fdb7292d413eedfdaf5aa4c))
+
 ## 0.3.0 (2026-04-17)
 
 Full Changelog: [v0.2.2...v0.3.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.2.2...v0.3.0)

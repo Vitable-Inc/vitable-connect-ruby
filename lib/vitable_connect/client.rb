@@ -47,6 +47,12 @@ module VitableConnect
     # @return [VitableConnect::Resources::WebhookEvents]
     attr_reader :webhook_events
 
+    # @return [VitableConnect::Resources::Groups]
+    attr_reader :groups
+
+    # @return [VitableConnect::Resources::Plans]
+    attr_reader :plans
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -97,6 +103,19 @@ module VitableConnect
         raise ArgumentError.new("api_key is required, and can be set via environ: \"VITABLE_CONNECT_API_KEY\"")
       end
 
+      headers = {}
+      custom_headers_env = ENV["VITABLE_CONNECT_CUSTOM_HEADERS"]
+      unless custom_headers_env.nil?
+        parsed = {}
+        custom_headers_env.split("\n").each do |line|
+          colon = line.index(":")
+          unless colon.nil?
+            parsed[line[0...colon].strip] = line[(colon + 1)..].strip
+          end
+        end
+        headers = parsed.merge(headers)
+      end
+
       @api_key = api_key.to_s
 
       super(
@@ -104,7 +123,8 @@ module VitableConnect
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        headers: headers
       )
 
       @auth = VitableConnect::Resources::Auth.new(client: self)
@@ -113,6 +133,8 @@ module VitableConnect
       @employers = VitableConnect::Resources::Employers.new(client: self)
       @enrollments = VitableConnect::Resources::Enrollments.new(client: self)
       @webhook_events = VitableConnect::Resources::WebhookEvents.new(client: self)
+      @groups = VitableConnect::Resources::Groups.new(client: self)
+      @plans = VitableConnect::Resources::Plans.new(client: self)
     end
   end
 end

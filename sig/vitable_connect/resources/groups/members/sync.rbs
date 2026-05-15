@@ -1,0 +1,23 @@
+module VitableConnect
+  module Resources
+    class Groups
+      class Members
+        class Sync
+          def retrieve: (
+            String request_id,
+            group_id: String,
+            ?request_options: VitableConnect::request_opts
+          ) -> VitableConnect::Models::Groups::Members::SyncRetrieveResponse
+
+          def submit: (
+            String group_id,
+            members: ::Array[VitableConnect::Groups::Members::SyncSubmitParams::Member],
+            ?request_options: VitableConnect::request_opts
+          ) -> VitableConnect::Models::Groups::Members::SyncSubmitResponse
+
+          def initialize: (client: VitableConnect::Client) -> void
+        end
+      end
+    end
+  end
+end

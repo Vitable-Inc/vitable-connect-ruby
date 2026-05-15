@@ -121,7 +121,6 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
         date_of_birth: Date,
         deductions: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Deduction]),
         email: String,
-        enrollments: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Enrollment]),
         first_name: String,
         last_name: String,
         member_id: String,
@@ -170,6 +169,22 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
     assert_pattern do
       response => {
         data: VitableConnect::Models::EmployerSubmitCensusSyncResponse::Data
+      }
+    end
+  end
+
+  def test_update_settings_required_params
+    skip("Mock server tests are disabled")
+
+    response = @vitable_connect.employers.update_settings("empr_abc123def456", pay_frequency: :bi_weekly)
+
+    assert_pattern do
+      response => VitableConnect::Models::EmployerUpdateSettingsResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: VitableConnect::Models::EmployerUpdateSettingsResponse::Data
       }
     end
   end
