@@ -24,7 +24,7 @@ module VitableConnect
               completed_at: Time?,
               group_id: String,
               request_id: String,
-              results: top
+              results: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results?
             }
 
           class Data < VitableConnect::Internal::Type::BaseModel
@@ -36,14 +36,14 @@ module VitableConnect
 
             attr_accessor request_id: String
 
-            attr_accessor results: top
+            attr_accessor results: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results?
 
             def initialize: (
               accepted_at: Time,
               completed_at: Time?,
               group_id: String,
               request_id: String,
-              results: top
+              results: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results?
             ) -> void
 
             def to_hash: -> {
@@ -51,8 +51,73 @@ module VitableConnect
               completed_at: Time?,
               group_id: String,
               request_id: String,
-              results: top
+              results: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results?
             }
+
+            type results =
+              {
+                added_group_member_ids: ::Array[String],
+                failures: ::Array[VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure],
+                removed_group_member_ids: ::Array[String]
+              }
+
+            class Results < VitableConnect::Internal::Type::BaseModel
+              attr_accessor added_group_member_ids: ::Array[String]
+
+              attr_accessor failures: ::Array[VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure]
+
+              attr_accessor removed_group_member_ids: ::Array[String]
+
+              def initialize: (
+                added_group_member_ids: ::Array[String],
+                failures: ::Array[VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure],
+                removed_group_member_ids: ::Array[String]
+              ) -> void
+
+              def to_hash: -> {
+                added_group_member_ids: ::Array[String],
+                failures: ::Array[VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure],
+                removed_group_member_ids: ::Array[String]
+              }
+
+              type failure =
+                {
+                  operation: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure::operation,
+                  reason: String,
+                  reference_id: String
+                }
+
+              class Failure < VitableConnect::Internal::Type::BaseModel
+                attr_accessor operation: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure::operation
+
+                attr_accessor reason: String
+
+                attr_accessor reference_id: String
+
+                def initialize: (
+                  operation: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure::operation,
+                  reason: String,
+                  reference_id: String
+                ) -> void
+
+                def to_hash: -> {
+                  operation: VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure::operation,
+                  reason: String,
+                  reference_id: String
+                }
+
+                type operation = :add | :remove
+
+                module Operation
+                  extend VitableConnect::Internal::Type::Enum
+
+                  ADD: :add
+                  REMOVE: :remove
+
+                  def self?.values: -> ::Array[VitableConnect::Models::Groups::Members::SyncRetrieveResponse::Data::Results::Failure::operation]
+                end
+              end
+            end
           end
         end
       end
