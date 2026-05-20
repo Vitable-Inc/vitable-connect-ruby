@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 (2026-05-20)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** api update ([f3374eb](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/f3374eb5c25f3da5c2511fa2b89b049b8fdffbba))
+* **api:** api update ([4c48eb5](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/4c48eb5ebb5f4d939c0604656806fbab0498fabe))
+
 ## 0.4.0 (2026-05-15)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.3.0...v0.4.0)
