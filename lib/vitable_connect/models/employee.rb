@@ -75,12 +75,6 @@ module VitableConnect
       #   @return [Date, nil]
       optional :hire_date, Date, nil?: true
 
-      # @!attribute phone
-      #   Phone number (10-digit US domestic string)
-      #
-      #   @return [String, nil]
-      optional :phone, String, nil?: true
-
       # @!attribute reference_id
       #   Partner-assigned reference ID for the employee
       #
@@ -112,6 +106,12 @@ module VitableConnect
         #   @return [String]
         required :member_id, String
 
+        # @!attribute phone
+        #   Phone number (10-digit US domestic string)
+        #
+        #   @return [String, nil]
+        required :phone, String, nil?: true
+
         # @!attribute status
         #   Employee status (active or terminated)
         #
@@ -119,7 +119,7 @@ module VitableConnect
         required :status, String
       end
 
-      # @!method initialize(id:, created_at:, date_of_birth:, deductions:, email:, first_name:, last_name:, member_id:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, phone: nil, reference_id: nil, suffix: nil, termination_date: nil)
+      # @!method initialize(id:, created_at:, date_of_birth:, deductions:, email:, first_name:, last_name:, member_id:, phone:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, reference_id: nil, suffix: nil, termination_date: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Employee} for more details.
       #
@@ -139,6 +139,8 @@ module VitableConnect
       #
       #   @param member_id [String] Unique member identifier with 'mbr\_' prefix
       #
+      #   @param phone [String, nil] Phone number (10-digit US domestic string)
+      #
       #   @param status [String] Employee status (active or terminated)
       #
       #   @param updated_at [Time] Timestamp when the employee was last updated
@@ -150,8 +152,6 @@ module VitableConnect
       #   @param gender [String, nil] Gender identity, if provided
       #
       #   @param hire_date [Date, nil] Employee's hire date with the employer
-      #
-      #   @param phone [String, nil] Phone number (10-digit US domestic string)
       #
       #   @param reference_id [String, nil] Partner-assigned reference ID for the employee
       #

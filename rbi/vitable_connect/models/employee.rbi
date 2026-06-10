@@ -65,10 +65,6 @@ module VitableConnect
       sig { returns(T.nilable(Date)) }
       attr_accessor :hire_date
 
-      # Phone number (10-digit US domestic string)
-      sig { returns(T.nilable(String)) }
-      attr_accessor :phone
-
       # Partner-assigned reference ID for the employee
       sig { returns(T.nilable(String)) }
       attr_accessor :reference_id
@@ -89,6 +85,10 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :member_id
 
+      # Phone number (10-digit US domestic string)
+      sig { returns(T.nilable(String)) }
+      attr_accessor :phone
+
       # Employee status (active or terminated)
       sig { returns(String) }
       attr_accessor :status
@@ -103,13 +103,13 @@ module VitableConnect
           first_name: String,
           last_name: String,
           member_id: String,
+          phone: T.nilable(String),
           status: String,
           updated_at: Time,
           address: T.nilable(VitableConnect::Employee::Address::OrHash),
           employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
           gender: T.nilable(String),
           hire_date: T.nilable(Date),
-          phone: T.nilable(String),
           reference_id: T.nilable(String),
           suffix: T.nilable(String),
           termination_date: T.nilable(Date)
@@ -133,6 +133,8 @@ module VitableConnect
         last_name:,
         # Unique member identifier with 'mbr\_' prefix
         member_id:,
+        # Phone number (10-digit US domestic string)
+        phone:,
         # Employee status (active or terminated)
         status:,
         # Timestamp when the employee was last updated
@@ -150,8 +152,6 @@ module VitableConnect
         gender: nil,
         # Employee's hire date with the employer
         hire_date: nil,
-        # Phone number (10-digit US domestic string)
-        phone: nil,
         # Partner-assigned reference ID for the employee
         reference_id: nil,
         # Name suffix (e.g., Jr., Sr., III)
@@ -172,6 +172,7 @@ module VitableConnect
             first_name: String,
             last_name: String,
             member_id: String,
+            phone: T.nilable(String),
             status: String,
             updated_at: Time,
             address: T.nilable(VitableConnect::Employee::Address),
@@ -179,7 +180,6 @@ module VitableConnect
               T.nilable(VitableConnect::EmployeeClass::TaggedSymbol),
             gender: T.nilable(String),
             hire_date: T.nilable(Date),
-            phone: T.nilable(String),
             reference_id: T.nilable(String),
             suffix: T.nilable(String),
             termination_date: T.nilable(Date)
