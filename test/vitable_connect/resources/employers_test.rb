@@ -65,7 +65,6 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
         address: VitableConnect::Employer::Address,
         created_at: Time,
         ein: String | nil,
-        eligibility_policy_id: String | nil,
         legal_name: String,
         name: String,
         organization_id: String | nil,
@@ -73,27 +72,6 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
         email: String | nil,
         phone_number: String | nil,
         reference_id: String | nil
-      }
-    end
-  end
-
-  def test_create_benefit_eligibility_policy_required_params
-    skip("Mock server tests are disabled")
-
-    response =
-      @vitable_connect.employers.create_benefit_eligibility_policy(
-        "empr_abc123def456",
-        classification: "classification",
-        waiting_period: "waiting_period"
-      )
-
-    assert_pattern do
-      response => VitableConnect::BenefitEligibilityPolicyResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: VitableConnect::BenefitEligibilityPolicy
       }
     end
   end

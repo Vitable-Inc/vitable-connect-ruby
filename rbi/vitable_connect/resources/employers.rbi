@@ -73,27 +73,6 @@ module VitableConnect
       )
       end
 
-      # Creates a benefit eligibility policy for the specified employer.
-      sig do
-        params(
-          employer_id: String,
-          classification: String,
-          waiting_period: String,
-          request_options: VitableConnect::RequestOptions::OrHash
-        ).returns(VitableConnect::BenefitEligibilityPolicyResponse)
-      end
-      def create_benefit_eligibility_policy(
-        # Unique employer identifier (empr\_\*)
-        employer_id,
-        # Which employee classifications are eligible. One of: full_time, part_time, all
-        classification:,
-        # Waiting period before eligibility. One of: first_of_following_month, 30_days,
-        # 60_days, none
-        waiting_period:,
-        request_options: {}
-      )
-      end
-
       # Retrieves a paginated list of all employees for a specific employer. Results are
       # paginated using page and limit parameters. Each employee includes payroll
       # deductions from the most recent statement period. When a new deduction statement
