@@ -10,13 +10,13 @@ module VitableConnect
         first_name: String,
         last_name: String,
         member_id: String,
+        phone: String?,
         status: String,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
         employee_class: VitableConnect::Models::employee_class?,
         gender: String?,
         hire_date: Date?,
-        phone: String?,
         reference_id: String?,
         suffix: String?,
         termination_date: Date?
@@ -45,8 +45,6 @@ module VitableConnect
 
       attr_accessor hire_date: Date?
 
-      attr_accessor phone: String?
-
       attr_accessor reference_id: String?
 
       attr_accessor suffix: String?
@@ -56,6 +54,8 @@ module VitableConnect
       attr_accessor id: String
 
       attr_accessor member_id: String
+
+      attr_accessor phone: String?
 
       attr_accessor status: String
 
@@ -68,13 +68,13 @@ module VitableConnect
         first_name: String,
         last_name: String,
         member_id: String,
+        phone: String?,
         status: String,
         updated_at: Time,
         ?address: VitableConnect::Employee::Address?,
         ?employee_class: VitableConnect::Models::employee_class?,
         ?gender: String?,
         ?hire_date: Date?,
-        ?phone: String?,
         ?reference_id: String?,
         ?suffix: String?,
         ?termination_date: Date?
@@ -89,13 +89,13 @@ module VitableConnect
         first_name: String,
         last_name: String,
         member_id: String,
+        phone: String?,
         status: String,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
         employee_class: VitableConnect::Models::employee_class?,
         gender: String?,
         hire_date: Date?,
-        phone: String?,
         reference_id: String?,
         suffix: String?,
         termination_date: Date?

@@ -27,13 +27,18 @@ class VitableConnect::Test::Resources::Groups::Members::SyncTest < VitableConnec
         "grp_abc123def456",
         members: [
           {
-            address: {address_line_1: "x", city: "x", state: "xx", zipcode: "x"},
-            date_of_birth: "2019-12-27",
-            first_name: "first_name",
-            last_name: "last_name",
-            phone: "phone",
-            plan_id: "x",
-            reference_id: "x"
+            address: {
+              address_line_1: "123 Main Street",
+              city: "San Francisco",
+              state: "CA",
+              zipcode: "94102"
+            },
+            date_of_birth: "1990-05-15",
+            first_name: "Jane",
+            last_name: "Doe",
+            phone: "4155550100",
+            plan_id: "pln_abc123def456",
+            reference_id: "EMP-001"
           }
         ]
       )

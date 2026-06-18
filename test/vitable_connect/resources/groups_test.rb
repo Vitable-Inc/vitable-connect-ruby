@@ -6,7 +6,7 @@ class VitableConnect::Test::Resources::GroupsTest < VitableConnect::Test::Resour
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.groups.create(external_reference_id: "x", name: "x")
+    response = @vitable_connect.groups.create(external_reference_id: "mol_seg_001", name: "Tier 1")
 
     assert_pattern do
       response => VitableConnect::GroupResponse

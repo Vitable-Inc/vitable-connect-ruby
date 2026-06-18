@@ -30,7 +30,6 @@ module VitableConnect
     # @return [VitableConnect::Resources::Auth]
     attr_reader :auth
 
-    # Define rules that determine which employees qualify for benefits
     # @return [VitableConnect::Resources::BenefitEligibilityPolicies]
     attr_reader :benefit_eligibility_policies
 

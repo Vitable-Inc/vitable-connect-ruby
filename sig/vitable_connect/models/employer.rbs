@@ -7,7 +7,6 @@ module VitableConnect
         address: VitableConnect::Employer::Address,
         created_at: Time,
         ein: String?,
-        eligibility_policy_id: String?,
         legal_name: String,
         name: String,
         organization_id: String?,
@@ -40,8 +39,6 @@ module VitableConnect
 
       attr_accessor ein: String?
 
-      attr_accessor eligibility_policy_id: String?
-
       attr_accessor organization_id: String?
 
       def initialize: (
@@ -50,7 +47,6 @@ module VitableConnect
         address: VitableConnect::Employer::Address,
         created_at: Time,
         ein: String?,
-        eligibility_policy_id: String?,
         legal_name: String,
         name: String,
         organization_id: String?,
@@ -66,7 +62,6 @@ module VitableConnect
         address: VitableConnect::Employer::Address,
         created_at: Time,
         ein: String?,
-        eligibility_policy_id: String?,
         legal_name: String,
         name: String,
         organization_id: String?,

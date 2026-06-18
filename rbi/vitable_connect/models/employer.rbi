@@ -55,10 +55,6 @@ module VitableConnect
       sig { returns(T.nilable(String)) }
       attr_accessor :ein
 
-      # ID of the benefit eligibility policy (epol\_\*), if assigned
-      sig { returns(T.nilable(String)) }
-      attr_accessor :eligibility_policy_id
-
       # ID of the parent organization (org\_\*)
       sig { returns(T.nilable(String)) }
       attr_accessor :organization_id
@@ -71,7 +67,6 @@ module VitableConnect
           address: VitableConnect::Employer::Address::OrHash,
           created_at: Time,
           ein: T.nilable(String),
-          eligibility_policy_id: T.nilable(String),
           legal_name: String,
           name: String,
           organization_id: T.nilable(String),
@@ -92,8 +87,6 @@ module VitableConnect
         created_at:,
         # Employer Identification Number (masked in responses)
         ein:,
-        # ID of the benefit eligibility policy (epol\_\*), if assigned
-        eligibility_policy_id:,
         # Legal business name for compliance and tax purposes
         legal_name:,
         # Display name of the employer
@@ -119,7 +112,6 @@ module VitableConnect
             address: VitableConnect::Employer::Address,
             created_at: Time,
             ein: T.nilable(String),
-            eligibility_policy_id: T.nilable(String),
             legal_name: String,
             name: String,
             organization_id: T.nilable(String),

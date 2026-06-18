@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.5.0 (2026-06-18)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** api update ([a8bcdc8](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/a8bcdc81db4619608b5119a9077ae3b56e441e5c))
+* **api:** api update ([b94afbd](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/b94afbd4992d43ed37036930d0697416b8698946))
+* **api:** api update ([f3374eb](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/f3374eb5c25f3da5c2511fa2b89b049b8fdffbba))
+* **api:** api update ([4c48eb5](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/4c48eb5ebb5f4d939c0604656806fbab0498fabe))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([c2bffd5](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/c2bffd51607ee207814ebca6d6774bfd276d2254))
+
 ## 0.4.0 (2026-05-15)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.3.0...v0.4.0)

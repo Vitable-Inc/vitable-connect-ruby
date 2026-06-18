@@ -1,12 +1,6 @@
 module VitableConnect
   class AuthIssueAccessTokenParams = VitableConnect::Models::AuthIssueAccessTokenParams
 
-  class BenefitEligibilityPolicy = VitableConnect::Models::BenefitEligibilityPolicy
-
-  class BenefitEligibilityPolicyResponse = VitableConnect::Models::BenefitEligibilityPolicyResponse
-
-  class BenefitEligibilityPolicyRetrieveParams = VitableConnect::Models::BenefitEligibilityPolicyRetrieveParams
-
   class Employee = VitableConnect::Models::Employee
 
   module EmployeeClass = VitableConnect::Models::EmployeeClass
@@ -16,8 +10,6 @@ module VitableConnect
   class EmployeeRetrieveParams = VitableConnect::Models::EmployeeRetrieveParams
 
   class Employer = VitableConnect::Models::Employer
-
-  class EmployerCreateBenefitEligibilityPolicyParams = VitableConnect::Models::EmployerCreateBenefitEligibilityPolicyParams
 
   class EmployerCreateParams = VitableConnect::Models::EmployerCreateParams
 

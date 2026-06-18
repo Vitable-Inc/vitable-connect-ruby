@@ -71,12 +71,6 @@ module VitableConnect
         #   @return [String, nil]
         required :ein, String, nil?: true
 
-        # @!attribute eligibility_policy_id
-        #   ID of the benefit eligibility policy (epol\_\*), if assigned
-        #
-        #   @return [String, nil]
-        required :eligibility_policy_id, String, nil?: true
-
         # @!attribute organization_id
         #   ID of the parent organization (org\_\*)
         #
@@ -84,7 +78,7 @@ module VitableConnect
         required :organization_id, String, nil?: true
       end
 
-      # @!method initialize(id:, active:, address:, created_at:, ein:, eligibility_policy_id:, legal_name:, name:, organization_id:, updated_at:, email: nil, phone_number: nil, reference_id: nil)
+      # @!method initialize(id:, active:, address:, created_at:, ein:, legal_name:, name:, organization_id:, updated_at:, email: nil, phone_number: nil, reference_id: nil)
       #   Serializer for Employer entity in public API responses.
       #
       #   @param id [String] Unique employer identifier with 'empr\_' prefix
@@ -96,8 +90,6 @@ module VitableConnect
       #   @param created_at [Time] Timestamp when the employer was created
       #
       #   @param ein [String, nil] Employer Identification Number (masked in responses)
-      #
-      #   @param eligibility_policy_id [String, nil] ID of the benefit eligibility policy (epol\_\*), if assigned
       #
       #   @param legal_name [String] Legal business name for compliance and tax purposes
       #

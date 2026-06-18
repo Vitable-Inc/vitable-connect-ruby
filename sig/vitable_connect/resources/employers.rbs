@@ -23,13 +23,6 @@ module VitableConnect
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Employer]
 
-      def create_benefit_eligibility_policy: (
-        String employer_id,
-        classification: String,
-        waiting_period: String,
-        ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::BenefitEligibilityPolicyResponse
-
       def list_employees: (
         String employer_id,
         ?limit: Integer,

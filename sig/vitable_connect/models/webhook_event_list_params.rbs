@@ -80,7 +80,6 @@ module VitableConnect
         | :"employee.eligibility_granted"
         | :"employee.eligibility_terminated"
         | :"employee.deactivated"
-        | :"employer.eligibility_policy_created"
         | :"employee.deduction_created"
 
       module EventName
@@ -95,7 +94,6 @@ module VitableConnect
         EMPLOYEE_ELIGIBILITY_GRANTED: :"employee.eligibility_granted"
         EMPLOYEE_ELIGIBILITY_TERMINATED: :"employee.eligibility_terminated"
         EMPLOYEE_DEACTIVATED: :"employee.deactivated"
-        EMPLOYER_ELIGIBILITY_POLICY_CREATED: :"employer.eligibility_policy_created"
         EMPLOYEE_DEDUCTION_CREATED: :"employee.deduction_created"
 
         def self?.values: -> ::Array[VitableConnect::Models::WebhookEventListParams::event_name]
