@@ -25,6 +25,15 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :email
 
+      # - `Full Time` - Full Time
+      # - `Part Time` - Part Time
+      # - `Temporary` - Temporary
+      # - `Intern` - Intern
+      # - `Seasonal` - Seasonal
+      # - `Individual Contractor` - Individual Contractor
+      sig { returns(VitableConnect::EmployeeClass::TaggedSymbol) }
+      attr_accessor :employee_class
+
       # Employee's legal first name
       sig { returns(String) }
       attr_accessor :first_name
@@ -48,22 +57,9 @@ module VitableConnect
       end
       attr_writer :address
 
-      # - `Full Time` - Full Time
-      # - `Part Time` - Part Time
-      # - `Temporary` - Temporary
-      # - `Intern` - Intern
-      # - `Seasonal` - Seasonal
-      # - `Individual Contractor` - Individual Contractor
-      sig { returns(T.nilable(VitableConnect::EmployeeClass::TaggedSymbol)) }
-      attr_accessor :employee_class
-
       # Gender identity, if provided
       sig { returns(T.nilable(String)) }
       attr_accessor :gender
-
-      # Employee's hire date with the employer
-      sig { returns(T.nilable(Date)) }
-      attr_accessor :hire_date
 
       # Partner-assigned reference ID for the employee
       sig { returns(T.nilable(String)) }
@@ -81,6 +77,23 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :id
 
+      # Date the employee's current classification took effect
+      sig { returns(Date) }
+      attr_accessor :classification_effective_date
+
+      # - `Salary` - Salary
+      # - `Hourly` - Hourly
+      sig do
+        returns(
+          T.nilable(VitableConnect::Employee::CompensationType::TaggedSymbol)
+        )
+      end
+      attr_accessor :compensation_type
+
+      # Date the employee's current compensation type took effect
+      sig { returns(Date) }
+      attr_accessor :compensation_type_effective_date
+
       # Unique member identifier with 'mbr\_' prefix
       sig { returns(String) }
       attr_accessor :member_id
@@ -89,27 +102,35 @@ module VitableConnect
       sig { returns(T.nilable(String)) }
       attr_accessor :phone
 
+      # Employee's start date with the employer
+      sig { returns(Date) }
+      attr_accessor :start_date
+
       # Employee status (active or terminated)
-      sig { returns(String) }
+      sig { returns(VitableConnect::Employee::Status::TaggedSymbol) }
       attr_accessor :status
 
       sig do
         params(
           id: String,
+          classification_effective_date: Date,
+          compensation_type:
+            T.nilable(VitableConnect::Employee::CompensationType::OrSymbol),
+          compensation_type_effective_date: Date,
           created_at: Time,
           date_of_birth: Date,
           deductions: T::Array[VitableConnect::Employee::Deduction::OrHash],
           email: String,
+          employee_class: VitableConnect::EmployeeClass::OrSymbol,
           first_name: String,
           last_name: String,
           member_id: String,
           phone: T.nilable(String),
-          status: String,
+          start_date: Date,
+          status: VitableConnect::Employee::Status::OrSymbol,
           updated_at: Time,
           address: T.nilable(VitableConnect::Employee::Address::OrHash),
-          employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
           gender: T.nilable(String),
-          hire_date: T.nilable(Date),
           reference_id: T.nilable(String),
           suffix: T.nilable(String),
           termination_date: T.nilable(Date)
@@ -118,6 +139,13 @@ module VitableConnect
       def self.new(
         # Unique employee identifier with 'empl\_' prefix
         id:,
+        # Date the employee's current classification took effect
+        classification_effective_date:,
+        # - `Salary` - Salary
+        # - `Hourly` - Hourly
+        compensation_type:,
+        # Date the employee's current compensation type took effect
+        compensation_type_effective_date:,
         # Timestamp when the employee was created
         created_at:,
         # Date of birth (YYYY-MM-DD)
@@ -127,6 +155,13 @@ module VitableConnect
         deductions:,
         # Email address
         email:,
+        # - `Full Time` - Full Time
+        # - `Part Time` - Part Time
+        # - `Temporary` - Temporary
+        # - `Intern` - Intern
+        # - `Seasonal` - Seasonal
+        # - `Individual Contractor` - Individual Contractor
+        employee_class:,
         # Employee's legal first name
         first_name:,
         # Employee's legal last name
@@ -135,23 +170,16 @@ module VitableConnect
         member_id:,
         # Phone number (10-digit US domestic string)
         phone:,
+        # Employee's start date with the employer
+        start_date:,
         # Employee status (active or terminated)
         status:,
         # Timestamp when the employee was last updated
         updated_at:,
         # Employee's residential address
         address: nil,
-        # - `Full Time` - Full Time
-        # - `Part Time` - Part Time
-        # - `Temporary` - Temporary
-        # - `Intern` - Intern
-        # - `Seasonal` - Seasonal
-        # - `Individual Contractor` - Individual Contractor
-        employee_class: nil,
         # Gender identity, if provided
         gender: nil,
-        # Employee's hire date with the employer
-        hire_date: nil,
         # Partner-assigned reference ID for the employee
         reference_id: nil,
         # Name suffix (e.g., Jr., Sr., III)
@@ -165,21 +193,26 @@ module VitableConnect
         override.returns(
           {
             id: String,
+            classification_effective_date: Date,
+            compensation_type:
+              T.nilable(
+                VitableConnect::Employee::CompensationType::TaggedSymbol
+              ),
+            compensation_type_effective_date: Date,
             created_at: Time,
             date_of_birth: Date,
             deductions: T::Array[VitableConnect::Employee::Deduction],
             email: String,
+            employee_class: VitableConnect::EmployeeClass::TaggedSymbol,
             first_name: String,
             last_name: String,
             member_id: String,
             phone: T.nilable(String),
-            status: String,
+            start_date: Date,
+            status: VitableConnect::Employee::Status::TaggedSymbol,
             updated_at: Time,
             address: T.nilable(VitableConnect::Employee::Address),
-            employee_class:
-              T.nilable(VitableConnect::EmployeeClass::TaggedSymbol),
             gender: T.nilable(String),
-            hire_date: T.nilable(Date),
             reference_id: T.nilable(String),
             suffix: T.nilable(String),
             termination_date: T.nilable(Date)
@@ -187,6 +220,37 @@ module VitableConnect
         )
       end
       def to_hash
+      end
+
+      # - `Salary` - Salary
+      # - `Hourly` - Hourly
+      module CompensationType
+        extend VitableConnect::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, VitableConnect::Employee::CompensationType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        SALARY =
+          T.let(
+            :Salary,
+            VitableConnect::Employee::CompensationType::TaggedSymbol
+          )
+        HOURLY =
+          T.let(
+            :Hourly,
+            VitableConnect::Employee::CompensationType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[VitableConnect::Employee::CompensationType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class Deduction < VitableConnect::Internal::Type::BaseModel
@@ -375,6 +439,27 @@ module VitableConnect
           end
           def self.values
           end
+        end
+      end
+
+      # Employee status (active or terminated)
+      module Status
+        extend VitableConnect::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, VitableConnect::Employee::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ACTIVE = T.let(:active, VitableConnect::Employee::Status::TaggedSymbol)
+        TERMINATED =
+          T.let(:terminated, VitableConnect::Employee::Status::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[VitableConnect::Employee::Status::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 
