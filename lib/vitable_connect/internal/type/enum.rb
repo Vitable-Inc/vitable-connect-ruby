@@ -17,24 +17,28 @@ module VitableConnect
       # values safely.
       #
       # @example
-      #   # `type` is a `VitableConnect::Type`
-      #   case type
-      #   when VitableConnect::Type::EMPLOYER
+      #   # `employee_class` is a `VitableConnect::EmployeeClass`
+      #   case employee_class
+      #   when VitableConnect::EmployeeClass::FULL_TIME
       #     # ...
-      #   when VitableConnect::Type::EMPLOYEE
+      #   when VitableConnect::EmployeeClass::PART_TIME
+      #     # ...
+      #   when VitableConnect::EmployeeClass::TEMPORARY
       #     # ...
       #   else
-      #     puts(type)
+      #     puts(employee_class)
       #   end
       #
       # @example
-      #   case type
-      #   in :employer
+      #   case employee_class
+      #   in :"Full Time"
       #     # ...
-      #   in :employee
+      #   in :"Part Time"
+      #     # ...
+      #   in :Temporary
       #     # ...
       #   else
-      #     puts(type)
+      #     puts(employee_class)
       #   end
       module Enum
         include VitableConnect::Internal::Type::Converter

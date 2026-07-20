@@ -92,8 +92,6 @@ module VitableConnect
 
   PlanListParams = VitableConnect::Models::PlanListParams
 
-  Type = VitableConnect::Models::Type
-
   WebhookEvent = VitableConnect::Models::WebhookEvent
 
   WebhookEventListDeliveriesParams = VitableConnect::Models::WebhookEventListDeliveriesParams

@@ -37,19 +37,37 @@ module VitableConnect
         def self?.values: -> ::Array[VitableConnect::Models::AuthIssueAccessTokenParams::grant_type]
       end
 
-      type bound_entity = { id: String, type: VitableConnect::Models::type_ }
+      type bound_entity =
+        {
+          id: String,
+          type: VitableConnect::Models::AuthIssueAccessTokenParams::BoundEntity::type_
+        }
 
       class BoundEntity < VitableConnect::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor type: VitableConnect::Models::type_
+        attr_accessor type: VitableConnect::Models::AuthIssueAccessTokenParams::BoundEntity::type_
 
         def initialize: (
           id: String,
-          type: VitableConnect::Models::type_
+          type: VitableConnect::Models::AuthIssueAccessTokenParams::BoundEntity::type_
         ) -> void
 
-        def to_hash: -> { id: String, type: VitableConnect::Models::type_ }
+        def to_hash: -> {
+          id: String,
+          type: VitableConnect::Models::AuthIssueAccessTokenParams::BoundEntity::type_
+        }
+
+        type type_ = :employer | :employee
+
+        module Type
+          extend VitableConnect::Internal::Type::Enum
+
+          EMPLOYER: :employer
+          EMPLOYEE: :employee
+
+          def self?.values: -> ::Array[VitableConnect::Models::AuthIssueAccessTokenParams::BoundEntity::type_]
+        end
       end
     end
   end
