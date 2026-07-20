@@ -28,9 +28,6 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::Auth) }
     attr_reader :auth
 
-    sig { returns(VitableConnect::Resources::BenefitEligibilityPolicies) }
-    attr_reader :benefit_eligibility_policies
-
     sig { returns(VitableConnect::Resources::Employees) }
     attr_reader :employees
 

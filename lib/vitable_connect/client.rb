@@ -30,9 +30,6 @@ module VitableConnect
     # @return [VitableConnect::Resources::Auth]
     attr_reader :auth
 
-    # @return [VitableConnect::Resources::BenefitEligibilityPolicies]
-    attr_reader :benefit_eligibility_policies
-
     # @return [VitableConnect::Resources::Employees]
     attr_reader :employees
 
@@ -127,7 +124,6 @@ module VitableConnect
       )
 
       @auth = VitableConnect::Resources::Auth.new(client: self)
-      @benefit_eligibility_policies = VitableConnect::Resources::BenefitEligibilityPolicies.new(client: self)
       @employees = VitableConnect::Resources::Employees.new(client: self)
       @employers = VitableConnect::Resources::Employers.new(client: self)
       @enrollments = VitableConnect::Resources::Enrollments.new(client: self)

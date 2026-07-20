@@ -17,8 +17,6 @@ module VitableConnect
 
     attr_reader auth: VitableConnect::Resources::Auth
 
-    attr_reader benefit_eligibility_policies: VitableConnect::Resources::BenefitEligibilityPolicies
-
     attr_reader employees: VitableConnect::Resources::Employees
 
     attr_reader employers: VitableConnect::Resources::Employers
