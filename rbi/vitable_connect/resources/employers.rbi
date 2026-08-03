@@ -52,23 +52,51 @@ module VitableConnect
       )
       end
 
-      # Retrieves a paginated list of all employers belonging to the authenticated
-      # organization. Results are sorted by creation date (newest first) and paginated
-      # using page and limit parameters.
+      # Returns the caller's organization book — every employer with its computed
+      # columns (enrollment-rate summary, benefit-family tags, HRIS connection,
+      # benefit-lifecycle stage) merged with the employer's flat CRM fields (legal name,
+      # EIN, contact, address, timestamps). The organization is derived from the
+      # authenticated principal. Supports name search, benefit-family/lifecycle/HRIS
+      # filters, and page/limit pagination.
       sig do
         params(
+          benefit_family:
+            T::Array[
+              VitableConnect::EmployerListParams::BenefitFamily::OrSymbol
+            ],
+          benefit_lifecycle_stage:
+            T::Array[
+              VitableConnect::EmployerListParams::BenefitLifecycleStage::OrSymbol
+            ],
+          hris_status:
+            T::Array[VitableConnect::EmployerListParams::HRISStatus::OrSymbol],
+          include_cancelled: T::Boolean,
           limit: Integer,
           page: Integer,
+          search: T.nilable(String),
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(
-          VitableConnect::Internal::PageNumberPage[VitableConnect::Employer]
+          VitableConnect::Internal::PageNumberPage[
+            VitableConnect::Models::EmployerListResponse
+          ]
         )
       end
       def list(
-        # Items per page (default: 20, max: 100)
+        # Filter to employers with at least one active benefit in these families.
+        benefit_family: nil,
+        # Filter to employers in one of these computed benefit-lifecycle stages.
+        benefit_lifecycle_stage: nil,
+        # Filter to employers whose HRIS connection is in one of these statuses.
+        hris_status: nil,
+        # Include cancelled employers (hidden by default unless their stage is explicitly
+        # requested).
+        include_cancelled: nil,
+        # Items per page.
         limit: nil,
-        # Page number (default: 1)
+        # Page number.
         page: nil,
+        # Case-insensitive employer-name substring filter.
+        search: nil,
         request_options: {}
       )
       end

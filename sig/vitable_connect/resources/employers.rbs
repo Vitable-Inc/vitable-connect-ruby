@@ -18,10 +18,15 @@ module VitableConnect
       ) -> VitableConnect::EmployerResponse
 
       def list: (
+        ?benefit_family: ::Array[VitableConnect::Models::EmployerListParams::benefit_family],
+        ?benefit_lifecycle_stage: ::Array[VitableConnect::Models::EmployerListParams::benefit_lifecycle_stage],
+        ?hris_status: ::Array[VitableConnect::Models::EmployerListParams::hris_status],
+        ?include_cancelled: bool,
         ?limit: Integer,
         ?page: Integer,
+        ?search: String?,
         ?request_options: VitableConnect::request_opts
-      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Employer]
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Models::EmployerListResponse]
 
       def list_employees: (
         String employer_id,

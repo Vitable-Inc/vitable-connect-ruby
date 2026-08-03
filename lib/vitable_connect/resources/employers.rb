@@ -60,19 +60,35 @@ module VitableConnect
         )
       end
 
-      # Retrieves a paginated list of all employers belonging to the authenticated
-      # organization. Results are sorted by creation date (newest first) and paginated
-      # using page and limit parameters.
+      # Some parameter documentations has been truncated, see
+      # {VitableConnect::Models::EmployerListParams} for more details.
       #
-      # @overload list(limit: nil, page: nil, request_options: {})
+      # Returns the caller's organization book — every employer with its computed
+      # columns (enrollment-rate summary, benefit-family tags, HRIS connection,
+      # benefit-lifecycle stage) merged with the employer's flat CRM fields (legal name,
+      # EIN, contact, address, timestamps). The organization is derived from the
+      # authenticated principal. Supports name search, benefit-family/lifecycle/HRIS
+      # filters, and page/limit pagination.
       #
-      # @param limit [Integer] Items per page (default: 20, max: 100)
+      # @overload list(benefit_family: nil, benefit_lifecycle_stage: nil, hris_status: nil, include_cancelled: nil, limit: nil, page: nil, search: nil, request_options: {})
       #
-      # @param page [Integer] Page number (default: 1)
+      # @param benefit_family [Array<Symbol, VitableConnect::Models::EmployerListParams::BenefitFamily>] Filter to employers with at least one active benefit in these families.
+      #
+      # @param benefit_lifecycle_stage [Array<Symbol, VitableConnect::Models::EmployerListParams::BenefitLifecycleStage>] Filter to employers in one of these computed benefit-lifecycle stages.
+      #
+      # @param hris_status [Array<Symbol, VitableConnect::Models::EmployerListParams::HRISStatus>] Filter to employers whose HRIS connection is in one of these statuses.
+      #
+      # @param include_cancelled [Boolean] Include cancelled employers (hidden by default unless their stage is explicitly
+      #
+      # @param limit [Integer] Items per page.
+      #
+      # @param page [Integer] Page number.
+      #
+      # @param search [String, nil] Case-insensitive employer-name substring filter.
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [VitableConnect::Internal::PageNumberPage<VitableConnect::Models::Employer>]
+      # @return [VitableConnect::Internal::PageNumberPage<VitableConnect::Models::EmployerListResponse>]
       #
       # @see VitableConnect::Models::EmployerListParams
       def list(params = {})
@@ -83,7 +99,7 @@ module VitableConnect
           path: "v1/employers",
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
-          model: VitableConnect::Employer,
+          model: VitableConnect::Models::EmployerListResponse,
           options: options
         )
       end

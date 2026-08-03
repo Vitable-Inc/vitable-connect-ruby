@@ -55,23 +55,27 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
     return if row.nil?
 
     assert_pattern do
-      row => VitableConnect::Employer
+      row => VitableConnect::Models::EmployerListResponse
     end
 
     assert_pattern do
       row => {
-        id: String,
         active: VitableConnect::Internal::Type::Boolean,
-        address: VitableConnect::Employer::Address,
+        address: VitableConnect::Models::EmployerListResponse::Address,
+        benefit_families: ^(VitableConnect::Internal::Type::ArrayOf[String]),
+        benefit_lifecycle_stage: VitableConnect::Models::EmployerListResponse::BenefitLifecycleStage,
         created_at: Time,
         ein: String | nil,
-        legal_name: String,
+        email: String | nil,
+        employer_id: String,
+        enrollment_rate_summary: VitableConnect::Models::EmployerListResponse::EnrollmentRateSummary,
+        hris_status: VitableConnect::Models::EmployerListResponse::HRISStatus | nil,
+        legal_name: String | nil,
         name: String,
         organization_id: String | nil,
-        updated_at: Time,
-        email: String | nil,
         phone_number: String | nil,
-        reference_id: String | nil
+        reference_id: String | nil,
+        updated_at: Time
       }
     end
   end
