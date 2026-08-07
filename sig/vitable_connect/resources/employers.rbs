@@ -30,8 +30,10 @@ module VitableConnect
 
       def list_employees: (
         String employer_id,
+        ?employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
         ?limit: Integer,
         ?page: Integer,
+        ?search: String?,
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Employee]
 

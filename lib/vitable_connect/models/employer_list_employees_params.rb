@@ -13,6 +13,12 @@ module VitableConnect
       #   @return [String]
       required :employer_id, String
 
+      # @!attribute employment_status
+      #   Filter by employment status (active or terminated)
+      #
+      #   @return [Symbol, VitableConnect::Models::EmployerListEmployeesParams::EmploymentStatus, nil]
+      optional :employment_status, enum: -> { VitableConnect::EmployerListEmployeesParams::EmploymentStatus }
+
       # @!attribute limit
       #   Items per page (default: 20, max: 100)
       #
@@ -25,14 +31,35 @@ module VitableConnect
       #   @return [Integer, nil]
       optional :page, Integer
 
-      # @!method initialize(employer_id:, limit: nil, page: nil, request_options: {})
+      # @!attribute search
+      #   Case-insensitive search across employee first name, last name, and email
+      #
+      #   @return [String, nil]
+      optional :search, String, nil?: true
+
+      # @!method initialize(employer_id:, employment_status: nil, limit: nil, page: nil, search: nil, request_options: {})
       #   @param employer_id [String] Unique employer identifier (empr\_\*)
+      #
+      #   @param employment_status [Symbol, VitableConnect::Models::EmployerListEmployeesParams::EmploymentStatus] Filter by employment status (active or terminated)
       #
       #   @param limit [Integer] Items per page (default: 20, max: 100)
       #
       #   @param page [Integer] Page number (default: 1)
       #
+      #   @param search [String, nil] Case-insensitive search across employee first name, last name, and email
+      #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
+
+      # Filter by employment status (active or terminated)
+      module EmploymentStatus
+        extend VitableConnect::Internal::Type::Enum
+
+        ACTIVE = :active
+        TERMINATED = :terminated
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

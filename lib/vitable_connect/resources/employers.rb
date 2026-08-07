@@ -104,18 +104,25 @@ module VitableConnect
         )
       end
 
-      # Retrieves a paginated list of all employees for a specific employer. Results are
-      # paginated using page and limit parameters. Each employee includes payroll
-      # deductions from the most recent statement period. When a new deduction statement
-      # is generated, previous period deductions are replaced.
+      # Retrieves a paginated list of employees for a specific employer. The caller must
+      # be authorized for the employer; an unknown or unauthorized employer returns 404.
+      # Results are paginated using page and limit parameters and can be narrowed with a
+      # case-insensitive `search` (first name, last name, or email) and an
+      # `employment_status` filter (active or terminated). Each employee includes
+      # payroll deductions from the most recent statement period. When a new deduction
+      # statement is generated, previous period deductions are replaced.
       #
-      # @overload list_employees(employer_id, limit: nil, page: nil, request_options: {})
+      # @overload list_employees(employer_id, employment_status: nil, limit: nil, page: nil, search: nil, request_options: {})
       #
       # @param employer_id [String] Unique employer identifier (empr\_\*)
+      #
+      # @param employment_status [Symbol, VitableConnect::Models::EmployerListEmployeesParams::EmploymentStatus] Filter by employment status (active or terminated)
       #
       # @param limit [Integer] Items per page (default: 20, max: 100)
       #
       # @param page [Integer] Page number (default: 1)
+      #
+      # @param search [String, nil] Case-insensitive search across employee first name, last name, and email
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -171,7 +178,7 @@ module VitableConnect
       #
       # @param employer_id [String] Unique employer identifier (empr\_\*)
       #
-      # @param pay_frequency [Symbol, VitableConnect::Models::EmployerUpdateSettingsParams::PayFrequency] - `weekly` - weekly
+      # @param pay_frequency [Symbol, VitableConnect::Models::EmployerUpdateSettingsParams::PayFrequency] - `weekly` - Weekly
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #

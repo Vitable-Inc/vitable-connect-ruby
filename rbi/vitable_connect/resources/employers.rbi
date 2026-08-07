@@ -101,15 +101,21 @@ module VitableConnect
       )
       end
 
-      # Retrieves a paginated list of all employees for a specific employer. Results are
-      # paginated using page and limit parameters. Each employee includes payroll
-      # deductions from the most recent statement period. When a new deduction statement
-      # is generated, previous period deductions are replaced.
+      # Retrieves a paginated list of employees for a specific employer. The caller must
+      # be authorized for the employer; an unknown or unauthorized employer returns 404.
+      # Results are paginated using page and limit parameters and can be narrowed with a
+      # case-insensitive `search` (first name, last name, or email) and an
+      # `employment_status` filter (active or terminated). Each employee includes
+      # payroll deductions from the most recent statement period. When a new deduction
+      # statement is generated, previous period deductions are replaced.
       sig do
         params(
           employer_id: String,
+          employment_status:
+            VitableConnect::EmployerListEmployeesParams::EmploymentStatus::OrSymbol,
           limit: Integer,
           page: Integer,
+          search: T.nilable(String),
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(
           VitableConnect::Internal::PageNumberPage[VitableConnect::Employee]
@@ -118,10 +124,14 @@ module VitableConnect
       def list_employees(
         # Unique employer identifier (empr\_\*)
         employer_id,
+        # Filter by employment status (active or terminated)
+        employment_status: nil,
         # Items per page (default: 20, max: 100)
         limit: nil,
         # Page number (default: 1)
         page: nil,
+        # Case-insensitive search across employee first name, last name, and email
+        search: nil,
         request_options: {}
       )
       end
@@ -160,10 +170,10 @@ module VitableConnect
       def update_settings(
         # Unique employer identifier (empr\_\*)
         employer_id,
-        # - `weekly` - weekly
-        # - `bi_weekly` - bi_weekly
-        # - `semi_monthly` - semi_monthly
-        # - `monthly` - monthly
+        # - `weekly` - Weekly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
+        # - `monthly` - Monthly
         pay_frequency:,
         request_options: {}
       )

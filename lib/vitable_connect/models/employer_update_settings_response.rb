@@ -18,8 +18,8 @@ module VitableConnect
       class Data < VitableConnect::Internal::Type::BaseModel
         # @!attribute pay_frequency
         #   - `weekly` - Weekly
-        #   - `bi_weekly` - Bi-Weekly
-        #   - `semi_monthly` - Semi-Monthly
+        #   - `bi_weekly` - Bi Weekly
+        #   - `semi_monthly` - Semi Monthly
         #   - `monthly` - Monthly
         #
         #   @return [Symbol, VitableConnect::Models::EmployerUpdateSettingsResponse::Data::PayFrequency, nil]
@@ -34,8 +34,8 @@ module VitableConnect
         #   @param pay_frequency [Symbol, VitableConnect::Models::EmployerUpdateSettingsResponse::Data::PayFrequency, nil] - `weekly` - Weekly
 
         # - `weekly` - Weekly
-        # - `bi_weekly` - Bi-Weekly
-        # - `semi_monthly` - Semi-Monthly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
         # - `monthly` - Monthly
         #
         # @see VitableConnect::Models::EmployerUpdateSettingsResponse::Data#pay_frequency

@@ -1,7 +1,13 @@
 module VitableConnect
   module Models
     type employer_list_employees_params =
-      { employer_id: String, limit: Integer, page: Integer }
+      {
+        employer_id: String,
+        employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
+        limit: Integer,
+        page: Integer,
+        search: String?
+      }
       & VitableConnect::Internal::Type::request_parameters
 
     class EmployerListEmployeesParams < VitableConnect::Internal::Type::BaseModel
@@ -9,6 +15,12 @@ module VitableConnect
       include VitableConnect::Internal::Type::RequestParameters
 
       attr_accessor employer_id: String
+
+      attr_reader employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status?
+
+      def employment_status=: (
+        VitableConnect::Models::EmployerListEmployeesParams::employment_status
+      ) -> VitableConnect::Models::EmployerListEmployeesParams::employment_status
 
       attr_reader limit: Integer?
 
@@ -18,19 +30,36 @@ module VitableConnect
 
       def page=: (Integer) -> Integer
 
+      attr_accessor search: String?
+
       def initialize: (
         employer_id: String,
+        ?employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
         ?limit: Integer,
         ?page: Integer,
+        ?search: String?,
         ?request_options: VitableConnect::request_opts
       ) -> void
 
       def to_hash: -> {
         employer_id: String,
+        employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
         limit: Integer,
         page: Integer,
+        search: String?,
         request_options: VitableConnect::RequestOptions
       }
+
+      type employment_status = :active | :terminated
+
+      module EmploymentStatus
+        extend VitableConnect::Internal::Type::Enum
+
+        ACTIVE: :active
+        TERMINATED: :terminated
+
+        def self?.values: -> ::Array[VitableConnect::Models::EmployerListEmployeesParams::employment_status]
+      end
     end
   end
 end
