@@ -57,6 +57,10 @@ module VitableConnect
       end
       attr_writer :address
 
+      # Name of the employer this employment is with
+      sig { returns(T.nilable(String)) }
+      attr_accessor :employer_name
+
       # Gender identity, if provided
       sig { returns(T.nilable(String)) }
       attr_accessor :gender
@@ -130,6 +134,7 @@ module VitableConnect
           status: VitableConnect::Employee::Status::OrSymbol,
           updated_at: Time,
           address: T.nilable(VitableConnect::Employee::Address::OrHash),
+          employer_name: T.nilable(String),
           gender: T.nilable(String),
           reference_id: T.nilable(String),
           suffix: T.nilable(String),
@@ -178,6 +183,8 @@ module VitableConnect
         updated_at:,
         # Employee's residential address
         address: nil,
+        # Name of the employer this employment is with
+        employer_name: nil,
         # Gender identity, if provided
         gender: nil,
         # Partner-assigned reference ID for the employee
@@ -212,6 +219,7 @@ module VitableConnect
             status: VitableConnect::Employee::Status::TaggedSymbol,
             updated_at: Time,
             address: T.nilable(VitableConnect::Employee::Address),
+            employer_name: T.nilable(String),
             gender: T.nilable(String),
             reference_id: T.nilable(String),
             suffix: T.nilable(String),

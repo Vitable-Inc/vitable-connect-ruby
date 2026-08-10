@@ -122,7 +122,7 @@ module VitableConnect
       #
       # @param page [Integer] Page number (default: 1)
       #
-      # @param search [String, nil] Case-insensitive search across employee first name, last name, and email
+      # @param search [String] Case-insensitive search across employee first name, last name, and email
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #

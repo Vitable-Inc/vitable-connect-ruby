@@ -33,7 +33,7 @@ module VitableConnect
         ?employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
         ?limit: Integer,
         ?page: Integer,
-        ?search: String?,
+        ?search: String,
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Employee]
 

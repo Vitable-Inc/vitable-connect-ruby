@@ -115,7 +115,7 @@ module VitableConnect
             VitableConnect::EmployerListEmployeesParams::EmploymentStatus::OrSymbol,
           limit: Integer,
           page: Integer,
-          search: T.nilable(String),
+          search: String,
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(
           VitableConnect::Internal::PageNumberPage[VitableConnect::Employee]

@@ -52,7 +52,10 @@ module VitableConnect
 
       # Case-insensitive search across employee first name, last name, and email
       sig { returns(T.nilable(String)) }
-      attr_accessor :search
+      attr_reader :search
+
+      sig { params(search: String).void }
+      attr_writer :search
 
       sig do
         params(
@@ -61,7 +64,7 @@ module VitableConnect
             VitableConnect::EmployerListEmployeesParams::EmploymentStatus::OrSymbol,
           limit: Integer,
           page: Integer,
-          search: T.nilable(String),
+          search: String,
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -88,7 +91,7 @@ module VitableConnect
               VitableConnect::EmployerListEmployeesParams::EmploymentStatus::OrSymbol,
             limit: Integer,
             page: Integer,
-            search: T.nilable(String),
+            search: String,
             request_options: VitableConnect::RequestOptions
           }
         )

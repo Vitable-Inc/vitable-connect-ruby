@@ -115,6 +115,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
         status: VitableConnect::Employee::Status,
         updated_at: Time,
         address: VitableConnect::Employee::Address | nil,
+        employer_name: String | nil,
         gender: String | nil,
         reference_id: String | nil,
         suffix: String | nil,

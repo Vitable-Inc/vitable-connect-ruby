@@ -19,6 +19,7 @@ module VitableConnect
         status: VitableConnect::Models::Employee::status,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
+        employer_name: String?,
         gender: String?,
         reference_id: String?,
         suffix: String?,
@@ -43,6 +44,8 @@ module VitableConnect
       attr_accessor updated_at: Time
 
       attr_accessor address: VitableConnect::Employee::Address?
+
+      attr_accessor employer_name: String?
 
       attr_accessor gender: String?
 
@@ -86,6 +89,7 @@ module VitableConnect
         status: VitableConnect::Models::Employee::status,
         updated_at: Time,
         ?address: VitableConnect::Employee::Address?,
+        ?employer_name: String?,
         ?gender: String?,
         ?reference_id: String?,
         ?suffix: String?,
@@ -110,6 +114,7 @@ module VitableConnect
         status: VitableConnect::Models::Employee::status,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
+        employer_name: String?,
         gender: String?,
         reference_id: String?,
         suffix: String?,

@@ -63,6 +63,12 @@ module VitableConnect
       #   @return [VitableConnect::Models::Employee::Address, nil]
       optional :address, -> { VitableConnect::Employee::Address }, nil?: true
 
+      # @!attribute employer_name
+      #   Name of the employer this employment is with
+      #
+      #   @return [String, nil]
+      optional :employer_name, String, nil?: true
+
       # @!attribute gender
       #   Gender identity, if provided
       #
@@ -138,7 +144,7 @@ module VitableConnect
         required :status, enum: -> { VitableConnect::Employee::Status }
       end
 
-      # @!method initialize(id:, classification_effective_date:, compensation_type:, compensation_type_effective_date:, created_at:, date_of_birth:, deductions:, email:, employee_class:, first_name:, last_name:, member_id:, phone:, start_date:, status:, updated_at:, address: nil, gender: nil, reference_id: nil, suffix: nil, termination_date: nil)
+      # @!method initialize(id:, classification_effective_date:, compensation_type:, compensation_type_effective_date:, created_at:, date_of_birth:, deductions:, email:, employee_class:, first_name:, last_name:, member_id:, phone:, start_date:, status:, updated_at:, address: nil, employer_name: nil, gender: nil, reference_id: nil, suffix: nil, termination_date: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Employee} for more details.
       #
@@ -175,6 +181,8 @@ module VitableConnect
       #   @param updated_at [Time] Timestamp when the employee was last updated
       #
       #   @param address [VitableConnect::Models::Employee::Address, nil] Employee's residential address
+      #
+      #   @param employer_name [String, nil] Name of the employer this employment is with
       #
       #   @param gender [String, nil] Gender identity, if provided
       #

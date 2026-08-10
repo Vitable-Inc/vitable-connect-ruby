@@ -6,7 +6,7 @@ module VitableConnect
         employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
         limit: Integer,
         page: Integer,
-        search: String?
+        search: String
       }
       & VitableConnect::Internal::Type::request_parameters
 
@@ -30,14 +30,16 @@ module VitableConnect
 
       def page=: (Integer) -> Integer
 
-      attr_accessor search: String?
+      attr_reader search: String?
+
+      def search=: (String) -> String
 
       def initialize: (
         employer_id: String,
         ?employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
         ?limit: Integer,
         ?page: Integer,
-        ?search: String?,
+        ?search: String,
         ?request_options: VitableConnect::request_opts
       ) -> void
 
@@ -46,7 +48,7 @@ module VitableConnect
         employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
         limit: Integer,
         page: Integer,
-        search: String?,
+        search: String,
         request_options: VitableConnect::RequestOptions
       }
 

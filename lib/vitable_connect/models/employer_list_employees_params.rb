@@ -35,7 +35,7 @@ module VitableConnect
       #   Case-insensitive search across employee first name, last name, and email
       #
       #   @return [String, nil]
-      optional :search, String, nil?: true
+      optional :search, String
 
       # @!method initialize(employer_id:, employment_status: nil, limit: nil, page: nil, search: nil, request_options: {})
       #   @param employer_id [String] Unique employer identifier (empr\_\*)
@@ -46,7 +46,7 @@ module VitableConnect
       #
       #   @param page [Integer] Page number (default: 1)
       #
-      #   @param search [String, nil] Case-insensitive search across employee first name, last name, and email
+      #   @param search [String] Case-insensitive search across employee first name, last name, and email
       #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
 
