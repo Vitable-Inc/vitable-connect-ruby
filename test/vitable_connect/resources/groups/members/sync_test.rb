@@ -36,7 +36,6 @@ class VitableConnect::Test::Resources::Groups::Members::SyncTest < VitableConnec
             date_of_birth: "1990-05-15",
             first_name: "Jane",
             last_name: "Doe",
-            phone: "4155550100",
             plan_id: "pln_abc123def456",
             reference_id: "EMP-001"
           }

@@ -96,9 +96,6 @@ module VitableConnect
             attr_accessor :last_name
 
             sig { returns(String) }
-            attr_accessor :phone
-
-            sig { returns(String) }
             attr_accessor :plan_id
 
             sig { returns(String) }
@@ -107,6 +104,9 @@ module VitableConnect
             sig { returns(T.nilable(String)) }
             attr_accessor :email
 
+            sig { returns(T.nilable(String)) }
+            attr_accessor :phone
+
             sig do
               params(
                 address:
@@ -114,10 +114,10 @@ module VitableConnect
                 date_of_birth: Date,
                 first_name: String,
                 last_name: String,
-                phone: String,
                 plan_id: String,
                 reference_id: String,
-                email: T.nilable(String)
+                email: T.nilable(String),
+                phone: T.nilable(String)
               ).returns(T.attached_class)
             end
             def self.new(
@@ -125,10 +125,10 @@ module VitableConnect
               date_of_birth:,
               first_name:,
               last_name:,
-              phone:,
               plan_id:,
               reference_id:,
-              email: nil
+              email: nil,
+              phone: nil
             )
             end
 
@@ -140,10 +140,10 @@ module VitableConnect
                   date_of_birth: Date,
                   first_name: String,
                   last_name: String,
-                  phone: String,
                   plan_id: String,
                   reference_id: String,
-                  email: T.nilable(String)
+                  email: T.nilable(String),
+                  phone: T.nilable(String)
                 }
               )
             end
