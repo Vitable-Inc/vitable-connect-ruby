@@ -47,11 +47,6 @@ module VitableConnect
         #   @return [String]
         required :last_name, String
 
-        # @!attribute phone
-        #
-        #   @return [String]
-        required :phone, String
-
         # @!attribute address
         #
         #   @return [VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee::Address, nil]
@@ -81,6 +76,12 @@ module VitableConnect
         #   @return [Symbol, VitableConnect::Models::EmployeeClass, nil]
         optional :employee_class, enum: -> { VitableConnect::EmployeeClass }, nil?: true
 
+        # @!attribute phone
+        #   Phone number
+        #
+        #   @return [String, nil]
+        optional :phone, String, nil?: true
+
         # @!attribute reference_id
         #
         #   @return [String, nil]
@@ -91,7 +92,7 @@ module VitableConnect
         #   @return [Date, nil]
         optional :start_date, Date, nil?: true
 
-        # @!method initialize(date_of_birth:, email:, first_name:, last_name:, phone:, address: nil, compensation_type: nil, employee_class: nil, reference_id: nil, start_date: nil)
+        # @!method initialize(date_of_birth:, email:, first_name:, last_name:, address: nil, compensation_type: nil, employee_class: nil, phone: nil, reference_id: nil, start_date: nil)
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee} for more
         #   details.
@@ -104,13 +105,13 @@ module VitableConnect
         #
         #   @param last_name [String]
         #
-        #   @param phone [String]
-        #
         #   @param address [VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee::Address, nil]
         #
         #   @param compensation_type [Symbol, VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee::CompensationType, nil] - `Salary` - Salary
         #
         #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
+        #
+        #   @param phone [String, nil] Phone number
         #
         #   @param reference_id [String, nil]
         #

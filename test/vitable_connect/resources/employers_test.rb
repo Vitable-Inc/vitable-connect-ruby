@@ -131,20 +131,8 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
       @vitable_connect.employers.submit_census_sync(
         "empr_abc123def456",
         employees: [
-          {
-            date_of_birth: "1990-05-15",
-            email: "jane.doe@acme.com",
-            first_name: "Jane",
-            last_name: "Doe",
-            phone: "4155550100"
-          },
-          {
-            date_of_birth: "1985-11-20",
-            email: "john.smith@acme.com",
-            first_name: "John",
-            last_name: "Smith",
-            phone: "4155550101"
-          }
+          {date_of_birth: "1990-05-15", email: "jane.doe@acme.com", first_name: "Jane", last_name: "Doe"},
+          {date_of_birth: "1985-11-20", email: "john.smith@acme.com", first_name: "John", last_name: "Smith"}
         ]
       )
 

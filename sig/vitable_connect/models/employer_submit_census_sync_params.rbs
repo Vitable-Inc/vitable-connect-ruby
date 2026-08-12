@@ -33,10 +33,10 @@ module VitableConnect
           email: String,
           first_name: String,
           last_name: String,
-          phone: String,
           address: VitableConnect::EmployerSubmitCensusSyncParams::Employee::Address?,
           compensation_type: VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee::compensation_type?,
           employee_class: VitableConnect::Models::employee_class?,
+          phone: String?,
           reference_id: String?,
           start_date: Date?
         }
@@ -50,13 +50,13 @@ module VitableConnect
 
         attr_accessor last_name: String
 
-        attr_accessor phone: String
-
         attr_accessor address: VitableConnect::EmployerSubmitCensusSyncParams::Employee::Address?
 
         attr_accessor compensation_type: VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee::compensation_type?
 
         attr_accessor employee_class: VitableConnect::Models::employee_class?
+
+        attr_accessor phone: String?
 
         attr_accessor reference_id: String?
 
@@ -67,10 +67,10 @@ module VitableConnect
           email: String,
           first_name: String,
           last_name: String,
-          phone: String,
           ?address: VitableConnect::EmployerSubmitCensusSyncParams::Employee::Address?,
           ?compensation_type: VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee::compensation_type?,
           ?employee_class: VitableConnect::Models::employee_class?,
+          ?phone: String?,
           ?reference_id: String?,
           ?start_date: Date?
         ) -> void
@@ -80,10 +80,10 @@ module VitableConnect
           email: String,
           first_name: String,
           last_name: String,
-          phone: String,
           address: VitableConnect::EmployerSubmitCensusSyncParams::Employee::Address?,
           compensation_type: VitableConnect::Models::EmployerSubmitCensusSyncParams::Employee::compensation_type?,
           employee_class: VitableConnect::Models::employee_class?,
+          phone: String?,
           reference_id: String?,
           start_date: Date?
         }
