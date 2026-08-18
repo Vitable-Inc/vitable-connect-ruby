@@ -6,7 +6,7 @@ class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::R
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.enrollments.retrieve("enrl_abc123def456")
+    response = @vitable_connect.enrollments.retrieve("enrl_AAAAAAAAAAAAAAAAAAAAAQ")
 
     assert_pattern do
       response => VitableConnect::Models::EnrollmentRetrieveResponse
