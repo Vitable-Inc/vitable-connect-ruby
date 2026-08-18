@@ -21,6 +21,14 @@ module VitableConnect
       optional :benefit_lifecycle_stage,
                -> { VitableConnect::Internal::Type::ArrayOf[enum: VitableConnect::EmployerListParams::BenefitLifecycleStage] }
 
+      # @!attribute hris_provider
+      #   Filter to employers whose HRIS connection is with one of these payroll providers
+      #   (e.g. `ADP RUN`). Matched case-insensitively; free text, so read the available
+      #   values from the HRIS-providers endpoint rather than assuming a fixed set.
+      #
+      #   @return [Array<String>, nil]
+      optional :hris_provider, VitableConnect::Internal::Type::ArrayOf[String]
+
       # @!attribute hris_status
       #   Filter to employers whose HRIS connection is in one of these statuses.
       #
@@ -53,13 +61,15 @@ module VitableConnect
       #   @return [String, nil]
       optional :search, String, nil?: true
 
-      # @!method initialize(benefit_family: nil, benefit_lifecycle_stage: nil, hris_status: nil, include_cancelled: nil, limit: nil, page: nil, search: nil, request_options: {})
+      # @!method initialize(benefit_family: nil, benefit_lifecycle_stage: nil, hris_provider: nil, hris_status: nil, include_cancelled: nil, limit: nil, page: nil, search: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::EmployerListParams} for more details.
       #
       #   @param benefit_family [Array<Symbol, VitableConnect::Models::EmployerListParams::BenefitFamily>] Filter to employers with at least one active benefit in these families.
       #
       #   @param benefit_lifecycle_stage [Array<Symbol, VitableConnect::Models::EmployerListParams::BenefitLifecycleStage>] Filter to employers in one of these computed benefit-lifecycle stages.
+      #
+      #   @param hris_provider [Array<String>] Filter to employers whose HRIS connection is with one of these payroll providers
       #
       #   @param hris_status [Array<Symbol, VitableConnect::Models::EmployerListParams::HRISStatus>] Filter to employers whose HRIS connection is in one of these statuses.
       #

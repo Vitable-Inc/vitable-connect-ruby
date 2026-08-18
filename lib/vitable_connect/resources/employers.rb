@@ -63,18 +63,21 @@ module VitableConnect
       # Some parameter documentations has been truncated, see
       # {VitableConnect::Models::EmployerListParams} for more details.
       #
-      # Returns the caller's organization book — every employer with its computed
-      # columns (enrollment-rate summary, benefit-family tags, HRIS connection,
+      # Returns the caller's employer book — every employer with its computed columns
+      # (enrollment-rate summary, benefit-family tags, HRIS connection,
       # benefit-lifecycle stage) merged with the employer's flat CRM fields (legal name,
-      # EIN, contact, address, timestamps). The organization is derived from the
-      # authenticated principal. Supports name search, benefit-family/lifecycle/HRIS
-      # filters, and page/limit pagination.
+      # EIN, contact, address, timestamps). The book is derived from the authenticated
+      # principal: one organization's employers, or every organization's for a caller
+      # whose reach is not a single organization. Supports name search,
+      # benefit-family/lifecycle/HRIS filters, and page/limit pagination.
       #
-      # @overload list(benefit_family: nil, benefit_lifecycle_stage: nil, hris_status: nil, include_cancelled: nil, limit: nil, page: nil, search: nil, request_options: {})
+      # @overload list(benefit_family: nil, benefit_lifecycle_stage: nil, hris_provider: nil, hris_status: nil, include_cancelled: nil, limit: nil, page: nil, search: nil, request_options: {})
       #
       # @param benefit_family [Array<Symbol, VitableConnect::Models::EmployerListParams::BenefitFamily>] Filter to employers with at least one active benefit in these families.
       #
       # @param benefit_lifecycle_stage [Array<Symbol, VitableConnect::Models::EmployerListParams::BenefitLifecycleStage>] Filter to employers in one of these computed benefit-lifecycle stages.
+      #
+      # @param hris_provider [Array<String>] Filter to employers whose HRIS connection is with one of these payroll providers
       #
       # @param hris_status [Array<Symbol, VitableConnect::Models::EmployerListParams::HRISStatus>] Filter to employers whose HRIS connection is in one of these statuses.
       #

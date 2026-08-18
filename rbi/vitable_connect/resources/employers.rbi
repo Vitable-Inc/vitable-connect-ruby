@@ -52,12 +52,13 @@ module VitableConnect
       )
       end
 
-      # Returns the caller's organization book — every employer with its computed
-      # columns (enrollment-rate summary, benefit-family tags, HRIS connection,
+      # Returns the caller's employer book — every employer with its computed columns
+      # (enrollment-rate summary, benefit-family tags, HRIS connection,
       # benefit-lifecycle stage) merged with the employer's flat CRM fields (legal name,
-      # EIN, contact, address, timestamps). The organization is derived from the
-      # authenticated principal. Supports name search, benefit-family/lifecycle/HRIS
-      # filters, and page/limit pagination.
+      # EIN, contact, address, timestamps). The book is derived from the authenticated
+      # principal: one organization's employers, or every organization's for a caller
+      # whose reach is not a single organization. Supports name search,
+      # benefit-family/lifecycle/HRIS filters, and page/limit pagination.
       sig do
         params(
           benefit_family:
@@ -68,6 +69,7 @@ module VitableConnect
             T::Array[
               VitableConnect::EmployerListParams::BenefitLifecycleStage::OrSymbol
             ],
+          hris_provider: T::Array[String],
           hris_status:
             T::Array[VitableConnect::EmployerListParams::HRISStatus::OrSymbol],
           include_cancelled: T::Boolean,
@@ -86,6 +88,10 @@ module VitableConnect
         benefit_family: nil,
         # Filter to employers in one of these computed benefit-lifecycle stages.
         benefit_lifecycle_stage: nil,
+        # Filter to employers whose HRIS connection is with one of these payroll providers
+        # (e.g. `ADP RUN`). Matched case-insensitively; free text, so read the available
+        # values from the HRIS-providers endpoint rather than assuming a fixed set.
+        hris_provider: nil,
         # Filter to employers whose HRIS connection is in one of these statuses.
         hris_status: nil,
         # Include cancelled employers (hidden by default unless their stage is explicitly

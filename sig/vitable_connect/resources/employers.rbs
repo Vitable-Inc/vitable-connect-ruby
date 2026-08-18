@@ -20,6 +20,7 @@ module VitableConnect
       def list: (
         ?benefit_family: ::Array[VitableConnect::Models::EmployerListParams::benefit_family],
         ?benefit_lifecycle_stage: ::Array[VitableConnect::Models::EmployerListParams::benefit_lifecycle_stage],
+        ?hris_provider: ::Array[String],
         ?hris_status: ::Array[VitableConnect::Models::EmployerListParams::hris_status],
         ?include_cancelled: bool,
         ?limit: Integer,

@@ -58,6 +58,15 @@ module VitableConnect
       end
       attr_writer :benefit_lifecycle_stage
 
+      # Filter to employers whose HRIS connection is with one of these payroll providers
+      # (e.g. `ADP RUN`). Matched case-insensitively; free text, so read the available
+      # values from the HRIS-providers endpoint rather than assuming a fixed set.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :hris_provider
+
+      sig { params(hris_provider: T::Array[String]).void }
+      attr_writer :hris_provider
+
       # Filter to employers whose HRIS connection is in one of these statuses.
       sig do
         returns(
@@ -112,6 +121,7 @@ module VitableConnect
             T::Array[
               VitableConnect::EmployerListParams::BenefitLifecycleStage::OrSymbol
             ],
+          hris_provider: T::Array[String],
           hris_status:
             T::Array[VitableConnect::EmployerListParams::HRISStatus::OrSymbol],
           include_cancelled: T::Boolean,
@@ -126,6 +136,10 @@ module VitableConnect
         benefit_family: nil,
         # Filter to employers in one of these computed benefit-lifecycle stages.
         benefit_lifecycle_stage: nil,
+        # Filter to employers whose HRIS connection is with one of these payroll providers
+        # (e.g. `ADP RUN`). Matched case-insensitively; free text, so read the available
+        # values from the HRIS-providers endpoint rather than assuming a fixed set.
+        hris_provider: nil,
         # Filter to employers whose HRIS connection is in one of these statuses.
         hris_status: nil,
         # Include cancelled employers (hidden by default unless their stage is explicitly
@@ -152,6 +166,7 @@ module VitableConnect
               T::Array[
                 VitableConnect::EmployerListParams::BenefitLifecycleStage::OrSymbol
               ],
+            hris_provider: T::Array[String],
             hris_status:
               T::Array[
                 VitableConnect::EmployerListParams::HRISStatus::OrSymbol
