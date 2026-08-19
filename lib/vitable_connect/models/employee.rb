@@ -119,6 +119,12 @@ module VitableConnect
         #   @return [Date]
         required :compensation_type_effective_date, Date
 
+        # @!attribute employer_id
+        #   Unique identifier of the employer this employment is with (empr\_\*)
+        #
+        #   @return [String]
+        required :employer_id, String
+
         # @!attribute member_id
         #   Unique member identifier with 'mbr\_' prefix
         #
@@ -144,7 +150,7 @@ module VitableConnect
         required :status, enum: -> { VitableConnect::Employee::Status }
       end
 
-      # @!method initialize(id:, classification_effective_date:, compensation_type:, compensation_type_effective_date:, created_at:, date_of_birth:, deductions:, email:, employee_class:, first_name:, last_name:, member_id:, phone:, start_date:, status:, updated_at:, address: nil, employer_name: nil, gender: nil, reference_id: nil, suffix: nil, termination_date: nil)
+      # @!method initialize(id:, classification_effective_date:, compensation_type:, compensation_type_effective_date:, created_at:, date_of_birth:, deductions:, email:, employee_class:, employer_id:, first_name:, last_name:, member_id:, phone:, start_date:, status:, updated_at:, address: nil, employer_name: nil, gender: nil, reference_id: nil, suffix: nil, termination_date: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Employee} for more details.
       #
@@ -165,6 +171,8 @@ module VitableConnect
       #   @param email [String] Email address
       #
       #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass] - `Full Time` - Full Time
+      #
+      #   @param employer_id [String] Unique identifier of the employer this employment is with (empr\_\*)
       #
       #   @param first_name [String] Employee's legal first name
       #

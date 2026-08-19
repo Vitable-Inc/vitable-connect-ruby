@@ -98,6 +98,10 @@ module VitableConnect
       sig { returns(Date) }
       attr_accessor :compensation_type_effective_date
 
+      # Unique identifier of the employer this employment is with (empr\_\*)
+      sig { returns(String) }
+      attr_accessor :employer_id
+
       # Unique member identifier with 'mbr\_' prefix
       sig { returns(String) }
       attr_accessor :member_id
@@ -126,6 +130,7 @@ module VitableConnect
           deductions: T::Array[VitableConnect::Employee::Deduction::OrHash],
           email: String,
           employee_class: VitableConnect::EmployeeClass::OrSymbol,
+          employer_id: String,
           first_name: String,
           last_name: String,
           member_id: String,
@@ -167,6 +172,8 @@ module VitableConnect
         # - `Seasonal` - Seasonal
         # - `Individual Contractor` - Individual Contractor
         employee_class:,
+        # Unique identifier of the employer this employment is with (empr\_\*)
+        employer_id:,
         # Employee's legal first name
         first_name:,
         # Employee's legal last name
@@ -211,6 +218,7 @@ module VitableConnect
             deductions: T::Array[VitableConnect::Employee::Deduction],
             email: String,
             employee_class: VitableConnect::EmployeeClass::TaggedSymbol,
+            employer_id: String,
             first_name: String,
             last_name: String,
             member_id: String,

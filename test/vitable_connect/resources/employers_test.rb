@@ -107,6 +107,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
         deductions: ^(VitableConnect::Internal::Type::ArrayOf[VitableConnect::Employee::Deduction]),
         email: String,
         employee_class: VitableConnect::EmployeeClass,
+        employer_id: String,
         first_name: String,
         last_name: String,
         member_id: String,

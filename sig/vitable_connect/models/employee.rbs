@@ -11,6 +11,7 @@ module VitableConnect
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
         employee_class: VitableConnect::Models::employee_class,
+        employer_id: String,
         first_name: String,
         last_name: String,
         member_id: String,
@@ -63,6 +64,8 @@ module VitableConnect
 
       attr_accessor compensation_type_effective_date: Date
 
+      attr_accessor employer_id: String
+
       attr_accessor member_id: String
 
       attr_accessor phone: String?
@@ -81,6 +84,7 @@ module VitableConnect
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
         employee_class: VitableConnect::Models::employee_class,
+        employer_id: String,
         first_name: String,
         last_name: String,
         member_id: String,
@@ -106,6 +110,7 @@ module VitableConnect
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
         employee_class: VitableConnect::Models::employee_class,
+        employer_id: String,
         first_name: String,
         last_name: String,
         member_id: String,
