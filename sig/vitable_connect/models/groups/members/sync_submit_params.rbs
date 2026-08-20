@@ -35,10 +35,10 @@ module VitableConnect
               date_of_birth: Date,
               first_name: String,
               last_name: String,
-              phone: String,
               plan_id: String,
               reference_id: String,
-              email: String?
+              email: String?,
+              phone: String?
             }
 
           class Member < VitableConnect::Internal::Type::BaseModel
@@ -50,23 +50,23 @@ module VitableConnect
 
             attr_accessor last_name: String
 
-            attr_accessor phone: String
-
             attr_accessor plan_id: String
 
             attr_accessor reference_id: String
 
             attr_accessor email: String?
 
+            attr_accessor phone: String?
+
             def initialize: (
               address: VitableConnect::Groups::Members::SyncSubmitParams::Member::Address,
               date_of_birth: Date,
               first_name: String,
               last_name: String,
-              phone: String,
               plan_id: String,
               reference_id: String,
-              ?email: String?
+              ?email: String?,
+              ?phone: String?
             ) -> void
 
             def to_hash: -> {
@@ -74,10 +74,10 @@ module VitableConnect
               date_of_birth: Date,
               first_name: String,
               last_name: String,
-              phone: String,
               plan_id: String,
               reference_id: String,
-              email: String?
+              email: String?,
+              phone: String?
             }
 
             type address =

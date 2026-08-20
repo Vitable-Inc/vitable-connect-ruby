@@ -28,6 +28,7 @@ module VitableConnect
 
       # - `enrollment.accepted` - Enrollment Accepted
       # - `enrollment.terminated` - Enrollment Terminated
+      # - `enrollment.termination_rescheduled` - Enrollment Termination Rescheduled
       # - `enrollment.elected` - Enrollment Elected
       # - `enrollment.granted` - Enrollment Granted
       # - `enrollment.waived` - Enrollment Waived
@@ -113,6 +114,7 @@ module VitableConnect
         created_before: nil,
         # - `enrollment.accepted` - Enrollment Accepted
         # - `enrollment.terminated` - Enrollment Terminated
+        # - `enrollment.termination_rescheduled` - Enrollment Termination Rescheduled
         # - `enrollment.elected` - Enrollment Elected
         # - `enrollment.granted` - Enrollment Granted
         # - `enrollment.waived` - Enrollment Waived
@@ -159,6 +161,7 @@ module VitableConnect
 
       # - `enrollment.accepted` - Enrollment Accepted
       # - `enrollment.terminated` - Enrollment Terminated
+      # - `enrollment.termination_rescheduled` - Enrollment Termination Rescheduled
       # - `enrollment.elected` - Enrollment Elected
       # - `enrollment.granted` - Enrollment Granted
       # - `enrollment.waived` - Enrollment Waived
@@ -184,6 +187,11 @@ module VitableConnect
         ENROLLMENT_TERMINATED =
           T.let(
             :"enrollment.terminated",
+            VitableConnect::WebhookEventListParams::EventName::TaggedSymbol
+          )
+        ENROLLMENT_TERMINATION_RESCHEDULED =
+          T.let(
+            :"enrollment.termination_rescheduled",
             VitableConnect::WebhookEventListParams::EventName::TaggedSymbol
           )
         ENROLLMENT_ELECTED =

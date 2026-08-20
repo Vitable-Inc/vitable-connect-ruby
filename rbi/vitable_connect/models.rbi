@@ -13,30 +13,71 @@ module VitableConnect
 
   EmployeeRetrieveParams = VitableConnect::Models::EmployeeRetrieveParams
 
+  EmployeeUpdateParams = VitableConnect::Models::EmployeeUpdateParams
+
   Employer = VitableConnect::Models::Employer
 
   EmployerCreateParams = VitableConnect::Models::EmployerCreateParams
 
+  EmployerEnsurePayrollIntegrationEmailParams =
+    VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailParams
+
+  EmployerListBenefitPlanYearEnrollmentsParams =
+    VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsParams
+
+  EmployerListBenefitPlanYearsParams =
+    VitableConnect::Models::EmployerListBenefitPlanYearsParams
+
   EmployerListEmployeesParams =
     VitableConnect::Models::EmployerListEmployeesParams
 
+  EmployerListHRISProvidersParams =
+    VitableConnect::Models::EmployerListHRISProvidersParams
+
+  EmployerListInvoicesParams =
+    VitableConnect::Models::EmployerListInvoicesParams
+
   EmployerListParams = VitableConnect::Models::EmployerListParams
+
+  EmployerListPayrollDeductionStatementsParams =
+    VitableConnect::Models::EmployerListPayrollDeductionStatementsParams
 
   EmployerResponse = VitableConnect::Models::EmployerResponse
 
+  EmployerRetrieveBenefitPlanYearParams =
+    VitableConnect::Models::EmployerRetrieveBenefitPlanYearParams
+
+  EmployerRetrieveHRISParams =
+    VitableConnect::Models::EmployerRetrieveHRISParams
+
+  EmployerRetrieveInvoicePdfParams =
+    VitableConnect::Models::EmployerRetrieveInvoicePdfParams
+
   EmployerRetrieveParams = VitableConnect::Models::EmployerRetrieveParams
+
+  EmployerRetrievePayrollAccessSetupParams =
+    VitableConnect::Models::EmployerRetrievePayrollAccessSetupParams
 
   EmployerSubmitCensusSyncParams =
     VitableConnect::Models::EmployerSubmitCensusSyncParams
+
+  EmployerSubmitPayrollAccessSetupParams =
+    VitableConnect::Models::EmployerSubmitPayrollAccessSetupParams
+
+  EmployerUpdateParams = VitableConnect::Models::EmployerUpdateParams
 
   EmployerUpdateSettingsParams =
     VitableConnect::Models::EmployerUpdateSettingsParams
 
   Enrollment = VitableConnect::Models::Enrollment
 
+  EnrollmentReissueParams = VitableConnect::Models::EnrollmentReissueParams
+
   EnrollmentRetrieveParams = VitableConnect::Models::EnrollmentRetrieveParams
 
   EnrollmentStatus = VitableConnect::Models::EnrollmentStatus
+
+  EnrollmentTerminateParams = VitableConnect::Models::EnrollmentTerminateParams
 
   Group = VitableConnect::Models::Group
 
@@ -52,11 +93,34 @@ module VitableConnect
 
   GroupUpdateParams = VitableConnect::Models::GroupUpdateParams
 
+  MemberListDependentsParams =
+    VitableConnect::Models::MemberListDependentsParams
+
+  MemberListEmploymentsParams =
+    VitableConnect::Models::MemberListEmploymentsParams
+
+  MemberListEnrollmentsParams =
+    VitableConnect::Models::MemberListEnrollmentsParams
+
+  MemberListIDCardsParams = VitableConnect::Models::MemberListIDCardsParams
+
+  MemberListParams = VitableConnect::Models::MemberListParams
+
+  MemberListQualifyingLifeEventsParams =
+    VitableConnect::Models::MemberListQualifyingLifeEventsParams
+
+  MemberRetrieveHouseholdParams =
+    VitableConnect::Models::MemberRetrieveHouseholdParams
+
+  MemberRetrieveParams = VitableConnect::Models::MemberRetrieveParams
+
+  OrganizationCreateParams = VitableConnect::Models::OrganizationCreateParams
+
+  OrganizationListParams = VitableConnect::Models::OrganizationListParams
+
   Pagination = VitableConnect::Models::Pagination
 
   PlanListParams = VitableConnect::Models::PlanListParams
-
-  Type = VitableConnect::Models::Type
 
   WebhookEvent = VitableConnect::Models::WebhookEvent
 

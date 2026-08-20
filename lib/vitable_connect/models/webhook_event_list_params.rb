@@ -20,6 +20,7 @@ module VitableConnect
       # @!attribute event_name
       #   - `enrollment.accepted` - Enrollment Accepted
       #   - `enrollment.terminated` - Enrollment Terminated
+      #   - `enrollment.termination_rescheduled` - Enrollment Termination Rescheduled
       #   - `enrollment.elected` - Enrollment Elected
       #   - `enrollment.granted` - Enrollment Granted
       #   - `enrollment.waived` - Enrollment Waived
@@ -82,6 +83,7 @@ module VitableConnect
 
       # - `enrollment.accepted` - Enrollment Accepted
       # - `enrollment.terminated` - Enrollment Terminated
+      # - `enrollment.termination_rescheduled` - Enrollment Termination Rescheduled
       # - `enrollment.elected` - Enrollment Elected
       # - `enrollment.granted` - Enrollment Granted
       # - `enrollment.waived` - Enrollment Waived
@@ -95,6 +97,7 @@ module VitableConnect
 
         ENROLLMENT_ACCEPTED = :"enrollment.accepted"
         ENROLLMENT_TERMINATED = :"enrollment.terminated"
+        ENROLLMENT_TERMINATION_RESCHEDULED = :"enrollment.termination_rescheduled"
         ENROLLMENT_ELECTED = :"enrollment.elected"
         ENROLLMENT_GRANTED = :"enrollment.granted"
         ENROLLMENT_WAIVED = :"enrollment.waived"

@@ -1,0 +1,179 @@
+module VitableConnect
+  module Models
+    type employer_list_response =
+      {
+        active: bool,
+        address: VitableConnect::Models::EmployerListResponse::Address,
+        benefit_families: ::Array[String],
+        benefit_lifecycle_stage: VitableConnect::Models::EmployerListResponse::BenefitLifecycleStage,
+        created_at: Time,
+        ein: String?,
+        email: String?,
+        employer_id: String,
+        enrollment_rate_summary: VitableConnect::Models::EmployerListResponse::EnrollmentRateSummary,
+        hris_status: VitableConnect::Models::EmployerListResponse::HRISStatus?,
+        legal_name: String?,
+        name: String,
+        organization_id: String?,
+        phone_number: String?,
+        reference_id: String?,
+        updated_at: Time
+      }
+
+    class EmployerListResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor active: bool
+
+      attr_accessor address: VitableConnect::Models::EmployerListResponse::Address
+
+      attr_accessor benefit_families: ::Array[String]
+
+      attr_accessor benefit_lifecycle_stage: VitableConnect::Models::EmployerListResponse::BenefitLifecycleStage
+
+      attr_accessor created_at: Time
+
+      attr_accessor ein: String?
+
+      attr_accessor email: String?
+
+      attr_accessor employer_id: String
+
+      attr_accessor enrollment_rate_summary: VitableConnect::Models::EmployerListResponse::EnrollmentRateSummary
+
+      attr_accessor hris_status: VitableConnect::Models::EmployerListResponse::HRISStatus?
+
+      attr_accessor legal_name: String?
+
+      attr_accessor name: String
+
+      attr_accessor organization_id: String?
+
+      attr_accessor phone_number: String?
+
+      attr_accessor reference_id: String?
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        active: bool,
+        address: VitableConnect::Models::EmployerListResponse::Address,
+        benefit_families: ::Array[String],
+        benefit_lifecycle_stage: VitableConnect::Models::EmployerListResponse::BenefitLifecycleStage,
+        created_at: Time,
+        ein: String?,
+        email: String?,
+        employer_id: String,
+        enrollment_rate_summary: VitableConnect::Models::EmployerListResponse::EnrollmentRateSummary,
+        hris_status: VitableConnect::Models::EmployerListResponse::HRISStatus?,
+        legal_name: String?,
+        name: String,
+        organization_id: String?,
+        phone_number: String?,
+        reference_id: String?,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        active: bool,
+        address: VitableConnect::Models::EmployerListResponse::Address,
+        benefit_families: ::Array[String],
+        benefit_lifecycle_stage: VitableConnect::Models::EmployerListResponse::BenefitLifecycleStage,
+        created_at: Time,
+        ein: String?,
+        email: String?,
+        employer_id: String,
+        enrollment_rate_summary: VitableConnect::Models::EmployerListResponse::EnrollmentRateSummary,
+        hris_status: VitableConnect::Models::EmployerListResponse::HRISStatus?,
+        legal_name: String?,
+        name: String,
+        organization_id: String?,
+        phone_number: String?,
+        reference_id: String?,
+        updated_at: Time
+      }
+
+      type address =
+        {
+          :address_line_1 => String,
+          :address_line_2 => String?,
+          city: String,
+          state: String,
+          zipcode: String
+        }
+
+      class Address < VitableConnect::Internal::Type::BaseModel
+        attr_accessor address_line_1: String
+
+        attr_accessor address_line_2: String?
+
+        attr_accessor city: String
+
+        attr_accessor state: String
+
+        attr_accessor zipcode: String
+
+        def initialize: (
+          address_line_1: String,
+          address_line_2: String?,
+          city: String,
+          state: String,
+          zipcode: String
+        ) -> void
+
+        def to_hash: -> {
+          :address_line_1 => String,
+          :address_line_2 => String?,
+          city: String,
+          state: String,
+          zipcode: String
+        }
+      end
+
+      type benefit_lifecycle_stage = { as_of_date: Date?, stage: String }
+
+      class BenefitLifecycleStage < VitableConnect::Internal::Type::BaseModel
+        attr_accessor as_of_date: Date?
+
+        attr_accessor stage: String
+
+        def initialize: (as_of_date: Date?, stage: String) -> void
+
+        def to_hash: -> { as_of_date: Date?, stage: String }
+      end
+
+      type enrollment_rate_summary =
+        { eligible: Integer, enrolled: Integer, percentage: Integer }
+
+      class EnrollmentRateSummary < VitableConnect::Internal::Type::BaseModel
+        attr_accessor eligible: Integer
+
+        attr_accessor enrolled: Integer
+
+        attr_accessor percentage: Integer
+
+        def initialize: (
+          eligible: Integer,
+          enrolled: Integer,
+          percentage: Integer
+        ) -> void
+
+        def to_hash: -> {
+          eligible: Integer,
+          enrolled: Integer,
+          percentage: Integer
+        }
+      end
+
+      type hris_status = { provider: String, status: String }
+
+      class HRISStatus < VitableConnect::Internal::Type::BaseModel
+        attr_accessor provider: String
+
+        attr_accessor status: String
+
+        def initialize: (provider: String, status: String) -> void
+
+        def to_hash: -> { provider: String, status: String }
+      end
+    end
+  end
+end

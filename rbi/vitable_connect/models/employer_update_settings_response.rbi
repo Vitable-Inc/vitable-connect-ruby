@@ -52,8 +52,8 @@ module VitableConnect
           end
 
         # - `weekly` - Weekly
-        # - `bi_weekly` - Bi-Weekly
-        # - `semi_monthly` - Semi-Monthly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
         # - `monthly` - Monthly
         sig do
           returns(
@@ -74,8 +74,8 @@ module VitableConnect
         end
         def self.new(
           # - `weekly` - Weekly
-          # - `bi_weekly` - Bi-Weekly
-          # - `semi_monthly` - Semi-Monthly
+          # - `bi_weekly` - Bi Weekly
+          # - `semi_monthly` - Semi Monthly
           # - `monthly` - Monthly
           pay_frequency:
         )
@@ -95,8 +95,8 @@ module VitableConnect
         end
 
         # - `weekly` - Weekly
-        # - `bi_weekly` - Bi-Weekly
-        # - `semi_monthly` - Semi-Monthly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
         # - `monthly` - Monthly
         module PayFrequency
           extend VitableConnect::Internal::Type::Enum

@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "vitable-connect", "~> 0.5.0"
+gem "vitable-connect", "~> 0.6.0"
 ```
 
 <!-- x-release-please-end -->
@@ -229,25 +229,25 @@ vitable_connect.auth.issue_access_token(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :weekly
-puts(VitableConnect::EmployerUpdateSettingsParams::PayFrequency::WEEKLY)
+# :Salary
+puts(VitableConnect::EmployeeUpdateParams::CompensationType::SALARY)
 
-# Revealed type: `T.all(VitableConnect::EmployerUpdateSettingsParams::PayFrequency, Symbol)`
-T.reveal_type(VitableConnect::EmployerUpdateSettingsParams::PayFrequency::WEEKLY)
+# Revealed type: `T.all(VitableConnect::EmployeeUpdateParams::CompensationType, Symbol)`
+T.reveal_type(VitableConnect::EmployeeUpdateParams::CompensationType::SALARY)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-vitable_connect.employers.update_settings(
-  pay_frequency: VitableConnect::EmployerUpdateSettingsParams::PayFrequency::WEEKLY,
+vitable_connect.employees.update(
+  compensation_type: VitableConnect::EmployeeUpdateParams::CompensationType::SALARY,
   # …
 )
 
 # Literal values are also permissible:
-vitable_connect.employers.update_settings(
-  pay_frequency: :weekly,
+vitable_connect.employees.update(
+  compensation_type: :Salary,
   # …
 )
 ```

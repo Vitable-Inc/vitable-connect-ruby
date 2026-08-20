@@ -28,6 +28,17 @@ module VitableConnect
       #   @return [String]
       required :email, String
 
+      # @!attribute employee_class
+      #   - `Full Time` - Full Time
+      #   - `Part Time` - Part Time
+      #   - `Temporary` - Temporary
+      #   - `Intern` - Intern
+      #   - `Seasonal` - Seasonal
+      #   - `Individual Contractor` - Individual Contractor
+      #
+      #   @return [Symbol, VitableConnect::Models::EmployeeClass]
+      required :employee_class, enum: -> { VitableConnect::EmployeeClass }
+
       # @!attribute first_name
       #   Employee's legal first name
       #
@@ -52,28 +63,17 @@ module VitableConnect
       #   @return [VitableConnect::Models::Employee::Address, nil]
       optional :address, -> { VitableConnect::Employee::Address }, nil?: true
 
-      # @!attribute employee_class
-      #   - `Full Time` - Full Time
-      #   - `Part Time` - Part Time
-      #   - `Temporary` - Temporary
-      #   - `Intern` - Intern
-      #   - `Seasonal` - Seasonal
-      #   - `Individual Contractor` - Individual Contractor
+      # @!attribute employer_name
+      #   Name of the employer this employment is with
       #
-      #   @return [Symbol, VitableConnect::Models::EmployeeClass, nil]
-      optional :employee_class, enum: -> { VitableConnect::EmployeeClass }, nil?: true
+      #   @return [String, nil]
+      optional :employer_name, String, nil?: true
 
       # @!attribute gender
       #   Gender identity, if provided
       #
       #   @return [String, nil]
       optional :gender, String, nil?: true
-
-      # @!attribute hire_date
-      #   Employee's hire date with the employer
-      #
-      #   @return [Date, nil]
-      optional :hire_date, Date, nil?: true
 
       # @!attribute reference_id
       #   Partner-assigned reference ID for the employee
@@ -100,6 +100,31 @@ module VitableConnect
         #   @return [String]
         required :id, String
 
+        # @!attribute classification_effective_date
+        #   Date the employee's current classification took effect
+        #
+        #   @return [Date]
+        required :classification_effective_date, Date
+
+        # @!attribute compensation_type
+        #   - `Salary` - Salary
+        #   - `Hourly` - Hourly
+        #
+        #   @return [Symbol, VitableConnect::Models::Employee::CompensationType, nil]
+        required :compensation_type, enum: -> { VitableConnect::Employee::CompensationType }, nil?: true
+
+        # @!attribute compensation_type_effective_date
+        #   Date the employee's current compensation type took effect
+        #
+        #   @return [Date]
+        required :compensation_type_effective_date, Date
+
+        # @!attribute employer_id
+        #   Unique identifier of the employer this employment is with (empr\_\*)
+        #
+        #   @return [String]
+        required :employer_id, String
+
         # @!attribute member_id
         #   Unique member identifier with 'mbr\_' prefix
         #
@@ -112,18 +137,30 @@ module VitableConnect
         #   @return [String, nil]
         required :phone, String, nil?: true
 
+        # @!attribute start_date
+        #   Employee's start date with the employer
+        #
+        #   @return [Date]
+        required :start_date, Date
+
         # @!attribute status
         #   Employee status (active or terminated)
         #
-        #   @return [String]
-        required :status, String
+        #   @return [Symbol, VitableConnect::Models::Employee::Status]
+        required :status, enum: -> { VitableConnect::Employee::Status }
       end
 
-      # @!method initialize(id:, created_at:, date_of_birth:, deductions:, email:, first_name:, last_name:, member_id:, phone:, status:, updated_at:, address: nil, employee_class: nil, gender: nil, hire_date: nil, reference_id: nil, suffix: nil, termination_date: nil)
+      # @!method initialize(id:, classification_effective_date:, compensation_type:, compensation_type_effective_date:, created_at:, date_of_birth:, deductions:, email:, employee_class:, employer_id:, first_name:, last_name:, member_id:, phone:, start_date:, status:, updated_at:, address: nil, employer_name: nil, gender: nil, reference_id: nil, suffix: nil, termination_date: nil)
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Employee} for more details.
       #
       #   @param id [String] Unique employee identifier with 'empl\_' prefix
+      #
+      #   @param classification_effective_date [Date] Date the employee's current classification took effect
+      #
+      #   @param compensation_type [Symbol, VitableConnect::Models::Employee::CompensationType, nil] - `Salary` - Salary
+      #
+      #   @param compensation_type_effective_date [Date] Date the employee's current compensation type took effect
       #
       #   @param created_at [Time] Timestamp when the employee was created
       #
@@ -133,6 +170,10 @@ module VitableConnect
       #
       #   @param email [String] Email address
       #
+      #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass] - `Full Time` - Full Time
+      #
+      #   @param employer_id [String] Unique identifier of the employer this employment is with (empr\_\*)
+      #
       #   @param first_name [String] Employee's legal first name
       #
       #   @param last_name [String] Employee's legal last name
@@ -141,23 +182,37 @@ module VitableConnect
       #
       #   @param phone [String, nil] Phone number (10-digit US domestic string)
       #
-      #   @param status [String] Employee status (active or terminated)
+      #   @param start_date [Date] Employee's start date with the employer
+      #
+      #   @param status [Symbol, VitableConnect::Models::Employee::Status] Employee status (active or terminated)
       #
       #   @param updated_at [Time] Timestamp when the employee was last updated
       #
       #   @param address [VitableConnect::Models::Employee::Address, nil] Employee's residential address
       #
-      #   @param employee_class [Symbol, VitableConnect::Models::EmployeeClass, nil] - `Full Time` - Full Time
+      #   @param employer_name [String, nil] Name of the employer this employment is with
       #
       #   @param gender [String, nil] Gender identity, if provided
-      #
-      #   @param hire_date [Date, nil] Employee's hire date with the employer
       #
       #   @param reference_id [String, nil] Partner-assigned reference ID for the employee
       #
       #   @param suffix [String, nil] Name suffix (e.g., Jr., Sr., III)
       #
       #   @param termination_date [Date, nil] Employee's termination date, if terminated
+
+      # - `Salary` - Salary
+      # - `Hourly` - Hourly
+      #
+      # @see VitableConnect::Models::Employee#compensation_type
+      module CompensationType
+        extend VitableConnect::Internal::Type::Enum
+
+        SALARY = :Salary
+        HOURLY = :Hourly
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       class Deduction < VitableConnect::Internal::Type::BaseModel
         # @!attribute benefit_name
@@ -258,6 +313,19 @@ module VitableConnect
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # Employee status (active or terminated)
+      #
+      # @see VitableConnect::Models::Employee#status
+      module Status
+        extend VitableConnect::Internal::Type::Enum
+
+        ACTIVE = :active
+        TERMINATED = :terminated
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see VitableConnect::Models::Employee#address

@@ -6,7 +6,7 @@ class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::R
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.enrollments.retrieve("enrl_abc123def456")
+    response = @vitable_connect.enrollments.retrieve("enrl_AAAAAAAAAAAAAAAAAAAAAQ")
 
     assert_pattern do
       response => VitableConnect::Models::EnrollmentRetrieveResponse
@@ -16,6 +16,32 @@ class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::R
       response => {
         data: VitableConnect::Enrollment
       }
+    end
+  end
+
+  def test_reissue
+    skip("Mock server tests are disabled")
+
+    response = @vitable_connect.enrollments.reissue("enrl_AAAAAAAAAAAAAAAAAAAAAQ")
+
+    assert_pattern do
+      response => VitableConnect::Models::EnrollmentReissueResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: VitableConnect::Models::EnrollmentReissueResponse::Data
+      }
+    end
+  end
+
+  def test_terminate
+    skip("Mock server tests are disabled")
+
+    response = @vitable_connect.enrollments.terminate("enrl_AAAAAAAAAAAAAAAAAAAAAQ")
+
+    assert_pattern do
+      response => nil
     end
   end
 end

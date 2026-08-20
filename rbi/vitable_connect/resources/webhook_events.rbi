@@ -37,6 +37,7 @@ module VitableConnect
         created_before: nil,
         # - `enrollment.accepted` - Enrollment Accepted
         # - `enrollment.terminated` - Enrollment Terminated
+        # - `enrollment.termination_rescheduled` - Enrollment Termination Rescheduled
         # - `enrollment.elected` - Enrollment Elected
         # - `enrollment.granted` - Enrollment Granted
         # - `enrollment.waived` - Enrollment Waived

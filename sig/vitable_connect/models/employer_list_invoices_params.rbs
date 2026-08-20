@@ -1,0 +1,34 @@
+module VitableConnect
+  module Models
+    type employer_list_invoices_params =
+      { employer_id: String, limit: Integer, offset: String? }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployerListInvoicesParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employer_id: String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_accessor offset: String?
+
+      def initialize: (
+        employer_id: String,
+        ?limit: Integer,
+        ?offset: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employer_id: String,
+        limit: Integer,
+        offset: String?,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end

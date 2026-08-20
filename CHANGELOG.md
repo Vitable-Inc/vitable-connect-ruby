@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.6.0 (2026-08-20)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** api update ([a8fa255](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/a8fa25571fcc0dfffd2cea62c700c7612837ab0e))
+* **api:** api update ([8ea65ec](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/8ea65ec4ca7cbd824bd8f84757de396be2f2d763))
+* **api:** api update ([e4c0d55](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/e4c0d55037684ff1728c169be424b135470b6a20))
+* **api:** api update ([1313a69](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/1313a69bae839b3507b9c0d99208b7a4a8fb8be3))
+* **api:** api update ([b7c3059](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/b7c3059ddbbf2e0ebb11c45d4666b8e7b15b8cf0))
+* **api:** api update ([1541690](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/1541690e7b4417b0f96fef30ca1cfb3bf501c8a0))
+* **api:** api update ([3cbc2db](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/3cbc2db1c901083f82bcf2cc5033548850a7b7ef))
+* **api:** api update ([87cb259](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/87cb259ac824d9f3132bdbae4cc126113c76f104))
+* **api:** api update ([59ec0e4](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/59ec0e49fcaf2073d7aa8d23f30fa4f66da2dc06))
+* **api:** api update ([d27c533](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/d27c533ad620cce795687476e75da6c6ca58c981))
+* **api:** api update ([9977677](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/99776776cfdda16a6c1d747411f593e6a6604a93))
+* **api:** configure all public v1 endpoints and drop dangling Type model ref ([266eb2d](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/266eb2dbb74bd7691dde067954b6cabb52feece0))
+* **api:** removed benefit policies from api reference ([a030ce5](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/a030ce509786dee1f6c331bd0d74914caaf79b16))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([432db79](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/432db791d9bb609ce1f65cbbe338e41254edf038))
+
+
+### Bug Fixes
+
+* **client:** bind IdentityProviderBearer to an identity_token client option ([d6fa230](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/d6fa230a5b7b4e97e6dde37fd4bc078b1cb7b4a4))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([fa81169](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/fa811693161dee1bc144df4db95258ca4755ed51))
+
+
+### Refactors
+
+* **api:** drop the IdP session endpoints from the SDK surface ([30a9c2e](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/30a9c2e3724bed64bf808615943e43e7324de9c5))
+
 ## 0.5.0 (2026-06-18)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.4.0...v0.5.0)

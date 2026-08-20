@@ -31,7 +31,19 @@ module VitableConnect
           #
           # @raise [ArgumentError]
           def validate!(req)
-            keys = [:method, :path, :query, :headers, :body, :unwrap, :page, :stream, :model, :options]
+            keys = [
+              :method,
+              :path,
+              :query,
+              :headers,
+              :body,
+              :unwrap,
+              :page,
+              :stream,
+              :model,
+              :security,
+              :options
+            ]
             case req
             in Hash
               req.each_key do |k|
@@ -252,6 +264,8 @@ module VitableConnect
         #
         #   @option req [VitableConnect::Internal::Type::Converter, Class, nil] :model
         #
+        #   @option req [Hash{Symbol=>Boolean}, nil] :security
+        #
         # @param opts [Hash{Symbol=>Object}] .
         #
         #   @option opts [String, nil] :idempotency_key
@@ -276,7 +290,11 @@ module VitableConnect
 
           headers = VitableConnect::Internal::Util.normalized_headers(
             @headers,
-            auth_headers,
+            auth_headers(
+              security: req.fetch(
+                :security, {api_key_auth: true}
+              )
+            ),
             req[:headers].to_h,
             opts[:extra_headers].to_h
           )
@@ -448,7 +466,7 @@ module VitableConnect
         # Execute the request specified by `req`. This is the method that all resource
         # methods call into.
         #
-        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: VitableConnect::Internal::Type::Unknown, options: {})
+        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: VitableConnect::Internal::Type::Unknown, security: {api_key_auth: true}, options: {})
         #
         # @param method [Symbol]
         #
@@ -467,6 +485,8 @@ module VitableConnect
         # @param stream [Class<VitableConnect::Internal::Type::BaseStream>, nil]
         #
         # @param model [VitableConnect::Internal::Type::Converter, Class, nil]
+        #
+        # @param security [Hash{Symbol=>Boolean}, nil]
         #
         # @param options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil] .
         #
@@ -560,6 +580,7 @@ module VitableConnect
               page: T.nilable(T::Class[VitableConnect::Internal::Type::BasePage[VitableConnect::Internal::Type::BaseModel]]),
               stream: T.nilable(T::Class[T.anything]),
               model: T.nilable(VitableConnect::Internal::Type::Converter::Input),
+              security: T.nilable({api_key_auth: T::Boolean}),
               options: T.nilable(VitableConnect::RequestOptions::OrHash)
             }
           end

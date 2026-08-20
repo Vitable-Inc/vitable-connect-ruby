@@ -1,0 +1,52 @@
+module VitableConnect
+  module Resources
+    class Members
+      def retrieve: (
+        String member_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::MemberRetrieveResponse
+
+      def list: (
+        ?limit: Integer,
+        ?page: Integer,
+        ?search: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Models::MemberListResponse]
+
+      def list_dependents: (
+        String member_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::MemberListDependentsResponse
+
+      def list_employments: (
+        String member_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::MemberListEmploymentsResponse
+
+      def list_enrollments: (
+        String member_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::MemberListEnrollmentsResponse
+
+      def list_id_cards: (
+        String member_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::MemberListIDCardsResponse
+
+      def list_qualifying_life_events: (
+        String member_id,
+        ?limit: Integer,
+        ?page: Integer,
+        ?status: VitableConnect::Models::MemberListQualifyingLifeEventsParams::status,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Models::MemberListQualifyingLifeEventsResponse]
+
+      def retrieve_household: (
+        String member_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::MemberRetrieveHouseholdResponse
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end

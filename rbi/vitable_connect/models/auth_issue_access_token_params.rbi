@@ -117,14 +117,20 @@ module VitableConnect
 
         # - `employer` - employer
         # - `employee` - employee
-        sig { returns(VitableConnect::Type::OrSymbol) }
+        sig do
+          returns(
+            VitableConnect::AuthIssueAccessTokenParams::BoundEntity::Type::OrSymbol
+          )
+        end
         attr_accessor :type
 
         # Optional entity to bind the token to for scoped access
         sig do
-          params(id: String, type: VitableConnect::Type::OrSymbol).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            type:
+              VitableConnect::AuthIssueAccessTokenParams::BoundEntity::Type::OrSymbol
+          ).returns(T.attached_class)
         end
         def self.new(
           # Prefixed entity ID to bind the token to (empr*\* for employer, empl*\* for
@@ -137,9 +143,51 @@ module VitableConnect
         end
 
         sig do
-          override.returns({ id: String, type: VitableConnect::Type::OrSymbol })
+          override.returns(
+            {
+              id: String,
+              type:
+                VitableConnect::AuthIssueAccessTokenParams::BoundEntity::Type::OrSymbol
+            }
+          )
         end
         def to_hash
+        end
+
+        # - `employer` - employer
+        # - `employee` - employee
+        module Type
+          extend VitableConnect::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                VitableConnect::AuthIssueAccessTokenParams::BoundEntity::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          EMPLOYER =
+            T.let(
+              :employer,
+              VitableConnect::AuthIssueAccessTokenParams::BoundEntity::Type::TaggedSymbol
+            )
+          EMPLOYEE =
+            T.let(
+              :employee,
+              VitableConnect::AuthIssueAccessTokenParams::BoundEntity::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                VitableConnect::AuthIssueAccessTokenParams::BoundEntity::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

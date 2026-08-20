@@ -14,10 +14,10 @@ module VitableConnect
       required :employer_id, String
 
       # @!attribute pay_frequency
-      #   - `weekly` - weekly
-      #   - `bi_weekly` - bi_weekly
-      #   - `semi_monthly` - semi_monthly
-      #   - `monthly` - monthly
+      #   - `weekly` - Weekly
+      #   - `bi_weekly` - Bi Weekly
+      #   - `semi_monthly` - Semi Monthly
+      #   - `monthly` - Monthly
       #
       #   @return [Symbol, VitableConnect::Models::EmployerUpdateSettingsParams::PayFrequency]
       required :pay_frequency, enum: -> { VitableConnect::EmployerUpdateSettingsParams::PayFrequency }
@@ -28,14 +28,14 @@ module VitableConnect
       #
       #   @param employer_id [String] Unique employer identifier (empr\_\*)
       #
-      #   @param pay_frequency [Symbol, VitableConnect::Models::EmployerUpdateSettingsParams::PayFrequency] - `weekly` - weekly
+      #   @param pay_frequency [Symbol, VitableConnect::Models::EmployerUpdateSettingsParams::PayFrequency] - `weekly` - Weekly
       #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
 
-      # - `weekly` - weekly
-      # - `bi_weekly` - bi_weekly
-      # - `semi_monthly` - semi_monthly
-      # - `monthly` - monthly
+      # - `weekly` - Weekly
+      # - `bi_weekly` - Bi Weekly
+      # - `semi_monthly` - Semi Monthly
+      # - `monthly` - Monthly
       module PayFrequency
         extend VitableConnect::Internal::Type::Enum
 

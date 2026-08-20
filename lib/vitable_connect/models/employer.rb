@@ -2,7 +2,6 @@
 
 module VitableConnect
   module Models
-    # @see VitableConnect::Resources::Employers#list
     class Employer < VitableConnect::Internal::Type::BaseModel
       # @!attribute active
       #   Whether the employer is currently active in the system
@@ -65,6 +64,13 @@ module VitableConnect
         #   @return [String]
         required :id, String
 
+        # @!attribute contact
+        #   Primary company-admin contact (email + phone; company admins have no person
+        #   name).
+        #
+        #   @return [VitableConnect::Models::Employer::Contact, nil]
+        required :contact, -> { VitableConnect::Employer::Contact }, nil?: true
+
         # @!attribute ein
         #   Employer Identification Number (masked in responses)
         #
@@ -78,7 +84,10 @@ module VitableConnect
         required :organization_id, String, nil?: true
       end
 
-      # @!method initialize(id:, active:, address:, created_at:, ein:, legal_name:, name:, organization_id:, updated_at:, email: nil, phone_number: nil, reference_id: nil)
+      # @!method initialize(id:, active:, address:, contact:, created_at:, ein:, legal_name:, name:, organization_id:, updated_at:, email: nil, phone_number: nil, reference_id: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {VitableConnect::Models::Employer} for more details.
+      #
       #   Serializer for Employer entity in public API responses.
       #
       #   @param id [String] Unique employer identifier with 'empr\_' prefix
@@ -86,6 +95,8 @@ module VitableConnect
       #   @param active [Boolean] Whether the employer is currently active in the system
       #
       #   @param address [VitableConnect::Models::Employer::Address] Nested address within EmployerSerializer.
+      #
+      #   @param contact [VitableConnect::Models::Employer::Contact, nil] Primary company-admin contact (email + phone; company admins have no person name
       #
       #   @param created_at [Time] Timestamp when the employer was created
       #
@@ -149,6 +160,29 @@ module VitableConnect
         #   @param zipcode [String] ZIP code (5 or 9 digit)
         #
         #   @param address_line_2 [String, nil] Secondary street address (apt, suite, etc.)
+      end
+
+      # @see VitableConnect::Models::Employer#contact
+      class Contact < VitableConnect::Internal::Type::BaseModel
+        # @!attribute email
+        #   Primary contact email
+        #
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
+        # @!attribute phone
+        #   Primary contact phone, or null
+        #
+        #   @return [String, nil]
+        required :phone, String, nil?: true
+
+        # @!method initialize(email:, phone:)
+        #   Primary company-admin contact (email + phone; company admins have no person
+        #   name).
+        #
+        #   @param email [String, nil] Primary contact email
+        #
+        #   @param phone [String, nil] Primary contact phone, or null
       end
     end
   end

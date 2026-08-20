@@ -18,10 +18,10 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :employer_id
 
-      # - `weekly` - weekly
-      # - `bi_weekly` - bi_weekly
-      # - `semi_monthly` - semi_monthly
-      # - `monthly` - monthly
+      # - `weekly` - Weekly
+      # - `bi_weekly` - Bi Weekly
+      # - `semi_monthly` - Semi Monthly
+      # - `monthly` - Monthly
       sig do
         returns(
           VitableConnect::EmployerUpdateSettingsParams::PayFrequency::OrSymbol
@@ -40,10 +40,10 @@ module VitableConnect
       def self.new(
         # Unique employer identifier (empr\_\*)
         employer_id:,
-        # - `weekly` - weekly
-        # - `bi_weekly` - bi_weekly
-        # - `semi_monthly` - semi_monthly
-        # - `monthly` - monthly
+        # - `weekly` - Weekly
+        # - `bi_weekly` - Bi Weekly
+        # - `semi_monthly` - Semi Monthly
+        # - `monthly` - Monthly
         pay_frequency:,
         request_options: {}
       )
@@ -62,10 +62,10 @@ module VitableConnect
       def to_hash
       end
 
-      # - `weekly` - weekly
-      # - `bi_weekly` - bi_weekly
-      # - `semi_monthly` - semi_monthly
-      # - `monthly` - monthly
+      # - `weekly` - Weekly
+      # - `bi_weekly` - Bi Weekly
+      # - `semi_monthly` - Semi Monthly
+      # - `monthly` - Monthly
       module PayFrequency
         extend VitableConnect::Internal::Type::Enum
 

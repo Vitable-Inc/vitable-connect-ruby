@@ -49,11 +49,6 @@ module VitableConnect
             #   @return [String]
             required :last_name, String
 
-            # @!attribute phone
-            #
-            #   @return [String]
-            required :phone, String
-
             # @!attribute plan_id
             #
             #   @return [String]
@@ -69,15 +64,20 @@ module VitableConnect
             #   @return [String, nil]
             optional :email, String, nil?: true
 
-            # @!method initialize(address:, date_of_birth:, first_name:, last_name:, phone:, plan_id:, reference_id:, email: nil)
+            # @!attribute phone
+            #
+            #   @return [String, nil]
+            optional :phone, String, nil?: true
+
+            # @!method initialize(address:, date_of_birth:, first_name:, last_name:, plan_id:, reference_id:, email: nil, phone: nil)
             #   @param address [VitableConnect::Models::Groups::Members::SyncSubmitParams::Member::Address]
             #   @param date_of_birth [Date]
             #   @param first_name [String]
             #   @param last_name [String]
-            #   @param phone [String]
             #   @param plan_id [String]
             #   @param reference_id [String]
             #   @param email [String, nil]
+            #   @param phone [String, nil]
 
             # @see VitableConnect::Models::Groups::Members::SyncSubmitParams::Member#address
             class Address < VitableConnect::Internal::Type::BaseModel

@@ -19,6 +19,22 @@ class VitableConnect::Test::Resources::EmployeesTest < VitableConnect::Test::Res
     end
   end
 
+  def test_update_required_params
+    skip("Mock server tests are disabled")
+
+    response = @vitable_connect.employees.update("empl_abc123def456", effective_date: "2023-03-01")
+
+    assert_pattern do
+      response => VitableConnect::Models::EmployeeUpdateResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: VitableConnect::Employee
+      }
+    end
+  end
+
   def test_list_enrollments
     skip("Mock server tests are disabled")
 

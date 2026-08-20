@@ -5,6 +5,7 @@ module VitableConnect
         id: String,
         active: bool,
         address: VitableConnect::Employer::Address,
+        contact: VitableConnect::Employer::Contact?,
         created_at: Time,
         ein: String?,
         legal_name: String,
@@ -37,6 +38,8 @@ module VitableConnect
 
       attr_accessor id: String
 
+      attr_accessor contact: VitableConnect::Employer::Contact?
+
       attr_accessor ein: String?
 
       attr_accessor organization_id: String?
@@ -45,6 +48,7 @@ module VitableConnect
         id: String,
         active: bool,
         address: VitableConnect::Employer::Address,
+        contact: VitableConnect::Employer::Contact?,
         created_at: Time,
         ein: String?,
         legal_name: String,
@@ -60,6 +64,7 @@ module VitableConnect
         id: String,
         active: bool,
         address: VitableConnect::Employer::Address,
+        contact: VitableConnect::Employer::Contact?,
         created_at: Time,
         ein: String?,
         legal_name: String,
@@ -106,6 +111,18 @@ module VitableConnect
           zipcode: String,
           :address_line_2 => String?
         }
+      end
+
+      type contact = { email: String?, phone: String? }
+
+      class Contact < VitableConnect::Internal::Type::BaseModel
+        attr_accessor email: String?
+
+        attr_accessor phone: String?
+
+        def initialize: (email: String?, phone: String?) -> void
+
+        def to_hash: -> { email: String?, phone: String? }
       end
     end
   end

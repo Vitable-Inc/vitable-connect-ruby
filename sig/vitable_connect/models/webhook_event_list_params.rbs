@@ -73,6 +73,7 @@ module VitableConnect
       type event_name =
         :"enrollment.accepted"
         | :"enrollment.terminated"
+        | :"enrollment.termination_rescheduled"
         | :"enrollment.elected"
         | :"enrollment.granted"
         | :"enrollment.waived"
@@ -87,6 +88,7 @@ module VitableConnect
 
         ENROLLMENT_ACCEPTED: :"enrollment.accepted"
         ENROLLMENT_TERMINATED: :"enrollment.terminated"
+        ENROLLMENT_TERMINATION_RESCHEDULED: :"enrollment.termination_rescheduled"
         ENROLLMENT_ELECTED: :"enrollment.elected"
         ENROLLMENT_GRANTED: :"enrollment.granted"
         ENROLLMENT_WAIVED: :"enrollment.waived"

@@ -28,9 +28,6 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::Auth) }
     attr_reader :auth
 
-    sig { returns(VitableConnect::Resources::BenefitEligibilityPolicies) }
-    attr_reader :benefit_eligibility_policies
-
     sig { returns(VitableConnect::Resources::Employees) }
     attr_reader :employees
 
@@ -47,12 +44,28 @@ module VitableConnect
     sig { returns(VitableConnect::Resources::Groups) }
     attr_reader :groups
 
+    # Browse the members covered across your book and read a member's profile
+    sig { returns(VitableConnect::Resources::Members) }
+    attr_reader :members
+
+    sig { returns(VitableConnect::Resources::Organizations) }
+    attr_reader :organizations
+
     sig { returns(VitableConnect::Resources::Plans) }
     attr_reader :plans
 
     # @api private
-    sig { override.returns(T::Hash[String, String]) }
-    private def auth_headers
+    sig do
+      override
+        .params(security: { api_key_auth: T::Boolean })
+        .returns(T::Hash[String, String])
+    end
+    private def auth_headers(security:)
+    end
+
+    # @api private
+    sig { returns(T::Hash[String, String]) }
+    private def api_key_auth
     end
 
     # Creates and returns a new client for interacting with the API.

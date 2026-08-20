@@ -3,20 +3,25 @@ module VitableConnect
     type employee =
       {
         id: String,
+        classification_effective_date: Date,
+        compensation_type: VitableConnect::Models::Employee::compensation_type?,
+        compensation_type_effective_date: Date,
         created_at: Time,
         date_of_birth: Date,
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
+        employee_class: VitableConnect::Models::employee_class,
+        employer_id: String,
         first_name: String,
         last_name: String,
         member_id: String,
         phone: String?,
-        status: String,
+        start_date: Date,
+        status: VitableConnect::Models::Employee::status,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
-        employee_class: VitableConnect::Models::employee_class?,
+        employer_name: String?,
         gender: String?,
-        hire_date: Date?,
         reference_id: String?,
         suffix: String?,
         termination_date: Date?
@@ -31,6 +36,8 @@ module VitableConnect
 
       attr_accessor email: String
 
+      attr_accessor employee_class: VitableConnect::Models::employee_class
+
       attr_accessor first_name: String
 
       attr_accessor last_name: String
@@ -39,11 +46,9 @@ module VitableConnect
 
       attr_accessor address: VitableConnect::Employee::Address?
 
-      attr_accessor employee_class: VitableConnect::Models::employee_class?
+      attr_accessor employer_name: String?
 
       attr_accessor gender: String?
-
-      attr_accessor hire_date: Date?
 
       attr_accessor reference_id: String?
 
@@ -53,28 +58,43 @@ module VitableConnect
 
       attr_accessor id: String
 
+      attr_accessor classification_effective_date: Date
+
+      attr_accessor compensation_type: VitableConnect::Models::Employee::compensation_type?
+
+      attr_accessor compensation_type_effective_date: Date
+
+      attr_accessor employer_id: String
+
       attr_accessor member_id: String
 
       attr_accessor phone: String?
 
-      attr_accessor status: String
+      attr_accessor start_date: Date
+
+      attr_accessor status: VitableConnect::Models::Employee::status
 
       def initialize: (
         id: String,
+        classification_effective_date: Date,
+        compensation_type: VitableConnect::Models::Employee::compensation_type?,
+        compensation_type_effective_date: Date,
         created_at: Time,
         date_of_birth: Date,
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
+        employee_class: VitableConnect::Models::employee_class,
+        employer_id: String,
         first_name: String,
         last_name: String,
         member_id: String,
         phone: String?,
-        status: String,
+        start_date: Date,
+        status: VitableConnect::Models::Employee::status,
         updated_at: Time,
         ?address: VitableConnect::Employee::Address?,
-        ?employee_class: VitableConnect::Models::employee_class?,
+        ?employer_name: String?,
         ?gender: String?,
-        ?hire_date: Date?,
         ?reference_id: String?,
         ?suffix: String?,
         ?termination_date: Date?
@@ -82,24 +102,40 @@ module VitableConnect
 
       def to_hash: -> {
         id: String,
+        classification_effective_date: Date,
+        compensation_type: VitableConnect::Models::Employee::compensation_type?,
+        compensation_type_effective_date: Date,
         created_at: Time,
         date_of_birth: Date,
         deductions: ::Array[VitableConnect::Employee::Deduction],
         email: String,
+        employee_class: VitableConnect::Models::employee_class,
+        employer_id: String,
         first_name: String,
         last_name: String,
         member_id: String,
         phone: String?,
-        status: String,
+        start_date: Date,
+        status: VitableConnect::Models::Employee::status,
         updated_at: Time,
         address: VitableConnect::Employee::Address?,
-        employee_class: VitableConnect::Models::employee_class?,
+        employer_name: String?,
         gender: String?,
-        hire_date: Date?,
         reference_id: String?,
         suffix: String?,
         termination_date: Date?
       }
+
+      type compensation_type = :Salary | :Hourly
+
+      module CompensationType
+        extend VitableConnect::Internal::Type::Enum
+
+        SALARY: :Salary
+        HOURLY: :Hourly
+
+        def self?.values: -> ::Array[VitableConnect::Models::Employee::compensation_type]
+      end
 
       type deduction =
         {
@@ -171,6 +207,17 @@ module VitableConnect
 
           def self?.values: -> ::Array[VitableConnect::Models::Employee::Deduction::tax_classification]
         end
+      end
+
+      type status = :active | :terminated
+
+      module Status
+        extend VitableConnect::Internal::Type::Enum
+
+        ACTIVE: :active
+        TERMINATED: :terminated
+
+        def self?.values: -> ::Array[VitableConnect::Models::Employee::status]
       end
 
       type address =

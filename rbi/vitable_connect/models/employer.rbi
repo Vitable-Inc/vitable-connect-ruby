@@ -51,6 +51,18 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :id
 
+      # Primary company-admin contact (email + phone; company admins have no person
+      # name).
+      sig { returns(T.nilable(VitableConnect::Employer::Contact)) }
+      attr_reader :contact
+
+      sig do
+        params(
+          contact: T.nilable(VitableConnect::Employer::Contact::OrHash)
+        ).void
+      end
+      attr_writer :contact
+
       # Employer Identification Number (masked in responses)
       sig { returns(T.nilable(String)) }
       attr_accessor :ein
@@ -65,6 +77,7 @@ module VitableConnect
           id: String,
           active: T::Boolean,
           address: VitableConnect::Employer::Address::OrHash,
+          contact: T.nilable(VitableConnect::Employer::Contact::OrHash),
           created_at: Time,
           ein: T.nilable(String),
           legal_name: String,
@@ -83,6 +96,9 @@ module VitableConnect
         active:,
         # Nested address within EmployerSerializer.
         address:,
+        # Primary company-admin contact (email + phone; company admins have no person
+        # name).
+        contact:,
         # Timestamp when the employer was created
         created_at:,
         # Employer Identification Number (masked in responses)
@@ -110,6 +126,7 @@ module VitableConnect
             id: String,
             active: T::Boolean,
             address: VitableConnect::Employer::Address,
+            contact: T.nilable(VitableConnect::Employer::Contact),
             created_at: Time,
             ein: T.nilable(String),
             legal_name: String,
@@ -187,6 +204,47 @@ module VitableConnect
               zipcode: String,
               address_line_2: T.nilable(String)
             }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Contact < VitableConnect::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              VitableConnect::Employer::Contact,
+              VitableConnect::Internal::AnyHash
+            )
+          end
+
+        # Primary contact email
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
+        # Primary contact phone, or null
+        sig { returns(T.nilable(String)) }
+        attr_accessor :phone
+
+        # Primary company-admin contact (email + phone; company admins have no person
+        # name).
+        sig do
+          params(email: T.nilable(String), phone: T.nilable(String)).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # Primary contact email
+          email:,
+          # Primary contact phone, or null
+          phone:
+        )
+        end
+
+        sig do
+          override.returns(
+            { email: T.nilable(String), phone: T.nilable(String) }
           )
         end
         def to_hash

@@ -51,8 +51,8 @@ module VitableConnect
         #   - `employer` - employer
         #   - `employee` - employee
         #
-        #   @return [Symbol, VitableConnect::Models::Type]
-        required :type, enum: -> { VitableConnect::Type }
+        #   @return [Symbol, VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity::Type]
+        required :type, enum: -> { VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity::Type }
 
         # @!method initialize(id:, type:)
         #   Some parameter documentations has been truncated, see
@@ -63,7 +63,21 @@ module VitableConnect
         #
         #   @param id [String] Prefixed entity ID the token is bound to (empr*\* or empl*\*)
         #
-        #   @param type [Symbol, VitableConnect::Models::Type] - `employer` - employer
+        #   @param type [Symbol, VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity::Type] - `employer` - employer
+
+        # - `employer` - employer
+        # - `employee` - employee
+        #
+        # @see VitableConnect::Models::AuthIssueAccessTokenResponse::BoundEntity#type
+        module Type
+          extend VitableConnect::Internal::Type::Enum
+
+          EMPLOYER = :employer
+          EMPLOYEE = :employee
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

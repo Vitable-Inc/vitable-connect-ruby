@@ -79,9 +79,6 @@ module VitableConnect
         sig { returns(String) }
         attr_accessor :last_name
 
-        sig { returns(String) }
-        attr_accessor :phone
-
         sig do
           returns(
             T.nilable(
@@ -121,6 +118,10 @@ module VitableConnect
         sig { returns(T.nilable(VitableConnect::EmployeeClass::OrSymbol)) }
         attr_accessor :employee_class
 
+        # Phone number
+        sig { returns(T.nilable(String)) }
+        attr_accessor :phone
+
         sig { returns(T.nilable(String)) }
         attr_accessor :reference_id
 
@@ -133,7 +134,6 @@ module VitableConnect
             email: String,
             first_name: String,
             last_name: String,
-            phone: String,
             address:
               T.nilable(
                 VitableConnect::EmployerSubmitCensusSyncParams::Employee::Address::OrHash
@@ -143,6 +143,7 @@ module VitableConnect
                 VitableConnect::EmployerSubmitCensusSyncParams::Employee::CompensationType::OrSymbol
               ),
             employee_class: T.nilable(VitableConnect::EmployeeClass::OrSymbol),
+            phone: T.nilable(String),
             reference_id: T.nilable(String),
             start_date: T.nilable(Date)
           ).returns(T.attached_class)
@@ -152,7 +153,6 @@ module VitableConnect
           email:,
           first_name:,
           last_name:,
-          phone:,
           address: nil,
           # - `Salary` - Salary
           # - `Hourly` - Hourly
@@ -164,6 +164,8 @@ module VitableConnect
           # - `Seasonal` - Seasonal
           # - `Individual Contractor` - Individual Contractor
           employee_class: nil,
+          # Phone number
+          phone: nil,
           reference_id: nil,
           start_date: nil
         )
@@ -176,7 +178,6 @@ module VitableConnect
               email: String,
               first_name: String,
               last_name: String,
-              phone: String,
               address:
                 T.nilable(
                   VitableConnect::EmployerSubmitCensusSyncParams::Employee::Address
@@ -187,6 +188,7 @@ module VitableConnect
                 ),
               employee_class:
                 T.nilable(VitableConnect::EmployeeClass::OrSymbol),
+              phone: T.nilable(String),
               reference_id: T.nilable(String),
               start_date: T.nilable(Date)
             }

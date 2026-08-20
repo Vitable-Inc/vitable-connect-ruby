@@ -1,0 +1,28 @@
+module VitableConnect
+  module Models
+    type employer_retrieve_benefit_plan_year_params =
+      { employer_id: String, benefit_plan_year_id: String }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployerRetrieveBenefitPlanYearParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employer_id: String
+
+      attr_accessor benefit_plan_year_id: String
+
+      def initialize: (
+        employer_id: String,
+        benefit_plan_year_id: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employer_id: String,
+        benefit_plan_year_id: String,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end
