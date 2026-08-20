@@ -1,0 +1,92 @@
+module VitableConnect
+  module Models
+    type member_retrieve_household_response =
+      {
+        data: ::Array[VitableConnect::Models::MemberRetrieveHouseholdResponse::Data]
+      }
+
+    class MemberRetrieveHouseholdResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnect::Models::MemberRetrieveHouseholdResponse::Data]
+
+      def initialize: (
+        data: ::Array[VitableConnect::Models::MemberRetrieveHouseholdResponse::Data]
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[VitableConnect::Models::MemberRetrieveHouseholdResponse::Data]
+      }
+
+      type data =
+        {
+          date_of_birth: Date,
+          first_name: String,
+          household_admin_in: bool,
+          last_name: String,
+          member_id: String,
+          member_type: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::member_type,
+          relationship: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::relationship?
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor date_of_birth: Date
+
+        attr_accessor first_name: String
+
+        attr_accessor household_admin_in: bool
+
+        attr_accessor last_name: String
+
+        attr_accessor member_type: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::member_type
+
+        attr_accessor relationship: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::relationship?
+
+        attr_accessor member_id: String
+
+        def initialize: (
+          date_of_birth: Date,
+          first_name: String,
+          household_admin_in: bool,
+          last_name: String,
+          member_id: String,
+          member_type: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::member_type,
+          ?relationship: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::relationship?
+        ) -> void
+
+        def to_hash: -> {
+          date_of_birth: Date,
+          first_name: String,
+          household_admin_in: bool,
+          last_name: String,
+          member_id: String,
+          member_type: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::member_type,
+          relationship: VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::relationship?
+        }
+
+        type member_type = :"Account Holder" | :Dependent | :Inactive
+
+        module MemberType
+          extend VitableConnect::Internal::Type::Enum
+
+          ACCOUNT_HOLDER: :"Account Holder"
+          DEPENDENT: :Dependent
+          INACTIVE: :Inactive
+
+          def self?.values: -> ::Array[VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::member_type]
+        end
+
+        type relationship = :Child | :Spouse | :Roommate | :Other
+
+        module Relationship
+          extend VitableConnect::Internal::Type::Enum
+
+          CHILD: :Child
+          SPOUSE: :Spouse
+          ROOMMATE: :Roommate
+          OTHER: :Other
+
+          def self?.values: -> ::Array[VitableConnect::Models::MemberRetrieveHouseholdResponse::Data::relationship]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module VitableConnect
+  module Models
+    type employer_list_hris_providers_params =
+      {  } & VitableConnect::Internal::Type::request_parameters
+
+    class EmployerListHRISProvidersParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: VitableConnect::request_opts) -> void
+
+      def to_hash: -> { request_options: VitableConnect::RequestOptions }
+    end
+  end
+end

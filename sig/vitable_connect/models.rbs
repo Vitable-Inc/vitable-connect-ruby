@@ -1,5 +1,15 @@
 module VitableConnect
+  class AuthCompleteProfileParams = VitableConnect::Models::AuthCompleteProfileParams
+
   class AuthIssueAccessTokenParams = VitableConnect::Models::AuthIssueAccessTokenParams
+
+  class AuthListPersonasParams = VitableConnect::Models::AuthListPersonasParams
+
+  class AuthLoginParams = VitableConnect::Models::AuthLoginParams
+
+  class AuthRetrieveMeParams = VitableConnect::Models::AuthRetrieveMeParams
+
+  class AuthSignUpParams = VitableConnect::Models::AuthSignUpParams
 
   class Employee = VitableConnect::Models::Employee
 
@@ -9,27 +19,57 @@ module VitableConnect
 
   class EmployeeRetrieveParams = VitableConnect::Models::EmployeeRetrieveParams
 
+  class EmployeeUpdateParams = VitableConnect::Models::EmployeeUpdateParams
+
   class Employer = VitableConnect::Models::Employer
 
   class EmployerCreateParams = VitableConnect::Models::EmployerCreateParams
 
+  class EmployerEnsurePayrollIntegrationEmailParams = VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailParams
+
+  class EmployerListBenefitPlanYearEnrollmentsParams = VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsParams
+
+  class EmployerListBenefitPlanYearsParams = VitableConnect::Models::EmployerListBenefitPlanYearsParams
+
   class EmployerListEmployeesParams = VitableConnect::Models::EmployerListEmployeesParams
+
+  class EmployerListHRISProvidersParams = VitableConnect::Models::EmployerListHRISProvidersParams
+
+  class EmployerListInvoicesParams = VitableConnect::Models::EmployerListInvoicesParams
 
   class EmployerListParams = VitableConnect::Models::EmployerListParams
 
+  class EmployerListPayrollDeductionStatementsParams = VitableConnect::Models::EmployerListPayrollDeductionStatementsParams
+
   class EmployerResponse = VitableConnect::Models::EmployerResponse
+
+  class EmployerRetrieveBenefitPlanYearParams = VitableConnect::Models::EmployerRetrieveBenefitPlanYearParams
+
+  class EmployerRetrieveHRISParams = VitableConnect::Models::EmployerRetrieveHRISParams
+
+  class EmployerRetrieveInvoicePdfParams = VitableConnect::Models::EmployerRetrieveInvoicePdfParams
 
   class EmployerRetrieveParams = VitableConnect::Models::EmployerRetrieveParams
 
+  class EmployerRetrievePayrollAccessSetupParams = VitableConnect::Models::EmployerRetrievePayrollAccessSetupParams
+
   class EmployerSubmitCensusSyncParams = VitableConnect::Models::EmployerSubmitCensusSyncParams
+
+  class EmployerSubmitPayrollAccessSetupParams = VitableConnect::Models::EmployerSubmitPayrollAccessSetupParams
+
+  class EmployerUpdateParams = VitableConnect::Models::EmployerUpdateParams
 
   class EmployerUpdateSettingsParams = VitableConnect::Models::EmployerUpdateSettingsParams
 
   class Enrollment = VitableConnect::Models::Enrollment
 
+  class EnrollmentReissueParams = VitableConnect::Models::EnrollmentReissueParams
+
   class EnrollmentRetrieveParams = VitableConnect::Models::EnrollmentRetrieveParams
 
   module EnrollmentStatus = VitableConnect::Models::EnrollmentStatus
+
+  class EnrollmentTerminateParams = VitableConnect::Models::EnrollmentTerminateParams
 
   class Group = VitableConnect::Models::Group
 
@@ -44,6 +84,26 @@ module VitableConnect
   module Groups = VitableConnect::Models::Groups
 
   class GroupUpdateParams = VitableConnect::Models::GroupUpdateParams
+
+  class MemberListDependentsParams = VitableConnect::Models::MemberListDependentsParams
+
+  class MemberListEmploymentsParams = VitableConnect::Models::MemberListEmploymentsParams
+
+  class MemberListEnrollmentsParams = VitableConnect::Models::MemberListEnrollmentsParams
+
+  class MemberListIDCardsParams = VitableConnect::Models::MemberListIDCardsParams
+
+  class MemberListParams = VitableConnect::Models::MemberListParams
+
+  class MemberListQualifyingLifeEventsParams = VitableConnect::Models::MemberListQualifyingLifeEventsParams
+
+  class MemberRetrieveHouseholdParams = VitableConnect::Models::MemberRetrieveHouseholdParams
+
+  class MemberRetrieveParams = VitableConnect::Models::MemberRetrieveParams
+
+  class OrganizationCreateParams = VitableConnect::Models::OrganizationCreateParams
+
+  class OrganizationListParams = VitableConnect::Models::OrganizationListParams
 
   class Pagination = VitableConnect::Models::Pagination
 

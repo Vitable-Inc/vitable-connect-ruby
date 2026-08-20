@@ -1,0 +1,73 @@
+module VitableConnect
+  module Models
+    type employer_list_payroll_deduction_statements_response =
+      {
+        csv_file_url: String?,
+        deduction_frequency: VitableConnect::Models::EmployerListPayrollDeductionStatementsResponse::deduction_frequency,
+        deduction_frequency_label: String,
+        employee_count: Integer,
+        period_end: Date,
+        period_start: Date,
+        run_date: Time,
+        statement_id: String,
+        total_deduction_cents: Integer
+      }
+
+    class EmployerListPayrollDeductionStatementsResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor csv_file_url: String?
+
+      attr_accessor deduction_frequency: VitableConnect::Models::EmployerListPayrollDeductionStatementsResponse::deduction_frequency
+
+      attr_accessor deduction_frequency_label: String
+
+      attr_accessor employee_count: Integer
+
+      attr_accessor period_end: Date
+
+      attr_accessor period_start: Date
+
+      attr_accessor run_date: Time
+
+      attr_accessor statement_id: String
+
+      attr_accessor total_deduction_cents: Integer
+
+      def initialize: (
+        csv_file_url: String?,
+        deduction_frequency: VitableConnect::Models::EmployerListPayrollDeductionStatementsResponse::deduction_frequency,
+        deduction_frequency_label: String,
+        employee_count: Integer,
+        period_end: Date,
+        period_start: Date,
+        run_date: Time,
+        statement_id: String,
+        total_deduction_cents: Integer
+      ) -> void
+
+      def to_hash: -> {
+        csv_file_url: String?,
+        deduction_frequency: VitableConnect::Models::EmployerListPayrollDeductionStatementsResponse::deduction_frequency,
+        deduction_frequency_label: String,
+        employee_count: Integer,
+        period_end: Date,
+        period_start: Date,
+        run_date: Time,
+        statement_id: String,
+        total_deduction_cents: Integer
+      }
+
+      type deduction_frequency = :weekly | :bi_weekly | :semi_monthly | :monthly
+
+      module DeductionFrequency
+        extend VitableConnect::Internal::Type::Enum
+
+        WEEKLY: :weekly
+        BI_WEEKLY: :bi_weekly
+        SEMI_MONTHLY: :semi_monthly
+        MONTHLY: :monthly
+
+        def self?.values: -> ::Array[VitableConnect::Models::EmployerListPayrollDeductionStatementsResponse::deduction_frequency]
+      end
+    end
+  end
+end

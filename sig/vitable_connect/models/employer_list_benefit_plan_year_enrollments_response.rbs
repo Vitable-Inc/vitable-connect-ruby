@@ -1,0 +1,111 @@
+module VitableConnect
+  module Models
+    type employer_list_benefit_plan_year_enrollments_response =
+      {
+        carrier: String?,
+        dependent_count: Integer,
+        election_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::election_status,
+        employee_deduction_in_cents: Integer?,
+        employee_external_reference_id: String?,
+        employee_id: String,
+        employer_contribution_in_cents: Integer?,
+        member_first_name: String,
+        member_id: String,
+        member_last_name: String,
+        plan: String?,
+        policy_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::policy_status?,
+        premium_in_cents: Integer?,
+        tier: String?
+      }
+
+    class EmployerListBenefitPlanYearEnrollmentsResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor carrier: String?
+
+      attr_accessor dependent_count: Integer
+
+      attr_accessor election_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::election_status
+
+      attr_accessor employee_deduction_in_cents: Integer?
+
+      attr_accessor employee_external_reference_id: String?
+
+      attr_accessor employee_id: String
+
+      attr_accessor employer_contribution_in_cents: Integer?
+
+      attr_accessor member_first_name: String
+
+      attr_accessor member_id: String
+
+      attr_accessor member_last_name: String
+
+      attr_accessor plan: String?
+
+      attr_accessor policy_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::policy_status?
+
+      attr_accessor premium_in_cents: Integer?
+
+      attr_accessor tier: String?
+
+      def initialize: (
+        carrier: String?,
+        dependent_count: Integer,
+        election_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::election_status,
+        employee_deduction_in_cents: Integer?,
+        employee_external_reference_id: String?,
+        employee_id: String,
+        employer_contribution_in_cents: Integer?,
+        member_first_name: String,
+        member_id: String,
+        member_last_name: String,
+        plan: String?,
+        policy_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::policy_status?,
+        premium_in_cents: Integer?,
+        tier: String?
+      ) -> void
+
+      def to_hash: -> {
+        carrier: String?,
+        dependent_count: Integer,
+        election_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::election_status,
+        employee_deduction_in_cents: Integer?,
+        employee_external_reference_id: String?,
+        employee_id: String,
+        employer_contribution_in_cents: Integer?,
+        member_first_name: String,
+        member_id: String,
+        member_last_name: String,
+        plan: String?,
+        policy_status: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::policy_status?,
+        premium_in_cents: Integer?,
+        tier: String?
+      }
+
+      type election_status = :Enrolled | :Waived | :Pending | :Expired
+
+      module ElectionStatus
+        extend VitableConnect::Internal::Type::Enum
+
+        ENROLLED: :Enrolled
+        WAIVED: :Waived
+        PENDING: :Pending
+        EXPIRED: :Expired
+
+        def self?.values: -> ::Array[VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::election_status]
+      end
+
+      type policy_status =
+        :"Coverage Upcoming" | :"Coverage Effective" | :"Coverage Ended"
+
+      module PolicyStatus
+        extend VitableConnect::Internal::Type::Enum
+
+        COVERAGE_UPCOMING: :"Coverage Upcoming"
+        COVERAGE_EFFECTIVE: :"Coverage Effective"
+        COVERAGE_ENDED: :"Coverage Ended"
+
+        def self?.values: -> ::Array[VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::policy_status]
+      end
+    end
+  end
+end

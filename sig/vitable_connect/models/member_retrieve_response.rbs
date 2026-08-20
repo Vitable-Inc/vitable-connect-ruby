@@ -1,0 +1,143 @@
+module VitableConnect
+  module Models
+    type member_retrieve_response =
+      { data: VitableConnect::Models::MemberRetrieveResponse::Data }
+
+    class MemberRetrieveResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::Models::MemberRetrieveResponse::Data
+
+      def initialize: (
+        data: VitableConnect::Models::MemberRetrieveResponse::Data
+      ) -> void
+
+      def to_hash: -> {
+        data: VitableConnect::Models::MemberRetrieveResponse::Data
+      }
+
+      type data =
+        {
+          id: String,
+          age: Integer,
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          name: String,
+          status: VitableConnect::Models::MemberRetrieveResponse::Data::status,
+          address: VitableConnect::Models::MemberRetrieveResponse::Data::Address?,
+          email: String?,
+          phone: String?,
+          preferred_language: String?,
+          sex_at_birth: String?,
+          tobacco_status: bool?
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor age: Integer
+
+        attr_accessor date_of_birth: Date
+
+        attr_accessor first_name: String
+
+        attr_accessor last_name: String
+
+        attr_accessor address: VitableConnect::Models::MemberRetrieveResponse::Data::Address?
+
+        attr_accessor email: String?
+
+        attr_accessor phone: String?
+
+        attr_accessor preferred_language: String?
+
+        attr_accessor sex_at_birth: String?
+
+        attr_accessor tobacco_status: bool?
+
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        attr_accessor status: VitableConnect::Models::MemberRetrieveResponse::Data::status
+
+        def initialize: (
+          id: String,
+          age: Integer,
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          name: String,
+          status: VitableConnect::Models::MemberRetrieveResponse::Data::status,
+          ?address: VitableConnect::Models::MemberRetrieveResponse::Data::Address?,
+          ?email: String?,
+          ?phone: String?,
+          ?preferred_language: String?,
+          ?sex_at_birth: String?,
+          ?tobacco_status: bool?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          age: Integer,
+          date_of_birth: Date,
+          first_name: String,
+          last_name: String,
+          name: String,
+          status: VitableConnect::Models::MemberRetrieveResponse::Data::status,
+          address: VitableConnect::Models::MemberRetrieveResponse::Data::Address?,
+          email: String?,
+          phone: String?,
+          preferred_language: String?,
+          sex_at_birth: String?,
+          tobacco_status: bool?
+        }
+
+        type status = :onboarded | :pending_onboarding
+
+        module Status
+          extend VitableConnect::Internal::Type::Enum
+
+          ONBOARDED: :onboarded
+          PENDING_ONBOARDING: :pending_onboarding
+
+          def self?.values: -> ::Array[VitableConnect::Models::MemberRetrieveResponse::Data::status]
+        end
+
+        type address =
+          {
+            :address_line_1 => String,
+            city: String,
+            state: String,
+            zipcode: String,
+            :address_line_2 => String?
+          }
+
+        class Address < VitableConnect::Internal::Type::BaseModel
+          attr_accessor address_line_1: String
+
+          attr_accessor city: String
+
+          attr_accessor state: String
+
+          attr_accessor zipcode: String
+
+          attr_accessor address_line_2: String?
+
+          def initialize: (
+            address_line_1: String,
+            city: String,
+            state: String,
+            zipcode: String,
+            ?address_line_2: String?
+          ) -> void
+
+          def to_hash: -> {
+            :address_line_1 => String,
+            city: String,
+            state: String,
+            zipcode: String,
+            :address_line_2 => String?
+          }
+        end
+      end
+    end
+  end
+end

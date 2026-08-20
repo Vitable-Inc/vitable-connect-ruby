@@ -17,6 +17,15 @@ module VitableConnect
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::EmployerResponse
 
+      def update: (
+        String employer_id,
+        ?active: bool?,
+        ?address: VitableConnect::EmployerUpdateParams::Address?,
+        ?legal_name: String?,
+        ?name: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::EmployerResponse
+
       def list: (
         ?benefit_family: ::Array[VitableConnect::Models::EmployerListParams::benefit_family],
         ?benefit_lifecycle_stage: ::Array[VitableConnect::Models::EmployerListParams::benefit_lifecycle_stage],
@@ -29,6 +38,26 @@ module VitableConnect
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Models::EmployerListResponse]
 
+      def ensure_payroll_integration_email: (
+        String employer_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailResponse
+
+      def list_benefit_plan_year_enrollments: (
+        String benefit_plan_year_id,
+        employer_id: String,
+        ?election_status: ::Array[VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsParams::election_status],
+        ?limit: Integer,
+        ?page: Integer,
+        ?search: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse]
+
+      def list_benefit_plan_years: (
+        String employer_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerListBenefitPlanYearsResponse
+
       def list_employees: (
         String employer_id,
         ?employment_status: VitableConnect::Models::EmployerListEmployeesParams::employment_status,
@@ -38,11 +67,79 @@ module VitableConnect
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Employee]
 
+      def list_hris_providers: (
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerListHRISProvidersResponse
+
+      def list_invoices: (
+        String employer_id,
+        ?limit: Integer,
+        ?offset: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerListInvoicesResponse
+
+      def list_payroll_deduction_statements: (
+        String employer_id,
+        ?limit: Integer,
+        ?page: Integer,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Models::EmployerListPayrollDeductionStatementsResponse]
+
+      def retrieve_benefit_plan_year: (
+        String benefit_plan_year_id,
+        employer_id: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse
+
+      def retrieve_hris: (
+        String employer_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerRetrieveHRISResponse
+
+      def retrieve_invoice_pdf: (
+        String invoice_id,
+        employer_id: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerRetrieveInvoicePdfResponse
+
+      def retrieve_payroll_access_setup: (
+        String employer_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerRetrievePayrollAccessSetupResponse
+
       def submit_census_sync: (
         String employer_id,
         employees: ::Array[VitableConnect::EmployerSubmitCensusSyncParams::Employee],
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Models::EmployerSubmitCensusSyncResponse
+
+      def submit_payroll_access_setup: (
+        String employer_id,
+        access_method: VitableConnect::Models::EmployerSubmitPayrollAccessSetupParams::access_method,
+        all_benefit_eligible_employees_present: bool,
+        classifications_accurate: bool,
+        employees_in_payroll_acknowledged: bool,
+        has_additional_payroll_system: bool,
+        is_controlled_group: bool,
+        payroll_data_impacts_eligibility_acknowledged: bool,
+        ?additional_access_method: VitableConnect::Models::EmployerSubmitPayrollAccessSetupParams::additional_access_method?,
+        ?additional_integration_confirmed: bool?,
+        ?additional_login_url: String?,
+        ?additional_password: String?,
+        ?additional_phone: String?,
+        ?additional_username: String?,
+        ?classification_correction_source: VitableConnect::Models::EmployerSubmitPayrollAccessSetupParams::classification_correction_source?,
+        ?integration_confirmed: bool?,
+        ?login_url: String?,
+        ?misclassified_employee_names: ::Array[String],
+        ?missing_employee_resolution: VitableConnect::Models::EmployerSubmitPayrollAccessSetupParams::missing_employee_resolution?,
+        ?password: String?,
+        ?phone: String?,
+        ?remaining_employee_action: VitableConnect::Models::EmployerSubmitPayrollAccessSetupParams::remaining_employee_action?,
+        ?same_payroll_covers_other_eins: bool?,
+        ?username: String?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::EmployerSubmitPayrollAccessSetupResponse
 
       def update_settings: (
         String employer_id,

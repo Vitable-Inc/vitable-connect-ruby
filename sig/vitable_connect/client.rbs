@@ -27,9 +27,17 @@ module VitableConnect
 
     attr_reader groups: VitableConnect::Resources::Groups
 
+    attr_reader members: VitableConnect::Resources::Members
+
+    attr_reader organizations: VitableConnect::Resources::Organizations
+
     attr_reader plans: VitableConnect::Resources::Plans
 
-    private def auth_headers: -> ::Hash[String, String]
+    private def auth_headers: (
+      security: { api_key_auth: bool }
+    ) -> ::Hash[String, String]
+
+    private def api_key_auth: -> ::Hash[String, String]
 
     def initialize: (
       ?api_key: String?,

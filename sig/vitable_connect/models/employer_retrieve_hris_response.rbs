@@ -1,0 +1,50 @@
+module VitableConnect
+  module Models
+    type employer_retrieve_hris_response =
+      { hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS? }
+
+    class EmployerRetrieveHRISResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS?
+
+      def initialize: (
+        hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS?
+      ) -> void
+
+      def to_hash: -> {
+        hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS?
+      }
+
+      type hris =
+        {
+          last_sync_on: Time?,
+          provider: String,
+          status: String,
+          synced_row_count: Integer?
+        }
+
+      class HRIS < VitableConnect::Internal::Type::BaseModel
+        attr_accessor last_sync_on: Time?
+
+        attr_accessor provider: String
+
+        attr_accessor status: String
+
+        attr_accessor synced_row_count: Integer?
+
+        def initialize: (
+          last_sync_on: Time?,
+          provider: String,
+          status: String,
+          synced_row_count: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          last_sync_on: Time?,
+          provider: String,
+          status: String,
+          synced_row_count: Integer?
+        }
+      end
+    end
+  end
+end

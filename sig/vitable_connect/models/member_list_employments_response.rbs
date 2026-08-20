@@ -1,0 +1,14 @@
+module VitableConnect
+  module Models
+    type member_list_employments_response =
+      { data: ::Array[VitableConnect::Employee] }
+
+    class MemberListEmploymentsResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnect::Employee]
+
+      def initialize: (data: ::Array[VitableConnect::Employee]) -> void
+
+      def to_hash: -> { data: ::Array[VitableConnect::Employee] }
+    end
+  end
+end

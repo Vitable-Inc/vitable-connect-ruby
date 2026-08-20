@@ -1,11 +1,42 @@
 module VitableConnect
   module Resources
     class Auth
+      def complete_profile: (
+        first_name: String,
+        last_name: String,
+        phone: String,
+        ?user_type: VitableConnect::Models::AuthCompleteProfileParams::user_type,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::AuthCompleteProfileResponse
+
       def issue_access_token: (
         grant_type: VitableConnect::Models::AuthIssueAccessTokenParams::grant_type,
         ?bound_entity: VitableConnect::AuthIssueAccessTokenParams::BoundEntity?,
         ?request_options: VitableConnect::request_opts
       ) -> VitableConnect::Models::AuthIssueAccessTokenResponse
+
+      def list_personas: (
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::auth_list_personas_response
+
+      def login: (
+        email_or_phone: String,
+        user_type: VitableConnect::Models::AuthLoginParams::user_type,
+        ?app_name: String,
+        ?app_version: String,
+        ?password: String,
+        ?two_factor_token: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::AuthLoginResponse
+
+      def retrieve_me: (
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::AuthRetrieveMeResponse
+
+      def sign_up: (
+        ?user_type: VitableConnect::Models::AuthSignUpParams::user_type?,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::AuthSignUpResponse
 
       def initialize: (client: VitableConnect::Client) -> void
     end

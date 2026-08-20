@@ -1,0 +1,104 @@
+module VitableConnect
+  module Models
+    type auth_sign_up_response =
+      { user: VitableConnect::Models::AuthSignUpResponse::User }
+
+    class AuthSignUpResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor user: VitableConnect::Models::AuthSignUpResponse::User
+
+      def initialize: (
+        user: VitableConnect::Models::AuthSignUpResponse::User
+      ) -> void
+
+      def to_hash: -> { user: VitableConnect::Models::AuthSignUpResponse::User }
+
+      type user =
+        {
+          base_user_id: String,
+          email: String,
+          first_name: String?,
+          idp_provider: VitableConnect::Models::AuthSignUpResponse::User::idp_provider,
+          idp_user_id: String,
+          last_name: String?,
+          phone: String?,
+          user_type: VitableConnect::Models::AuthSignUpResponse::User::user_type
+        }
+
+      class User < VitableConnect::Internal::Type::BaseModel
+        attr_accessor base_user_id: String
+
+        attr_accessor email: String
+
+        attr_accessor first_name: String?
+
+        attr_accessor idp_provider: VitableConnect::Models::AuthSignUpResponse::User::idp_provider
+
+        attr_accessor idp_user_id: String
+
+        attr_accessor last_name: String?
+
+        attr_accessor phone: String?
+
+        attr_accessor user_type: VitableConnect::Models::AuthSignUpResponse::User::user_type
+
+        def initialize: (
+          base_user_id: String,
+          email: String,
+          first_name: String?,
+          idp_provider: VitableConnect::Models::AuthSignUpResponse::User::idp_provider,
+          idp_user_id: String,
+          last_name: String?,
+          phone: String?,
+          user_type: VitableConnect::Models::AuthSignUpResponse::User::user_type
+        ) -> void
+
+        def to_hash: -> {
+          base_user_id: String,
+          email: String,
+          first_name: String?,
+          idp_provider: VitableConnect::Models::AuthSignUpResponse::User::idp_provider,
+          idp_user_id: String,
+          last_name: String?,
+          phone: String?,
+          user_type: VitableConnect::Models::AuthSignUpResponse::User::user_type
+        }
+
+        type idp_provider = :workos | :vitable
+
+        module IdpProvider
+          extend VitableConnect::Internal::Type::Enum
+
+          WORKOS: :workos
+          VITABLE: :vitable
+
+          def self?.values: -> ::Array[VitableConnect::Models::AuthSignUpResponse::User::idp_provider]
+        end
+
+        type user_type =
+          :Member
+          | :NursePractitioner
+          | :CompanyAdmin
+          | :VitableAdmin
+          | :ClinicalAdmin
+          | :PartnerEmployee
+          | :OrganizationUser
+          | :ExternalAdmin
+
+        module UserType
+          extend VitableConnect::Internal::Type::Enum
+
+          MEMBER: :Member
+          NURSE_PRACTITIONER: :NursePractitioner
+          COMPANY_ADMIN: :CompanyAdmin
+          VITABLE_ADMIN: :VitableAdmin
+          CLINICAL_ADMIN: :ClinicalAdmin
+          PARTNER_EMPLOYEE: :PartnerEmployee
+          ORGANIZATION_USER: :OrganizationUser
+          EXTERNAL_ADMIN: :ExternalAdmin
+
+          def self?.values: -> ::Array[VitableConnect::Models::AuthSignUpResponse::User::user_type]
+        end
+      end
+    end
+  end
+end

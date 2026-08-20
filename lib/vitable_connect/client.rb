@@ -26,7 +26,6 @@ module VitableConnect
     # @return [String]
     attr_reader :api_key
 
-    # Issue short-lived access tokens for scoped API access
     # @return [VitableConnect::Resources::Auth]
     attr_reader :auth
 
@@ -46,13 +45,29 @@ module VitableConnect
     # @return [VitableConnect::Resources::Groups]
     attr_reader :groups
 
+    # Browse the members covered across your book and read a member's profile
+    # @return [VitableConnect::Resources::Members]
+    attr_reader :members
+
+    # @return [VitableConnect::Resources::Organizations]
+    attr_reader :organizations
+
     # @return [VitableConnect::Resources::Plans]
     attr_reader :plans
 
     # @api private
     #
+    # @param security [Hash{Symbol=>Boolean}]
+    #
     # @return [Hash{String=>String}]
-    private def auth_headers
+    private def auth_headers(security:)
+      {api_key_auth:}.slice(*security.keys).values.reduce({}, :merge)
+    end
+
+    # @api private
+    #
+    # @return [Hash{String=>String}]
+    private def api_key_auth
       return {} if @api_key.nil?
 
       {"authorization" => "Bearer #{@api_key}"}
@@ -129,6 +144,8 @@ module VitableConnect
       @enrollments = VitableConnect::Resources::Enrollments.new(client: self)
       @webhook_events = VitableConnect::Resources::WebhookEvents.new(client: self)
       @groups = VitableConnect::Resources::Groups.new(client: self)
+      @members = VitableConnect::Resources::Members.new(client: self)
+      @organizations = VitableConnect::Resources::Organizations.new(client: self)
       @plans = VitableConnect::Resources::Plans.new(client: self)
     end
   end

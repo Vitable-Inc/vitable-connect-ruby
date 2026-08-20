@@ -1,0 +1,84 @@
+module VitableConnect
+  module Models
+    type auth_login_params =
+      {
+        email_or_phone: String,
+        user_type: VitableConnect::Models::AuthLoginParams::user_type,
+        app_name: String,
+        app_version: String,
+        password: String,
+        two_factor_token: String
+      }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class AuthLoginParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor email_or_phone: String
+
+      attr_accessor user_type: VitableConnect::Models::AuthLoginParams::user_type
+
+      attr_reader app_name: String?
+
+      def app_name=: (String) -> String
+
+      attr_reader app_version: String?
+
+      def app_version=: (String) -> String
+
+      attr_reader password: String?
+
+      def password=: (String) -> String
+
+      attr_reader two_factor_token: String?
+
+      def two_factor_token=: (String) -> String
+
+      def initialize: (
+        email_or_phone: String,
+        user_type: VitableConnect::Models::AuthLoginParams::user_type,
+        ?app_name: String,
+        ?app_version: String,
+        ?password: String,
+        ?two_factor_token: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        email_or_phone: String,
+        user_type: VitableConnect::Models::AuthLoginParams::user_type,
+        app_name: String,
+        app_version: String,
+        password: String,
+        two_factor_token: String,
+        request_options: VitableConnect::RequestOptions
+      }
+
+      type user_type =
+        :Member
+        | :NursePractitioner
+        | :CompanyAdmin
+        | :VitableAdmin
+        | :ClinicalAdmin
+        | :PartnerEmployee
+        | :OrganizationUser
+        | :ExternalAdmin
+
+      module UserType
+        extend VitableConnect::Internal::Type::Enum
+
+        MEMBER: :Member
+        NURSE_PRACTITIONER: :NursePractitioner
+        COMPANY_ADMIN: :CompanyAdmin
+        VITABLE_ADMIN: :VitableAdmin
+        CLINICAL_ADMIN: :ClinicalAdmin
+        PARTNER_EMPLOYEE: :PartnerEmployee
+        ORGANIZATION_USER: :OrganizationUser
+        EXTERNAL_ADMIN: :ExternalAdmin
+
+        def self?.values: -> ::Array[VitableConnect::Models::AuthLoginParams::user_type]
+      end
+    end
+  end
+end

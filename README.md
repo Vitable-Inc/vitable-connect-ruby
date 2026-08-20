@@ -229,25 +229,25 @@ vitable_connect.auth.issue_access_token(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :active
-puts(VitableConnect::EmployerListEmployeesParams::EmploymentStatus::ACTIVE)
+# :Member
+puts(VitableConnect::AuthCompleteProfileParams::UserType::MEMBER)
 
-# Revealed type: `T.all(VitableConnect::EmployerListEmployeesParams::EmploymentStatus, Symbol)`
-T.reveal_type(VitableConnect::EmployerListEmployeesParams::EmploymentStatus::ACTIVE)
+# Revealed type: `T.all(VitableConnect::AuthCompleteProfileParams::UserType, Symbol)`
+T.reveal_type(VitableConnect::AuthCompleteProfileParams::UserType::MEMBER)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-vitable_connect.employers.list_employees(
-  employment_status: VitableConnect::EmployerListEmployeesParams::EmploymentStatus::ACTIVE,
+vitable_connect.auth.complete_profile(
+  user_type: VitableConnect::AuthCompleteProfileParams::UserType::MEMBER,
   # …
 )
 
 # Literal values are also permissible:
-vitable_connect.employers.list_employees(
-  employment_status: :active,
+vitable_connect.auth.complete_profile(
+  user_type: :Member,
   # …
 )
 ```

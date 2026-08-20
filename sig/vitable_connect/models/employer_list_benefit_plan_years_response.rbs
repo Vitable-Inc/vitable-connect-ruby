@@ -1,0 +1,197 @@
+module VitableConnect
+  module Models
+    type employer_list_benefit_plan_years_response =
+      {
+        data: ::Array[VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data]
+      }
+
+    class EmployerListBenefitPlanYearsResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data]
+
+      def initialize: (
+        data: ::Array[VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data]
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data]
+      }
+
+      type data =
+        {
+          benefit_id: String,
+          benefit_plan_year_id: String,
+          carrier: String?,
+          coverage_end: Date?,
+          coverage_start: Date,
+          employee_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployeeContribution?,
+          employer_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployerContribution?,
+          enrollment_rate: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EnrollmentRate,
+          family: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::family,
+          is_current: bool,
+          network_names: ::Array[String],
+          offered_states: ::Array[String],
+          open_enrollment_end: Date?,
+          open_enrollment_start: Date,
+          premium_in_cents: Integer?,
+          product_name: String,
+          status: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::status,
+          year: Integer
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor benefit_id: String
+
+        attr_accessor benefit_plan_year_id: String
+
+        attr_accessor carrier: String?
+
+        attr_accessor coverage_end: Date?
+
+        attr_accessor coverage_start: Date
+
+        attr_accessor employee_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployeeContribution?
+
+        attr_accessor employer_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployerContribution?
+
+        attr_accessor enrollment_rate: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EnrollmentRate
+
+        attr_accessor family: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::family
+
+        attr_accessor is_current: bool
+
+        attr_accessor network_names: ::Array[String]
+
+        attr_accessor offered_states: ::Array[String]
+
+        attr_accessor open_enrollment_end: Date?
+
+        attr_accessor open_enrollment_start: Date
+
+        attr_accessor premium_in_cents: Integer?
+
+        attr_accessor product_name: String
+
+        attr_accessor status: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::status
+
+        attr_accessor year: Integer
+
+        def initialize: (
+          benefit_id: String,
+          benefit_plan_year_id: String,
+          carrier: String?,
+          coverage_end: Date?,
+          coverage_start: Date,
+          employee_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployeeContribution?,
+          employer_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployerContribution?,
+          enrollment_rate: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EnrollmentRate,
+          family: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::family,
+          is_current: bool,
+          network_names: ::Array[String],
+          offered_states: ::Array[String],
+          open_enrollment_end: Date?,
+          open_enrollment_start: Date,
+          premium_in_cents: Integer?,
+          product_name: String,
+          status: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::status,
+          year: Integer
+        ) -> void
+
+        def to_hash: -> {
+          benefit_id: String,
+          benefit_plan_year_id: String,
+          carrier: String?,
+          coverage_end: Date?,
+          coverage_start: Date,
+          employee_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployeeContribution?,
+          employer_contribution: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EmployerContribution?,
+          enrollment_rate: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::EnrollmentRate,
+          family: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::family,
+          is_current: bool,
+          network_names: ::Array[String],
+          offered_states: ::Array[String],
+          open_enrollment_end: Date?,
+          open_enrollment_start: Date,
+          premium_in_cents: Integer?,
+          product_name: String,
+          status: VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::status,
+          year: Integer
+        }
+
+        type employee_contribution = { max_cents: Integer, min_cents: Integer }
+
+        class EmployeeContribution < VitableConnect::Internal::Type::BaseModel
+          attr_accessor max_cents: Integer
+
+          attr_accessor min_cents: Integer
+
+          def initialize: (max_cents: Integer, min_cents: Integer) -> void
+
+          def to_hash: -> { max_cents: Integer, min_cents: Integer }
+        end
+
+        type employer_contribution = { max_cents: Integer, min_cents: Integer }
+
+        class EmployerContribution < VitableConnect::Internal::Type::BaseModel
+          attr_accessor max_cents: Integer
+
+          attr_accessor min_cents: Integer
+
+          def initialize: (max_cents: Integer, min_cents: Integer) -> void
+
+          def to_hash: -> { max_cents: Integer, min_cents: Integer }
+        end
+
+        type enrollment_rate =
+          { eligible: Integer, enrolled: Integer, percentage: Integer }
+
+        class EnrollmentRate < VitableConnect::Internal::Type::BaseModel
+          attr_accessor eligible: Integer
+
+          attr_accessor enrolled: Integer
+
+          attr_accessor percentage: Integer
+
+          def initialize: (
+            eligible: Integer,
+            enrolled: Integer,
+            percentage: Integer
+          ) -> void
+
+          def to_hash: -> {
+            eligible: Integer,
+            enrolled: Integer,
+            percentage: Integer
+          }
+        end
+
+        type family = :mec | :mvp | :ichra | :vpc | :dental | :vision
+
+        module Family
+          extend VitableConnect::Internal::Type::Enum
+
+          MEC: :mec
+          MVP: :mvp
+          ICHRA: :ichra
+          VPC: :vpc
+          DENTAL: :dental
+          VISION: :vision
+
+          def self?.values: -> ::Array[VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::family]
+        end
+
+        type status = :active | :upcoming | :open_enrollment | :inactive
+
+        module Status
+          extend VitableConnect::Internal::Type::Enum
+
+          ACTIVE: :active
+          UPCOMING: :upcoming
+          OPEN_ENROLLMENT: :open_enrollment
+          INACTIVE: :inactive
+
+          def self?.values: -> ::Array[VitableConnect::Models::EmployerListBenefitPlanYearsResponse::Data::status]
+        end
+      end
+    end
+  end
+end
