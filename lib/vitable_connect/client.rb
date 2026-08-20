@@ -26,11 +26,7 @@ module VitableConnect
     # @return [String]
     attr_reader :api_key
 
-    # IdP-issued bearer token (WorkOS or vitable), required by the identity endpoints
-    # under /v1/auth. Leave unset when authenticating with an API key.
-    # @return [String, nil]
-    attr_reader :identity_token
-
+    # Issue short-lived access tokens for scoped API access
     # @return [VitableConnect::Resources::Auth]
     attr_reader :auth
 
@@ -66,7 +62,7 @@ module VitableConnect
     #
     # @return [Hash{String=>String}]
     private def auth_headers(security:)
-      {api_key_auth:, identity_provider_bearer:}.slice(*security.keys).values.reduce({}, :merge)
+      {api_key_auth:}.slice(*security.keys).values.reduce({}, :merge)
     end
 
     # @api private
@@ -78,24 +74,11 @@ module VitableConnect
       {"authorization" => "Bearer #{@api_key}"}
     end
 
-    # @api private
-    #
-    # @return [Hash{String=>String}]
-    private def identity_provider_bearer
-      return {} if @identity_token.nil?
-
-      {"authorization" => "Bearer #{@identity_token}"}
-    end
-
     # Creates and returns a new client for interacting with the API.
     #
     # @param api_key [String, nil] API Key or Access Token authentication using Bearer token in Authorization
     # header. API keys use the vit*apk* prefix, access tokens use the vit*at* prefix.
     # Defaults to `ENV["VITABLE_CONNECT_API_KEY"]`
-    #
-    # @param identity_token [String, nil] IdP-issued bearer token (WorkOS or vitable), required by the identity endpoints
-    # under /v1/auth. Leave unset when authenticating with an API key. Defaults to
-    # `ENV["VITABLE_CONNECT_IDENTITY_TOKEN"]`
     #
     # @param environment [:production, :environment_1, nil] Specifies the environment to use for the API.
     #
@@ -116,7 +99,6 @@ module VitableConnect
     # @param max_retry_delay [Float]
     def initialize(
       api_key: ENV["VITABLE_CONNECT_API_KEY"],
-      identity_token: ENV["VITABLE_CONNECT_IDENTITY_TOKEN"],
       environment: nil,
       base_url: ENV["VITABLE_CONNECT_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
@@ -147,7 +129,6 @@ module VitableConnect
       end
 
       @api_key = api_key.to_s
-      @identity_token = identity_token&.to_s
 
       super(
         base_url: base_url,

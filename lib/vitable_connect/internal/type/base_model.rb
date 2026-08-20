@@ -441,9 +441,11 @@ module VitableConnect
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `auth_complete_profile_response` is a `VitableConnect::Models::AuthCompleteProfileResponse`
-        #   auth_complete_profile_response => {
-        #     user: user
+        #   # `auth_issue_access_token_response` is a `VitableConnect::Models::AuthIssueAccessTokenResponse`
+        #   auth_issue_access_token_response => {
+        #     access_token: access_token,
+        #     expires_in: expires_in,
+        #     token_type: token_type
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

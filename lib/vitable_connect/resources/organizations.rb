@@ -30,7 +30,7 @@ module VitableConnect
           path: "v1/organizations",
           body: parsed,
           model: VitableConnect::Models::OrganizationCreateResponse,
-          security: {identity_provider_bearer: true},
+          security: {},
           options: options
         )
       end
@@ -50,7 +50,7 @@ module VitableConnect
           method: :get,
           path: "v1/organizations",
           model: VitableConnect::Models::OrganizationListResponse,
-          security: {identity_provider_bearer: true},
+          security: {},
           options: params[:request_options]
         )
       end

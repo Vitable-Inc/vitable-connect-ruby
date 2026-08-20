@@ -44,12 +44,7 @@ class VitableConnectTest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 500, body: {})
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(grant_type: :client_credentials)
@@ -62,12 +57,7 @@ class VitableConnectTest < Minitest::Test
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 500, body: {})
 
     vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token",
-        max_retries: 3
-      )
+      VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(grant_type: :client_credentials)
@@ -79,12 +69,7 @@ class VitableConnectTest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 500, body: {})
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(
@@ -100,12 +85,7 @@ class VitableConnectTest < Minitest::Test
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 500, body: {})
 
     vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token",
-        max_retries: 3
-      )
+      VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(
@@ -125,12 +105,7 @@ class VitableConnectTest < Minitest::Test
     )
 
     vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token",
-        max_retries: 1
-      )
+      VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(grant_type: :client_credentials)
@@ -150,12 +125,7 @@ class VitableConnectTest < Minitest::Test
     )
 
     vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token",
-        max_retries: 1
-      )
+      VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(VitableConnect::Errors::InternalServerError) do
@@ -175,12 +145,7 @@ class VitableConnectTest < Minitest::Test
     )
 
     vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token",
-        max_retries: 1
-      )
+      VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(grant_type: :client_credentials)
@@ -193,12 +158,7 @@ class VitableConnectTest < Minitest::Test
   def test_retry_count_header
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 500, body: {})
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(grant_type: :client_credentials)
@@ -212,12 +172,7 @@ class VitableConnectTest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 500, body: {})
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(
@@ -234,12 +189,7 @@ class VitableConnectTest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 500, body: {})
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::InternalServerError) do
       vitable_connect.auth.issue_access_token(
@@ -262,12 +212,7 @@ class VitableConnectTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::APIConnectionError) do
       vitable_connect.auth.issue_access_token(
@@ -299,12 +244,7 @@ class VitableConnectTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::APIConnectionError) do
       vitable_connect.auth.issue_access_token(
@@ -331,12 +271,7 @@ class VitableConnectTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::APIConnectionError) do
       vitable_connect.auth.issue_access_token(
@@ -366,12 +301,7 @@ class VitableConnectTest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(VitableConnect::Errors::APIConnectionError) do
       vitable_connect.auth.issue_access_token(
@@ -389,12 +319,7 @@ class VitableConnectTest < Minitest::Test
   def test_default_headers
     stub_request(:post, "http://localhost/v1/auth/access-tokens").to_return_json(status: 200, body: {})
 
-    vitable_connect =
-      VitableConnect::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        identity_token: "My Identity Token"
-      )
+    vitable_connect = VitableConnect::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     vitable_connect.auth.issue_access_token(grant_type: :client_credentials)
 

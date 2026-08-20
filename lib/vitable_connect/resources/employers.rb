@@ -35,7 +35,6 @@ module VitableConnect
           path: "v1/employers",
           body: parsed,
           model: VitableConnect::EmployerResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -57,7 +56,6 @@ module VitableConnect
           method: :get,
           path: ["v1/employers/%1$s", employer_id],
           model: VitableConnect::EmployerResponse,
-          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -89,7 +87,6 @@ module VitableConnect
           path: ["v1/employers/%1$s", employer_id],
           body: parsed,
           model: VitableConnect::EmployerResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -137,7 +134,6 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Models::EmployerListResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -158,7 +154,6 @@ module VitableConnect
           method: :put,
           path: ["v1/employers/%1$s/payroll-integration-email", employer_id],
           model: VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailResponse,
-          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -206,7 +201,6 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -230,7 +224,6 @@ module VitableConnect
           method: :get,
           path: ["v1/employers/%1$s/benefit-plan-years", employer_id],
           model: VitableConnect::Models::EmployerListBenefitPlanYearsResponse,
-          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -269,7 +262,6 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Employee,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -291,7 +283,6 @@ module VitableConnect
           method: :get,
           path: "v1/employers/hris-providers",
           model: VitableConnect::Models::EmployerListHRISProvidersResponse,
-          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -322,7 +313,6 @@ module VitableConnect
           path: ["v1/employers/%1$s/invoices", employer_id],
           query: query,
           model: VitableConnect::Models::EmployerListInvoicesResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -355,7 +345,6 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Models::EmployerListPayrollDeductionStatementsResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -386,7 +375,6 @@ module VitableConnect
           method: :get,
           path: ["v1/employers/%1$s/benefit-plan-years/%2$s", employer_id, benefit_plan_year_id],
           model: VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -409,7 +397,6 @@ module VitableConnect
           method: :get,
           path: ["v1/employers/%1$s/hris", employer_id],
           model: VitableConnect::Models::EmployerRetrieveHRISResponse,
-          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -440,7 +427,6 @@ module VitableConnect
           method: :get,
           path: ["v1/employers/%1$s/invoices/%2$s/pdf", employer_id, invoice_id],
           model: VitableConnect::Models::EmployerRetrieveInvoicePdfResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -461,7 +447,6 @@ module VitableConnect
           method: :get,
           path: ["v1/employers/%1$s/payroll-access-setup", employer_id],
           model: VitableConnect::Models::EmployerRetrievePayrollAccessSetupResponse,
-          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -488,7 +473,6 @@ module VitableConnect
           path: ["v1/employers/%1$s/census-sync", employer_id],
           body: parsed,
           model: VitableConnect::Models::EmployerSubmitCensusSyncResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -561,7 +545,6 @@ module VitableConnect
           path: ["v1/employers/%1$s/payroll-access-setup", employer_id],
           body: parsed,
           model: VitableConnect::Models::EmployerSubmitPayrollAccessSetupResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
@@ -590,7 +573,6 @@ module VitableConnect
           path: ["v1/employers/%1$s/settings", employer_id],
           body: parsed,
           model: VitableConnect::Models::EmployerUpdateSettingsResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end

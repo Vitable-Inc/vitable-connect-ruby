@@ -42,17 +42,7 @@ module VitableConnect
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
-  AuthCompleteProfileParams = VitableConnect::Models::AuthCompleteProfileParams
-
   AuthIssueAccessTokenParams = VitableConnect::Models::AuthIssueAccessTokenParams
-
-  AuthListPersonasParams = VitableConnect::Models::AuthListPersonasParams
-
-  AuthLoginParams = VitableConnect::Models::AuthLoginParams
-
-  AuthRetrieveMeParams = VitableConnect::Models::AuthRetrieveMeParams
-
-  AuthSignUpParams = VitableConnect::Models::AuthSignUpParams
 
   Employee = VitableConnect::Models::Employee
 

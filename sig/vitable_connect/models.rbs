@@ -1,15 +1,5 @@
 module VitableConnect
-  class AuthCompleteProfileParams = VitableConnect::Models::AuthCompleteProfileParams
-
   class AuthIssueAccessTokenParams = VitableConnect::Models::AuthIssueAccessTokenParams
-
-  class AuthListPersonasParams = VitableConnect::Models::AuthListPersonasParams
-
-  class AuthLoginParams = VitableConnect::Models::AuthLoginParams
-
-  class AuthRetrieveMeParams = VitableConnect::Models::AuthRetrieveMeParams
-
-  class AuthSignUpParams = VitableConnect::Models::AuthSignUpParams
 
   class Employee = VitableConnect::Models::Employee
 

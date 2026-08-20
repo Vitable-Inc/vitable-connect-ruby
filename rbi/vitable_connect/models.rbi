@@ -1,18 +1,8 @@
 # typed: strong
 
 module VitableConnect
-  AuthCompleteProfileParams = VitableConnect::Models::AuthCompleteProfileParams
-
   AuthIssueAccessTokenParams =
     VitableConnect::Models::AuthIssueAccessTokenParams
-
-  AuthListPersonasParams = VitableConnect::Models::AuthListPersonasParams
-
-  AuthLoginParams = VitableConnect::Models::AuthLoginParams
-
-  AuthRetrieveMeParams = VitableConnect::Models::AuthRetrieveMeParams
-
-  AuthSignUpParams = VitableConnect::Models::AuthSignUpParams
 
   Employee = VitableConnect::Models::Employee
 

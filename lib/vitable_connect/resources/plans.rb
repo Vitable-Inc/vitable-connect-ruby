@@ -26,7 +26,6 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Models::PlanListResponse,
-          security: {api_key_auth: true},
           options: options
         )
       end
