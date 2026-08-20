@@ -21,6 +21,7 @@ module VitableConnect
           method: :get,
           path: ["v1/members/%1$s", member_id],
           model: VitableConnect::Models::MemberRetrieveResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -52,6 +53,7 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Models::MemberListResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -73,6 +75,7 @@ module VitableConnect
           method: :get,
           path: ["v1/members/%1$s/dependents", member_id],
           model: VitableConnect::Models::MemberListDependentsResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -96,6 +99,7 @@ module VitableConnect
           method: :get,
           path: ["v1/members/%1$s/employments", member_id],
           model: VitableConnect::Models::MemberListEmploymentsResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -129,6 +133,7 @@ module VitableConnect
           method: :get,
           path: ["v1/members/%1$s/enrollments", member_id],
           model: VitableConnect::Models::MemberListEnrollmentsResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -155,6 +160,7 @@ module VitableConnect
           method: :get,
           path: ["v1/members/%1$s/id-cards", member_id],
           model: VitableConnect::Models::MemberListIDCardsResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -193,6 +199,7 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Models::MemberListQualifyingLifeEventsResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -216,6 +223,7 @@ module VitableConnect
           method: :get,
           path: ["v1/members/%1$s/household", member_id],
           model: VitableConnect::Models::MemberRetrieveHouseholdResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end

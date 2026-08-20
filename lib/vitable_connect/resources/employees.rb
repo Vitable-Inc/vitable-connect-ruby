@@ -23,6 +23,7 @@ module VitableConnect
           method: :get,
           path: ["v1/employees/%1$s", employee_id],
           model: VitableConnect::Models::EmployeeRetrieveResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -68,6 +69,7 @@ module VitableConnect
           path: ["v1/employees/%1$s", employee_id],
           body: parsed,
           model: VitableConnect::Models::EmployeeUpdateResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -96,6 +98,7 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Enrollment,
+          security: {api_key_auth: true},
           options: options
         )
       end

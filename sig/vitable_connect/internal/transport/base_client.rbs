@@ -20,7 +20,7 @@ module VitableConnect
             page: Class?,
             stream: Class?,
             model: VitableConnect::Internal::Type::Converter::input?,
-            security: { api_key_auth: bool }?,
+            security: { api_key_auth: bool, identity_provider_bearer: bool }?,
             options: VitableConnect::request_opts?
           }
         type request_input =
@@ -124,7 +124,7 @@ module VitableConnect
           ?page: Class?,
           ?stream: Class?,
           ?model: VitableConnect::Internal::Type::Converter::input?,
-          ?security: { api_key_auth: bool }?,
+          ?security: { api_key_auth: bool, identity_provider_bearer: bool }?,
           ?options: VitableConnect::request_opts?
         ) -> top
 

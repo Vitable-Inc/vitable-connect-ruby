@@ -48,7 +48,11 @@ class VitableConnect::Test::SingletonClient < VitableConnect::Client
   TEST_API_BASE_URL = ENV.fetch("TEST_API_BASE_URL", "http://localhost:4010")
 
   def initialize
-    super(base_url: VitableConnect::Test::SingletonClient::TEST_API_BASE_URL, api_key: "My API Key")
+    super(
+      base_url: VitableConnect::Test::SingletonClient::TEST_API_BASE_URL,
+      api_key: "My API Key",
+      identity_token: "My Identity Token"
+    )
   end
 end
 

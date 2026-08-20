@@ -292,7 +292,7 @@ module VitableConnect
             @headers,
             auth_headers(
               security: req.fetch(
-                :security, {api_key_auth: true}
+                :security, {api_key_auth: true, identity_provider_bearer: true}
               )
             ),
             req[:headers].to_h,
@@ -466,7 +466,7 @@ module VitableConnect
         # Execute the request specified by `req`. This is the method that all resource
         # methods call into.
         #
-        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: VitableConnect::Internal::Type::Unknown, security: {api_key_auth: true}, options: {})
+        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: VitableConnect::Internal::Type::Unknown, security: {api_key_auth: true, identity_provider_bearer: true}, options: {})
         #
         # @param method [Symbol]
         #
@@ -580,7 +580,7 @@ module VitableConnect
               page: T.nilable(T::Class[VitableConnect::Internal::Type::BasePage[VitableConnect::Internal::Type::BaseModel]]),
               stream: T.nilable(T::Class[T.anything]),
               model: T.nilable(VitableConnect::Internal::Type::Converter::Input),
-              security: T.nilable({api_key_auth: T::Boolean}),
+              security: T.nilable({api_key_auth: T::Boolean, identity_provider_bearer: T::Boolean}),
               options: T.nilable(VitableConnect::RequestOptions::OrHash)
             }
           end

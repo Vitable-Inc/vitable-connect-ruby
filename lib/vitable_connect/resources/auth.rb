@@ -38,7 +38,7 @@ module VitableConnect
           path: "v1/auth/complete-profile",
           body: parsed,
           model: VitableConnect::Models::AuthCompleteProfileResponse,
-          security: {},
+          security: {identity_provider_bearer: true},
           options: options
         )
       end
@@ -65,6 +65,7 @@ module VitableConnect
           path: "v1/auth/access-tokens",
           body: parsed,
           model: VitableConnect::Models::AuthIssueAccessTokenResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -86,7 +87,7 @@ module VitableConnect
           method: :get,
           path: "v1/auth/personas",
           model: VitableConnect::Internal::Type::ArrayOf[VitableConnect::Models::AuthListPersonasResponseItem],
-          security: {},
+          security: {identity_provider_bearer: true},
           options: params[:request_options]
         )
       end
@@ -131,6 +132,7 @@ module VitableConnect
           path: "v1/auth/login",
           body: parsed,
           model: VitableConnect::Models::AuthLoginResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -151,7 +153,7 @@ module VitableConnect
           method: :get,
           path: "v1/auth/me",
           model: VitableConnect::Models::AuthRetrieveMeResponse,
-          security: {},
+          security: {identity_provider_bearer: true},
           options: params[:request_options]
         )
       end
@@ -183,7 +185,7 @@ module VitableConnect
           path: "v1/auth/sign-up",
           body: parsed,
           model: VitableConnect::Models::AuthSignUpResponse,
-          security: {},
+          security: {identity_provider_bearer: true},
           options: options
         )
       end

@@ -20,6 +20,7 @@ module VitableConnect
           method: :get,
           path: ["v1/enrollments/%1$s", enrollment_id],
           model: VitableConnect::Models::EnrollmentRetrieveResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -59,6 +60,7 @@ module VitableConnect
           path: ["v1/enrollments/%1$s/reissue", enrollment_id],
           body: parsed,
           model: VitableConnect::Models::EnrollmentReissueResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -95,6 +97,7 @@ module VitableConnect
           path: ["v1/enrollments/%1$s/terminate", enrollment_id],
           body: parsed,
           model: NilClass,
+          security: {api_key_auth: true},
           options: options
         )
       end

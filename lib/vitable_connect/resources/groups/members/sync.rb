@@ -31,6 +31,7 @@ module VitableConnect
               method: :get,
               path: ["v1/groups/%1$s/members/sync/%2$s", group_id, request_id],
               model: VitableConnect::Models::Groups::Members::SyncRetrieveResponse,
+              security: {api_key_auth: true},
               options: options
             )
           end
@@ -57,6 +58,7 @@ module VitableConnect
               path: ["v1/groups/%1$s/members/sync", group_id],
               body: parsed,
               model: VitableConnect::Models::Groups::Members::SyncSubmitResponse,
+              security: {api_key_auth: true},
               options: options
             )
           end

@@ -15,6 +15,8 @@ module VitableConnect
 
     attr_reader api_key: String
 
+    attr_reader identity_token: String?
+
     attr_reader auth: VitableConnect::Resources::Auth
 
     attr_reader employees: VitableConnect::Resources::Employees
@@ -34,13 +36,16 @@ module VitableConnect
     attr_reader plans: VitableConnect::Resources::Plans
 
     private def auth_headers: (
-      security: { api_key_auth: bool }
+      security: { api_key_auth: bool, identity_provider_bearer: bool }
     ) -> ::Hash[String, String]
 
     private def api_key_auth: -> ::Hash[String, String]
 
+    private def identity_provider_bearer: -> ::Hash[String, String]
+
     def initialize: (
       ?api_key: String?,
+      ?identity_token: String?,
       ?environment: :production | :environment_1 | nil,
       ?base_url: String?,
       ?max_retries: Integer,

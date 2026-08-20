@@ -24,6 +24,7 @@ module VitableConnect
           path: "v1/groups",
           body: parsed,
           model: VitableConnect::GroupResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -45,6 +46,7 @@ module VitableConnect
           method: :get,
           path: ["v1/groups/%1$s", group_id],
           model: VitableConnect::GroupResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -72,6 +74,7 @@ module VitableConnect
           path: ["v1/groups/%1$s", group_id],
           body: parsed,
           model: VitableConnect::GroupResponse,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -98,6 +101,7 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::Group,
+          security: {api_key_auth: true},
           options: options
         )
       end

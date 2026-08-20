@@ -24,6 +24,11 @@ module VitableConnect
     sig { returns(String) }
     attr_reader :api_key
 
+    # IdP-issued bearer token (WorkOS or vitable), required by the identity endpoints
+    # under /v1/auth. Leave unset when authenticating with an API key.
+    sig { returns(T.nilable(String)) }
+    attr_reader :identity_token
+
     sig { returns(VitableConnect::Resources::Auth) }
     attr_reader :auth
 
@@ -56,7 +61,12 @@ module VitableConnect
     # @api private
     sig do
       override
-        .params(security: { api_key_auth: T::Boolean })
+        .params(
+          security: {
+            api_key_auth: T::Boolean,
+            identity_provider_bearer: T::Boolean
+          }
+        )
         .returns(T::Hash[String, String])
     end
     private def auth_headers(security:)
@@ -67,10 +77,16 @@ module VitableConnect
     private def api_key_auth
     end
 
+    # @api private
+    sig { returns(T::Hash[String, String]) }
+    private def identity_provider_bearer
+    end
+
     # Creates and returns a new client for interacting with the API.
     sig do
       params(
         api_key: T.nilable(String),
+        identity_token: T.nilable(String),
         environment: T.nilable(T.any(Symbol, String)),
         base_url: T.nilable(String),
         max_retries: Integer,
@@ -84,6 +100,10 @@ module VitableConnect
       # header. API keys use the vit*apk* prefix, access tokens use the vit*at* prefix.
       # Defaults to `ENV["VITABLE_CONNECT_API_KEY"]`
       api_key: ENV["VITABLE_CONNECT_API_KEY"],
+      # IdP-issued bearer token (WorkOS or vitable), required by the identity endpoints
+      # under /v1/auth. Leave unset when authenticating with an API key. Defaults to
+      # `ENV["VITABLE_CONNECT_IDENTITY_TOKEN"]`
+      identity_token: ENV["VITABLE_CONNECT_IDENTITY_TOKEN"],
       # Specifies the environment to use for the API.
       #
       # Each environment maps to a different base URL:

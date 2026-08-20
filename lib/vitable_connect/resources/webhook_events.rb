@@ -19,6 +19,7 @@ module VitableConnect
           method: :get,
           path: ["v1/webhook-events/%1$s", event_id],
           model: VitableConnect::Models::WebhookEventRetrieveResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
@@ -59,6 +60,7 @@ module VitableConnect
           query: query,
           page: VitableConnect::Internal::PageNumberPage,
           model: VitableConnect::WebhookEvent,
+          security: {api_key_auth: true},
           options: options
         )
       end
@@ -80,6 +82,7 @@ module VitableConnect
           method: :get,
           path: ["v1/webhook-events/%1$s/deliveries", event_id],
           model: VitableConnect::Models::WebhookEventListDeliveriesResponse,
+          security: {api_key_auth: true},
           options: params[:request_options]
         )
       end
