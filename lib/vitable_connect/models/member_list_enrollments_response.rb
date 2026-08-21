@@ -22,6 +22,12 @@ module VitableConnect
         #   @return [String]
         required :id, String
 
+        # @!attribute benefit_plan_year_id
+        #   Exact benefit plan-year identifier for this enrollment
+        #
+        #   @return [String]
+        required :benefit_plan_year_id, String
+
         # @!attribute benefit_type
         #   - `Medical` - Medical
         #   - `Dental` - Dental
@@ -48,6 +54,12 @@ module VitableConnect
         #   @return [Symbol, VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus]
         required :election_status,
                  enum: -> { VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus }
+
+        # @!attribute employer_id
+        #   Exact employer identifier for this enrollment
+        #
+        #   @return [String]
+        required :employer_id, String
 
         # @!attribute employer_name
         #   Name of the employer the enrollment is through
@@ -182,7 +194,7 @@ module VitableConnect
         #   @return [String, nil]
         optional :tier_name, String, nil?: true
 
-        # @!method initialize(id:, benefit_type:, cancelled_date:, election_status:, employer_name:, enrollment_window_start:, in_last_month_of_coverage:, is_within_enrollment_window:, plan_year_coverage_end:, policy_status:, product_code:, product_name:, requires_qle_for_reissue:, carrier_name: nil, coverage_end: nil, coverage_start: nil, employee_deduction_in_cents: nil, employer_contribution_in_cents: nil, enrollment_window_end: nil, plan_name: nil, premium_in_cents: nil, tier_name: nil)
+        # @!method initialize(id:, benefit_plan_year_id:, benefit_type:, cancelled_date:, election_status:, employer_id:, employer_name:, enrollment_window_start:, in_last_month_of_coverage:, is_within_enrollment_window:, plan_year_coverage_end:, policy_status:, product_code:, product_name:, requires_qle_for_reissue:, carrier_name: nil, coverage_end: nil, coverage_start: nil, employee_deduction_in_cents: nil, employer_contribution_in_cents: nil, enrollment_window_end: nil, plan_name: nil, premium_in_cents: nil, tier_name: nil)
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::MemberListEnrollmentsResponse::Data} for more details.
         #
@@ -190,11 +202,15 @@ module VitableConnect
         #
         #   @param id [String] Opaque, stable enrollment identifier used to target enrollment actions
         #
+        #   @param benefit_plan_year_id [String] Exact benefit plan-year identifier for this enrollment
+        #
         #   @param benefit_type [Symbol, VitableConnect::Models::MemberListEnrollmentsResponse::Data::BenefitType] - `Medical` - Medical
         #
         #   @param cancelled_date [Date, nil] Earliest applicable coverage boundary (YYYY-MM-DD) when coverage was cancelled b
         #
         #   @param election_status [Symbol, VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus] - `Enrolled` - Enrolled
+        #
+        #   @param employer_id [String] Exact employer identifier for this enrollment
         #
         #   @param employer_name [String] Name of the employer the enrollment is through
         #
