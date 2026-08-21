@@ -56,6 +56,10 @@ module VitableConnect
         sig { returns(String) }
         attr_accessor :id
 
+        # Exact benefit plan-year identifier for this enrollment
+        sig { returns(String) }
+        attr_accessor :benefit_plan_year_id
+
         # - `Medical` - Medical
         # - `Dental` - Dental
         # - `Vision` - Vision
@@ -82,6 +86,10 @@ module VitableConnect
           )
         end
         attr_accessor :election_status
+
+        # Exact employer identifier for this enrollment
+        sig { returns(String) }
+        attr_accessor :employer_id
 
         # Name of the employer the enrollment is through
         sig { returns(String) }
@@ -191,11 +199,13 @@ module VitableConnect
         sig do
           params(
             id: String,
+            benefit_plan_year_id: String,
             benefit_type:
               VitableConnect::Models::MemberListEnrollmentsResponse::Data::BenefitType::OrSymbol,
             cancelled_date: T.nilable(Date),
             election_status:
               VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus::OrSymbol,
+            employer_id: String,
             employer_name: String,
             enrollment_window_start: Date,
             in_last_month_of_coverage: T::Boolean,
@@ -223,6 +233,8 @@ module VitableConnect
         def self.new(
           # Opaque, stable enrollment identifier used to target enrollment actions
           id:,
+          # Exact benefit plan-year identifier for this enrollment
+          benefit_plan_year_id:,
           # - `Medical` - Medical
           # - `Dental` - Dental
           # - `Vision` - Vision
@@ -236,6 +248,8 @@ module VitableConnect
           # - `Pending` - Pending
           # - `Expired` - Expired
           election_status:,
+          # Exact employer identifier for this enrollment
+          employer_id:,
           # Name of the employer the enrollment is through
           employer_name:,
           # Enrollment / open-enrollment window start date (YYYY-MM-DD)
@@ -301,11 +315,13 @@ module VitableConnect
           override.returns(
             {
               id: String,
+              benefit_plan_year_id: String,
               benefit_type:
                 VitableConnect::Models::MemberListEnrollmentsResponse::Data::BenefitType::TaggedSymbol,
               cancelled_date: T.nilable(Date),
               election_status:
                 VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus::TaggedSymbol,
+              employer_id: String,
               employer_name: String,
               enrollment_window_start: Date,
               in_last_month_of_coverage: T::Boolean,

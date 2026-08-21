@@ -63,7 +63,7 @@ module VitableConnect
       end
       attr_writer :contact
 
-      # Employer Identification Number (masked in responses)
+      # Employer Identification Number (format: XX-XXXXXXX)
       sig { returns(T.nilable(String)) }
       attr_accessor :ein
 
@@ -101,7 +101,7 @@ module VitableConnect
         contact:,
         # Timestamp when the employer was created
         created_at:,
-        # Employer Identification Number (masked in responses)
+        # Employer Identification Number (format: XX-XXXXXXX)
         ein:,
         # Legal business name for compliance and tax purposes
         legal_name:,

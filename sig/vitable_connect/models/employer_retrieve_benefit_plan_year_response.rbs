@@ -155,6 +155,7 @@ module VitableConnect
               benefit_plan_tier_name: String,
               cost: Integer,
               cost_per_dependent: Integer,
+              coverage_tier: VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::coverage_tier,
               dependents_required_in: bool,
               spouse_required_in: bool
             }
@@ -170,6 +171,8 @@ module VitableConnect
 
             attr_accessor cost_per_dependent: Integer
 
+            attr_accessor coverage_tier: VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::coverage_tier
+
             attr_accessor dependents_required_in: bool
 
             attr_accessor spouse_required_in: bool
@@ -180,6 +183,7 @@ module VitableConnect
               benefit_plan_tier_name: String,
               cost: Integer,
               cost_per_dependent: Integer,
+              coverage_tier: VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::coverage_tier,
               dependents_required_in: bool,
               spouse_required_in: bool
             ) -> void
@@ -190,9 +194,24 @@ module VitableConnect
               benefit_plan_tier_name: String,
               cost: Integer,
               cost_per_dependent: Integer,
+              coverage_tier: VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::coverage_tier,
               dependents_required_in: bool,
               spouse_required_in: bool
             }
+
+            type coverage_tier = :Unspecified | :EE | :ES | :EC | :EF
+
+            module CoverageTier
+              extend VitableConnect::Internal::Type::Enum
+
+              UNSPECIFIED: :Unspecified
+              EE: :EE
+              ES: :ES
+              EC: :EC
+              EF: :EF
+
+              def self?.values: -> ::Array[VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::coverage_tier]
+            end
           end
 
           type ichra_contribution_class =

@@ -477,6 +477,18 @@ module VitableConnect
             sig { returns(Integer) }
             attr_accessor :cost_per_dependent
 
+            # - `Unspecified` - Unspecified
+            # - `EE` - EE
+            # - `ES` - ES
+            # - `EC` - EC
+            # - `EF` - EF
+            sig do
+              returns(
+                VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol
+              )
+            end
+            attr_accessor :coverage_tier
+
             # Whether dependents are required for this tier.
             sig { returns(T::Boolean) }
             attr_accessor :dependents_required_in
@@ -496,6 +508,8 @@ module VitableConnect
                 benefit_plan_tier_name: String,
                 cost: Integer,
                 cost_per_dependent: Integer,
+                coverage_tier:
+                  VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::OrSymbol,
                 dependents_required_in: T::Boolean,
                 spouse_required_in: T::Boolean
               ).returns(T.attached_class)
@@ -511,6 +525,12 @@ module VitableConnect
               cost:,
               # Monthly employee deduction per dependent, in cents.
               cost_per_dependent:,
+              # - `Unspecified` - Unspecified
+              # - `EE` - EE
+              # - `ES` - ES
+              # - `EC` - EC
+              # - `EF` - EF
+              coverage_tier:,
               # Whether dependents are required for this tier.
               dependents_required_in:,
               # Whether a spouse is required for this tier.
@@ -526,12 +546,68 @@ module VitableConnect
                   benefit_plan_tier_name: String,
                   cost: Integer,
                   cost_per_dependent: Integer,
+                  coverage_tier:
+                    VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol,
                   dependents_required_in: T::Boolean,
                   spouse_required_in: T::Boolean
                 }
               )
             end
             def to_hash
+            end
+
+            # - `Unspecified` - Unspecified
+            # - `EE` - EE
+            # - `ES` - ES
+            # - `EC` - EC
+            # - `EF` - EF
+            module CoverageTier
+              extend VitableConnect::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              UNSPECIFIED =
+                T.let(
+                  :Unspecified,
+                  VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol
+                )
+              EE =
+                T.let(
+                  :EE,
+                  VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol
+                )
+              ES =
+                T.let(
+                  :ES,
+                  VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol
+                )
+              EC =
+                T.let(
+                  :EC,
+                  VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol
+                )
+              EF =
+                T.let(
+                  :EF,
+                  VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
             end
           end
 
@@ -575,10 +651,10 @@ module VitableConnect
             attr_accessor :employment
 
             # - `Unspecified` - Unspecified
-            # - `EE` - Ee
-            # - `ES` - Es
-            # - `EC` - Ec
-            # - `EF` - Ef
+            # - `EE` - EE
+            # - `ES` - ES
+            # - `EC` - EC
+            # - `EF` - EF
             sig do
               returns(
                 VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::IchraContributionClass::FamilyStatus::TaggedSymbol
@@ -645,10 +721,10 @@ module VitableConnect
               # - `Seasonal` - Seasonal
               employment:,
               # - `Unspecified` - Unspecified
-              # - `EE` - Ee
-              # - `ES` - Es
-              # - `EC` - Ec
-              # - `EF` - Ef
+              # - `EE` - EE
+              # - `ES` - ES
+              # - `EC` - EC
+              # - `EF` - EF
               family_status:,
               # - `Unspecified` - Unspecified
               # - `State` - State
@@ -781,10 +857,10 @@ module VitableConnect
             end
 
             # - `Unspecified` - Unspecified
-            # - `EE` - Ee
-            # - `ES` - Es
-            # - `EC` - Ec
-            # - `EF` - Ef
+            # - `EE` - EE
+            # - `ES` - ES
+            # - `EC` - EC
+            # - `EF` - EF
             module FamilyStatus
               extend VitableConnect::Internal::Type::Enum
 

@@ -281,6 +281,17 @@ module VitableConnect
             #   @return [Integer]
             required :cost_per_dependent, Integer
 
+            # @!attribute coverage_tier
+            #   - `Unspecified` - Unspecified
+            #   - `EE` - EE
+            #   - `ES` - ES
+            #   - `EC` - EC
+            #   - `EF` - EF
+            #
+            #   @return [Symbol, VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier]
+            required :coverage_tier,
+                     enum: -> { VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier }
+
             # @!attribute dependents_required_in
             #   Whether dependents are required for this tier.
             #
@@ -293,7 +304,11 @@ module VitableConnect
             #   @return [Boolean]
             required :spouse_required_in, VitableConnect::Internal::Type::Boolean
 
-            # @!method initialize(benefit_plan_id:, benefit_plan_name:, benefit_plan_tier_name:, cost:, cost_per_dependent:, dependents_required_in:, spouse_required_in:)
+            # @!method initialize(benefit_plan_id:, benefit_plan_name:, benefit_plan_tier_name:, cost:, cost_per_dependent:, coverage_tier:, dependents_required_in:, spouse_required_in:)
+            #   Some parameter documentations has been truncated, see
+            #   {VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier}
+            #   for more details.
+            #
             #   One non-ICHRA coverage tier, mirroring the internal configuration
             #   `CompanyBenefitPlanTierCostDTO` minus the tier-cost id, `pepm` and
             #   `pepm_per_dependent`; `benefit_plan_id` is the prefixed `bpln_*` form rather
@@ -309,9 +324,31 @@ module VitableConnect
             #
             #   @param cost_per_dependent [Integer] Monthly employee deduction per dependent, in cents.
             #
+            #   @param coverage_tier [Symbol, VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier::CoverageTier] - `Unspecified` - Unspecified
+            #
             #   @param dependents_required_in [Boolean] Whether dependents are required for this tier.
             #
             #   @param spouse_required_in [Boolean] Whether a spouse is required for this tier.
+
+            # - `Unspecified` - Unspecified
+            # - `EE` - EE
+            # - `ES` - ES
+            # - `EC` - EC
+            # - `EF` - EF
+            #
+            # @see VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::ContributionTier#coverage_tier
+            module CoverageTier
+              extend VitableConnect::Internal::Type::Enum
+
+              UNSPECIFIED = :Unspecified
+              EE = :EE
+              ES = :ES
+              EC = :EC
+              EF = :EF
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
           end
 
           class IchraContributionClass < VitableConnect::Internal::Type::BaseModel
@@ -349,10 +386,10 @@ module VitableConnect
 
             # @!attribute family_status
             #   - `Unspecified` - Unspecified
-            #   - `EE` - Ee
-            #   - `ES` - Es
-            #   - `EC` - Ec
-            #   - `EF` - Ef
+            #   - `EE` - EE
+            #   - `ES` - ES
+            #   - `EC` - EC
+            #   - `EF` - EF
             #
             #   @return [Symbol, VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::IchraContributionClass::FamilyStatus]
             required :family_status,
@@ -450,10 +487,10 @@ module VitableConnect
             end
 
             # - `Unspecified` - Unspecified
-            # - `EE` - Ee
-            # - `ES` - Es
-            # - `EC` - Ec
-            # - `EF` - Ef
+            # - `EE` - EE
+            # - `ES` - ES
+            # - `EC` - EC
+            # - `EF` - EF
             #
             # @see VitableConnect::Models::EmployerRetrieveBenefitPlanYearResponse::Data::ContributionStrategy::IchraContributionClass#family_status
             module FamilyStatus

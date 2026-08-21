@@ -72,7 +72,7 @@ module VitableConnect
         required :contact, -> { VitableConnect::Employer::Contact }, nil?: true
 
         # @!attribute ein
-        #   Employer Identification Number (masked in responses)
+        #   Employer Identification Number (format: XX-XXXXXXX)
         #
         #   @return [String, nil]
         required :ein, String, nil?: true
@@ -100,7 +100,7 @@ module VitableConnect
       #
       #   @param created_at [Time] Timestamp when the employer was created
       #
-      #   @param ein [String, nil] Employer Identification Number (masked in responses)
+      #   @param ein [String, nil] Employer Identification Number (format: XX-XXXXXXX)
       #
       #   @param legal_name [String] Legal business name for compliance and tax purposes
       #

@@ -79,12 +79,13 @@ module VitableConnect
       # under the product/open-enrollment rule, enrollment/open-enrollment window, and
       # two statuses: `election_status` (what the member answered) and `policy_status`
       # (what became of their coverage, null unless they enrolled). Every row includes a
-      # stable enrollment ID that can be used to target enrollment actions. The full
-      # list is returned across all states so the client derives active plans (effective
-      # and upcoming) and the enrollment history from those per-row statuses. For an
-      # organization caller the rows are scoped to companies in that organization's
-      # book; a member (self/household) or Vitable Admin sees all enrollments. A member
-      # not visible to the caller returns a 404.
+      # stable enrollment ID and the exact employer and benefit plan-year IDs used to
+      # fetch that row's plan-year detail. The full list is returned across all states
+      # so the client derives active plans (effective and upcoming) and the enrollment
+      # history from those per-row statuses. For an organization caller the rows are
+      # scoped to companies in that organization's book; a member (self/household) or
+      # Vitable Admin sees all enrollments. A member not visible to the caller returns
+      # a 404.
       sig do
         params(
           member_id: String,

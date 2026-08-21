@@ -19,9 +19,11 @@ module VitableConnect
       type data =
         {
           id: String,
+          benefit_plan_year_id: String,
           benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type,
           cancelled_date: Date?,
           election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status,
+          employer_id: String,
           employer_name: String,
           enrollment_window_start: Date,
           in_last_month_of_coverage: bool,
@@ -45,11 +47,15 @@ module VitableConnect
       class Data < VitableConnect::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor benefit_plan_year_id: String
+
         attr_accessor benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type
 
         attr_accessor cancelled_date: Date?
 
         attr_accessor election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status
+
+        attr_accessor employer_id: String
 
         attr_accessor employer_name: String
 
@@ -89,9 +95,11 @@ module VitableConnect
 
         def initialize: (
           id: String,
+          benefit_plan_year_id: String,
           benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type,
           cancelled_date: Date?,
           election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status,
+          employer_id: String,
           employer_name: String,
           enrollment_window_start: Date,
           in_last_month_of_coverage: bool,
@@ -114,9 +122,11 @@ module VitableConnect
 
         def to_hash: -> {
           id: String,
+          benefit_plan_year_id: String,
           benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type,
           cancelled_date: Date?,
           election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status,
+          employer_id: String,
           employer_name: String,
           enrollment_window_start: Date,
           in_last_month_of_coverage: bool,
