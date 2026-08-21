@@ -17,13 +17,26 @@ module VitableConnect
 
       class Data < VitableConnect::Internal::Type::BaseModel
         # @!attribute provider
-        #   HRIS/payroll provider name, as stored on the connection (e.g. `ADP RUN`).
+        #   HRIS/payroll provider id, as stored on the connection (e.g. `adp_run`). Filter
+        #   with this.
         #
         #   @return [String]
         required :provider, String
 
-        # @!method initialize(provider:)
-        #   @param provider [String] HRIS/payroll provider name, as stored on the connection (e.g. `ADP RUN`).
+        # @!attribute provider_label
+        #   Display name of that provider (e.g. `ADP Run`).
+        #
+        #   @return [String]
+        required :provider_label, String
+
+        # @!method initialize(provider:, provider_label:)
+        #   Some parameter documentations has been truncated, see
+        #   {VitableConnect::Models::EmployerListHRISProvidersResponse::Data} for more
+        #   details.
+        #
+        #   @param provider [String] HRIS/payroll provider id, as stored on the connection (e.g. `adp_run`). Filter w
+        #
+        #   @param provider_label [String] Display name of that provider (e.g. `ADP Run`).
       end
     end
   end

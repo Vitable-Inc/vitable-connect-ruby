@@ -260,10 +260,16 @@ module VitableConnect
       # @see VitableConnect::Models::EmployerListResponse#hris_status
       class HRISStatus < VitableConnect::Internal::Type::BaseModel
         # @!attribute provider
-        #   HRIS/payroll provider the employer is connected to (e.g. `Paychex`).
+        #   Id of the HRIS/payroll provider the employer is connected to (e.g. `paylocity`).
         #
         #   @return [String]
         required :provider, String
+
+        # @!attribute provider_label
+        #   Display name of that provider (e.g. `Paylocity`).
+        #
+        #   @return [String]
+        required :provider_label, String
 
         # @!attribute status
         #   Connection status reported by the integration.
@@ -271,10 +277,15 @@ module VitableConnect
         #   @return [String]
         required :status, String
 
-        # @!method initialize(provider:, status:)
+        # @!method initialize(provider:, provider_label:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {VitableConnect::Models::EmployerListResponse::HRISStatus} for more details.
+        #
         #   HRIS connection, or null when the employer has none.
         #
-        #   @param provider [String] HRIS/payroll provider the employer is connected to (e.g. `Paychex`).
+        #   @param provider [String] Id of the HRIS/payroll provider the employer is connected to (e.g. `paylocity`).
+        #
+        #   @param provider_label [String] Display name of that provider (e.g. `Paylocity`).
         #
         #   @param status [String] Connection status reported by the integration.
       end

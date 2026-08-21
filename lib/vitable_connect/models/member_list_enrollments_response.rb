@@ -32,6 +32,13 @@ module VitableConnect
         required :benefit_type,
                  enum: -> { VitableConnect::Models::MemberListEnrollmentsResponse::Data::BenefitType }
 
+        # @!attribute cancelled_date
+        #   Earliest applicable coverage boundary (YYYY-MM-DD) when coverage was cancelled
+        #   before its effective start; null unless the enrollment was cancelled
+        #
+        #   @return [Date, nil]
+        required :cancelled_date, Date, nil?: true
+
         # @!attribute election_status
         #   - `Enrolled` - Enrolled
         #   - `Waived` - Waived
@@ -79,6 +86,7 @@ module VitableConnect
         #   - `Coverage Upcoming` - Coverage Upcoming
         #   - `Coverage Effective` - Coverage Effective
         #   - `Coverage Ended` - Coverage Ended
+        #   - `Cancelled` - Cancelled
         #
         #   @return [Symbol, VitableConnect::Models::MemberListEnrollmentsResponse::Data::PolicyStatus, nil]
         required :policy_status,
@@ -174,7 +182,7 @@ module VitableConnect
         #   @return [String, nil]
         optional :tier_name, String, nil?: true
 
-        # @!method initialize(id:, benefit_type:, election_status:, employer_name:, enrollment_window_start:, in_last_month_of_coverage:, is_within_enrollment_window:, plan_year_coverage_end:, policy_status:, product_code:, product_name:, requires_qle_for_reissue:, carrier_name: nil, coverage_end: nil, coverage_start: nil, employee_deduction_in_cents: nil, employer_contribution_in_cents: nil, enrollment_window_end: nil, plan_name: nil, premium_in_cents: nil, tier_name: nil)
+        # @!method initialize(id:, benefit_type:, cancelled_date:, election_status:, employer_name:, enrollment_window_start:, in_last_month_of_coverage:, is_within_enrollment_window:, plan_year_coverage_end:, policy_status:, product_code:, product_name:, requires_qle_for_reissue:, carrier_name: nil, coverage_end: nil, coverage_start: nil, employee_deduction_in_cents: nil, employer_contribution_in_cents: nil, enrollment_window_end: nil, plan_name: nil, premium_in_cents: nil, tier_name: nil)
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::MemberListEnrollmentsResponse::Data} for more details.
         #
@@ -183,6 +191,8 @@ module VitableConnect
         #   @param id [String] Opaque, stable enrollment identifier used to target enrollment actions
         #
         #   @param benefit_type [Symbol, VitableConnect::Models::MemberListEnrollmentsResponse::Data::BenefitType] - `Medical` - Medical
+        #
+        #   @param cancelled_date [Date, nil] Earliest applicable coverage boundary (YYYY-MM-DD) when coverage was cancelled b
         #
         #   @param election_status [Symbol, VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus] - `Enrolled` - Enrolled
         #
@@ -261,6 +271,7 @@ module VitableConnect
         # - `Coverage Upcoming` - Coverage Upcoming
         # - `Coverage Effective` - Coverage Effective
         # - `Coverage Ended` - Coverage Ended
+        # - `Cancelled` - Cancelled
         #
         # @see VitableConnect::Models::MemberListEnrollmentsResponse::Data#policy_status
         module PolicyStatus
@@ -269,6 +280,7 @@ module VitableConnect
           COVERAGE_UPCOMING = :"Coverage Upcoming"
           COVERAGE_EFFECTIVE = :"Coverage Effective"
           COVERAGE_ENDED = :"Coverage Ended"
+          CANCELLED = :Cancelled
 
           # @!method self.values
           #   @return [Array<Symbol>]

@@ -20,6 +20,7 @@ module VitableConnect
         {
           id: String,
           benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type,
+          cancelled_date: Date?,
           election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status,
           employer_name: String,
           enrollment_window_start: Date,
@@ -45,6 +46,8 @@ module VitableConnect
         attr_accessor id: String
 
         attr_accessor benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type
+
+        attr_accessor cancelled_date: Date?
 
         attr_accessor election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status
 
@@ -87,6 +90,7 @@ module VitableConnect
         def initialize: (
           id: String,
           benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type,
+          cancelled_date: Date?,
           election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status,
           employer_name: String,
           enrollment_window_start: Date,
@@ -111,6 +115,7 @@ module VitableConnect
         def to_hash: -> {
           id: String,
           benefit_type: VitableConnect::Models::MemberListEnrollmentsResponse::Data::benefit_type,
+          cancelled_date: Date?,
           election_status: VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status,
           employer_name: String,
           enrollment_window_start: Date,
@@ -159,7 +164,10 @@ module VitableConnect
         end
 
         type policy_status =
-          :"Coverage Upcoming" | :"Coverage Effective" | :"Coverage Ended"
+          :"Coverage Upcoming"
+          | :"Coverage Effective"
+          | :"Coverage Ended"
+          | :Cancelled
 
         module PolicyStatus
           extend VitableConnect::Internal::Type::Enum
@@ -167,6 +175,7 @@ module VitableConnect
           COVERAGE_UPCOMING: :"Coverage Upcoming"
           COVERAGE_EFFECTIVE: :"Coverage Effective"
           COVERAGE_ENDED: :"Coverage Ended"
+          CANCELLED: :Cancelled
 
           def self?.values: -> ::Array[VitableConnect::Models::MemberListEnrollmentsResponse::Data::policy_status]
         end

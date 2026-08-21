@@ -248,8 +248,9 @@ module VitableConnect
 
       # Returns the distinct HRIS/payroll providers across the same book
       # `GET /v1/employers` returns, sorted for display. Use these as the values for the
-      # employers list's `hris_provider` filter — the providers are free text, so they
-      # cannot be enumerated in advance.
+      # employers list's `hris_provider` filter — filter on `provider`, show
+      # `provider_label`. The stored providers are free text, so they cannot be
+      # enumerated in advance.
       sig do
         params(request_options: VitableConnect::RequestOptions::OrHash).returns(
           VitableConnect::Models::EmployerListHRISProvidersResponse

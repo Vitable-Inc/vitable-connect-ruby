@@ -16,14 +16,16 @@ module VitableConnect
         data: ::Array[VitableConnect::Models::EmployerListHRISProvidersResponse::Data]
       }
 
-      type data = { provider: String }
+      type data = { provider: String, provider_label: String }
 
       class Data < VitableConnect::Internal::Type::BaseModel
         attr_accessor provider: String
 
-        def initialize: (provider: String) -> void
+        attr_accessor provider_label: String
 
-        def to_hash: -> { provider: String }
+        def initialize: (provider: String, provider_label: String) -> void
+
+        def to_hash: -> { provider: String, provider_label: String }
       end
     end
   end

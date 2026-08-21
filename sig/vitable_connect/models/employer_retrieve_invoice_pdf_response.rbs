@@ -1,13 +1,28 @@
 module VitableConnect
   module Models
-    type employer_retrieve_invoice_pdf_response = { download_url: String }
+    type employer_retrieve_invoice_pdf_response =
+      { data: VitableConnect::Models::EmployerRetrieveInvoicePdfResponse::Data }
 
     class EmployerRetrieveInvoicePdfResponse < VitableConnect::Internal::Type::BaseModel
-      attr_accessor download_url: String
+      attr_accessor data: VitableConnect::Models::EmployerRetrieveInvoicePdfResponse::Data
 
-      def initialize: (download_url: String) -> void
+      def initialize: (
+        data: VitableConnect::Models::EmployerRetrieveInvoicePdfResponse::Data
+      ) -> void
 
-      def to_hash: -> { download_url: String }
+      def to_hash: -> {
+        data: VitableConnect::Models::EmployerRetrieveInvoicePdfResponse::Data
+      }
+
+      type data = { download_url: String }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor download_url: String
+
+        def initialize: (download_url: String) -> void
+
+        def to_hash: -> { download_url: String }
+      end
     end
   end
 end

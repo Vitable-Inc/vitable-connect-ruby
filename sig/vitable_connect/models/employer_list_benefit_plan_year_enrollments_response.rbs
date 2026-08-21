@@ -95,7 +95,10 @@ module VitableConnect
       end
 
       type policy_status =
-        :"Coverage Upcoming" | :"Coverage Effective" | :"Coverage Ended"
+        :"Coverage Upcoming"
+        | :"Coverage Effective"
+        | :"Coverage Ended"
+        | :Cancelled
 
       module PolicyStatus
         extend VitableConnect::Internal::Type::Enum
@@ -103,6 +106,7 @@ module VitableConnect
         COVERAGE_UPCOMING: :"Coverage Upcoming"
         COVERAGE_EFFECTIVE: :"Coverage Effective"
         COVERAGE_ENDED: :"Coverage Ended"
+        CANCELLED: :Cancelled
 
         def self?.values: -> ::Array[VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::policy_status]
       end
