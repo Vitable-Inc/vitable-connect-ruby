@@ -308,7 +308,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
 
     assert_pattern do
       response => {
-        hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS | nil
+        data: VitableConnect::Models::EmployerRetrieveHRISResponse::Data
       }
     end
   end
@@ -324,7 +324,7 @@ class VitableConnect::Test::Resources::EmployersTest < VitableConnect::Test::Res
 
     assert_pattern do
       response => {
-        download_url: String
+        data: VitableConnect::Models::EmployerRetrieveInvoicePdfResponse::Data
       }
     end
   end

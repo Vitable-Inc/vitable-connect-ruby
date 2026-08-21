@@ -72,6 +72,7 @@ module VitableConnect
       # - `Coverage Upcoming` - Coverage Upcoming
       # - `Coverage Effective` - Coverage Effective
       # - `Coverage Ended` - Coverage Ended
+      # - `Cancelled` - Cancelled
       sig do
         returns(
           T.nilable(
@@ -148,6 +149,7 @@ module VitableConnect
         # - `Coverage Upcoming` - Coverage Upcoming
         # - `Coverage Effective` - Coverage Effective
         # - `Coverage Ended` - Coverage Ended
+        # - `Cancelled` - Cancelled
         policy_status:,
         # Monthly premium in cents for the chosen plan, dependents included. The plan's
         # own cost, not the employer's share of it. Null when unanswered/waived.
@@ -235,6 +237,7 @@ module VitableConnect
       # - `Coverage Upcoming` - Coverage Upcoming
       # - `Coverage Effective` - Coverage Effective
       # - `Coverage Ended` - Coverage Ended
+      # - `Cancelled` - Cancelled
       module PolicyStatus
         extend VitableConnect::Internal::Type::Enum
 
@@ -260,6 +263,11 @@ module VitableConnect
         COVERAGE_ENDED =
           T.let(
             :"Coverage Ended",
+            VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::PolicyStatus::TaggedSymbol
+          )
+        CANCELLED =
+          T.let(
+            :Cancelled,
             VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::PolicyStatus::TaggedSymbol
           )
 

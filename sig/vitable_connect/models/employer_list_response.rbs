@@ -163,16 +163,27 @@ module VitableConnect
         }
       end
 
-      type hris_status = { provider: String, status: String }
+      type hris_status =
+        { provider: String, provider_label: String, status: String }
 
       class HRISStatus < VitableConnect::Internal::Type::BaseModel
         attr_accessor provider: String
 
+        attr_accessor provider_label: String
+
         attr_accessor status: String
 
-        def initialize: (provider: String, status: String) -> void
+        def initialize: (
+          provider: String,
+          provider_label: String,
+          status: String
+        ) -> void
 
-        def to_hash: -> { provider: String, status: String }
+        def to_hash: -> {
+          provider: String,
+          provider_label: String,
+          status: String
+        }
       end
     end
   end

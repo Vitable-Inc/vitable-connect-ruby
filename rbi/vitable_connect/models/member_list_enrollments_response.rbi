@@ -67,6 +67,11 @@ module VitableConnect
         end
         attr_accessor :benefit_type
 
+        # Earliest applicable coverage boundary (YYYY-MM-DD) when coverage was cancelled
+        # before its effective start; null unless the enrollment was cancelled
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :cancelled_date
+
         # - `Enrolled` - Enrolled
         # - `Waived` - Waived
         # - `Pending` - Pending
@@ -104,6 +109,7 @@ module VitableConnect
         # - `Coverage Upcoming` - Coverage Upcoming
         # - `Coverage Effective` - Coverage Effective
         # - `Coverage Ended` - Coverage Ended
+        # - `Cancelled` - Cancelled
         sig do
           returns(
             T.nilable(
@@ -187,6 +193,7 @@ module VitableConnect
             id: String,
             benefit_type:
               VitableConnect::Models::MemberListEnrollmentsResponse::Data::BenefitType::OrSymbol,
+            cancelled_date: T.nilable(Date),
             election_status:
               VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus::OrSymbol,
             employer_name: String,
@@ -221,6 +228,9 @@ module VitableConnect
           # - `Vision` - Vision
           # - `Hospital` - Hospital
           benefit_type:,
+          # Earliest applicable coverage boundary (YYYY-MM-DD) when coverage was cancelled
+          # before its effective start; null unless the enrollment was cancelled
+          cancelled_date:,
           # - `Enrolled` - Enrolled
           # - `Waived` - Waived
           # - `Pending` - Pending
@@ -242,6 +252,7 @@ module VitableConnect
           # - `Coverage Upcoming` - Coverage Upcoming
           # - `Coverage Effective` - Coverage Effective
           # - `Coverage Ended` - Coverage Ended
+          # - `Cancelled` - Cancelled
           policy_status:,
           # - `EBA` - Eba Mec
           # - `VPC` - Vpc Enhanced
@@ -292,6 +303,7 @@ module VitableConnect
               id: String,
               benefit_type:
                 VitableConnect::Models::MemberListEnrollmentsResponse::Data::BenefitType::TaggedSymbol,
+              cancelled_date: T.nilable(Date),
               election_status:
                 VitableConnect::Models::MemberListEnrollmentsResponse::Data::ElectionStatus::TaggedSymbol,
               employer_name: String,
@@ -421,6 +433,7 @@ module VitableConnect
         # - `Coverage Upcoming` - Coverage Upcoming
         # - `Coverage Effective` - Coverage Effective
         # - `Coverage Ended` - Coverage Ended
+        # - `Cancelled` - Cancelled
         module PolicyStatus
           extend VitableConnect::Internal::Type::Enum
 
@@ -446,6 +459,11 @@ module VitableConnect
           COVERAGE_ENDED =
             T.let(
               :"Coverage Ended",
+              VitableConnect::Models::MemberListEnrollmentsResponse::Data::PolicyStatus::TaggedSymbol
+            )
+          CANCELLED =
+            T.let(
+              :Cancelled,
               VitableConnect::Models::MemberListEnrollmentsResponse::Data::PolicyStatus::TaggedSymbol
             )
 

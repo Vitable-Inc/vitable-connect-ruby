@@ -397,9 +397,13 @@ module VitableConnect
             )
           end
 
-        # HRIS/payroll provider the employer is connected to (e.g. `Paychex`).
+        # Id of the HRIS/payroll provider the employer is connected to (e.g. `paylocity`).
         sig { returns(String) }
         attr_accessor :provider
+
+        # Display name of that provider (e.g. `Paylocity`).
+        sig { returns(String) }
+        attr_accessor :provider_label
 
         # Connection status reported by the integration.
         sig { returns(String) }
@@ -407,17 +411,27 @@ module VitableConnect
 
         # HRIS connection, or null when the employer has none.
         sig do
-          params(provider: String, status: String).returns(T.attached_class)
+          params(
+            provider: String,
+            provider_label: String,
+            status: String
+          ).returns(T.attached_class)
         end
         def self.new(
-          # HRIS/payroll provider the employer is connected to (e.g. `Paychex`).
+          # Id of the HRIS/payroll provider the employer is connected to (e.g. `paylocity`).
           provider:,
+          # Display name of that provider (e.g. `Paylocity`).
+          provider_label:,
           # Connection status reported by the integration.
           status:
         )
         end
 
-        sig { override.returns({ provider: String, status: String }) }
+        sig do
+          override.returns(
+            { provider: String, provider_label: String, status: String }
+          )
+        end
         def to_hash
         end
       end

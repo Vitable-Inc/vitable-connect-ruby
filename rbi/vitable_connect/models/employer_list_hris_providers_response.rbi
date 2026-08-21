@@ -54,18 +54,30 @@ module VitableConnect
             )
           end
 
-        # HRIS/payroll provider name, as stored on the connection (e.g. `ADP RUN`).
+        # HRIS/payroll provider id, as stored on the connection (e.g. `adp_run`). Filter
+        # with this.
         sig { returns(String) }
         attr_accessor :provider
 
-        sig { params(provider: String).returns(T.attached_class) }
+        # Display name of that provider (e.g. `ADP Run`).
+        sig { returns(String) }
+        attr_accessor :provider_label
+
+        sig do
+          params(provider: String, provider_label: String).returns(
+            T.attached_class
+          )
+        end
         def self.new(
-          # HRIS/payroll provider name, as stored on the connection (e.g. `ADP RUN`).
-          provider:
+          # HRIS/payroll provider id, as stored on the connection (e.g. `adp_run`). Filter
+          # with this.
+          provider:,
+          # Display name of that provider (e.g. `ADP Run`).
+          provider_label:
         )
         end
 
-        sig { override.returns({ provider: String }) }
+        sig { override.returns({ provider: String, provider_label: String }) }
         def to_hash
         end
       end

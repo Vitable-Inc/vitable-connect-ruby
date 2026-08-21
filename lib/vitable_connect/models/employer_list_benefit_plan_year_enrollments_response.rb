@@ -85,6 +85,7 @@ module VitableConnect
       #   - `Coverage Upcoming` - Coverage Upcoming
       #   - `Coverage Effective` - Coverage Effective
       #   - `Coverage Ended` - Coverage Ended
+      #   - `Cancelled` - Cancelled
       #
       #   @return [Symbol, VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse::PolicyStatus, nil]
       required :policy_status,
@@ -158,6 +159,7 @@ module VitableConnect
       # - `Coverage Upcoming` - Coverage Upcoming
       # - `Coverage Effective` - Coverage Effective
       # - `Coverage Ended` - Coverage Ended
+      # - `Cancelled` - Cancelled
       #
       # @see VitableConnect::Models::EmployerListBenefitPlanYearEnrollmentsResponse#policy_status
       module PolicyStatus
@@ -166,6 +168,7 @@ module VitableConnect
         COVERAGE_UPCOMING = :"Coverage Upcoming"
         COVERAGE_EFFECTIVE = :"Coverage Effective"
         COVERAGE_ENDED = :"Coverage Ended"
+        CANCELLED = :Cancelled
 
         # @!method self.values
         #   @return [Array<Symbol>]

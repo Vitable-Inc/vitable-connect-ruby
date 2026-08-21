@@ -1,49 +1,71 @@
 module VitableConnect
   module Models
     type employer_retrieve_hris_response =
-      { hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS? }
+      { data: VitableConnect::Models::EmployerRetrieveHRISResponse::Data }
 
     class EmployerRetrieveHRISResponse < VitableConnect::Internal::Type::BaseModel
-      attr_accessor hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS?
+      attr_accessor data: VitableConnect::Models::EmployerRetrieveHRISResponse::Data
 
       def initialize: (
-        hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS?
+        data: VitableConnect::Models::EmployerRetrieveHRISResponse::Data
       ) -> void
 
       def to_hash: -> {
-        hris: VitableConnect::Models::EmployerRetrieveHRISResponse::HRIS?
+        data: VitableConnect::Models::EmployerRetrieveHRISResponse::Data
       }
 
-      type hris =
+      type data =
         {
-          last_sync_on: Time?,
-          provider: String,
-          status: String,
-          synced_row_count: Integer?
+          hris: VitableConnect::Models::EmployerRetrieveHRISResponse::Data::HRIS?
         }
 
-      class HRIS < VitableConnect::Internal::Type::BaseModel
-        attr_accessor last_sync_on: Time?
-
-        attr_accessor provider: String
-
-        attr_accessor status: String
-
-        attr_accessor synced_row_count: Integer?
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor hris: VitableConnect::Models::EmployerRetrieveHRISResponse::Data::HRIS?
 
         def initialize: (
-          last_sync_on: Time?,
-          provider: String,
-          status: String,
-          synced_row_count: Integer?
+          hris: VitableConnect::Models::EmployerRetrieveHRISResponse::Data::HRIS?
         ) -> void
 
         def to_hash: -> {
-          last_sync_on: Time?,
-          provider: String,
-          status: String,
-          synced_row_count: Integer?
+          hris: VitableConnect::Models::EmployerRetrieveHRISResponse::Data::HRIS?
         }
+
+        type hris =
+          {
+            last_sync_on: Time?,
+            provider: String,
+            provider_label: String,
+            status: String,
+            synced_row_count: Integer?
+          }
+
+        class HRIS < VitableConnect::Internal::Type::BaseModel
+          attr_accessor last_sync_on: Time?
+
+          attr_accessor provider: String
+
+          attr_accessor provider_label: String
+
+          attr_accessor status: String
+
+          attr_accessor synced_row_count: Integer?
+
+          def initialize: (
+            last_sync_on: Time?,
+            provider: String,
+            provider_label: String,
+            status: String,
+            synced_row_count: Integer?
+          ) -> void
+
+          def to_hash: -> {
+            last_sync_on: Time?,
+            provider: String,
+            provider_label: String,
+            status: String,
+            synced_row_count: Integer?
+          }
+        end
       end
     end
   end
