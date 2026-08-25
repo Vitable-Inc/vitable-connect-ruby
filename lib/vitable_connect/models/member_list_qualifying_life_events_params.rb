@@ -8,6 +8,7 @@ module VitableConnect
       include VitableConnect::Internal::Type::RequestParameters
 
       # @!attribute member_id
+      #   Unique member identifier (mbr\_\*)
       #
       #   @return [String]
       required :member_id, String
@@ -31,7 +32,7 @@ module VitableConnect
       optional :status, enum: -> { VitableConnect::MemberListQualifyingLifeEventsParams::Status }
 
       # @!method initialize(member_id:, limit: nil, page: nil, status: nil, request_options: {})
-      #   @param member_id [String]
+      #   @param member_id [String] Unique member identifier (mbr\_\*)
       #
       #   @param limit [Integer] Items per page (default: 20, max: 100)
       #

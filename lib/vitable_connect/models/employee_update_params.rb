@@ -56,8 +56,8 @@ module VitableConnect
       #   - `Male` - Male
       #   - `Female` - Female
       #   - `Transgender` - Transgender
-      #   - `Non-binary` - Non-binary
-      #   - `Prefer not to respond` - Prefer not to respond
+      #   - `Non-binary` - Non Binary
+      #   - `Prefer not to respond` - Prefer Not To Respond
       #
       #   @return [Symbol, VitableConnect::Models::EmployeeUpdateParams::Gender, nil]
       optional :gender, enum: -> { VitableConnect::EmployeeUpdateParams::Gender }, nil?: true
@@ -166,8 +166,8 @@ module VitableConnect
       # - `Male` - Male
       # - `Female` - Female
       # - `Transgender` - Transgender
-      # - `Non-binary` - Non-binary
-      # - `Prefer not to respond` - Prefer not to respond
+      # - `Non-binary` - Non Binary
+      # - `Prefer not to respond` - Prefer Not To Respond
       module Gender
         extend VitableConnect::Internal::Type::Enum
 

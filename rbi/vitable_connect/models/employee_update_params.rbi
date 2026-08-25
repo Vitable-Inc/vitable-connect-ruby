@@ -62,8 +62,8 @@ module VitableConnect
       # - `Male` - Male
       # - `Female` - Female
       # - `Transgender` - Transgender
-      # - `Non-binary` - Non-binary
-      # - `Prefer not to respond` - Prefer not to respond
+      # - `Non-binary` - Non Binary
+      # - `Prefer not to respond` - Prefer Not To Respond
       sig do
         returns(
           T.nilable(VitableConnect::EmployeeUpdateParams::Gender::OrSymbol)
@@ -121,8 +121,8 @@ module VitableConnect
         # - `Male` - Male
         # - `Female` - Female
         # - `Transgender` - Transgender
-        # - `Non-binary` - Non-binary
-        # - `Prefer not to respond` - Prefer not to respond
+        # - `Non-binary` - Non Binary
+        # - `Prefer not to respond` - Prefer Not To Respond
         gender: nil,
         # Phone number
         phone: nil,
@@ -273,8 +273,8 @@ module VitableConnect
       # - `Male` - Male
       # - `Female` - Female
       # - `Transgender` - Transgender
-      # - `Non-binary` - Non-binary
-      # - `Prefer not to respond` - Prefer not to respond
+      # - `Non-binary` - Non Binary
+      # - `Prefer not to respond` - Prefer Not To Respond
       module Gender
         extend VitableConnect::Internal::Type::Enum
 

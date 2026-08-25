@@ -73,10 +73,71 @@ module VitableConnect
         required :city, String
 
         # @!attribute state
-        #   Two-letter state code (e.g., CA, NY)
+        #   - `AL` - AL
+        #   - `AK` - AK
+        #   - `AZ` - AZ
+        #   - `AR` - AR
+        #   - `CA` - CA
+        #   - `CO` - CO
+        #   - `CT` - CT
+        #   - `DC` - DC
+        #   - `DE` - DE
+        #   - `FL` - FL
+        #   - `GA` - GA
+        #   - `HI` - HI
+        #   - `ID` - ID
+        #   - `IL` - IL
+        #   - `IN` - IN
+        #   - `IA` - IA
+        #   - `KS` - KS
+        #   - `KY` - KY
+        #   - `LA` - LA
+        #   - `ME` - ME
+        #   - `MD` - MD
+        #   - `MA` - MA
+        #   - `MI` - MI
+        #   - `MN` - MN
+        #   - `MS` - MS
+        #   - `MO` - MO
+        #   - `MT` - MT
+        #   - `NE` - NE
+        #   - `NV` - NV
+        #   - `NH` - NH
+        #   - `NJ` - NJ
+        #   - `NM` - NM
+        #   - `NY` - NY
+        #   - `NC` - NC
+        #   - `ND` - ND
+        #   - `OH` - OH
+        #   - `OK` - OK
+        #   - `OR` - OR
+        #   - `PA` - PA
+        #   - `RI` - RI
+        #   - `SC` - SC
+        #   - `SD` - SD
+        #   - `TN` - TN
+        #   - `TX` - TX
+        #   - `UT` - UT
+        #   - `VT` - VT
+        #   - `VA` - VA
+        #   - `WA` - WA
+        #   - `WI` - WI
+        #   - `WV` - WV
+        #   - `WY` - WY
+        #   - `PR` - PR
+        #   - `GU` - GU
+        #   - `AS` - AS
+        #   - `VI` - VI
+        #   - `MP` - MP
+        #   - `MH` - MH
+        #   - `PW` - PW
+        #   - `FM` - FM
+        #   - `AE` - AE
+        #   - `AA` - AA
+        #   - `AP` - AP
         #
-        #   @return [String]
-        required :state, String
+        #   @return [Symbol, VitableConnect::Models::MemberListResponse::Address::State]
+        required :state, enum: -> { VitableConnect::Models::MemberListResponse::Address::State }
 
         # @!attribute zipcode
         #   ZIP code (5 or 9 digit)
@@ -91,17 +152,154 @@ module VitableConnect
         optional :address_line_2, String, nil?: true
 
         # @!method initialize(address_line_1:, city:, state:, zipcode:, address_line_2: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {VitableConnect::Models::MemberListResponse::Address} for more details.
+        #
         #   Member's residential address
         #
         #   @param address_line_1 [String] Primary street address
         #
         #   @param city [String] City name
         #
-        #   @param state [String] Two-letter state code (e.g., CA, NY)
+        #   @param state [Symbol, VitableConnect::Models::MemberListResponse::Address::State] - `AL` - AL
         #
         #   @param zipcode [String] ZIP code (5 or 9 digit)
         #
         #   @param address_line_2 [String, nil] Secondary street address (apt, suite, etc.)
+
+        # - `AL` - AL
+        # - `AK` - AK
+        # - `AZ` - AZ
+        # - `AR` - AR
+        # - `CA` - CA
+        # - `CO` - CO
+        # - `CT` - CT
+        # - `DC` - DC
+        # - `DE` - DE
+        # - `FL` - FL
+        # - `GA` - GA
+        # - `HI` - HI
+        # - `ID` - ID
+        # - `IL` - IL
+        # - `IN` - IN
+        # - `IA` - IA
+        # - `KS` - KS
+        # - `KY` - KY
+        # - `LA` - LA
+        # - `ME` - ME
+        # - `MD` - MD
+        # - `MA` - MA
+        # - `MI` - MI
+        # - `MN` - MN
+        # - `MS` - MS
+        # - `MO` - MO
+        # - `MT` - MT
+        # - `NE` - NE
+        # - `NV` - NV
+        # - `NH` - NH
+        # - `NJ` - NJ
+        # - `NM` - NM
+        # - `NY` - NY
+        # - `NC` - NC
+        # - `ND` - ND
+        # - `OH` - OH
+        # - `OK` - OK
+        # - `OR` - OR
+        # - `PA` - PA
+        # - `RI` - RI
+        # - `SC` - SC
+        # - `SD` - SD
+        # - `TN` - TN
+        # - `TX` - TX
+        # - `UT` - UT
+        # - `VT` - VT
+        # - `VA` - VA
+        # - `WA` - WA
+        # - `WI` - WI
+        # - `WV` - WV
+        # - `WY` - WY
+        # - `PR` - PR
+        # - `GU` - GU
+        # - `AS` - AS
+        # - `VI` - VI
+        # - `MP` - MP
+        # - `MH` - MH
+        # - `PW` - PW
+        # - `FM` - FM
+        # - `AE` - AE
+        # - `AA` - AA
+        # - `AP` - AP
+        #
+        # @see VitableConnect::Models::MemberListResponse::Address#state
+        module State
+          extend VitableConnect::Internal::Type::Enum
+
+          AL = :AL
+          AK = :AK
+          AZ = :AZ
+          AR = :AR
+          CA = :CA
+          CO = :CO
+          CT = :CT
+          DC = :DC
+          DE = :DE
+          FL = :FL
+          GA = :GA
+          HI = :HI
+          ID = :ID
+          IL = :IL
+          IN = :IN
+          IA = :IA
+          KS = :KS
+          KY = :KY
+          LA = :LA
+          ME = :ME
+          MD = :MD
+          MA = :MA
+          MI = :MI
+          MN = :MN
+          MS = :MS
+          MO = :MO
+          MT = :MT
+          NE = :NE
+          NV = :NV
+          NH = :NH
+          NJ = :NJ
+          NM = :NM
+          NY = :NY
+          NC = :NC
+          ND = :ND
+          OH = :OH
+          OK = :OK
+          OR = :OR
+          PA = :PA
+          RI = :RI
+          SC = :SC
+          SD = :SD
+          TN = :TN
+          TX = :TX
+          UT = :UT
+          VT = :VT
+          VA = :VA
+          WA = :WA
+          WI = :WI
+          WV = :WV
+          WY = :WY
+          PR = :PR
+          GU = :GU
+          AS = :AS
+          VI = :VI
+          MP = :MP
+          MH = :MH
+          PW = :PW
+          FM = :FM
+          AE = :AE
+          AA = :AA
+          AP = :AP
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

@@ -13,7 +13,11 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::Models::MemberRetrieveResponse)
       end
-      def retrieve(member_id, request_options: {})
+      def retrieve(
+        # Unique member identifier (mbr\_\*)
+        member_id,
+        request_options: {}
+      )
       end
 
       # Retrieves a paginated list of the members in the authenticated organization's
@@ -52,7 +56,11 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::Models::MemberListDependentsResponse)
       end
-      def list_dependents(member_id, request_options: {})
+      def list_dependents(
+        # Unique member identifier (mbr\_\*)
+        member_id,
+        request_options: {}
+      )
       end
 
       # Lists a member's employment across every employer — the same employee record
@@ -66,7 +74,11 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::Models::MemberListEmploymentsResponse)
       end
-      def list_employments(member_id, request_options: {})
+      def list_employments(
+        # Unique member identifier (mbr\_\*)
+        member_id,
+        request_options: {}
+      )
       end
 
       # Lists a member's benefit enrollments across every employer — benefit type and
@@ -92,7 +104,11 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::Models::MemberListEnrollmentsResponse)
       end
-      def list_enrollments(member_id, request_options: {})
+      def list_enrollments(
+        # Unique member identifier (mbr\_\*)
+        member_id,
+        request_options: {}
+      )
       end
 
       # Lists a member's benefit ID cards — card type (medical, dental, vision, or rx),
@@ -109,7 +125,11 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::Models::MemberListIDCardsResponse)
       end
-      def list_id_cards(member_id, request_options: {})
+      def list_id_cards(
+        # Unique member identifier (mbr\_\*)
+        member_id,
+        request_options: {}
+      )
       end
 
       # Lists a member's qualifying life events, including events already used for
@@ -159,7 +179,11 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(VitableConnect::Models::MemberRetrieveHouseholdResponse)
       end
-      def retrieve_household(member_id, request_options: {})
+      def retrieve_household(
+        # Unique member identifier (mbr\_\*)
+        member_id,
+        request_options: {}
+      )
       end
 
       # @api private

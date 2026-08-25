@@ -6,7 +6,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.members.retrieve("member_id")
+    response = @vitable_connect.members.retrieve("mbr_abc123def456")
 
     assert_pattern do
       response => VitableConnect::Models::MemberRetrieveResponse
@@ -50,7 +50,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
   def test_list_dependents
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.members.list_dependents("member_id")
+    response = @vitable_connect.members.list_dependents("mbr_abc123def456")
 
     assert_pattern do
       response => VitableConnect::Models::MemberListDependentsResponse
@@ -66,7 +66,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
   def test_list_employments
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.members.list_employments("member_id")
+    response = @vitable_connect.members.list_employments("mbr_abc123def456")
 
     assert_pattern do
       response => VitableConnect::Models::MemberListEmploymentsResponse
@@ -82,7 +82,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
   def test_list_enrollments
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.members.list_enrollments("member_id")
+    response = @vitable_connect.members.list_enrollments("mbr_abc123def456")
 
     assert_pattern do
       response => VitableConnect::Models::MemberListEnrollmentsResponse
@@ -98,7 +98,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
   def test_list_id_cards
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.members.list_id_cards("member_id")
+    response = @vitable_connect.members.list_id_cards("mbr_abc123def456")
 
     assert_pattern do
       response => VitableConnect::Models::MemberListIDCardsResponse
@@ -114,7 +114,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
   def test_list_qualifying_life_events
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.members.list_qualifying_life_events("member_id")
+    response = @vitable_connect.members.list_qualifying_life_events("mbr_abc123def456")
 
     assert_pattern do
       response => VitableConnect::Internal::PageNumberPage
@@ -141,7 +141,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
   def test_retrieve_household
     skip("Mock server tests are disabled")
 
-    response = @vitable_connect.members.retrieve_household("member_id")
+    response = @vitable_connect.members.retrieve_household("mbr_abc123def456")
 
     assert_pattern do
       response => VitableConnect::Models::MemberRetrieveHouseholdResponse

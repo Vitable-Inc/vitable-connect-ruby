@@ -68,8 +68,8 @@ module VitableConnect
         # - `Male` - Male
         # - `Female` - Female
         # - `Transgender` - Transgender
-        # - `Non-binary` - Non-binary
-        # - `Prefer not to respond` - Prefer not to respond
+        # - `Non-binary` - Non Binary
+        # - `Prefer not to respond` - Prefer Not To Respond
         gender: nil,
         # Phone number
         phone: nil,
