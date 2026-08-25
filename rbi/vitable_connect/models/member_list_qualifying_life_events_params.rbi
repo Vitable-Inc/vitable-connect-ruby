@@ -14,6 +14,7 @@ module VitableConnect
           )
         end
 
+      # Unique member identifier (mbr\_\*)
       sig { returns(String) }
       attr_accessor :member_id
 
@@ -60,6 +61,7 @@ module VitableConnect
         ).returns(T.attached_class)
       end
       def self.new(
+        # Unique member identifier (mbr\_\*)
         member_id:,
         # Items per page (default: 20, max: 100)
         limit: nil,

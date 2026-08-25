@@ -4,7 +4,11 @@ module VitableConnect
   module Resources
     # Manage benefit enrollments and elections for employees
     class Enrollments
-      # Retrieves detailed information for a specific enrollment by ID.
+      # Retrieves a single enrollment: the employee and employer it belongs to, the
+      # benefit product, its status, the coverage period, the employee payroll deduction
+      # and employer contribution, and the enrolled plan's Summary of Benefits and
+      # Coverage document when one is on file. An enrollment the caller cannot reach is
+      # indistinguishable from one that does not exist.
       sig do
         params(
           enrollment_id: String,

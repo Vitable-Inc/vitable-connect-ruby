@@ -14,6 +14,7 @@ module VitableConnect
           )
         end
 
+      # Unique member identifier (mbr\_\*)
       sig { returns(String) }
       attr_accessor :member_id
 
@@ -23,7 +24,11 @@ module VitableConnect
           request_options: VitableConnect::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(member_id:, request_options: {})
+      def self.new(
+        # Unique member identifier (mbr\_\*)
+        member_id:,
+        request_options: {}
+      )
       end
 
       sig do

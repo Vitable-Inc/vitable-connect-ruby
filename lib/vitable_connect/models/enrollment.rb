@@ -88,6 +88,8 @@ module VitableConnect
       #   Some parameter documentations has been truncated, see
       #   {VitableConnect::Models::Enrollment} for more details.
       #
+      #   One enrollment as it appears in a list row.
+      #
       #   @param id [String] Unique enrollment identifier (enrl\_\*)
       #
       #   @param answered_at [Time, nil] When the employee enrolled or waived

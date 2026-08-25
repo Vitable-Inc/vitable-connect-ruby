@@ -14,7 +14,7 @@ class VitableConnect::Test::Resources::EnrollmentsTest < VitableConnect::Test::R
 
     assert_pattern do
       response => {
-        data: VitableConnect::Enrollment
+        data: VitableConnect::Models::EnrollmentRetrieveResponse::Data
       }
     end
   end

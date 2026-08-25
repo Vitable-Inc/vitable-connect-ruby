@@ -8,12 +8,14 @@ module VitableConnect
       include VitableConnect::Internal::Type::RequestParameters
 
       # @!attribute member_id
+      #   Unique member identifier (mbr\_\*)
       #
       #   @return [String]
       required :member_id, String
 
       # @!method initialize(member_id:, request_options: {})
-      #   @param member_id [String]
+      #   @param member_id [String] Unique member identifier (mbr\_\*)
+      #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
     end
   end

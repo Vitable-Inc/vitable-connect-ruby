@@ -10,7 +10,8 @@ module VitableConnect
       #
       # @overload retrieve(member_id, request_options: {})
       #
-      # @param member_id [String]
+      # @param member_id [String] Unique member identifier (mbr\_\*)
+      #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [VitableConnect::Models::MemberRetrieveResponse]
@@ -62,7 +63,8 @@ module VitableConnect
       #
       # @overload list_dependents(member_id, request_options: {})
       #
-      # @param member_id [String]
+      # @param member_id [String] Unique member identifier (mbr\_\*)
+      #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [VitableConnect::Models::MemberListDependentsResponse]
@@ -85,7 +87,8 @@ module VitableConnect
       #
       # @overload list_employments(member_id, request_options: {})
       #
-      # @param member_id [String]
+      # @param member_id [String] Unique member identifier (mbr\_\*)
+      #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [VitableConnect::Models::MemberListEmploymentsResponse]
@@ -120,7 +123,8 @@ module VitableConnect
       #
       # @overload list_enrollments(member_id, request_options: {})
       #
-      # @param member_id [String]
+      # @param member_id [String] Unique member identifier (mbr\_\*)
+      #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [VitableConnect::Models::MemberListEnrollmentsResponse]
@@ -146,7 +150,8 @@ module VitableConnect
       #
       # @overload list_id_cards(member_id, request_options: {})
       #
-      # @param member_id [String]
+      # @param member_id [String] Unique member identifier (mbr\_\*)
+      #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [VitableConnect::Models::MemberListIDCardsResponse]
@@ -207,7 +212,8 @@ module VitableConnect
       #
       # @overload retrieve_household(member_id, request_options: {})
       #
-      # @param member_id [String]
+      # @param member_id [String] Unique member identifier (mbr\_\*)
+      #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [VitableConnect::Models::MemberRetrieveHouseholdResponse]

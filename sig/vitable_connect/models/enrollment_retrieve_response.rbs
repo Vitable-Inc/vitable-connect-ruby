@@ -1,13 +1,184 @@
 module VitableConnect
   module Models
-    type enrollment_retrieve_response = { data: VitableConnect::Enrollment }
+    type enrollment_retrieve_response =
+      { data: VitableConnect::Models::EnrollmentRetrieveResponse::Data }
 
     class EnrollmentRetrieveResponse < VitableConnect::Internal::Type::BaseModel
-      attr_accessor data: VitableConnect::Enrollment
+      attr_accessor data: VitableConnect::Models::EnrollmentRetrieveResponse::Data
 
-      def initialize: (data: VitableConnect::Enrollment) -> void
+      def initialize: (
+        data: VitableConnect::Models::EnrollmentRetrieveResponse::Data
+      ) -> void
 
-      def to_hash: -> { data: VitableConnect::Enrollment }
+      def to_hash: -> {
+        data: VitableConnect::Models::EnrollmentRetrieveResponse::Data
+      }
+
+      type data =
+        {
+          id: String,
+          answered_at: Time?,
+          benefit: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit,
+          coverage_end: Date?,
+          coverage_start: Date,
+          created_at: Time,
+          employee_deduction_in_cents: Integer?,
+          employee_id: String,
+          employer_contribution_in_cents: Integer?,
+          employer_id: String,
+          status: VitableConnect::Models::enrollment_status,
+          terminated_at: Time?,
+          updated_at: Time,
+          sbc_url: String?
+        }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor answered_at: Time?
+
+        attr_accessor benefit: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit
+
+        attr_accessor coverage_end: Date?
+
+        attr_accessor coverage_start: Date
+
+        attr_accessor created_at: Time
+
+        attr_accessor employee_deduction_in_cents: Integer?
+
+        attr_accessor employee_id: String
+
+        attr_accessor employer_contribution_in_cents: Integer?
+
+        attr_accessor employer_id: String
+
+        attr_accessor status: VitableConnect::Models::enrollment_status
+
+        attr_accessor terminated_at: Time?
+
+        attr_accessor updated_at: Time
+
+        attr_accessor sbc_url: String?
+
+        def initialize: (
+          id: String,
+          answered_at: Time?,
+          benefit: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit,
+          coverage_end: Date?,
+          coverage_start: Date,
+          created_at: Time,
+          employee_deduction_in_cents: Integer?,
+          employee_id: String,
+          employer_contribution_in_cents: Integer?,
+          employer_id: String,
+          status: VitableConnect::Models::enrollment_status,
+          terminated_at: Time?,
+          updated_at: Time,
+          ?sbc_url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          answered_at: Time?,
+          benefit: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit,
+          coverage_end: Date?,
+          coverage_start: Date,
+          created_at: Time,
+          employee_deduction_in_cents: Integer?,
+          employee_id: String,
+          employer_contribution_in_cents: Integer?,
+          employer_id: String,
+          status: VitableConnect::Models::enrollment_status,
+          terminated_at: Time?,
+          updated_at: Time,
+          sbc_url: String?
+        }
+
+        type benefit =
+          {
+            id: String,
+            category: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::category,
+            name: String,
+            product_code: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::product_code
+          }
+
+        class Benefit < VitableConnect::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor category: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::category
+
+          attr_accessor name: String
+
+          attr_accessor product_code: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::product_code
+
+          def initialize: (
+            id: String,
+            category: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::category,
+            name: String,
+            product_code: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::product_code
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            category: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::category,
+            name: String,
+            product_code: VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::product_code
+          }
+
+          type category = :Medical | :Dental | :Vision | :Hospital
+
+          module Category
+            extend VitableConnect::Internal::Type::Enum
+
+            MEDICAL: :Medical
+            DENTAL: :Dental
+            VISION: :Vision
+            HOSPITAL: :Hospital
+
+            def self?.values: -> ::Array[VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::category]
+          end
+
+          type product_code =
+            :EBA
+            | :VPC
+            | :VPC_CORE
+            | :MEC
+            | :MEC2
+            | :MEC_PLUS
+            | :MVP
+            | :MVP2
+            | :MVPSL
+            | :MVPSL2
+            | :VD
+            | :VV
+            | :ICHRA
+            | :ICHRA_PREMIUM_PLUS
+            | :ICHRA_REIMBURSEMENT_ONLY
+
+          module ProductCode
+            extend VitableConnect::Internal::Type::Enum
+
+            EBA: :EBA
+            VPC: :VPC
+            VPC_CORE: :VPC_CORE
+            MEC: :MEC
+            MEC2: :MEC2
+            MEC_PLUS: :MEC_PLUS
+            MVP: :MVP
+            MVP2: :MVP2
+            MVPSL: :MVPSL
+            MVPSL2: :MVPSL2
+            VD: :VD
+            VV: :VV
+            ICHRA: :ICHRA
+            ICHRA_PREMIUM_PLUS: :ICHRA_PREMIUM_PLUS
+            ICHRA_REIMBURSEMENT_ONLY: :ICHRA_REIMBURSEMENT_ONLY
+
+            def self?.values: -> ::Array[VitableConnect::Models::EnrollmentRetrieveResponse::Data::Benefit::product_code]
+          end
+        end
+      end
     end
   end
 end

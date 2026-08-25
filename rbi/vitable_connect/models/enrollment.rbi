@@ -66,6 +66,7 @@ module VitableConnect
       sig { returns(Time) }
       attr_accessor :updated_at
 
+      # One enrollment as it appears in a list row.
       sig do
         params(
           id: String,
