@@ -107,7 +107,8 @@ module VitableConnect
       sig { params(page: Integer).void }
       attr_writer :page
 
-      # Case-insensitive employer-name substring filter.
+      # Employer filter. Matches the display name or the legal name case-insensitively
+      # as a substring, or the EIN exactly (with or without its dash).
       sig { returns(T.nilable(String)) }
       attr_accessor :search
 
@@ -149,7 +150,8 @@ module VitableConnect
         limit: nil,
         # Page number.
         page: nil,
-        # Case-insensitive employer-name substring filter.
+        # Employer filter. Matches the display name or the legal name case-insensitively
+        # as a substring, or the EIN exactly (with or without its dash).
         search: nil,
         request_options: {}
       )

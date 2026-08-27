@@ -99,8 +99,9 @@ module VitableConnect
       # benefit-lifecycle stage) merged with the employer's flat CRM fields (legal name,
       # EIN, contact, address, timestamps). The book is derived from the authenticated
       # principal: one organization's employers, or every organization's for a caller
-      # whose reach is not a single organization. Supports name search,
-      # benefit-family/lifecycle/HRIS filters, and page/limit pagination.
+      # whose reach is not a single organization. Supports search by display name, legal
+      # name or exact EIN, benefit-family/lifecycle/HRIS filters, and page/limit
+      # pagination.
       #
       # @overload list(benefit_family: nil, benefit_lifecycle_stage: nil, hris_provider: nil, hris_status: nil, include_cancelled: nil, limit: nil, page: nil, search: nil, request_options: {})
       #
@@ -118,7 +119,7 @@ module VitableConnect
       #
       # @param page [Integer] Page number.
       #
-      # @param search [String, nil] Case-insensitive employer-name substring filter.
+      # @param search [String, nil] Employer filter. Matches the display name or the legal name case-insensitively a
       #
       # @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}, nil]
       #
