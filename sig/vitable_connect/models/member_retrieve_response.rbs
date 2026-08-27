@@ -26,6 +26,7 @@ module VitableConnect
           address: VitableConnect::Models::MemberRetrieveResponse::Data::Address?,
           email: String?,
           gender: VitableConnect::Models::MemberRetrieveResponse::Data::gender?,
+          marital_status: VitableConnect::Models::MemberRetrieveResponse::Data::marital_status?,
           middle_name: String?,
           phone: String?,
           preferred_language: VitableConnect::Models::MemberRetrieveResponse::Data::preferred_language?,
@@ -48,6 +49,8 @@ module VitableConnect
         attr_accessor email: String?
 
         attr_accessor gender: VitableConnect::Models::MemberRetrieveResponse::Data::gender?
+
+        attr_accessor marital_status: VitableConnect::Models::MemberRetrieveResponse::Data::marital_status?
 
         attr_accessor middle_name: String?
 
@@ -78,6 +81,7 @@ module VitableConnect
           ?address: VitableConnect::Models::MemberRetrieveResponse::Data::Address?,
           ?email: String?,
           ?gender: VitableConnect::Models::MemberRetrieveResponse::Data::gender?,
+          ?marital_status: VitableConnect::Models::MemberRetrieveResponse::Data::marital_status?,
           ?middle_name: String?,
           ?phone: String?,
           ?preferred_language: VitableConnect::Models::MemberRetrieveResponse::Data::preferred_language?,
@@ -97,6 +101,7 @@ module VitableConnect
           address: VitableConnect::Models::MemberRetrieveResponse::Data::Address?,
           email: String?,
           gender: VitableConnect::Models::MemberRetrieveResponse::Data::gender?,
+          marital_status: VitableConnect::Models::MemberRetrieveResponse::Data::marital_status?,
           middle_name: String?,
           phone: String?,
           preferred_language: VitableConnect::Models::MemberRetrieveResponse::Data::preferred_language?,
@@ -303,6 +308,17 @@ module VitableConnect
           PREFER_NOT_TO_RESPOND: :"Prefer not to respond"
 
           def self?.values: -> ::Array[VitableConnect::Models::MemberRetrieveResponse::Data::gender]
+        end
+
+        type marital_status = :Single | :Married
+
+        module MaritalStatus
+          extend VitableConnect::Internal::Type::Enum
+
+          SINGLE: :Single
+          MARRIED: :Married
+
+          def self?.values: -> ::Array[VitableConnect::Models::MemberRetrieveResponse::Data::marital_status]
         end
 
         type preferred_language = :en | :es | :zh | :ru | :sw | :th

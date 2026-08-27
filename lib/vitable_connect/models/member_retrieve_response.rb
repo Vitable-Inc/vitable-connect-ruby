@@ -67,6 +67,15 @@ module VitableConnect
         #   @return [Symbol, VitableConnect::Models::MemberRetrieveResponse::Data::Gender, nil]
         optional :gender, enum: -> { VitableConnect::Models::MemberRetrieveResponse::Data::Gender }, nil?: true
 
+        # @!attribute marital_status
+        #   - `Single` - Single
+        #   - `Married` - Married
+        #
+        #   @return [Symbol, VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus, nil]
+        optional :marital_status,
+                 enum: -> { VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus },
+                 nil?: true
+
         # @!attribute middle_name
         #   Member's legal middle name
         #
@@ -141,7 +150,7 @@ module VitableConnect
           required :status, enum: -> { VitableConnect::Models::MemberRetrieveResponse::Data::Status }
         end
 
-        # @!method initialize(id:, age:, date_of_birth:, first_name:, last_name:, name:, status:, address: nil, email: nil, gender: nil, middle_name: nil, phone: nil, preferred_language: nil, sex_at_birth: nil, suffix: nil, tobacco_status: nil)
+        # @!method initialize(id:, age:, date_of_birth:, first_name:, last_name:, name:, status:, address: nil, email: nil, gender: nil, marital_status: nil, middle_name: nil, phone: nil, preferred_language: nil, sex_at_birth: nil, suffix: nil, tobacco_status: nil)
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::MemberRetrieveResponse::Data} for more details.
         #
@@ -167,6 +176,8 @@ module VitableConnect
         #   @param email [String, nil] Email address
         #
         #   @param gender [Symbol, VitableConnect::Models::MemberRetrieveResponse::Data::Gender, nil] - `Male` - Male
+        #
+        #   @param marital_status [Symbol, VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus, nil] - `Single` - Single
         #
         #   @param middle_name [String, nil] Member's legal middle name
         #
@@ -453,6 +464,20 @@ module VitableConnect
           TRANSGENDER = :Transgender
           NON_BINARY = :"Non-binary"
           PREFER_NOT_TO_RESPOND = :"Prefer not to respond"
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # - `Single` - Single
+        # - `Married` - Married
+        #
+        # @see VitableConnect::Models::MemberRetrieveResponse::Data#marital_status
+        module MaritalStatus
+          extend VitableConnect::Internal::Type::Enum
+
+          SINGLE = :Single
+          MARRIED = :Married
 
           # @!method self.values
           #   @return [Array<Symbol>]

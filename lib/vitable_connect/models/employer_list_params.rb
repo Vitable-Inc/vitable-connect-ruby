@@ -56,7 +56,8 @@ module VitableConnect
       optional :page, Integer
 
       # @!attribute search
-      #   Case-insensitive employer-name substring filter.
+      #   Employer filter. Matches the display name or the legal name case-insensitively
+      #   as a substring, or the EIN exactly (with or without its dash).
       #
       #   @return [String, nil]
       optional :search, String, nil?: true
@@ -79,7 +80,7 @@ module VitableConnect
       #
       #   @param page [Integer] Page number.
       #
-      #   @param search [String, nil] Case-insensitive employer-name substring filter.
+      #   @param search [String, nil] Employer filter. Matches the display name or the legal name case-insensitively a
       #
       #   @param request_options [VitableConnect::RequestOptions, Hash{Symbol=>Object}]
 

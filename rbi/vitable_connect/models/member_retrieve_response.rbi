@@ -107,6 +107,17 @@ module VitableConnect
         end
         attr_accessor :gender
 
+        # - `Single` - Single
+        # - `Married` - Married
+        sig do
+          returns(
+            T.nilable(
+              VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :marital_status
+
         # Member's legal middle name
         sig { returns(T.nilable(String)) }
         attr_accessor :middle_name
@@ -200,6 +211,10 @@ module VitableConnect
               T.nilable(
                 VitableConnect::Models::MemberRetrieveResponse::Data::Gender::OrSymbol
               ),
+            marital_status:
+              T.nilable(
+                VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus::OrSymbol
+              ),
             middle_name: T.nilable(String),
             phone: T.nilable(String),
             preferred_language:
@@ -242,6 +257,9 @@ module VitableConnect
           # - `Non-binary` - Non Binary
           # - `Prefer not to respond` - Prefer Not To Respond
           gender: nil,
+          # - `Single` - Single
+          # - `Married` - Married
+          marital_status: nil,
           # Member's legal middle name
           middle_name: nil,
           # Phone number (10-digit US domestic string)
@@ -290,6 +308,10 @@ module VitableConnect
               gender:
                 T.nilable(
                   VitableConnect::Models::MemberRetrieveResponse::Data::Gender::TaggedSymbol
+                ),
+              marital_status:
+                T.nilable(
+                  VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus::TaggedSymbol
                 ),
               middle_name: T.nilable(String),
               phone: T.nilable(String),
@@ -986,6 +1008,42 @@ module VitableConnect
             override.returns(
               T::Array[
                 VitableConnect::Models::MemberRetrieveResponse::Data::Gender::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # - `Single` - Single
+        # - `Married` - Married
+        module MaritalStatus
+          extend VitableConnect::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SINGLE =
+            T.let(
+              :Single,
+              VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus::TaggedSymbol
+            )
+          MARRIED =
+            T.let(
+              :Married,
+              VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                VitableConnect::Models::MemberRetrieveResponse::Data::MaritalStatus::TaggedSymbol
               ]
             )
           end
