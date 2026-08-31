@@ -99,6 +99,28 @@ module VitableConnect
         sig { returns(Date) }
         attr_accessor :enrollment_window_start
 
+        # How this member's monthly share compares with the ACA affordability line for
+        # their income. Null unless the row is an ICHRA election whose plan year, premium
+        # and the member's individual income are all on file.
+        sig do
+          returns(
+            T.nilable(
+              VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability
+            )
+          )
+        end
+        attr_reader :ichra_affordability
+
+        sig do
+          params(
+            ichra_affordability:
+              T.nilable(
+                VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability::OrHash
+              )
+          ).void
+        end
+        attr_writer :ichra_affordability
+
         # True when today falls in the final month of the plan-year coverage window;
         # drives end-of-coverage enrollment actions on the client.
         sig { returns(T::Boolean) }
@@ -108,6 +130,14 @@ module VitableConnect
         # drives enrollment-action availability on the client.
         sig { returns(T::Boolean) }
         attr_accessor :is_within_enrollment_window
+
+        # Date the enrollment record was created (YYYY-MM-DD), the value Ops labels Issued
+        # on. Present on every row whatever the member answered, and distinct from
+        # `coverage_start`. It does not imply the member could answer the enrollment on
+        # that date; the window they can answer in is
+        # `enrollment_window_start`/`enrollment_window_end`.
+        sig { returns(Date) }
+        attr_accessor :issued_date
 
         # Benefit plan-year coverage end date (YYYY-MM-DD), distinct from this
         # enrollment's coverage_end; null when the plan year is open-ended
@@ -208,8 +238,13 @@ module VitableConnect
             employer_id: String,
             employer_name: String,
             enrollment_window_start: Date,
+            ichra_affordability:
+              T.nilable(
+                VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability::OrHash
+              ),
             in_last_month_of_coverage: T::Boolean,
             is_within_enrollment_window: T::Boolean,
+            issued_date: Date,
             plan_year_coverage_end: T.nilable(Date),
             policy_status:
               T.nilable(
@@ -254,12 +289,22 @@ module VitableConnect
           employer_name:,
           # Enrollment / open-enrollment window start date (YYYY-MM-DD)
           enrollment_window_start:,
+          # How this member's monthly share compares with the ACA affordability line for
+          # their income. Null unless the row is an ICHRA election whose plan year, premium
+          # and the member's individual income are all on file.
+          ichra_affordability:,
           # True when today falls in the final month of the plan-year coverage window;
           # drives end-of-coverage enrollment actions on the client.
           in_last_month_of_coverage:,
           # True when today falls inside the enrollment window this member has to answer in;
           # drives enrollment-action availability on the client.
           is_within_enrollment_window:,
+          # Date the enrollment record was created (YYYY-MM-DD), the value Ops labels Issued
+          # on. Present on every row whatever the member answered, and distinct from
+          # `coverage_start`. It does not imply the member could answer the enrollment on
+          # that date; the window they can answer in is
+          # `enrollment_window_start`/`enrollment_window_end`.
+          issued_date:,
           # Benefit plan-year coverage end date (YYYY-MM-DD), distinct from this
           # enrollment's coverage_end; null when the plan year is open-ended
           plan_year_coverage_end:,
@@ -324,8 +369,13 @@ module VitableConnect
               employer_id: String,
               employer_name: String,
               enrollment_window_start: Date,
+              ichra_affordability:
+                T.nilable(
+                  VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability
+                ),
               in_last_month_of_coverage: T::Boolean,
               is_within_enrollment_window: T::Boolean,
+              issued_date: Date,
               plan_year_coverage_end: T.nilable(Date),
               policy_status:
                 T.nilable(
@@ -443,6 +493,44 @@ module VitableConnect
             )
           end
           def self.values
+          end
+        end
+
+        class IchraAffordability < VitableConnect::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability,
+                VitableConnect::Internal::AnyHash
+              )
+            end
+
+          # True when `employee_deduction_in_cents` is at or below the IRS affordability
+          # percentage of the member's individual income for the year this plan year
+          # started. It measures what the member pays for the plan they chose, so it is
+          # **not** a statement that the employer's offer satisfies the ACA employer
+          # mandate: that test is benchmarked against the lowest-cost silver plan at
+          # self-only coverage, which this does not use.
+          sig { returns(T::Boolean) }
+          attr_accessor :is_affordable
+
+          # How this member's monthly share compares with the ACA affordability line for
+          # their income. Null unless the row is an ICHRA election whose plan year, premium
+          # and the member's individual income are all on file.
+          sig { params(is_affordable: T::Boolean).returns(T.attached_class) }
+          def self.new(
+            # True when `employee_deduction_in_cents` is at or below the IRS affordability
+            # percentage of the member's individual income for the year this plan year
+            # started. It measures what the member pays for the plan they chose, so it is
+            # **not** a statement that the employer's offer satisfies the ACA employer
+            # mandate: that test is benchmarked against the lowest-cost silver plan at
+            # self-only coverage, which this does not use.
+            is_affordable:
+          )
+          end
+
+          sig { override.returns({ is_affordable: T::Boolean }) }
+          def to_hash
           end
         end
 

@@ -87,10 +87,12 @@ module VitableConnect
       # (`coverage_end`), the separate pre-effective cancellation boundary
       # (`cancelled_date`), and the distinct benefit plan-year boundary
       # (`plan_year_coverage_end`) used to determine whether the plan year itself has
-      # ended, whether a qualifying life event would currently be required for reissue
-      # under the product/open-enrollment rule, enrollment/open-enrollment window, and
-      # two statuses: `election_status` (what the member answered) and `policy_status`
-      # (what became of their coverage, null unless they enrolled). Every row includes a
+      # ended, the date the enrollment record was created (`issued_date`, the value Ops
+      # labels Issued on, reported for every row whatever the member answered), whether
+      # a qualifying life event would currently be required for reissue under the
+      # product/open-enrollment rule, enrollment/open-enrollment window, and two
+      # statuses: `election_status` (what the member answered) and `policy_status` (what
+      # became of their coverage, null unless they enrolled). Every row includes a
       # stable enrollment ID and the exact employer and benefit plan-year IDs used to
       # fetch that row's plan-year detail. The full list is returned across all states
       # so the client derives active plans (effective and upcoming) and the enrollment

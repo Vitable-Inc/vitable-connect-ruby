@@ -73,6 +73,16 @@ module VitableConnect
         #   @return [Date]
         required :enrollment_window_start, Date
 
+        # @!attribute ichra_affordability
+        #   How this member's monthly share compares with the ACA affordability line for
+        #   their income. Null unless the row is an ICHRA election whose plan year, premium
+        #   and the member's individual income are all on file.
+        #
+        #   @return [VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability, nil]
+        required :ichra_affordability,
+                 -> { VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability },
+                 nil?: true
+
         # @!attribute in_last_month_of_coverage
         #   True when today falls in the final month of the plan-year coverage window;
         #   drives end-of-coverage enrollment actions on the client.
@@ -86,6 +96,16 @@ module VitableConnect
         #
         #   @return [Boolean]
         required :is_within_enrollment_window, VitableConnect::Internal::Type::Boolean
+
+        # @!attribute issued_date
+        #   Date the enrollment record was created (YYYY-MM-DD), the value Ops labels Issued
+        #   on. Present on every row whatever the member answered, and distinct from
+        #   `coverage_start`. It does not imply the member could answer the enrollment on
+        #   that date; the window they can answer in is
+        #   `enrollment_window_start`/`enrollment_window_end`.
+        #
+        #   @return [Date]
+        required :issued_date, Date
 
         # @!attribute plan_year_coverage_end
         #   Benefit plan-year coverage end date (YYYY-MM-DD), distinct from this
@@ -194,7 +214,7 @@ module VitableConnect
         #   @return [String, nil]
         optional :tier_name, String, nil?: true
 
-        # @!method initialize(id:, benefit_plan_year_id:, benefit_type:, cancelled_date:, election_status:, employer_id:, employer_name:, enrollment_window_start:, in_last_month_of_coverage:, is_within_enrollment_window:, plan_year_coverage_end:, policy_status:, product_code:, product_name:, requires_qle_for_reissue:, carrier_name: nil, coverage_end: nil, coverage_start: nil, employee_deduction_in_cents: nil, employer_contribution_in_cents: nil, enrollment_window_end: nil, plan_name: nil, premium_in_cents: nil, tier_name: nil)
+        # @!method initialize(id:, benefit_plan_year_id:, benefit_type:, cancelled_date:, election_status:, employer_id:, employer_name:, enrollment_window_start:, ichra_affordability:, in_last_month_of_coverage:, is_within_enrollment_window:, issued_date:, plan_year_coverage_end:, policy_status:, product_code:, product_name:, requires_qle_for_reissue:, carrier_name: nil, coverage_end: nil, coverage_start: nil, employee_deduction_in_cents: nil, employer_contribution_in_cents: nil, enrollment_window_end: nil, plan_name: nil, premium_in_cents: nil, tier_name: nil)
         #   Some parameter documentations has been truncated, see
         #   {VitableConnect::Models::MemberListEnrollmentsResponse::Data} for more details.
         #
@@ -216,9 +236,13 @@ module VitableConnect
         #
         #   @param enrollment_window_start [Date] Enrollment / open-enrollment window start date (YYYY-MM-DD)
         #
+        #   @param ichra_affordability [VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability, nil] How this member's monthly share compares with the ACA affordability line for the
+        #
         #   @param in_last_month_of_coverage [Boolean] True when today falls in the final month of the plan-year coverage window; drive
         #
         #   @param is_within_enrollment_window [Boolean] True when today falls inside the enrollment window this member has to answer in;
+        #
+        #   @param issued_date [Date] Date the enrollment record was created (YYYY-MM-DD), the value Ops labels Issued
         #
         #   @param plan_year_coverage_end [Date, nil] Benefit plan-year coverage end date (YYYY-MM-DD), distinct from this enrollment'
         #
@@ -282,6 +306,31 @@ module VitableConnect
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see VitableConnect::Models::MemberListEnrollmentsResponse::Data#ichra_affordability
+        class IchraAffordability < VitableConnect::Internal::Type::BaseModel
+          # @!attribute is_affordable
+          #   True when `employee_deduction_in_cents` is at or below the IRS affordability
+          #   percentage of the member's individual income for the year this plan year
+          #   started. It measures what the member pays for the plan they chose, so it is
+          #   **not** a statement that the employer's offer satisfies the ACA employer
+          #   mandate: that test is benchmarked against the lowest-cost silver plan at
+          #   self-only coverage, which this does not use.
+          #
+          #   @return [Boolean]
+          required :is_affordable, VitableConnect::Internal::Type::Boolean
+
+          # @!method initialize(is_affordable:)
+          #   Some parameter documentations has been truncated, see
+          #   {VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability}
+          #   for more details.
+          #
+          #   How this member's monthly share compares with the ACA affordability line for
+          #   their income. Null unless the row is an ICHRA election whose plan year, premium
+          #   and the member's individual income are all on file.
+          #
+          #   @param is_affordable [Boolean] True when `employee_deduction_in_cents` is at or below the IRS affordability per
         end
 
         # - `Coverage Upcoming` - Coverage Upcoming

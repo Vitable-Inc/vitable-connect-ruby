@@ -100,8 +100,8 @@ module VitableConnect
       # EIN, contact, address, timestamps). The book is derived from the authenticated
       # principal: one organization's employers, or every organization's for a caller
       # whose reach is not a single organization. Supports search by display name, legal
-      # name or exact EIN, benefit-family/lifecycle/HRIS filters, and page/limit
-      # pagination.
+      # name, or exact EIN, employer id or contact email, benefit-family/lifecycle/HRIS
+      # filters, and page/limit pagination.
       #
       # @overload list(benefit_family: nil, benefit_lifecycle_stage: nil, hris_provider: nil, hris_status: nil, include_cancelled: nil, limit: nil, page: nil, search: nil, request_options: {})
       #
