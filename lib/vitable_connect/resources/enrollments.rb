@@ -34,8 +34,8 @@ module VitableConnect
       # Closes the targeted enrollment and creates a new unanswered enrollment for the
       # same member and plan year. VPC never requires a qualifying life event; other
       # products require an accepted, member-owned event outside open enrollment.
-      # User-backed callers must provide a reason; it is optional for userless
-      # organization callers. Tenant mismatches return a non-disclosing 404 before the
+      # User-backed callers must provide a reason; it is optional for organization
+      # API-key callers. Tenant mismatches return a non-disclosing 404 before the
       # request body is validated.
       #
       # @overload reissue(enrollment_id, qualifying_life_event_id: nil, reason: nil, ticket_number: nil, request_options: {})
@@ -69,9 +69,9 @@ module VitableConnect
       #
       # Terminates enrolled coverage immediately. An accepted qualifying life event
       # owned by the enrollment member is required unless the plan is VPC or ICHRA.
-      # User-backed callers must provide a reason; it is optional for userless
-      # organization callers. API keys may act across the caller organization's book.
-      # Tenant mismatches return the same non-disclosing 404 before the request body is
+      # User-backed callers must provide a reason; it is optional for organization
+      # API-key callers. API keys may act across the caller organization's book. Tenant
+      # mismatches return the same non-disclosing 404 before the request body is
       # validated.
       #
       # @overload terminate(enrollment_id, qualifying_life_event_id: nil, reason: nil, ticket_number: nil, request_options: {})
