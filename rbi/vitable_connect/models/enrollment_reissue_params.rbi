@@ -23,7 +23,7 @@ module VitableConnect
       attr_accessor :qualifying_life_event_id
 
       # Audit reason for the reissue; required for user-backed callers and optional for
-      # userless organization callers
+      # long-lived organization API-key callers
       sig { returns(T.nilable(String)) }
       attr_accessor :reason
 
@@ -46,7 +46,7 @@ module VitableConnect
         # Accepted member qualifying life event identifier (qle\_\*)
         qualifying_life_event_id: nil,
         # Audit reason for the reissue; required for user-backed callers and optional for
-        # userless organization callers
+        # long-lived organization API-key callers
         reason: nil,
         # Optional support or operational ticket number
         ticket_number: nil,

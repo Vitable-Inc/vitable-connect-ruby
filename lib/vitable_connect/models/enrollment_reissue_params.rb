@@ -21,7 +21,7 @@ module VitableConnect
 
       # @!attribute reason
       #   Audit reason for the reissue; required for user-backed callers and optional for
-      #   userless organization callers
+      #   long-lived organization API-key callers
       #
       #   @return [String, nil]
       optional :reason, String, nil?: true
