@@ -4,6 +4,7 @@ module VitableConnect
       {
         id: String,
         event_type: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::event_type,
+        event_type_label: String,
         other_event: String?,
         status: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::status,
         submitted_at: Time
@@ -14,6 +15,8 @@ module VitableConnect
 
       attr_accessor event_type: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::event_type
 
+      attr_accessor event_type_label: String
+
       attr_accessor other_event: String?
 
       attr_accessor status: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::status
@@ -23,6 +26,7 @@ module VitableConnect
       def initialize: (
         id: String,
         event_type: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::event_type,
+        event_type_label: String,
         other_event: String?,
         status: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::status,
         submitted_at: Time
@@ -31,22 +35,59 @@ module VitableConnect
       def to_hash: -> {
         id: String,
         event_type: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::event_type,
+        event_type_label: String,
         other_event: String?,
         status: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::status,
         submitted_at: Time
       }
 
       type event_type =
-        :Married | :Divorced | :"New child" | :"Court ordered" | :Other
+        :lost_job_based_coverage
+        | :aged_off_parent_plan
+        | :lost_medicaid_chip_medicare
+        | :lost_decertified_individual_plan
+        | :married
+        | :divorced
+        | :had_baby
+        | :adopted_child
+        | :foster_care_placement
+        | :death_of_spouse_or_dependent
+        | :court_ordered
+        | :moved_to_new_coverage_area
+        | :moved_to_us
+        | :moved_to_or_from_school_housing
+        | :moved_to_or_from_seasonal_work_housing
+        | :became_us_citizen
+        | :left_incarceration
+        | :gained_tribal_status
+        | :started_or_ended_americorps_service
+        | :new_child
+        | :other
 
       module EventType
         extend VitableConnect::Internal::Type::Enum
 
-        MARRIED: :Married
-        DIVORCED: :Divorced
-        NEW_CHILD: :"New child"
-        COURT_ORDERED: :"Court ordered"
-        OTHER: :Other
+        LOST_JOB_BASED_COVERAGE: :lost_job_based_coverage
+        AGED_OFF_PARENT_PLAN: :aged_off_parent_plan
+        LOST_MEDICAID_CHIP_MEDICARE: :lost_medicaid_chip_medicare
+        LOST_DECERTIFIED_INDIVIDUAL_PLAN: :lost_decertified_individual_plan
+        MARRIED: :married
+        DIVORCED: :divorced
+        HAD_BABY: :had_baby
+        ADOPTED_CHILD: :adopted_child
+        FOSTER_CARE_PLACEMENT: :foster_care_placement
+        DEATH_OF_SPOUSE_OR_DEPENDENT: :death_of_spouse_or_dependent
+        COURT_ORDERED: :court_ordered
+        MOVED_TO_NEW_COVERAGE_AREA: :moved_to_new_coverage_area
+        MOVED_TO_US: :moved_to_us
+        MOVED_TO_OR_FROM_SCHOOL_HOUSING: :moved_to_or_from_school_housing
+        MOVED_TO_OR_FROM_SEASONAL_WORK_HOUSING: :moved_to_or_from_seasonal_work_housing
+        BECAME_US_CITIZEN: :became_us_citizen
+        LEFT_INCARCERATION: :left_incarceration
+        GAINED_TRIBAL_STATUS: :gained_tribal_status
+        STARTED_OR_ENDED_AMERICORPS_SERVICE: :started_or_ended_americorps_service
+        NEW_CHILD: :new_child
+        OTHER: :other
 
         def self?.values: -> ::Array[VitableConnect::Models::MemberListQualifyingLifeEventsResponse::event_type]
       end

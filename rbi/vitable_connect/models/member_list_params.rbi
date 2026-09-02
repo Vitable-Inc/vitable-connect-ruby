@@ -28,7 +28,8 @@ module VitableConnect
       sig { params(page: Integer).void }
       attr_writer :page
 
-      # Case-insensitive search across member name and email; exact match on member id
+      # Case-insensitive search across member name, email, and phone number; exact match
+      # on member id (prefixed or raw uuid)
       sig { returns(T.nilable(String)) }
       attr_reader :search
 
@@ -48,7 +49,8 @@ module VitableConnect
         limit: nil,
         # Page number (default: 1)
         page: nil,
-        # Case-insensitive search across member name and email; exact match on member id
+        # Case-insensitive search across member name, email, and phone number; exact match
+        # on member id (prefixed or raw uuid)
         search: nil,
         request_options: {}
       )

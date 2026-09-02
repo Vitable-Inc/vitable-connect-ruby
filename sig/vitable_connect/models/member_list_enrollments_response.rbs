@@ -26,7 +26,6 @@ module VitableConnect
           employer_id: String,
           employer_name: String,
           enrollment_window_start: Date,
-          ichra_affordability: VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability?,
           in_last_month_of_coverage: bool,
           is_within_enrollment_window: bool,
           issued_date: Date,
@@ -62,8 +61,6 @@ module VitableConnect
         attr_accessor employer_name: String
 
         attr_accessor enrollment_window_start: Date
-
-        attr_accessor ichra_affordability: VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability?
 
         attr_accessor in_last_month_of_coverage: bool
 
@@ -108,7 +105,6 @@ module VitableConnect
           employer_id: String,
           employer_name: String,
           enrollment_window_start: Date,
-          ichra_affordability: VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability?,
           in_last_month_of_coverage: bool,
           is_within_enrollment_window: bool,
           issued_date: Date,
@@ -137,7 +133,6 @@ module VitableConnect
           employer_id: String,
           employer_name: String,
           enrollment_window_start: Date,
-          ichra_affordability: VitableConnect::Models::MemberListEnrollmentsResponse::Data::IchraAffordability?,
           in_last_month_of_coverage: bool,
           is_within_enrollment_window: bool,
           issued_date: Date,
@@ -181,16 +176,6 @@ module VitableConnect
           EXPIRED: :Expired
 
           def self?.values: -> ::Array[VitableConnect::Models::MemberListEnrollmentsResponse::Data::election_status]
-        end
-
-        type ichra_affordability = { is_affordable: bool }
-
-        class IchraAffordability < VitableConnect::Internal::Type::BaseModel
-          attr_accessor is_affordable: bool
-
-          def initialize: (is_affordable: bool) -> void
-
-          def to_hash: -> { is_affordable: bool }
         end
 
         type policy_status =
