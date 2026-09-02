@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.7.0 (2026-09-02)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** api update ([d29b7d8](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/d29b7d828e107acb56147262b54a68c7111adcd7))
+* **api:** api update ([81bd03a](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/81bd03a373d2a8f9e423db8e6f8f03e0e79eef48))
+* **api:** api update ([bbfa648](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/bbfa648641cd258f371763ed60b8dae5d6b99b8c))
+* **api:** api update ([f593acf](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/f593acf41893a6243730c4fa775b3c34f890784f))
+* **api:** api update ([52d4ba5](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/52d4ba5f281fb2d1bf9270d8663b47c87b61c858))
+* **api:** api update ([6409509](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/6409509054d6d1cea2a3635845d62008d1d31df6))
+* **api:** api update ([65dd8c9](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/65dd8c9a6e25251ed45e5fa705cc906145ec6624))
+
 ## 0.6.0 (2026-08-20)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.5.0...v0.6.0)
