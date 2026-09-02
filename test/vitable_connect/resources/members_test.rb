@@ -131,6 +131,7 @@ class VitableConnect::Test::Resources::MembersTest < VitableConnect::Test::Resou
       row => {
         id: String,
         event_type: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType,
+        event_type_label: String,
         other_event: String | nil,
         status: VitableConnect::Models::MemberListQualifyingLifeEventsResponse::Status,
         submitted_at: Time

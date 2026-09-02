@@ -15,17 +15,38 @@ module VitableConnect
       sig { returns(String) }
       attr_accessor :id
 
-      # - `Married` - Married
-      # - `Divorced` - Divorced
-      # - `New child` - New Child
-      # - `Court ordered` - Court Ordered
-      # - `Other` - Other
+      # - `lost_job_based_coverage` - lost_job_based_coverage
+      # - `aged_off_parent_plan` - aged_off_parent_plan
+      # - `lost_medicaid_chip_medicare` - lost_medicaid_chip_medicare
+      # - `lost_decertified_individual_plan` - lost_decertified_individual_plan
+      # - `married` - married
+      # - `divorced` - divorced
+      # - `had_baby` - had_baby
+      # - `adopted_child` - adopted_child
+      # - `foster_care_placement` - foster_care_placement
+      # - `death_of_spouse_or_dependent` - death_of_spouse_or_dependent
+      # - `court_ordered` - court_ordered
+      # - `moved_to_new_coverage_area` - moved_to_new_coverage_area
+      # - `moved_to_us` - moved_to_us
+      # - `moved_to_or_from_school_housing` - moved_to_or_from_school_housing
+      # - `moved_to_or_from_seasonal_work_housing` -
+      #   moved_to_or_from_seasonal_work_housing
+      # - `became_us_citizen` - became_us_citizen
+      # - `left_incarceration` - left_incarceration
+      # - `gained_tribal_status` - gained_tribal_status
+      # - `started_or_ended_americorps_service` - started_or_ended_americorps_service
+      # - `new_child` - new_child
+      # - `other` - other
       sig do
         returns(
           VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
         )
       end
       attr_accessor :event_type
+
+      # Human-readable label for event_type
+      sig { returns(String) }
+      attr_accessor :event_type_label
 
       # Custom event description when event_type is Other; otherwise normally null
       sig { returns(T.nilable(String)) }
@@ -50,6 +71,7 @@ module VitableConnect
           id: String,
           event_type:
             VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::OrSymbol,
+          event_type_label: String,
           other_event: T.nilable(String),
           status:
             VitableConnect::Models::MemberListQualifyingLifeEventsResponse::Status::OrSymbol,
@@ -59,12 +81,31 @@ module VitableConnect
       def self.new(
         # Opaque qualifying life event identifier
         id:,
-        # - `Married` - Married
-        # - `Divorced` - Divorced
-        # - `New child` - New Child
-        # - `Court ordered` - Court Ordered
-        # - `Other` - Other
+        # - `lost_job_based_coverage` - lost_job_based_coverage
+        # - `aged_off_parent_plan` - aged_off_parent_plan
+        # - `lost_medicaid_chip_medicare` - lost_medicaid_chip_medicare
+        # - `lost_decertified_individual_plan` - lost_decertified_individual_plan
+        # - `married` - married
+        # - `divorced` - divorced
+        # - `had_baby` - had_baby
+        # - `adopted_child` - adopted_child
+        # - `foster_care_placement` - foster_care_placement
+        # - `death_of_spouse_or_dependent` - death_of_spouse_or_dependent
+        # - `court_ordered` - court_ordered
+        # - `moved_to_new_coverage_area` - moved_to_new_coverage_area
+        # - `moved_to_us` - moved_to_us
+        # - `moved_to_or_from_school_housing` - moved_to_or_from_school_housing
+        # - `moved_to_or_from_seasonal_work_housing` -
+        #   moved_to_or_from_seasonal_work_housing
+        # - `became_us_citizen` - became_us_citizen
+        # - `left_incarceration` - left_incarceration
+        # - `gained_tribal_status` - gained_tribal_status
+        # - `started_or_ended_americorps_service` - started_or_ended_americorps_service
+        # - `new_child` - new_child
+        # - `other` - other
         event_type:,
+        # Human-readable label for event_type
+        event_type_label:,
         # Custom event description when event_type is Other; otherwise normally null
         other_event:,
         # - `pending` - Pending
@@ -82,6 +123,7 @@ module VitableConnect
             id: String,
             event_type:
               VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol,
+            event_type_label: String,
             other_event: T.nilable(String),
             status:
               VitableConnect::Models::MemberListQualifyingLifeEventsResponse::Status::TaggedSymbol,
@@ -92,11 +134,28 @@ module VitableConnect
       def to_hash
       end
 
-      # - `Married` - Married
-      # - `Divorced` - Divorced
-      # - `New child` - New Child
-      # - `Court ordered` - Court Ordered
-      # - `Other` - Other
+      # - `lost_job_based_coverage` - lost_job_based_coverage
+      # - `aged_off_parent_plan` - aged_off_parent_plan
+      # - `lost_medicaid_chip_medicare` - lost_medicaid_chip_medicare
+      # - `lost_decertified_individual_plan` - lost_decertified_individual_plan
+      # - `married` - married
+      # - `divorced` - divorced
+      # - `had_baby` - had_baby
+      # - `adopted_child` - adopted_child
+      # - `foster_care_placement` - foster_care_placement
+      # - `death_of_spouse_or_dependent` - death_of_spouse_or_dependent
+      # - `court_ordered` - court_ordered
+      # - `moved_to_new_coverage_area` - moved_to_new_coverage_area
+      # - `moved_to_us` - moved_to_us
+      # - `moved_to_or_from_school_housing` - moved_to_or_from_school_housing
+      # - `moved_to_or_from_seasonal_work_housing` -
+      #   moved_to_or_from_seasonal_work_housing
+      # - `became_us_citizen` - became_us_citizen
+      # - `left_incarceration` - left_incarceration
+      # - `gained_tribal_status` - gained_tribal_status
+      # - `started_or_ended_americorps_service` - started_or_ended_americorps_service
+      # - `new_child` - new_child
+      # - `other` - other
       module EventType
         extend VitableConnect::Internal::Type::Enum
 
@@ -109,29 +168,109 @@ module VitableConnect
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        LOST_JOB_BASED_COVERAGE =
+          T.let(
+            :lost_job_based_coverage,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        AGED_OFF_PARENT_PLAN =
+          T.let(
+            :aged_off_parent_plan,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        LOST_MEDICAID_CHIP_MEDICARE =
+          T.let(
+            :lost_medicaid_chip_medicare,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        LOST_DECERTIFIED_INDIVIDUAL_PLAN =
+          T.let(
+            :lost_decertified_individual_plan,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
         MARRIED =
           T.let(
-            :Married,
+            :married,
             VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
           )
         DIVORCED =
           T.let(
-            :Divorced,
+            :divorced,
             VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
           )
-        NEW_CHILD =
+        HAD_BABY =
           T.let(
-            :"New child",
+            :had_baby,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        ADOPTED_CHILD =
+          T.let(
+            :adopted_child,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        FOSTER_CARE_PLACEMENT =
+          T.let(
+            :foster_care_placement,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        DEATH_OF_SPOUSE_OR_DEPENDENT =
+          T.let(
+            :death_of_spouse_or_dependent,
             VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
           )
         COURT_ORDERED =
           T.let(
-            :"Court ordered",
+            :court_ordered,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        MOVED_TO_NEW_COVERAGE_AREA =
+          T.let(
+            :moved_to_new_coverage_area,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        MOVED_TO_US =
+          T.let(
+            :moved_to_us,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        MOVED_TO_OR_FROM_SCHOOL_HOUSING =
+          T.let(
+            :moved_to_or_from_school_housing,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        MOVED_TO_OR_FROM_SEASONAL_WORK_HOUSING =
+          T.let(
+            :moved_to_or_from_seasonal_work_housing,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        BECAME_US_CITIZEN =
+          T.let(
+            :became_us_citizen,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        LEFT_INCARCERATION =
+          T.let(
+            :left_incarceration,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        GAINED_TRIBAL_STATUS =
+          T.let(
+            :gained_tribal_status,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        STARTED_OR_ENDED_AMERICORPS_SERVICE =
+          T.let(
+            :started_or_ended_americorps_service,
+            VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
+          )
+        NEW_CHILD =
+          T.let(
+            :new_child,
             VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
           )
         OTHER =
           T.let(
-            :Other,
+            :other,
             VitableConnect::Models::MemberListQualifyingLifeEventsResponse::EventType::TaggedSymbol
           )
 
