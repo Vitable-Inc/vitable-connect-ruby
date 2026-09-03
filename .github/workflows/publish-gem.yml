@@ -1,6 +1,8 @@
-# This workflow is triggered when a GitHub release is created.
-# It can also be run manually to re-publish to rubygems.org in case it failed for some reason.
-# You can run this workflow by navigating to https://www.github.com/Vitable-Inc/vitable-connect-ruby/actions/workflows/publish-gem.yml
+# Publishes the Fern-generated SDK to RubyGems.org via OIDC trusted publishing
+# (the gem trusts this repo + workflow file; no token). Triggered when a
+# GitHub release is published, or manually to re-publish after a failure.
+#
+# This file is listed in .fernignore so Fern regeneration preserves it.
 name: Publish Gem
 on:
   workflow_dispatch:
@@ -11,21 +13,25 @@ on:
 jobs:
   publish:
     name: publish
+    # Keep in sync with the RubyGems trusted publisher registration, which
+    # pins this environment name.
+    environment: prod
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
-        with:
-          bundler-cache: false
-      - run: |-
-          bundle install
+      - uses: actions/checkout@v5
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+
+      # Builds the gemspec and pushes via RubyGems trusted publishing.
       - name: Publish to RubyGems.org
-        run: |
-          bash ./bin/publish-gem
-        env:
-          # `RUBYGEMS_HOST` is only required for private gem repositories, not https://rubygems.org
-          RUBYGEMS_HOST: ${{ secrets.VITABLE_CONNECT_RUBYGEMS_HOST || secrets.RUBYGEMS_HOST }}
-          GEM_HOST_API_KEY: ${{ secrets.VITABLE_CONNECT_GEM_HOST_API_KEY || secrets.GEM_HOST_API_KEY }}
+        uses: rubygems/release-gem@v1
+        with:
+          await-release: false
