@@ -101,3 +101,10 @@ Naming/ClassAndModuleCamelCase:
 # everywhere and avoids customer-visible diffs.
 Style/NumericLiterals:
   Enabled: false
+
+# Fern names the gem entrypoint after moduleName (lib/VitableConnect.rb), and
+# its own generated config flags that as non-snake_case. Excluded until the
+# generator is fixed; reported to Fern.
+Naming/FileName:
+  Exclude:
+    - "lib/VitableConnect.rb"

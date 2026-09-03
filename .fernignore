@@ -1,4 +1,7 @@
 # Files Fern must not overwrite or delete when regenerating this repo.
 LICENSE
 SECURITY.md
-.github/workflows/publish-gem.yml
+# Patched: excludes Fern's own entrypoint from Naming/FileName (generator bug).
+.rubocop.yml
+# Compatibility shim for the pre-1.0 require path.
+lib/vitable_connect.rb
