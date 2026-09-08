@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1 (2026-09-08)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.6.0...v0.6.1)
+
+### Bug Fixes
+
+* rubocop entrypoint exclusion + legacy require shim ([4eedc17](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/4eedc172358068e4851075710c0ff74836c3df57))
+
+
+### Chores
+
+* sync repo ([8f04bbd](https://github.com/Vitable-Inc/vitable-connect-ruby/commit/8f04bbdb9df9b19bbdfd3636f19e7f27eeb84ce4))
+
 ## 0.6.0 (2026-08-20)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/Vitable-Inc/vitable-connect-ruby/compare/v0.5.0...v0.6.0)
