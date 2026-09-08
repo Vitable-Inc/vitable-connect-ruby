@@ -1,0 +1,45 @@
+module VitableConnect
+  module Models
+    type group =
+      {
+        id: String,
+        created_at: Time?,
+        external_reference_id: String,
+        name: String,
+        organization_id: String,
+        updated_at: Time?
+      }
+
+    class Group < VitableConnect::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time?
+
+      attr_accessor external_reference_id: String
+
+      attr_accessor name: String
+
+      attr_accessor organization_id: String
+
+      attr_accessor updated_at: Time?
+
+      def initialize: (
+        id: String,
+        created_at: Time?,
+        external_reference_id: String,
+        name: String,
+        organization_id: String,
+        updated_at: Time?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time?,
+        external_reference_id: String,
+        name: String,
+        organization_id: String,
+        updated_at: Time?
+      }
+    end
+  end
+end

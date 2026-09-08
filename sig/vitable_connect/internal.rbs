@@ -1,0 +1,10 @@
+module VitableConnect
+  module Internal
+    extend VitableConnect::Internal::Util::SorbetRuntimeSupport
+
+    type file_input =
+      Pathname | StringIO | IO | String | VitableConnect::FilePart
+
+    OMIT: Object
+  end
+end

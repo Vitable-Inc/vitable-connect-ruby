@@ -1,0 +1,23 @@
+module VitableConnect
+  module Models
+    type group_retrieve_params =
+      { group_id: String } & VitableConnect::Internal::Type::request_parameters
+
+    class GroupRetrieveParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor group_id: String
+
+      def initialize: (
+        group_id: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        group_id: String,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end

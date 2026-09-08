@@ -4,16 +4,29 @@ source "https://rubygems.org"
 
 gemspec
 
-group :test, :development do
-  gem "minitest", "~> 5.16"
+group :development do
+  gem "rake"
+  gem "rbs"
+  gem "rubocop"
+  gem "sorbet"
+  gem "steep"
+  gem "syntax_tree"
+  gem "syntax_tree-rbs", github: "ruby-syntax-tree/syntax_tree-rbs", branch: "main"
+  gem "tapioca"
+end
+
+group :development, :test do
+  gem "async"
+  gem "minitest"
+  gem "minitest-focus"
+  gem "minitest-hooks"
+  gem "minitest-proveit"
   gem "minitest-rg"
-  gem "pry"
-  gem "rake", "~> 13.0"
-  gem "rubocop", "~> 1.21"
-  gem "rubocop-minitest"
   gem "webmock"
 end
 
-# Load custom Gemfile configuration if it exists
-custom_gemfile = File.join(__dir__, "Gemfile.custom")
-eval_gemfile(custom_gemfile) if File.exist?(custom_gemfile)
+group :development, :docs do
+  gem "redcarpet"
+  gem "webrick"
+  gem "yard"
+end

@@ -1,0 +1,44 @@
+module VitableConnect
+  module Models
+    type employer_update_settings_params =
+      {
+        employer_id: String,
+        pay_frequency: VitableConnect::Models::EmployerUpdateSettingsParams::pay_frequency
+      }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployerUpdateSettingsParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employer_id: String
+
+      attr_accessor pay_frequency: VitableConnect::Models::EmployerUpdateSettingsParams::pay_frequency
+
+      def initialize: (
+        employer_id: String,
+        pay_frequency: VitableConnect::Models::EmployerUpdateSettingsParams::pay_frequency,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employer_id: String,
+        pay_frequency: VitableConnect::Models::EmployerUpdateSettingsParams::pay_frequency,
+        request_options: VitableConnect::RequestOptions
+      }
+
+      type pay_frequency = :weekly | :bi_weekly | :semi_monthly | :monthly
+
+      module PayFrequency
+        extend VitableConnect::Internal::Type::Enum
+
+        WEEKLY: :weekly
+        BI_WEEKLY: :bi_weekly
+        SEMI_MONTHLY: :semi_monthly
+        MONTHLY: :monthly
+
+        def self?.values: -> ::Array[VitableConnect::Models::EmployerUpdateSettingsParams::pay_frequency]
+      end
+    end
+  end
+end

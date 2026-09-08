@@ -1,0 +1,28 @@
+module VitableConnect
+  module Resources
+    class WebhookEvents
+      def retrieve: (
+        String event_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::WebhookEventRetrieveResponse
+
+      def list: (
+        ?created_after: Time,
+        ?created_before: Time,
+        ?event_name: VitableConnect::Models::WebhookEventListParams::event_name,
+        ?limit: Integer,
+        ?page: Integer,
+        ?resource_id: String,
+        ?resource_type: VitableConnect::Models::WebhookEventListParams::resource_type,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::WebhookEvent]
+
+      def list_deliveries: (
+        String event_id,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Models::WebhookEventListDeliveriesResponse
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end

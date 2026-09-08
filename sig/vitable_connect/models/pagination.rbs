@@ -1,0 +1,30 @@
+module VitableConnect
+  module Models
+    type pagination =
+      { limit: Integer, page: Integer, total: Integer, total_pages: Integer }
+
+    class Pagination < VitableConnect::Internal::Type::BaseModel
+      attr_accessor limit: Integer
+
+      attr_accessor page: Integer
+
+      attr_accessor total: Integer
+
+      attr_accessor total_pages: Integer
+
+      def initialize: (
+        limit: Integer,
+        page: Integer,
+        total: Integer,
+        total_pages: Integer
+      ) -> void
+
+      def to_hash: -> {
+        limit: Integer,
+        page: Integer,
+        total: Integer,
+        total_pages: Integer
+      }
+    end
+  end
+end

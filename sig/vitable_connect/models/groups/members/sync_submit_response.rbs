@@ -1,0 +1,47 @@
+module VitableConnect
+  module Models
+    module Groups
+      module Members
+        type sync_submit_response =
+          {
+            data: VitableConnect::Models::Groups::Members::SyncSubmitResponse::Data
+          }
+
+        class SyncSubmitResponse < VitableConnect::Internal::Type::BaseModel
+          attr_accessor data: VitableConnect::Models::Groups::Members::SyncSubmitResponse::Data
+
+          def initialize: (
+            data: VitableConnect::Models::Groups::Members::SyncSubmitResponse::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: VitableConnect::Models::Groups::Members::SyncSubmitResponse::Data
+          }
+
+          type data =
+            { accepted_at: Time, group_id: String, request_id: String }
+
+          class Data < VitableConnect::Internal::Type::BaseModel
+            attr_accessor accepted_at: Time
+
+            attr_accessor group_id: String
+
+            attr_accessor request_id: String
+
+            def initialize: (
+              accepted_at: Time,
+              group_id: String,
+              request_id: String
+            ) -> void
+
+            def to_hash: -> {
+              accepted_at: Time,
+              group_id: String,
+              request_id: String
+            }
+          end
+        end
+      end
+    end
+  end
+end

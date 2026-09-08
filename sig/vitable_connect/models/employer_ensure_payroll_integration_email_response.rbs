@@ -1,0 +1,30 @@
+module VitableConnect
+  module Models
+    type employer_ensure_payroll_integration_email_response =
+      {
+        data: VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailResponse::Data
+      }
+
+    class EmployerEnsurePayrollIntegrationEmailResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailResponse::Data
+
+      def initialize: (
+        data: VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailResponse::Data
+      ) -> void
+
+      def to_hash: -> {
+        data: VitableConnect::Models::EmployerEnsurePayrollIntegrationEmailResponse::Data
+      }
+
+      type data = { integration_email: String }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor integration_email: String
+
+        def initialize: (integration_email: String) -> void
+
+        def to_hash: -> { integration_email: String }
+      end
+    end
+  end
+end

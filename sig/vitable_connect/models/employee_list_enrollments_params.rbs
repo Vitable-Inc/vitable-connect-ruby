@@ -1,0 +1,36 @@
+module VitableConnect
+  module Models
+    type employee_list_enrollments_params =
+      { employee_id: String, limit: Integer, page: Integer }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployeeListEnrollmentsParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employee_id: String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      def initialize: (
+        employee_id: String,
+        ?limit: Integer,
+        ?page: Integer,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employee_id: String,
+        limit: Integer,
+        page: Integer,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end

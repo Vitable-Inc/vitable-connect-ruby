@@ -1,0 +1,32 @@
+module VitableConnect
+  module Models
+    type employer_list_hris_providers_response =
+      {
+        data: ::Array[VitableConnect::Models::EmployerListHRISProvidersResponse::Data]
+      }
+
+    class EmployerListHRISProvidersResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor data: ::Array[VitableConnect::Models::EmployerListHRISProvidersResponse::Data]
+
+      def initialize: (
+        data: ::Array[VitableConnect::Models::EmployerListHRISProvidersResponse::Data]
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[VitableConnect::Models::EmployerListHRISProvidersResponse::Data]
+      }
+
+      type data = { provider: String, provider_label: String }
+
+      class Data < VitableConnect::Internal::Type::BaseModel
+        attr_accessor provider: String
+
+        attr_accessor provider_label: String
+
+        def initialize: (provider: String, provider_label: String) -> void
+
+        def to_hash: -> { provider: String, provider_label: String }
+      end
+    end
+  end
+end

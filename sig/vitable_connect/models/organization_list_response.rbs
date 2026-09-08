@@ -1,0 +1,99 @@
+module VitableConnect
+  module Models
+    type organization_list_response =
+      {
+        organizations: ::Array[VitableConnect::Models::OrganizationListResponse::Organization],
+        total: Integer
+      }
+
+    class OrganizationListResponse < VitableConnect::Internal::Type::BaseModel
+      attr_accessor organizations: ::Array[VitableConnect::Models::OrganizationListResponse::Organization]
+
+      attr_accessor total: Integer
+
+      def initialize: (
+        organizations: ::Array[VitableConnect::Models::OrganizationListResponse::Organization],
+        total: Integer
+      ) -> void
+
+      def to_hash: -> {
+        organizations: ::Array[VitableConnect::Models::OrganizationListResponse::Organization],
+        total: Integer
+      }
+
+      type organization =
+        {
+          id: String,
+          idp_org_id: String?,
+          idp_provider: VitableConnect::Models::OrganizationListResponse::Organization::idp_provider?,
+          name: String,
+          super_in: bool,
+          type: VitableConnect::Models::OrganizationListResponse::Organization::type_?
+        }
+
+      class Organization < VitableConnect::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor idp_org_id: String?
+
+        attr_accessor idp_provider: VitableConnect::Models::OrganizationListResponse::Organization::idp_provider?
+
+        attr_accessor name: String
+
+        attr_accessor super_in: bool
+
+        attr_accessor type: VitableConnect::Models::OrganizationListResponse::Organization::type_?
+
+        def initialize: (
+          id: String,
+          idp_org_id: String?,
+          idp_provider: VitableConnect::Models::OrganizationListResponse::Organization::idp_provider?,
+          name: String,
+          super_in: bool,
+          type: VitableConnect::Models::OrganizationListResponse::Organization::type_?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          idp_org_id: String?,
+          idp_provider: VitableConnect::Models::OrganizationListResponse::Organization::idp_provider?,
+          name: String,
+          super_in: bool,
+          type: VitableConnect::Models::OrganizationListResponse::Organization::type_?
+        }
+
+        type idp_provider = :workos | :vitable
+
+        module IdpProvider
+          extend VitableConnect::Internal::Type::Enum
+
+          WORKOS: :workos
+          VITABLE: :vitable
+
+          def self?.values: -> ::Array[VitableConnect::Models::OrganizationListResponse::Organization::idp_provider]
+        end
+
+        type type_ =
+          :BROKERAGE
+          | :TPA
+          | :GENERAL_AGENT
+          | :CHANNEL_PARTNER
+          | :CONSULTING_FIRM
+          | :API_PLATFORM
+
+        module Type
+          extend VitableConnect::Internal::Type::Enum
+
+          BROKERAGE: :BROKERAGE
+          TPA: :TPA
+          GENERAL_AGENT: :GENERAL_AGENT
+          CHANNEL_PARTNER: :CHANNEL_PARTNER
+          CONSULTING_FIRM: :CONSULTING_FIRM
+          API_PLATFORM: :API_PLATFORM
+
+          def self?.values: -> ::Array[VitableConnect::Models::OrganizationListResponse::Organization::type_]
+        end
+      end
+    end
+  end
+end

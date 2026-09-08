@@ -1,0 +1,140 @@
+module VitableConnect
+  module Models
+    type employee_update_params =
+      {
+        employee_id: String,
+        effective_date: Date,
+        address: VitableConnect::EmployeeUpdateParams::Address?,
+        compensation_type: VitableConnect::Models::EmployeeUpdateParams::compensation_type?,
+        email: String?,
+        employee_class: VitableConnect::Models::employee_class?,
+        gender: VitableConnect::Models::EmployeeUpdateParams::gender?,
+        phone: String?,
+        start_date: Date?
+      }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployeeUpdateParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employee_id: String
+
+      attr_accessor effective_date: Date
+
+      attr_accessor address: VitableConnect::EmployeeUpdateParams::Address?
+
+      attr_accessor compensation_type: VitableConnect::Models::EmployeeUpdateParams::compensation_type?
+
+      attr_accessor email: String?
+
+      attr_accessor employee_class: VitableConnect::Models::employee_class?
+
+      attr_accessor gender: VitableConnect::Models::EmployeeUpdateParams::gender?
+
+      attr_accessor phone: String?
+
+      attr_accessor start_date: Date?
+
+      def initialize: (
+        employee_id: String,
+        effective_date: Date,
+        ?address: VitableConnect::EmployeeUpdateParams::Address?,
+        ?compensation_type: VitableConnect::Models::EmployeeUpdateParams::compensation_type?,
+        ?email: String?,
+        ?employee_class: VitableConnect::Models::employee_class?,
+        ?gender: VitableConnect::Models::EmployeeUpdateParams::gender?,
+        ?phone: String?,
+        ?start_date: Date?,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employee_id: String,
+        effective_date: Date,
+        address: VitableConnect::EmployeeUpdateParams::Address?,
+        compensation_type: VitableConnect::Models::EmployeeUpdateParams::compensation_type?,
+        email: String?,
+        employee_class: VitableConnect::Models::employee_class?,
+        gender: VitableConnect::Models::EmployeeUpdateParams::gender?,
+        phone: String?,
+        start_date: Date?,
+        request_options: VitableConnect::RequestOptions
+      }
+
+      type address =
+        {
+          city: String,
+          state: String,
+          :street_1 => String,
+          zip_code: String,
+          country: String,
+          :street_2 => String?
+        }
+
+      class Address < VitableConnect::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor state: String
+
+        attr_accessor street_1: String
+
+        attr_accessor zip_code: String
+
+        attr_reader country: String?
+
+        def country=: (String) -> String
+
+        attr_accessor street_2: String?
+
+        def initialize: (
+          city: String,
+          state: String,
+          street_1: String,
+          zip_code: String,
+          ?country: String,
+          ?street_2: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          state: String,
+          :street_1 => String,
+          zip_code: String,
+          country: String,
+          :street_2 => String?
+        }
+      end
+
+      type compensation_type = :Salary | :Hourly
+
+      module CompensationType
+        extend VitableConnect::Internal::Type::Enum
+
+        SALARY: :Salary
+        HOURLY: :Hourly
+
+        def self?.values: -> ::Array[VitableConnect::Models::EmployeeUpdateParams::compensation_type]
+      end
+
+      type gender =
+        :Male
+        | :Female
+        | :Transgender
+        | :"Non-binary"
+        | :"Prefer not to respond"
+
+      module Gender
+        extend VitableConnect::Internal::Type::Enum
+
+        MALE: :Male
+        FEMALE: :Female
+        TRANSGENDER: :Transgender
+        NON_BINARY: :"Non-binary"
+        PREFER_NOT_TO_RESPOND: :"Prefer not to respond"
+
+        def self?.values: -> ::Array[VitableConnect::Models::EmployeeUpdateParams::gender]
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module VitableConnect
+  module Models
+    type employer_retrieve_invoice_pdf_params =
+      { employer_id: String, invoice_id: String }
+      & VitableConnect::Internal::Type::request_parameters
+
+    class EmployerRetrieveInvoicePdfParams < VitableConnect::Internal::Type::BaseModel
+      extend VitableConnect::Internal::Type::RequestParameters::Converter
+      include VitableConnect::Internal::Type::RequestParameters
+
+      attr_accessor employer_id: String
+
+      attr_accessor invoice_id: String
+
+      def initialize: (
+        employer_id: String,
+        invoice_id: String,
+        ?request_options: VitableConnect::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        employer_id: String,
+        invoice_id: String,
+        request_options: VitableConnect::RequestOptions
+      }
+    end
+  end
+end

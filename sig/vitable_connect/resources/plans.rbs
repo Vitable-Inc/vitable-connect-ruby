@@ -1,0 +1,13 @@
+module VitableConnect
+  module Resources
+    class Plans
+      def list: (
+        ?limit: Integer,
+        ?page: Integer,
+        ?request_options: VitableConnect::request_opts
+      ) -> VitableConnect::Internal::PageNumberPage[VitableConnect::Models::PlanListResponse]
+
+      def initialize: (client: VitableConnect::Client) -> void
+    end
+  end
+end
