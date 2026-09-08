@@ -2,7 +2,7 @@
 
 module VitableConnect
   module Types
-    module Operation
+    module GroupMemberSyncFailureOperation
       extend VitableConnect::Internal::Types::Enum
 
       ADD = "add"

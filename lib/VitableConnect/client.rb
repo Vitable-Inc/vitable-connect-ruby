@@ -11,7 +11,7 @@ module VitableConnect
       @raw_client = VitableConnect::Internal::Http::RawClient.new(
         base_url: base_url || VitableConnect::Environment::PRODUCTION,
         headers: {
-          "User-Agent" => "vitable-connect/1.0.0",
+          "User-Agent" => "vitable-connect/2.0.0",
           "X-Fern-Language" => "Ruby",
           Authorization: "Bearer #{api_key}"
         },

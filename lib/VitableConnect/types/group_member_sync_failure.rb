@@ -5,7 +5,7 @@ module VitableConnect
     class GroupMemberSyncFailure < Internal::Types::Model
       field :reference_id, -> { String }, optional: false, nullable: false
 
-      field :operation, -> { VitableConnect::Types::Operation }, optional: false, nullable: false
+      field :operation, -> { VitableConnect::Types::GroupMemberSyncFailureOperation }, optional: false, nullable: false
 
       field :reason, -> { String }, optional: false, nullable: false
     end
