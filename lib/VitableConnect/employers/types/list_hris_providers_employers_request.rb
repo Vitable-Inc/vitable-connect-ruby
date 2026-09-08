@@ -3,9 +3,7 @@
 module VitableConnect
   module Employers
     module Types
-      class ListBenefitPlanYearsEmployersRequest < Internal::Types::Model
-        field :employer_id, -> { String }, optional: false, nullable: false
-
+      class ListHrisProvidersEmployersRequest < Internal::Types::Model
         field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
       end
     end

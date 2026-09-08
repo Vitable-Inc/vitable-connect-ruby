@@ -23,6 +23,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EnrollmentID] :enrollment_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.enrollments.get(enrollment_id: "enrl_AAAAAAAAAAAAAAAAAAAAAQ")
@@ -30,10 +31,14 @@ module VitableConnect
       # @return [VitableConnect::Types::EnrollmentResponse]
       def get(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/enrollments/#{URI.encode_uri_component(params[:enrollment_id].to_s)}",
+          headers: headers,
           request_options: request_options
         )
         begin
@@ -63,6 +68,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EnrollmentID] :enrollment_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.enrollments.reissue(
@@ -76,13 +82,17 @@ module VitableConnect
       def reissue(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
         request_data = VitableConnect::Enrollments::Types::ReissueEnrollmentRequest.new(params).to_h
-        non_body_param_names = %w[enrollment_id]
+        non_body_param_names = %w[enrollment_id X-Vitable-Organization]
         body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
 
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "v1/enrollments/#{URI.encode_uri_component(params[:enrollment_id].to_s)}/reissue",
+          headers: headers,
           body: body,
           request_options: request_options
         )
@@ -113,6 +123,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EnrollmentID] :enrollment_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.enrollments.terminate(
@@ -126,13 +137,17 @@ module VitableConnect
       def terminate(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
         request_data = VitableConnect::Enrollments::Types::TerminateEnrollmentRequest.new(params).to_h
-        non_body_param_names = %w[enrollment_id]
+        non_body_param_names = %w[enrollment_id X-Vitable-Organization]
         body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
 
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "v1/enrollments/#{URI.encode_uri_component(params[:enrollment_id].to_s)}/terminate",
+          headers: headers,
           body: body,
           request_options: request_options
         )

@@ -4,6 +4,8 @@ module VitableConnect
   module Employers
     module Types
       class CreateEmployerRequest < Internal::Types::Model
+        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
+
         field :name, -> { String }, optional: false, nullable: false
 
         field :legal_name, -> { String }, optional: false, nullable: false
