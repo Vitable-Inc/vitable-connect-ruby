@@ -3336,7 +3336,7 @@ client.members.list(
 <dl>
 <dd>
 
-Lists the organizations the authenticated caller is an active member of (paginated). Returns an empty list when the caller belongs to no organizations.
+Lists the organizations the authenticated caller is an active member of (paginated), each with the role the caller holds in it. Returns an empty list when the caller belongs to no organizations.
 </dd>
 </dl>
 </dd>
@@ -3431,7 +3431,7 @@ client.organizations.create(
 <dl>
 <dd>
 
-**type:** `VitableConnect::Types::CreateOrganizationRequestType` — Category of organization being onboarded.
+**type:** `VitableConnect::Types::OrganizationType` — Category of organization being onboarded.
     
 </dd>
 </dl>

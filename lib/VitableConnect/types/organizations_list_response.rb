@@ -4,7 +4,7 @@ module VitableConnect
   module Types
     # Envelope for the caller's organization memberships (paginated).
     class OrganizationsListResponse < Internal::Types::Model
-      field :organizations, -> { Internal::Types::Array[VitableConnect::Types::Organization] }, optional: false, nullable: false
+      field :organizations, -> { Internal::Types::Array[VitableConnect::Types::OrganizationMembership] }, optional: false, nullable: false
 
       field :total, -> { Integer }, optional: false, nullable: false
     end

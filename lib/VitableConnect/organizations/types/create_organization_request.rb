@@ -6,7 +6,7 @@ module VitableConnect
       class CreateOrganizationRequest < Internal::Types::Model
         field :name, -> { String }, optional: false, nullable: false
 
-        field :type, -> { VitableConnect::Types::CreateOrganizationRequestType }, optional: true, nullable: false
+        field :type, -> { VitableConnect::Types::OrganizationType }, optional: true, nullable: false
       end
     end
   end
