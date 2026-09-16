@@ -45,50 +45,6 @@ module VitableConnect
           raise error_class.new(response.body, code: code)
         end
       end
-
-      # Onboards the authenticated user's partner Organization: creates the local Organization + the creator's admin
-      # membership atomically, then mirrors it to WorkOS (creates the WorkOS org and binds the creator as admin). A user
-      # may hold several organizations and selects which one a request acts as with the `X-Vitable-Organization` header.
-      # The founder's email domain is claimed only when no other organization holds it, so a taken domain is left with
-      # its owner rather than rejected.
-      #
-      # @param request_options [Hash]
-      # @param params [VitableConnect::Organizations::Types::CreateOrganizationRequest]
-      # @option request_options [String] :base_url
-      # @option request_options [Hash{String => Object}] :additional_headers
-      # @option request_options [Hash{String => Object}] :additional_query_parameters
-      # @option request_options [Hash{String => Object}] :additional_body_parameters
-      # @option request_options [Integer] :timeout_in_seconds
-      #
-      # @example
-      #   client.organizations.create(
-      #     name: "Acme Brokerage",
-      #     type: "BROKERAGE"
-      #   )
-      #
-      # @return [VitableConnect::Types::Organization]
-      def create(request_options: {}, **params)
-        params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        request = VitableConnect::Internal::JSON::Request.new(
-          base_url: request_options[:base_url],
-          method: "POST",
-          path: "v1/organizations",
-          body: VitableConnect::Organizations::Types::CreateOrganizationRequest.new(params).to_h,
-          request_options: request_options
-        )
-        begin
-          response = @client.send(request)
-        rescue Net::HTTPRequestTimeout
-          raise VitableConnect::Errors::TimeoutError
-        end
-        code = response.code.to_i
-        if code.between?(200, 299)
-          VitableConnect::Types::Organization.load(response.body)
-        else
-          error_class = VitableConnect::Errors::ResponseError.subclass_for_code(code)
-          raise error_class.new(response.body, code: code)
-        end
-      end
     end
   end
 end

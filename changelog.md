@@ -1,3 +1,9 @@
+## 4.0.0 - 2026-09-16
+### Breaking Changes
+* **`VitableConnect::Organizations::Client#create`** has been removed. Any calls to `client.organizations.create(...)` will raise `NoMethodError`; remove or replace these call sites.
+* **`VitableConnect::Organizations::Types::CreateOrganizationRequest`** has been removed. Replace any direct references to this class with your own request construction or remove them entirely.
+* **`VitableConnect::Types::Organization`** has been removed. Any code that references this class (e.g. `is_a?` checks, constant lookups, or return-value handling) must be updated; use `VitableConnect::Types::OrganizationMembership` for organization data returned by the list endpoint.
+
 ## 3.0.0 - 2026-09-11
 ### Breaking Changes
 * **`VitableConnect::Types::CreateOrganizationRequestType`** has been removed. Replace any references with `VitableConnect::Types::OrganizationType`, which carries the same enum values.
