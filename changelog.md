@@ -1,3 +1,7 @@
+## 4.1.0 - 2026-09-22
+### Added
+* **`VitableConnect::Types::MemberEnrollment#enrolled_date`** — new nullable `String` field exposing the date a member was enrolled, available alongside the existing `issued_date` and `enrollment_window_start` fields.
+
 ## 4.0.0 - 2026-09-16
 ### Breaking Changes
 * **`VitableConnect::Organizations::Client#create`** has been removed. Any calls to `client.organizations.create(...)` will raise `NoMethodError`; remove or replace these call sites.

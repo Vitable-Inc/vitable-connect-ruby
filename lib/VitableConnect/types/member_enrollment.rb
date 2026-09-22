@@ -42,6 +42,8 @@ module VitableConnect
 
       field :issued_date, -> { String }, optional: false, nullable: false
 
+      field :enrolled_date, -> { String }, optional: false, nullable: true
+
       field :enrollment_window_start, -> { String }, optional: false, nullable: false
 
       field :enrollment_window_end, -> { String }, optional: true, nullable: false
