@@ -1,3 +1,12 @@
+## 5.0.0 - 2026-09-24
+### Breaking Changes
+* **`VitableConnect::Types::AccessMethod`** has been removed. Replace any references with `VitableConnect::Types::PayrollAccessMethod`, which carries the same `SELF_SETUP` and `NEEDS_HELP` values.
+* **`VitableConnect::Types::AdditionalAccessMethod`** has been removed. The `additional_access_method` field on `SubmitPayrollAccessSetupRequest` now uses `VitableConnect::Types::PayrollAccessMethod`; update any constant references accordingly.
+* **`VitableConnect::Types::BenefitPlanNetwork#address`** now returns a `DetailedAddress` instead of an `Address`. Update any code that reads fields from this object to use the new `DetailedAddress` shape.
+### Added
+* **`VitableConnect::Types::PayrollAccessMethod`** — unified enum replacing the former `AccessMethod` and `AdditionalAccessMethod` enums, used for both primary and additional payroll access method fields.
+* **`VitableConnect::Types::DetailedAddress`** — new structured address model with `address_line_1`, `address_line_2`, `city`, `zipcode`, `state`, `latitude`, `longitude`, `county_fips_code`, and `county_name` fields.
+
 ## 4.1.0 - 2026-09-22
 ### Added
 * **`VitableConnect::Types::MemberEnrollment#enrolled_date`** — new nullable `String` field exposing the date a member was enrolled, available alongside the existing `issued_date` and `enrollment_window_start` fields.

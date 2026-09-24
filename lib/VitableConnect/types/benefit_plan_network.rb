@@ -9,7 +9,7 @@ module VitableConnect
 
       field :logo, -> { String }, optional: false, nullable: true
 
-      field :address, -> { VitableConnect::Types::Address }, optional: false, nullable: false
+      field :address, -> { VitableConnect::Types::DetailedAddress }, optional: false, nullable: false
 
       field :edi, -> { String }, optional: true, nullable: false
 

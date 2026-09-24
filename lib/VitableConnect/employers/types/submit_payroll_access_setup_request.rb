@@ -28,7 +28,7 @@ module VitableConnect
 
         field :same_payroll_covers_other_eins, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-        field :access_method, -> { VitableConnect::Types::AccessMethod }, optional: false, nullable: false
+        field :access_method, -> { VitableConnect::Types::PayrollAccessMethod }, optional: false, nullable: false
 
         field :login_url, -> { String }, optional: true, nullable: false
 
@@ -42,7 +42,7 @@ module VitableConnect
 
         field :has_additional_payroll_system, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
-        field :additional_access_method, -> { VitableConnect::Types::AdditionalAccessMethod }, optional: true, nullable: false
+        field :additional_access_method, -> { VitableConnect::Types::PayrollAccessMethod }, optional: true, nullable: false
 
         field :additional_login_url, -> { String }, optional: true, nullable: false
 

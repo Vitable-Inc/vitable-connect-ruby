@@ -2,7 +2,7 @@
 
 module VitableConnect
   module Types
-    module AccessMethod
+    module PayrollAccessMethod
       extend VitableConnect::Internal::Types::Enum
 
       SELF_SETUP = "SELF_SETUP"

@@ -1736,7 +1736,7 @@ client.employers.submit_payroll_access_setup(
 <dl>
 <dd>
 
-**access_method:** `VitableConnect::Types::AccessMethod` 
+**access_method:** `VitableConnect::Types::PayrollAccessMethod` 
     
 </dd>
 </dl>
@@ -1792,7 +1792,7 @@ client.employers.submit_payroll_access_setup(
 <dl>
 <dd>
 
-**additional_access_method:** `VitableConnect::Types::AdditionalAccessMethod` — How Vitable will access the second payroll system.
+**additional_access_method:** `VitableConnect::Types::PayrollAccessMethod` — How Vitable will access the second payroll system.
     
 </dd>
 </dl>
