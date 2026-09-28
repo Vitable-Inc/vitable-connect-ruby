@@ -1,3 +1,9 @@
+## 5.1.0 - 2026-09-28
+### Added
+* **`VitableConnect::Types::PlanYearIchraAffordability`** — new enum with `AFFORDABLE` and `NOT_AFFORDABLE` values indicating whether an ICHRA plan year meets affordability requirements.
+* **`VitableConnect::Types::MemberEnrollment#plan_year_ichra_affordability`** — new nullable field exposing the ICHRA affordability status for a member's enrollment.
+* **`VitableConnect::Types::PlanYearEnrollment#plan_year_ichra_affordability`** — new nullable field exposing the ICHRA affordability status on a plan year enrollment.
+
 ## 5.0.0 - 2026-09-24
 ### Breaking Changes
 * **`VitableConnect::Types::AccessMethod`** has been removed. Replace any references with `VitableConnect::Types::PayrollAccessMethod`, which carries the same `SELF_SETUP` and `NEEDS_HELP` values.

@@ -30,6 +30,8 @@ module VitableConnect
       field :employer_contribution_in_cents, -> { Integer }, optional: false, nullable: true
 
       field :employee_deduction_in_cents, -> { Integer }, optional: false, nullable: true
+
+      field :plan_year_ichra_affordability, -> { VitableConnect::Types::PlanYearIchraAffordability }, optional: false, nullable: true
     end
   end
 end

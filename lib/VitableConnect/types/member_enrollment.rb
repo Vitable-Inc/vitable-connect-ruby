@@ -55,6 +55,8 @@ module VitableConnect
       field :in_last_month_of_coverage, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :is_within_enrollment_window, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :plan_year_ichra_affordability, -> { VitableConnect::Types::PlanYearIchraAffordability }, optional: false, nullable: true
     end
   end
 end
