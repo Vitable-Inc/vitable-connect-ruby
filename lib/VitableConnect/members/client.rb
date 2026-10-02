@@ -97,6 +97,76 @@ module VitableConnect
         end
       end
 
+      # Saves a dependent (spouse or child) for a member. Saving does not enroll the dependent or change the member's
+      # coverage or coverage tier. If the member already has an active dependent matching this person, that relationship
+      # is reused and returned with a 200 and `created: false`; otherwise a new one is created with a 201 and `created:
+      # true`. In both cases the dependent's address is set to the one supplied; other details of a person Vitable
+      # already has on file are not changed. When a new dependent is created at exactly the member's address, Vitable
+      # also adds them to the member's household where it can; this never fails the request. The returned IDs identify
+      # the saved dependent. Social Security numbers are not accepted, and a body with an `ssn` field returns a 400. The
+      # caller must have write access to the target member, and API access tokens cannot save dependents. A member not
+      # visible to the caller returns a 404 before the body is validated. Business-rule failures return a 422 with
+      # `child_over_max_age` (a child must be under 26), `duplicate_active_spouse` (the member already has a different
+      # active spouse), `same_member`, `member_creation_failed`, or `legal_dependent_creation_failed`.
+      #
+      # @param request_options [Hash]
+      # @param params [VitableConnect::Members::Types::CreateMemberDependentRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
+      #
+      # @example
+      #   client.members.create_dependent(
+      #     member_id: "mbr_abc123def456",
+      #     first_name: "Sam",
+      #     last_name: "Doe",
+      #     date_of_birth: "2015-06-01",
+      #     sex_at_birth: "Male",
+      #     relationship: "Child",
+      #     address: {
+      #       address_line1: "123 Main St",
+      #       city: "Detroit",
+      #       state: "MI",
+      #       zipcode: "48201"
+      #     }
+      #   )
+      #
+      # @return [VitableConnect::Types::SavedMemberDependentResponse]
+      def create_dependent(request_options: {}, **params)
+        params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        request_data = VitableConnect::Members::Types::CreateMemberDependentRequest.new(params).to_h
+        non_body_param_names = %w[member_id X-Vitable-Organization]
+        body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
+        request = VitableConnect::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/dependents",
+          headers: headers,
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise VitableConnect::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          VitableConnect::Types::SavedMemberDependentResponse.load(response.body)
+        else
+          error_class = VitableConnect::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # Lists a member's employment across every employer — the same employee record shape as the employer's employees
       # list, plus the employer name. For an organization caller the rows are scoped to companies in that organization's
       # book; a member (self/household) or Vitable Admin sees all employments. A member not visible to the caller

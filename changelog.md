@@ -1,3 +1,11 @@
+## 5.2.0 - 2026-10-02
+### Added
+* **`VitableConnect::Members::Client#create_dependent`** — new method that saves a spouse or child dependent for a member, posting to `v1/members/:member_id/dependents`; returns a `SavedMemberDependentResponse` with `created: true` for new dependents or `created: false` when an existing active match is reused.
+* **`VitableConnect::Members::Types::CreateMemberDependentRequest`** — request model for the new endpoint, with required fields `member_id`, `first_name`, `last_name`, `date_of_birth`, `relationship`, and `address`, plus optional fields `suffix`, `sex_at_birth`, `gender`, `email`, `phone`, and `vitable_organization`.
+* **`VitableConnect::Types::CreateMemberDependentAddressRequest`** — address model used within the create-dependent request, accepting `address_line1`, `city`, `state`, and `zipcode` (required) plus optional `address_line2`.
+* **`VitableConnect::Types::SavedMemberDependent`** — response model representing a saved dependent row, including `member_id`, `primary_member_id`, `first_name`, `last_name`, `relationship`, `date_of_birth`, `age`, `sex_at_birth`, `legal_dependent_id`, and `created`.
+* **`VitableConnect::Types::SavedMemberDependentResponse`** — wrapper response type containing a single `SavedMemberDependent` in its `data` field.
+
 ## 5.1.0 - 2026-09-28
 ### Added
 * **`VitableConnect::Types::PlanYearIchraAffordability`** — new enum with `AFFORDABLE` and `NOT_AFFORDABLE` values indicating whether an ICHRA plan year meets affordability requirements.
