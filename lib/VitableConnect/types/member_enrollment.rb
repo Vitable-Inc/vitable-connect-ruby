@@ -52,7 +52,7 @@ module VitableConnect
 
       field :policy_status, -> { VitableConnect::Types::PlanYearEnrollmentPolicyStatus }, optional: false, nullable: true
 
-      field :in_last_month_of_coverage, -> { Internal::Types::Boolean }, optional: false, nullable: false
+      field :plan_year_ends_this_month, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :is_within_enrollment_window, -> { Internal::Types::Boolean }, optional: false, nullable: false
 

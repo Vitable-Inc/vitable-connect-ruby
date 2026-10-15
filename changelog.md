@@ -1,3 +1,7 @@
+## 6.0.0 - 2026-10-15
+### Breaking Changes
+* **`VitableConnect::Types::MemberEnrollment#in_last_month_of_coverage`** has been renamed to **`plan_year_ends_this_month`**. Update any code reading this field to use the new name; the field type and nullability are unchanged.
+
 ## 5.2.0 - 2026-10-02
 ### Added
 * **`VitableConnect::Members::Client#create_dependent`** — new method that saves a spouse or child dependent for a member, posting to `v1/members/:member_id/dependents`; returns a `SavedMemberDependentResponse` with `created: true` for new dependents or `created: false` when an existing active match is reused.
