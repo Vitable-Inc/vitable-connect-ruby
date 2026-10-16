@@ -5,8 +5,6 @@ module VitableConnect
     module Types
       class GetEmployersRequest < Internal::Types::Model
         field :employer_id, -> { String }, optional: false, nullable: false
-
-        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
       end
     end
   end

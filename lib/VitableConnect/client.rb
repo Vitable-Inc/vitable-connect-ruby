@@ -4,17 +4,21 @@ module VitableConnect
   class Client
     # @param base_url [String, nil]
     # @param api_key [String]
+    # @param vitable_organization [String, nil]
     # @param max_retries [Integer]
     #
     # @return [void]
-    def initialize(base_url: nil, api_key: ENV.fetch("VITABLE_CONNECT_API_KEY", nil), max_retries: 2)
+    def initialize(base_url: nil, api_key: ENV.fetch("VITABLE_CONNECT_API_KEY", nil), vitable_organization: nil, max_retries: 2)
+      headers = {
+        "User-Agent" => "vitable-connect/7.0.0",
+        "X-Fern-Language" => "Ruby",
+        Authorization: "Bearer #{api_key}"
+      }
+      headers["X-Vitable-Organization"] = vitable_organization.to_s unless vitable_organization.nil?
       @raw_client = VitableConnect::Internal::Http::RawClient.new(
         base_url: base_url || VitableConnect::Environment::PRODUCTION,
-        headers: {
-          "User-Agent" => "vitable-connect/6.0.0",
-          "X-Fern-Language" => "Ruby",
-          Authorization: "Bearer #{api_key}"
-        },
+        headers: headers,
+        overridable_headers: %w[X-Vitable-Organization],
         max_retries: max_retries
       )
     end

@@ -12,6 +12,8 @@ module VitableConnect
       field :state, -> { VitableConnect::Types::State }, optional: false, nullable: false
 
       field :zipcode, -> { String }, optional: false, nullable: false
+
+      field :county_name, -> { String }, optional: true, nullable: false
     end
   end
 end

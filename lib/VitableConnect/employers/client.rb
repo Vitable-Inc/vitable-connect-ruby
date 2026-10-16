@@ -32,7 +32,6 @@ module VitableConnect
       # @option params [Integer, nil] :limit
       # @option params [Integer, nil] :page
       # @option params [String, nil] :search
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.list(
@@ -53,9 +52,6 @@ module VitableConnect
         query_params["page"] = params[:page] if params.key?(:page)
         query_params["search"] = params[:search] if params.key?(:search)
 
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         VitableConnect::Internal::OffsetItemIterator.new(
           initial_page: query_params["page"],
           item_field: :data,
@@ -67,7 +63,6 @@ module VitableConnect
             base_url: request_options[:base_url],
             method: "GET",
             path: "v1/employers",
-            headers: headers,
             query: query_params,
             request_options: request_options
           )
@@ -97,7 +92,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.create(
@@ -119,19 +113,11 @@ module VitableConnect
       # @return [VitableConnect::Types::EmployerResponse]
       def create(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        request_data = VitableConnect::Employers::Types::CreateEmployerRequest.new(params).to_h
-        non_body_param_names = %w[X-Vitable-Organization]
-        body = request_data.except(*non_body_param_names)
-
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "v1/employers",
-          headers: headers,
-          body: body,
+          body: VitableConnect::Employers::Types::CreateEmployerRequest.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -159,7 +145,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.get(employer_id: "empr_abc123def456")
@@ -167,14 +152,10 @@ module VitableConnect
       # @return [VitableConnect::Types::EmployerResponse]
       def get(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}",
-          headers: headers,
           request_options: request_options
         )
         begin
@@ -202,7 +183,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.update(employer_id: "empr_abc123def456")
@@ -211,17 +191,13 @@ module VitableConnect
       def update(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
         request_data = VitableConnect::Employers::Types::UpdateEmployerRequest.new(params).to_h
-        non_body_param_names = %w[employer_id X-Vitable-Organization]
+        non_body_param_names = %w[employer_id]
         body = request_data.except(*non_body_param_names)
-
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
 
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PUT",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}",
-          headers: headers,
           body: body,
           request_options: request_options
         )
@@ -251,7 +227,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.list_benefit_plan_years(employer_id: "empr_abc123def456")
@@ -259,14 +234,10 @@ module VitableConnect
       # @return [VitableConnect::Types::EmployerBenefitPlanYearsListResponse]
       def list_benefit_plan_years(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/benefit-plan-years",
-          headers: headers,
           request_options: request_options
         )
         begin
@@ -296,7 +267,6 @@ module VitableConnect
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
       # @option params [VitableConnect::Types::BenefitPlanYearID] :benefit_plan_year_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.get_benefit_plan_year(
@@ -307,14 +277,10 @@ module VitableConnect
       # @return [VitableConnect::Types::EmployerBenefitPlanYearResponse]
       def get_benefit_plan_year(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/benefit-plan-years/#{URI.encode_uri_component(params[:benefit_plan_year_id].to_s)}",
-          headers: headers,
           request_options: request_options
         )
         begin
@@ -349,7 +315,6 @@ module VitableConnect
       # @option params [Integer, nil] :limit
       # @option params [Integer, nil] :page
       # @option params [String, nil] :search
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.list_benefit_plan_year_enrollments(
@@ -368,9 +333,6 @@ module VitableConnect
         query_params["page"] = params[:page] if params.key?(:page)
         query_params["search"] = params[:search] if params.key?(:search)
 
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         VitableConnect::Internal::OffsetItemIterator.new(
           initial_page: query_params["page"],
           item_field: :data,
@@ -382,7 +344,6 @@ module VitableConnect
             base_url: request_options[:base_url],
             method: "GET",
             path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/benefit-plan-years/#{URI.encode_uri_component(params[:benefit_plan_year_id].to_s)}/enrollments",
-            headers: headers,
             query: query_params,
             request_options: request_options
           )
@@ -492,7 +453,6 @@ module VitableConnect
       # @option params [Integer, nil] :limit
       # @option params [Integer, nil] :page
       # @option params [String, nil] :search
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.list_employees(
@@ -511,9 +471,6 @@ module VitableConnect
         query_params["page"] = params[:page] if params.key?(:page)
         query_params["search"] = params[:search] if params.key?(:search)
 
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         VitableConnect::Internal::OffsetItemIterator.new(
           initial_page: query_params["page"],
           item_field: :data,
@@ -525,7 +482,6 @@ module VitableConnect
             base_url: request_options[:base_url],
             method: "GET",
             path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/employees",
-            headers: headers,
             query: query_params,
             request_options: request_options
           )
@@ -557,7 +513,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.get_hris(employer_id: "empr_abc123def456")
@@ -565,14 +520,10 @@ module VitableConnect
       # @return [VitableConnect::Types::EmployerHrisResponse]
       def get_hris(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/hris",
-          headers: headers,
           request_options: request_options
         )
         begin
@@ -603,7 +554,6 @@ module VitableConnect
       # @option params [VitableConnect::Types::EmployerID] :employer_id
       # @option params [Integer, nil] :limit
       # @option params [String, nil] :offset
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.list_invoices(
@@ -618,14 +568,10 @@ module VitableConnect
         query_params["limit"] = params[:limit] if params.key?(:limit)
         query_params["offset"] = params[:offset] if params.key?(:offset)
 
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/invoices",
-          headers: headers,
           query: query_params,
           request_options: request_options
         )
@@ -656,7 +602,6 @@ module VitableConnect
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
       # @option params [VitableConnect::Types::InvoiceID] :invoice_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.get_invoice_pdf(
@@ -667,14 +612,10 @@ module VitableConnect
       # @return [VitableConnect::Types::EmployerInvoicePdfResponse]
       def get_invoice_pdf(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/invoices/#{URI.encode_uri_component(params[:invoice_id].to_s)}/pdf",
-          headers: headers,
           request_options: request_options
         )
         begin
@@ -701,7 +642,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.get_payroll_access_setup(employer_id: "empr_abc123def456")
@@ -709,14 +649,10 @@ module VitableConnect
       # @return [VitableConnect::Types::PayrollAccessSetupStatusResponse]
       def get_payroll_access_setup(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/payroll-access-setup",
-          headers: headers,
           request_options: request_options
         )
         begin
@@ -743,7 +679,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.submit_payroll_access_setup(
@@ -761,17 +696,13 @@ module VitableConnect
       def submit_payroll_access_setup(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
         request_data = VitableConnect::Employers::Types::SubmitPayrollAccessSetupRequest.new(params).to_h
-        non_body_param_names = %w[employer_id X-Vitable-Organization]
+        non_body_param_names = %w[employer_id]
         body = request_data.except(*non_body_param_names)
-
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
 
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PUT",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/payroll-access-setup",
-          headers: headers,
           body: body,
           request_options: request_options
         )
@@ -804,7 +735,6 @@ module VitableConnect
       # @option params [VitableConnect::Types::EmployerID] :employer_id
       # @option params [Integer, nil] :limit
       # @option params [Integer, nil] :page
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.list_payroll_deduction_statements(
@@ -820,9 +750,6 @@ module VitableConnect
         query_params["limit"] = params[:limit] if params.key?(:limit)
         query_params["page"] = params[:page] if params.key?(:page)
 
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         VitableConnect::Internal::OffsetItemIterator.new(
           initial_page: query_params["page"],
           item_field: :data,
@@ -834,7 +761,6 @@ module VitableConnect
             base_url: request_options[:base_url],
             method: "GET",
             path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/payroll-deduction-statements",
-            headers: headers,
             query: query_params,
             request_options: request_options
           )
@@ -864,7 +790,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.ensure_payroll_integration_email(employer_id: "empr_abc123def456")
@@ -872,14 +797,10 @@ module VitableConnect
       # @return [VitableConnect::Types::PayrollIntegrationEmailResponse]
       def ensure_payroll_integration_email(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PUT",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/payroll-integration-email",
-          headers: headers,
           request_options: request_options
         )
         begin
@@ -907,7 +828,6 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::EmployerID] :employer_id
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.update_settings(
@@ -919,17 +839,13 @@ module VitableConnect
       def update_settings(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
         request_data = VitableConnect::Employers::Types::UpdateEmployerSettingsRequest.new(params).to_h
-        non_body_param_names = %w[employer_id X-Vitable-Organization]
+        non_body_param_names = %w[employer_id]
         body = request_data.except(*non_body_param_names)
-
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
 
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PUT",
           path: "v1/employers/#{URI.encode_uri_component(params[:employer_id].to_s)}/settings",
-          headers: headers,
           body: body,
           request_options: request_options
         )
@@ -952,28 +868,22 @@ module VitableConnect
       # `provider_label`. The stored providers are free text, so they cannot be enumerated in advance.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param _params [Hash]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.employers.list_hris_providers
       #
       # @return [VitableConnect::Types::OrganizationHrisProvidersResponse]
-      def list_hris_providers(request_options: {}, **params)
-        params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
-        headers = {}
-        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
-
+      def list_hris_providers(request_options: {}, **_params)
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/employers/hris-providers",
-          headers: headers,
           request_options: request_options
         )
         begin

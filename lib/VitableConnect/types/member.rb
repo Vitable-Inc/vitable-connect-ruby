@@ -36,6 +36,10 @@ module VitableConnect
 
       field :marital_status, -> { VitableConnect::Types::MaritalStatus }, optional: true, nullable: false
 
+      field :individual_income_in_cents, -> { Integer }, optional: true, nullable: false
+
+      field :household_income_in_cents, -> { Integer }, optional: true, nullable: false
+
       field :status, -> { VitableConnect::Types::MemberStatus }, optional: true, nullable: false
     end
   end

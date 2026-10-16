@@ -7,8 +7,6 @@ module VitableConnect
         field :employer_id, -> { String }, optional: false, nullable: false
 
         field :invoice_id, -> { String }, optional: false, nullable: false
-
-        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
       end
     end
   end

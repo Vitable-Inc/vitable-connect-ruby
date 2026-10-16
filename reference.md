@@ -483,14 +483,6 @@ client.employers.list(
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Employers::RequestOptions` 
     
 </dd>
@@ -555,14 +547,6 @@ client.employers.create(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -685,14 +669,6 @@ client.employers.get(employer_id: "empr_abc123def456")
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Employers::RequestOptions` 
     
 </dd>
@@ -748,14 +724,6 @@ client.employers.update(employer_id: "empr_abc123def456")
 <dd>
 
 **employer_id:** `String` — Unique employer identifier (empr_*)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -857,14 +825,6 @@ client.employers.list_benefit_plan_years(employer_id: "empr_abc123def456")
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Employers::RequestOptions` 
     
 </dd>
@@ -931,14 +891,6 @@ client.employers.get_benefit_plan_year(
 <dd>
 
 **benefit_plan_year_id:** `String` — Unique benefit-plan-year identifier (plyr_*).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -1046,14 +998,6 @@ client.employers.list_benefit_plan_year_enrollments(
 <dd>
 
 **search:** `String` — Case-insensitive search. Matches member name partially, and the `member_id` exactly — either your own reference id or the prefixed `grpmbr_<...>` id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -1259,14 +1203,6 @@ client.employers.list_employees(
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Employers::RequestOptions` 
     
 </dd>
@@ -1322,14 +1258,6 @@ client.employers.get_hris(employer_id: "empr_abc123def456")
 <dd>
 
 **employer_id:** `String` — Unique employer identifier (empr_*)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -1418,14 +1346,6 @@ client.employers.list_invoices(
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Employers::RequestOptions` 
     
 </dd>
@@ -1499,14 +1419,6 @@ client.employers.get_invoice_pdf(
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Employers::RequestOptions` 
     
 </dd>
@@ -1562,14 +1474,6 @@ client.employers.get_payroll_access_setup(employer_id: "empr_abc123def456")
 <dd>
 
 **employer_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -1641,14 +1545,6 @@ client.employers.submit_payroll_access_setup(
 <dd>
 
 **employer_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -1922,14 +1818,6 @@ client.employers.list_payroll_deduction_statements(
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Employers::RequestOptions` 
     
 </dd>
@@ -1985,14 +1873,6 @@ client.employers.ensure_payroll_integration_email(employer_id: "empr_abc123def45
 <dd>
 
 **employer_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -2065,14 +1945,6 @@ client.employers.update_settings(
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **pay_frequency:** `VitableConnect::Types::DeductionFrequency` 
     
 </dd>
@@ -2131,14 +2003,6 @@ client.employers.list_hris_providers
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -2206,14 +2070,6 @@ client.enrollments.get(enrollment_id: "enrl_AAAAAAAAAAAAAAAAAAAAAQ")
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Enrollments::RequestOptions` 
     
 </dd>
@@ -2274,14 +2130,6 @@ client.enrollments.reissue(
 <dd>
 
 **enrollment_id:** `String` — Unique enrollment identifier (enrl_*)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -2373,14 +2221,6 @@ client.enrollments.terminate(
 <dd>
 
 **enrollment_id:** `String` — Unique enrollment identifier (enrl_*)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -2728,7 +2568,7 @@ client.groups.update(
 <dl>
 <dd>
 
-Retrieves a member's profile by ID — identity, demographics, address, contact details, tobacco status, and profile status. Access is scoped to the authenticated principal; a member not visible to the caller returns a 404.
+Retrieves a member's profile by ID — identity, demographics, address (with county), contact details, tobacco status, marital status, individual and household income, and profile status. Access is scoped to the authenticated principal; a member not visible to the caller returns a 404.
 </dd>
 </dl>
 </dd>
@@ -2759,14 +2599,6 @@ client.members.get(member_id: "mbr_abc123def456")
 <dd>
 
 **member_id:** `String` — Unique member identifier (mbr_*)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -2829,14 +2661,6 @@ client.members.list_dependents(member_id: "mbr_abc123def456")
 <dd>
 
 **member_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -2912,14 +2736,6 @@ client.members.create_dependent(
 <dd>
 
 **member_id:** `String` — Unique member identifier (mbr_*)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -3099,14 +2915,6 @@ client.members.list_employments(member_id: "mbr_abc123def456")
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Members::RequestOptions` 
     
 </dd>
@@ -3162,14 +2970,6 @@ client.members.list_enrollments(member_id: "mbr_abc123def456")
 <dd>
 
 **member_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -3239,14 +3039,6 @@ client.members.get_household(member_id: "mbr_abc123def456")
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Members::RequestOptions` 
     
 </dd>
@@ -3302,14 +3094,6 @@ client.members.list_id_cards(member_id: "mbr_abc123def456")
 <dd>
 
 **member_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>
@@ -3407,14 +3191,6 @@ client.members.list_qualifying_life_events(
 <dl>
 <dd>
 
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `VitableConnect::Members::RequestOptions` 
     
 </dd>
@@ -3489,14 +3265,6 @@ client.members.list(
 <dd>
 
 **search:** `String` — Case-insensitive search across member name, email, and phone number; exact match on member id (prefixed or raw uuid)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vitable_organization:** `String` — Organization to act as for this request (e.g. `org_SGVsbG8gV29ybGQ`). Optional when your credentials reach a single organization. Required when they reach several — omitting it then returns 400 `organization_required`. A malformed value returns 400 `invalid_organization_header`, and naming an organization you do not have access to returns 403 `organization_access_denied`.
     
 </dd>
 </dl>

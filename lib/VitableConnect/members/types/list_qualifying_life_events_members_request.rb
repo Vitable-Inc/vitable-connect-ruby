@@ -11,8 +11,6 @@ module VitableConnect
         field :page, -> { Integer }, optional: true, nullable: false
 
         field :status, -> { VitableConnect::Types::Status }, optional: true, nullable: false
-
-        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
       end
     end
   end

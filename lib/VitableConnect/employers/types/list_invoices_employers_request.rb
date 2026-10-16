@@ -9,8 +9,6 @@ module VitableConnect
         field :limit, -> { Integer }, optional: true, nullable: false
 
         field :offset, -> { String }, optional: true, nullable: false
-
-        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
       end
     end
   end

@@ -6,8 +6,6 @@ module VitableConnect
       class CreateMemberDependentRequest < Internal::Types::Model
         field :member_id, -> { String }, optional: false, nullable: false
 
-        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
-
         field :first_name, -> { String }, optional: false, nullable: false
 
         field :last_name, -> { String }, optional: false, nullable: false

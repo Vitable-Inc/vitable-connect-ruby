@@ -1,3 +1,13 @@
+## 7.0.0 - 2026-10-16
+### Breaking Changes
+* **`vitable_organization` field** — removed from all employer, enrollment, and member request models; migrate by passing `vitable_organization:` once to `VitableConnect::Client.new` instead of setting it per-request.
+* **`VitableConnect::Types::XVitableOrganization`** — module deleted; remove any direct references to this type.
+* **`VitableConnect::Employers::Types::ListHrisProvidersEmployersRequest`** — class deleted; remove any usage.
+### Added
+* **`VitableConnect::Client#initialize`** — now accepts an optional `vitable_organization:` keyword argument that automatically injects the `X-Vitable-Organization` header into every request.
+* **`VitableConnect::Types::Member#individual_income_in_cents`** and **`#household_income_in_cents`** — new optional fields exposing individual and household income in cents on the member type.
+* **`VitableConnect::Types::MemberAddress#county_name`** — new optional field exposing the county name associated with a member's address.
+
 ## 6.0.0 - 2026-10-15
 ### Breaking Changes
 * **`VitableConnect::Types::MemberEnrollment#in_last_month_of_coverage`** has been renamed to **`plan_year_ends_this_month`**. Update any code reading this field to use the new name; the field type and nullability are unchanged.
