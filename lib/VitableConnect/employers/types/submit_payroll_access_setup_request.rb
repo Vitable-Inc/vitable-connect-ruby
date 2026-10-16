@@ -6,6 +6,8 @@ module VitableConnect
       class SubmitPayrollAccessSetupRequest < Internal::Types::Model
         field :employer_id, -> { String }, optional: false, nullable: false
 
+        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
+
         field :employees_in_payroll_acknowledged, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
         field :payroll_data_impacts_eligibility_acknowledged, -> { Internal::Types::Boolean }, optional: false, nullable: false

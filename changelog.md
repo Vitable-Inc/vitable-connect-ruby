@@ -1,3 +1,11 @@
+## 8.0.0 - 2026-10-16
+### Breaking Changes
+* **`VitableConnect::Client#initialize`** — the `vitable_organization:` keyword argument has been removed; callers passing it at construction time will receive an `ArgumentError`. Migrate by passing `vitable_organization:` directly to each individual API method call instead.
+### Added
+* **`vitable_organization:` per-request parameter** — every method on `VitableConnect::Employers::Client`, `VitableConnect::Enrollments::Client`, and `VitableConnect::Members::Client` now accepts an optional `vitable_organization:` keyword argument that injects the `X-Vitable-Organization` header for that single request.
+* **`VitableConnect::Types::XVitableOrganization`** — module re-introduced providing `load` and `dump` helpers for the organization header value.
+* **`VitableConnect::Employers::Types::ListHrisProvidersEmployersRequest`** — new request model for the list HRIS providers endpoint, supporting the optional `vitable_organization` field.
+
 ## 7.0.0 - 2026-10-16
 ### Breaking Changes
 * **`vitable_organization` field** — removed from all employer, enrollment, and member request models; migrate by passing `vitable_organization:` once to `VitableConnect::Client.new` instead of setting it per-request.

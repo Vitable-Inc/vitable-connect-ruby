@@ -22,6 +22,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.get(member_id: "mbr_abc123def456")
@@ -29,10 +30,14 @@ module VitableConnect
       # @return [VitableConnect::Types::MemberResponse]
       def get(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}",
+          headers: headers,
           request_options: request_options
         )
         begin
@@ -60,6 +65,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.list_dependents(member_id: "mbr_abc123def456")
@@ -67,10 +73,14 @@ module VitableConnect
       # @return [VitableConnect::Types::MemberDependentsResponse]
       def list_dependents(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/dependents",
+          headers: headers,
           request_options: request_options
         )
         begin
@@ -107,6 +117,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.create_dependent(
@@ -128,13 +139,17 @@ module VitableConnect
       def create_dependent(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
         request_data = VitableConnect::Members::Types::CreateMemberDependentRequest.new(params).to_h
-        non_body_param_names = %w[member_id]
+        non_body_param_names = %w[member_id X-Vitable-Organization]
         body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
 
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/dependents",
+          headers: headers,
           body: body,
           request_options: request_options
         )
@@ -165,6 +180,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.list_employments(member_id: "mbr_abc123def456")
@@ -172,10 +188,14 @@ module VitableConnect
       # @return [VitableConnect::Types::MemberEmploymentsResponse]
       def list_employments(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/employments",
+          headers: headers,
           request_options: request_options
         )
         begin
@@ -215,6 +235,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.list_enrollments(member_id: "mbr_abc123def456")
@@ -222,10 +243,14 @@ module VitableConnect
       # @return [VitableConnect::Types::MemberEnrollmentsResponse]
       def list_enrollments(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/enrollments",
+          headers: headers,
           request_options: request_options
         )
         begin
@@ -254,6 +279,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.get_household(member_id: "mbr_abc123def456")
@@ -261,10 +287,14 @@ module VitableConnect
       # @return [VitableConnect::Types::HouseholdMembersResponse]
       def get_household(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/household",
+          headers: headers,
           request_options: request_options
         )
         begin
@@ -296,6 +326,7 @@ module VitableConnect
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [VitableConnect::Types::MemberID] :member_id
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.list_id_cards(member_id: "mbr_abc123def456")
@@ -303,10 +334,14 @@ module VitableConnect
       # @return [VitableConnect::Types::MemberDigitalBenefitCardsResponse]
       def list_id_cards(request_options: {}, **params)
         params = VitableConnect::Internal::Types::Utils.normalize_keys(params)
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         request = VitableConnect::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/id-cards",
+          headers: headers,
           request_options: request_options
         )
         begin
@@ -341,6 +376,7 @@ module VitableConnect
       # @option params [Integer, nil] :limit
       # @option params [Integer, nil] :page
       # @option params [VitableConnect::Types::Status, nil] :status
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.list_qualifying_life_events(
@@ -357,6 +393,9 @@ module VitableConnect
         query_params["page"] = params[:page] if params.key?(:page)
         query_params["status"] = params[:status] if params.key?(:status)
 
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         VitableConnect::Internal::OffsetItemIterator.new(
           initial_page: query_params["page"],
           item_field: :data,
@@ -368,6 +407,7 @@ module VitableConnect
             base_url: request_options[:base_url],
             method: "GET",
             path: "v1/members/#{URI.encode_uri_component(params[:member_id].to_s)}/qualifying-life-events",
+            headers: headers,
             query: query_params,
             request_options: request_options
           )
@@ -401,6 +441,7 @@ module VitableConnect
       # @option params [Integer, nil] :limit
       # @option params [Integer, nil] :page
       # @option params [String, nil] :search
+      # @option params [String, nil] :vitable_organization
       #
       # @example
       #   client.members.list(
@@ -416,6 +457,9 @@ module VitableConnect
         query_params["page"] = params[:page] if params.key?(:page)
         query_params["search"] = params[:search] if params.key?(:search)
 
+        headers = {}
+        headers["X-Vitable-Organization"] = params[:vitable_organization] if params[:vitable_organization]
+
         VitableConnect::Internal::OffsetItemIterator.new(
           initial_page: query_params["page"],
           item_field: :data,
@@ -427,6 +471,7 @@ module VitableConnect
             base_url: request_options[:base_url],
             method: "GET",
             path: "v2/members",
+            headers: headers,
             query: query_params,
             request_options: request_options
           )

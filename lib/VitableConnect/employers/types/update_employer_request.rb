@@ -6,6 +6,8 @@ module VitableConnect
       class UpdateEmployerRequest < Internal::Types::Model
         field :employer_id, -> { String }, optional: false, nullable: false
 
+        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
+
         field :name, -> { String }, optional: true, nullable: false
 
         field :legal_name, -> { String }, optional: true, nullable: false

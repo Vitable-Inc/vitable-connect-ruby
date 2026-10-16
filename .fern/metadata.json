@@ -7,10 +7,10 @@
     "offsetSemantics": "page-index",
     "respectAuthSchemeNames": true
   },
-  "originGitCommit": "2f39047d268b295053fc488ab1736fa6ca9aa017",
+  "originGitCommit": "2b7d0be740c4f4091fb3be026e22a8c3aa7c44a1",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
   "requestedVersion": "AUTO",
   "ciProvider": "gitlab",
-  "sdkVersion": "7.0.0"
+  "sdkVersion": "8.0.0"
 }
