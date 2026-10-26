@@ -13,6 +13,8 @@ module VitableConnect
         field :ticket_number, -> { String }, optional: true, nullable: false
 
         field :qualifying_life_event_id, -> { String }, optional: true, nullable: false
+
+        field :carrier_coverage_end_date, -> { String }, optional: true, nullable: false
       end
     end
   end

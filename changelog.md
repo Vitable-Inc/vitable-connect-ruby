@@ -1,3 +1,8 @@
+## 8.1.0 - 2026-10-26
+### Added
+* **`VitableConnect::Enrollments::Types::TerminateEnrollmentRequest#carrier_coverage_end_date`** — new optional field allowing ICHRA callers to specify the date the carrier policy actually ended, which may be in the past.
+* **`VitableConnect::Types::MemberEnrollment#answered_at`** — new nullable field exposing the timestamp at which the enrollment was answered.
+
 ## 8.0.0 - 2026-10-16
 ### Breaking Changes
 * **`VitableConnect::Client#initialize`** — the `vitable_organization:` keyword argument has been removed; callers passing it at construction time will receive an `ArgumentError`. Migrate by passing `vitable_organization:` directly to each individual API method call instead.

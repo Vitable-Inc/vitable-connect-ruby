@@ -2337,7 +2337,7 @@ client.enrollments.reissue(
 <dl>
 <dd>
 
-Terminates enrolled coverage immediately. An accepted qualifying life event owned by the enrollment member is required unless the plan is VPC or ICHRA. User-backed callers must provide a reason; it is optional for organization API-key callers. API keys may act across the caller organization's book. Tenant mismatches return the same non-disclosing 404 before the request body is validated.
+Terminates enrolled coverage; it ends on the last day of the termination month, or on the termination date for VPC. An accepted qualifying life event owned by the enrollment member is required unless the plan is VPC or ICHRA. ICHRA callers may pass the date the carrier policy actually ended, which can be in the past. User-backed callers must provide a reason; it is optional for organization API-key callers. API keys may act across the caller organization's book. Tenant mismatches return the same non-disclosing 404 before the request body is validated.
 </dd>
 </dl>
 </dd>
@@ -2405,6 +2405,14 @@ client.enrollments.terminate(
 <dd>
 
 **qualifying_life_event_id:** `String` — Accepted member qualifying life event identifier (qle_*)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**carrier_coverage_end_date:** `String` — Last day the carrier policy covered the member, when it ended before this termination. Accepted for ICHRA enrollments only; coverage end is derived when omitted
     
 </dd>
 </dl>
