@@ -8,6 +8,7 @@ module VitableConnect
       ENROLLED = "Enrolled"
       EXPIRED = "Expired"
       PENDING = "Pending"
+      UPCOMING = "Upcoming"
       WAIVED = "Waived"
     end
   end

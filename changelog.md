@@ -1,3 +1,7 @@
+## 8.2.0 - 2026-11-03
+### Added
+* **`VitableConnect::Types::ElectionStatusItem::UPCOMING`** and **`VitableConnect::Types::PlanYearEnrollmentElectionStatus::UPCOMING`** — new `"Upcoming"` enum value added to both election status types, allowing callers to represent enrollments that are scheduled but not yet active.
+
 ## 8.1.0 - 2026-10-26
 ### Added
 * **`VitableConnect::Enrollments::Types::TerminateEnrollmentRequest#carrier_coverage_end_date`** — new optional field allowing ICHRA callers to specify the date the carrier policy actually ended, which may be in the past.
