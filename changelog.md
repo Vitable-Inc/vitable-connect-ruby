@@ -1,3 +1,7 @@
+## 8.3.0 - 2026-11-05
+### Added
+* **`VitableConnect::Types::MemberEnrollment#requires_external_plan`** — new non-nullable boolean field indicating whether the enrollment requires an external plan.
+
 ## 8.2.0 - 2026-11-03
 ### Added
 * **`VitableConnect::Types::ElectionStatusItem::UPCOMING`** and **`VitableConnect::Types::PlanYearEnrollmentElectionStatus::UPCOMING`** — new `"Upcoming"` enum value added to both election status types, allowing callers to represent enrollments that are scheduled but not yet active.
