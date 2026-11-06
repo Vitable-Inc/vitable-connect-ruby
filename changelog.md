@@ -1,3 +1,18 @@
+## 8.3.1 - 2026-11-06
+* chore: document 409 conflict behavior for employee update endpoint
+* Expand the inline documentation for the `update` method on the
+* employees client to describe the 409 `employer_has_hris_connection`
+* error response. The new doc text clarifies exactly when the conflict
+* is raised (changes to `employee_class`, `compensation_type`, or
+* `start_date` for employers with active, pending, or inactive HRIS
+* connections) and notes that paused connections do not block, and that
+* re-sending current values with a new `effective_date` is permitted.
+* Key changes:
+* Extended the YARD comment on `EmployeesClient#update` to document the 409 conflict response and its conditions
+* Clarified that paused HRIS connections do not trigger the conflict
+* Noted the allowed workaround of re-sending current values with a new effective_date
+* 🌿 Generated with Fern
+
 ## 8.3.0 - 2026-11-05
 ### Added
 * **`VitableConnect::Types::MemberEnrollment#requires_external_plan`** — new non-nullable boolean field indicating whether the enrollment requires an external plan.
