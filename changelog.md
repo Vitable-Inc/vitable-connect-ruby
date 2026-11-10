@@ -1,3 +1,10 @@
+## 8.4.0 - 2026-11-10
+### Added
+* **`vitable_organization`** optional parameter on `EmployeesClient#get` and `EmployeesClient#update` — when supplied, the value is sent as the `X-Vitable-Organization` HTTP header to scope the request to a specific organization.
+* **`GetEmployeesRequest#vitable_organization`** and **`PatchedUpdateEmployeeRequest#vitable_organization`** — new optional fields (mapped to the `X-Vitable-Organization` header) on the corresponding request types.
+### Changed
+* **`EmployeesClient#update`** inline documentation expanded to describe 404, 403 (`organization_access_denied`), 422 (`email_taken`, `invalid_account_update`), and 400 (`invalid_employee_update`, `employee_already_terminated`) error responses.
+
 ## 8.3.1 - 2026-11-06
 * chore: document 409 conflict behavior for employee update endpoint
 * Expand the inline documentation for the `update` method on the

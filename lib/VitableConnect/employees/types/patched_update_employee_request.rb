@@ -6,6 +6,8 @@ module VitableConnect
       class PatchedUpdateEmployeeRequest < Internal::Types::Model
         field :employee_id, -> { String }, optional: false, nullable: false
 
+        field :vitable_organization, -> { String }, optional: true, nullable: false, api_name: "X-Vitable-Organization"
+
         field :email, -> { String }, optional: true, nullable: false
 
         field :phone, -> { String }, optional: true, nullable: false
