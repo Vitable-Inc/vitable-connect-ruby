@@ -4,6 +4,8 @@ module VitableConnect
   module Types
     # Wire serializer for :class:`MemberLegalDependentDTO` (one legal-dependent row).
     class SavedMemberDependent < Internal::Types::Model
+      field :legal_dependent_id, -> { String }, optional: false, nullable: false
+
       field :member_id, -> { String }, optional: true, nullable: false
 
       field :primary_member_id, -> { String }, optional: true, nullable: false
@@ -19,8 +21,6 @@ module VitableConnect
       field :age, -> { Integer }, optional: false, nullable: false
 
       field :sex_at_birth, -> { VitableConnect::Types::SexAtBirth }, optional: true, nullable: false
-
-      field :legal_dependent_id, -> { String }, optional: false, nullable: false
 
       field :created, -> { Internal::Types::Boolean }, optional: false, nullable: false
     end

@@ -1,3 +1,9 @@
+## 8.5.0 - 2026-11-18
+### Added
+* **`BenefitFamily::HRA`** and **`BenefitFamilyParamItem::HRA`** — new `"hra"` enum value added to both benefit family types.
+* **`ProductCode::QSEHRA_REIMBURSEMENT_ONLY`** and **`ProductCode::GCHRA_REIMBURSEMENT_ONLY`** — two new product code constants for QSEHRA and GCHRA reimbursement-only plans.
+* **`MemberLegalDependent#legal_dependent_id`** — new required (non-nullable) string field added to the `MemberLegalDependent` response type.
+
 ## 8.4.0 - 2026-11-10
 ### Added
 * **`vitable_organization`** optional parameter on `EmployeesClient#get` and `EmployeesClient#update` — when supplied, the value is sent as the `X-Vitable-Organization` HTTP header to scope the request to a specific organization.

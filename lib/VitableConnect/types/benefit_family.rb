@@ -8,6 +8,7 @@ module VitableConnect
       MEC = "mec"
       MVP = "mvp"
       ICHRA = "ichra"
+      HRA = "hra"
       VPC = "vpc"
       DENTAL = "dental"
       VISION = "vision"
