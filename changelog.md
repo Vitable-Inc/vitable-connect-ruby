@@ -1,3 +1,17 @@
+## 8.5.1 - 2026-11-20
+* chore: update inline documentation for contribution strategy types
+* Refresh the YARD/comment descriptions on `ContributionStrategy` and
+* `IchraContributionClass` to reflect updated terminology. The
+* `ContributionStrategy` doc now describes the selection logic in terms of
+* allowance-based products (allowance classes vs tier-priced) rather than
+* the plan year's `family` field (ICHRA vs tier-priced). The
+* `IchraContributionClass` doc now refers to the class as an "allowance
+* contribution class" rather than an "ICHRA contribution class".
+* Key changes:
+* Updated `ContributionStrategy` comment to reference allowance-based product logic instead of ICHRA/family-based logic
+* Updated `IchraContributionClass` comment to use "allowance contribution class" terminology
+* 🌿 Generated with Fern
+
 ## 8.5.0 - 2026-11-18
 ### Added
 * **`BenefitFamily::HRA`** and **`BenefitFamilyParamItem::HRA`** — new `"hra"` enum value added to both benefit family types.

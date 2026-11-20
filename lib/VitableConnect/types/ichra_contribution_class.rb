@@ -2,7 +2,7 @@
 
 module VitableConnect
   module Types
-    # One ICHRA contribution class, mirroring the internal configuration endpoint's
+    # One allowance contribution class, mirroring the internal configuration endpoint's
     # ``IchraContributionClassConfigurationEntitySerializer`` field-for-field. Two deliberate
     # differences for the public surface: the identifier is the opaque prefixed ``iccl_*`` form rather
     # than a raw UUID, and the matcher choices come from the domain enums rather than the model's.

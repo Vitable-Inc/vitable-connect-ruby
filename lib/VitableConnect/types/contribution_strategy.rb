@@ -2,8 +2,8 @@
 
 module VitableConnect
   module Types
-    # How the plan year prices contributions: exactly one collection is populated, determined by the
-    # plan year's ``family`` (ICHRA vs tier-priced).
+    # How the plan year prices contributions: exactly one collection is populated, determined by
+    # whether the product is allowance-based (allowance classes vs tier-priced).
     class ContributionStrategy < Internal::Types::Model
       field :ichra_contribution_classes, -> { Internal::Types::Array[VitableConnect::Types::IchraContributionClass] }, optional: false, nullable: false
 
