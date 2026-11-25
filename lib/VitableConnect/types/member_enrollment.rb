@@ -16,7 +16,11 @@ module VitableConnect
 
       field :requires_qle_for_reissue, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :requires_qle_for_termination, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
       field :requires_external_plan, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :plan_selection_required, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
       field :product_name, -> { String }, optional: false, nullable: false
 

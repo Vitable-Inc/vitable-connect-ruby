@@ -1,3 +1,10 @@
+## 8.6.0 - 2026-11-25
+### Added
+* **`MemberEnrollment#requires_qle_for_termination`** — new required boolean field indicating whether a qualifying life event is needed to terminate the enrollment.
+* **`MemberEnrollment#plan_selection_required`** — new required boolean field indicating whether plan selection is required for the enrollment.
+### Changed
+* **`EnrollmentsClient#terminate`** — inline documentation updated to reflect that the QLE exemption applies to all allowance-based plans (ICHRA, QSEHRA, and GCHRA), not only ICHRA; also clarifies that the past-dated carrier policy end date applies when the benefit requires an external plan.
+
 ## 8.5.1 - 2026-11-20
 * chore: update inline documentation for contribution strategy types
 * Refresh the YARD/comment descriptions on `ContributionStrategy` and
